@@ -4,6 +4,10 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
 <BorderPane fx:controller="javafx.sample.Controller" xmlns:fx="http://javafx.com/fxml">
 
     <top>
@@ -15,10 +19,28 @@
         </MenuBar>
     </top>
     <left>
-        <Label text="Toolbar goes here"/>
+        <VBox alignment="CENTER_LEFT">
+            <padding><Insets right="25" left="25"/></padding>
+            <!-- just placeholders will be loaded at runtime -->
+            <Button text="AND"/>
+            <Button text="OR"/>
+            <Button text="NOT"/>
+            <Button text="DFF"/>
+        </VBox>
     </left>
     <center>
-        <Label text="simulation goes here"/>
+        <ScrollPane>
+            <VBox>
+                <padding><Insets left="25" top="25"/></padding>
+                <Label text="simulation goes here"/>
+                <Label text="simulation goes here"/>
+                <Label text="simulation goes here"/>
+                <Label text="simulation goes here"/>
+                <Label text="simulation goes here"/>
+                <Label text="simulation goes here"/>
+                <Label text="simulation goes here"/>
+            </VBox>
+        </ScrollPane>
     </center>
     <right>
         <Label text="component decription here"/>
