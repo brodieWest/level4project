@@ -11,6 +11,7 @@ public class Dff extends Component {
         // TODO: set nextLogic on ouput based on input and stored value
     }
 
-    public Dff() {
+    public Dff(int xCoord, int yCoord) {
+        super(xCoord, yCoord);
     }
 }

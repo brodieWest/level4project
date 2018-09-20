@@ -7,6 +7,7 @@ public class AndGate extends Component {
         // TODO: set nextLogic on ouput based on input
     }
 
-    public AndGate() {
+    public AndGate(int xCoord, int yCoord) {
+        super(xCoord, yCoord);
     }
 }

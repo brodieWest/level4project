@@ -7,6 +7,7 @@ public class OrGate extends Component {
         // TODO: set nextLogic on ouput based on input
     }
 
-    public OrGate() {
+    public OrGate(int xCoord, int yCoord) {
+        super(xCoord, yCoord);
     }
 }

@@ -8,6 +8,7 @@ public class NotGate extends Component {
         // TODO: set nextLogic on ouput based on input
     }
 
-    public NotGate() {
+    public NotGate(int xCoord, int yCoord) {
+        super(xCoord, yCoord);
     }
 }
