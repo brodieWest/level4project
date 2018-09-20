@@ -3,8 +3,8 @@
     {
       "type" : "and",
       "uuid": "not1",
-      "xPosition": 1,
-      "yPosition": 1,
+      "xCoord": 1,
+      "yCoord": 1,
       "inputPorts" : [
         "input1"
       ],
@@ -15,8 +15,8 @@
     {
       "type" : "binaryInput",
       "uuid": "binaryInput1",
-      "xPosition": 0,
-      "yPosition": 1,
+      "xCoord": 0,
+      "yCoord": 1,
       "outputPorts" : [
         "output1"
       ]
@@ -24,8 +24,8 @@
     {
       "type" : "binaryOutput",
       "uuid": "binaryOutput1",
-      "xPosition": 2,
-      "yPosition": 1,
+      "xCoord": 2,
+      "yCoord": 1,
       "inputs" : [
         "input1"
       ]
