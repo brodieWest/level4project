@@ -30,15 +30,8 @@
     </left>
     <center>
         <ScrollPane>
-            <VBox>
+            <VBox fx:id="simulationVBox">
                 <padding><Insets left="25" top="25"/></padding>
-                <Label text="simulation goes here"/>
-                <Label text="simulation goes here"/>
-                <Label text="simulation goes here"/>
-                <Label text="simulation goes here"/>
-                <Label text="simulation goes here"/>
-                <Label text="simulation goes here"/>
-                <Label text="simulation goes here"/>
             </VBox>
         </ScrollPane>
     </center>
