@@ -13,7 +13,7 @@
     <top>
         <MenuBar>
             <Menu text="File">
-                <MenuItem text="Load"/>
+                <MenuItem text="Load" fx:id="load" onAction="#loadFile"/>
                 <MenuItem text="Save"/>
             </Menu>
         </MenuBar>
