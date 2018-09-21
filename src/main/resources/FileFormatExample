@@ -1,7 +1,7 @@
 {
   "components": [
     {
-      "type" : "and",
+      "type" : "not",
       "uuid": "not1",
       "xCoord": 1,
       "yCoord": 1,
