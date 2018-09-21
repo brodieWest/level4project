@@ -32,6 +32,7 @@
         <ScrollPane>
             <VBox fx:id="simulationVBox">
                 <padding><Insets left="25" top="25"/></padding>
+                <fx:include source="simulationGridPane.fxml"/>
             </VBox>
         </ScrollPane>
     </center>
