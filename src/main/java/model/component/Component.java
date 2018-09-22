@@ -3,6 +3,7 @@ package model.component;
 import model.PortType;
 import model.Wire;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +13,8 @@ abstract class Component implements ComponentInterface {
 
     private int xCoord;
     private int yCoord;
+
+    private URL imageUrl;
 
     Component(int xCoord, int yCoord){
         this.xCoord = xCoord;

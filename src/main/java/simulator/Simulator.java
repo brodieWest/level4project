@@ -9,6 +9,7 @@ import model.component.ComponentInterface;
 import model.component.NotGate;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class Simulator {
@@ -39,13 +40,14 @@ public class Simulator {
 
     public static synchronized void addComponent(String type, int xCoord, int yCoord) {
         // TODO ComponentInterface newComponent = ComponentFactory(type, xCoord, yCoord)
-        //    Parent componentFxml = FXMLLoader.load(Simulator.class.getClassLoader().getResource("fxml/component.fxml"));
-    }
+        URL fxmlLocation = Simulator.class.getClassLoader().getResource("fxml/component.fxml");
+        if(fxmlLocation == null) return;
+        try {
+            Parent componentFxml = FXMLLoader.load(fxmlLocation);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-    // current plan is that after they are created, component controller will add themselves here
-    // using this
-    public static synchronized void addComponentController(ComponentController componentController) {
-        // TODO
     }
 
     public static synchronized void removeComponent() {
