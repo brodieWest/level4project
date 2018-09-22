@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane xmlns="http://javafx.com/javafx"
+<AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="javafx.simulation.SimulationController"
             fx:id="simulationGridPane">
-            <Button fx:id="button" text="loading..." onAction="#buttonPress"/>
+    <GridPane>
+        <gridLinesVisible>true</gridLinesVisible>
+        <!-- very hard coded will be created in controller dynamically in future -->
+        <fx:include source="component.fxml" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <fx:include source="component.fxml" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <fx:include source="component.fxml" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+        <fx:include source="component.fxml" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <fx:include source="component.fxml" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <fx:include source="component.fxml" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+        <fx:include source="component.fxml" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <fx:include source="component.fxml" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <fx:include source="component.fxml" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+    </GridPane>
 
-</GridPane>
+</AnchorPane>

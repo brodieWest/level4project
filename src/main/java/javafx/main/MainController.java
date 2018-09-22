@@ -12,12 +12,6 @@ public class MainController extends BorderPane {
     private MenuItem load;
 
     @FXML
-    private VBox simulationVBox;
-
-    @FXML
     protected void loadFile() {
-        Label label = new Label();
-        label.setText("I'm an AND gate");
-        simulationVBox.getChildren().add(label);
     }
 }

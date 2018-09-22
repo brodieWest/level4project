@@ -23,4 +23,12 @@ public class Simulator {
     public static synchronized void removeComponent() {
         // TODO
     }
+
+    public static synchronized void addWire() {
+        // TODO
+    }
+
+    public static synchronized void removeWire() {
+        // TODO
+    }
 }
