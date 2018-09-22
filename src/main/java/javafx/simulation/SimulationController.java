@@ -15,8 +15,8 @@ public class SimulationController implements Controller {
         Simulator.setSimulationController(this);
     }
 
-    public void placeComponent(Parent componentFxml, int xCoord, int yCoord) {
-        GridPane.setConstraints(componentFxml, yCoord, xCoord);
-        simulationGridPane.getChildren().add(componentFxml);
+    public void placeComponent(Parent componentNode, int xCoord, int yCoord) {
+        GridPane.setConstraints(componentNode, yCoord, xCoord);
+        simulationGridPane.getChildren().add(componentNode);
     }
 }

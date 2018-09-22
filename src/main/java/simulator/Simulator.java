@@ -41,10 +41,10 @@ public class Simulator {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Simulator.class.getClassLoader().getResource("fxml/component.fxml"));
 
-        Parent componentFxml;
+        Parent componentNode;
 
         try {
-            componentFxml = fxmlLoader.load();
+            componentNode = fxmlLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
             return;
@@ -52,7 +52,7 @@ public class Simulator {
 
         ComponentController controller = fxmlLoader.getController();
 
-        simulationController.placeComponent(componentFxml,xCoord,yCoord);
+        simulationController.placeComponent(componentNode,xCoord,yCoord);
 
         Component componentModel = ComponentFactory.getComponent(type, xCoord, yCoord);
 

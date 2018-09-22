@@ -9,5 +9,6 @@ public class OrGate extends Component {
 
     public OrGate(int xCoord, int yCoord) {
         super(xCoord, yCoord);
+        imageLocation = "/images/orImage.png";
     }
 }
