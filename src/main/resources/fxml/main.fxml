@@ -11,12 +11,15 @@
 <BorderPane fx:controller="javafx.main.MainController" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
     <top>
-        <MenuBar>
-            <Menu text="File">
-                <MenuItem text="Load" fx:id="load" onAction="#loadFile"/>
-                <MenuItem text="Save"/>
-            </Menu>
-        </MenuBar>
+        <VBox>
+        <padding><Insets bottom="2" /></padding>
+            <MenuBar>
+                <Menu text="File">
+                    <MenuItem text="Load" fx:id="load" onAction="#loadFile"/>
+                    <MenuItem text="Save"/>
+                </Menu>
+            </MenuBar>
+        </VBox>
     </top>
     <left>
         <VBox alignment="CENTER_LEFT">
@@ -32,6 +35,7 @@
         <ScrollPane>
             <VBox fx:id="simulationVBox">
                 <padding><Insets left="25" top="25"/></padding>
+                <fx:include source="simulationGridPane.fxml"/>
                 <fx:include source="simulationGridPane.fxml"/>
             </VBox>
         </ScrollPane>

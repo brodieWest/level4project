@@ -3,16 +3,17 @@ package model.component;
 import model.PortType;
 import model.Wire;
 
+import java.util.HashMap;
 import java.util.Map;
 
-abstract class Component {
-    Map<String, Wire> inputs;
-    Map<String, Wire> outputs;
+abstract class Component implements ComponentInterface {
+    Map<String, Wire> inputs = new HashMap<>();
+    Map<String, Wire> outputs = new HashMap<>();
 
     private int xCoord;
     private int yCoord;
 
-    public Component(int xCoord, int yCoord){
+    Component(int xCoord, int yCoord){
         this.xCoord = xCoord;
         this.yCoord = yCoord;
     }

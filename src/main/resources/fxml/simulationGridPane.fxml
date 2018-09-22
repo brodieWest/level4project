@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.control.Button?>
+
 <GridPane xmlns="http://javafx.com/javafx"
-          xmlns:fx="http://javafx.com/fxml"
-          fx:controller="javafx.simulation.SimulationController"
-          fx:id="simulationGridPane">
-    <Button text="loading..." fx:id="button" onAction="#buttonPress"/>
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="javafx.simulation.SimulationController"
+            fx:id="simulationGridPane">
+            <Button fx:id="button" text="loading..." onAction="#buttonPress"/>
+
 </GridPane>
