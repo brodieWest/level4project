@@ -1,15 +1,17 @@
 package javafx.simulation;
 
+import javafx.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
-public class SimulationController {
+public class SimulationController implements Controller {
     @FXML
     Node simulationGridPane;
 
     @FXML
-    Button button;
+    private Button button;
 
     @FXML
     protected void buttonPress() {

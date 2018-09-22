@@ -1,13 +1,12 @@
 package javafx.main;
 
+import javafx.Controller;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.Parent;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 
 
-public class MainController extends BorderPane {
+public class MainController implements Controller {
     @FXML
     private MenuItem load;
 
