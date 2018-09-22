@@ -2,13 +2,12 @@
 
 <?import javafx.scene.layout.*?>
 
-<?import javafx.geometry.Insets?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="javafx.component.ComponentController"
             fx:id="component">
     <VBox fx:id="componentVBox">
-        <padding><Insets top="100" left="100"/></padding>
+        <!-- empty image box -->
     </VBox>
 
 </AnchorPane>

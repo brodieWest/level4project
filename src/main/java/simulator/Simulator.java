@@ -1,6 +1,7 @@
 package simulator;
 
 import model.component.ComponentInterface;
+import model.component.NotGate;
 
 import java.util.ArrayList;
 
@@ -16,8 +17,8 @@ public class Simulator {
         // TODO
     }
 
-    public static synchronized void addComponent() {
-        // TODO
+    public static synchronized void addComponent(String type, int xCoord, int yCoord) {
+        // TODO ComponentInterface newComponent = ComponentFactory(type, xCoord, yCoord)
     }
 
     public static synchronized void removeComponent() {
