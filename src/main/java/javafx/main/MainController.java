@@ -2,8 +2,8 @@ package javafx.main;
 
 import javafx.Controller;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.MenuItem;
+import simulator.Simulator;
 
 
 public class MainController implements Controller {
@@ -12,5 +12,9 @@ public class MainController implements Controller {
 
     @FXML
     protected void loadFile() {
+    }
+
+    public void initialize(){
+        Simulator.setMainController(this);
     }
 }

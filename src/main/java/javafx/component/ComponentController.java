@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import model.component.ComponentInterface;
+import simulator.Simulator;
 
 public class ComponentController implements Controller {
 
@@ -19,5 +20,9 @@ public class ComponentController implements Controller {
 
     @FXML
     private ImageView imageView;
+
+    public void initialize(){
+        Simulator.addComponentController(this);
+    }
 
 }
