@@ -1,5 +1,6 @@
 package javafx.main;
 
+import fileIO.Load;
 import javafx.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,8 +17,8 @@ public class MainController implements Controller {
 
     @FXML
     protected void loadFile() {
-        // just a hard coded example
-        Simulator.addComponent("not", 2,2);
+        //Load.loadFromFile("CHANGEME");
+
     }
 
     public void initialize(){

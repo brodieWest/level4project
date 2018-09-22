@@ -18,6 +18,12 @@
         <VBox GridPane.rowIndex="0" GridPane.columnIndex="3">
             <padding><Insets left="100"/></padding>
         </VBox>
+        <VBox GridPane.rowIndex="0" GridPane.columnIndex="4">
+            <padding><Insets left="100"/></padding>
+        </VBox>
+        <VBox GridPane.rowIndex="0" GridPane.columnIndex="5">
+            <padding><Insets left="100"/></padding>
+        </VBox>
         <VBox GridPane.rowIndex="1" GridPane.columnIndex="0">
             <padding><Insets top="100"/></padding>
         </VBox>
@@ -25,6 +31,12 @@
             <padding><Insets top="100"/></padding>
         </VBox>
         <VBox GridPane.rowIndex="3" GridPane.columnIndex="0">
+            <padding><Insets top="100"/></padding>
+        </VBox>
+        <VBox GridPane.rowIndex="4" GridPane.columnIndex="0">
+            <padding><Insets top="100"/></padding>
+        </VBox>
+        <VBox GridPane.rowIndex="5" GridPane.columnIndex="0">
             <padding><Insets top="100"/></padding>
         </VBox>
     </GridPane>
