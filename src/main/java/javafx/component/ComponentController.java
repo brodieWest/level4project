@@ -21,8 +21,7 @@ public class ComponentController implements Controller {
     @FXML
     private ImageView imageView;
 
-    public void initialize(){
-        Simulator.addComponentController(this);
+    public ImageView getImageView() {
+        return imageView;
     }
-
 }

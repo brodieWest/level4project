@@ -7,14 +7,14 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-abstract class Component implements ComponentInterface {
+public abstract class Component implements ComponentInterface {
     Map<String, Wire> inputs = new HashMap<>();
     Map<String, Wire> outputs = new HashMap<>();
 
     private int xCoord;
     private int yCoord;
 
-    private URL imageUrl;
+    String imageLocation;
 
     Component(int xCoord, int yCoord){
         this.xCoord = xCoord;
@@ -48,5 +48,10 @@ abstract class Component implements ComponentInterface {
 
     public int getyCoord() {
         return yCoord;
+    }
+
+    @Override
+    public String getImageLocation() {
+        return imageLocation;
     }
 }
