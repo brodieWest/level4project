@@ -4,14 +4,11 @@ import javafx.component.ComponentController;
 import javafx.fxml.FXMLLoader;
 import javafx.main.MainController;
 import javafx.scene.Parent;
-import javafx.scene.image.Image;
 import javafx.simulation.SimulationController;
 import model.ComponentFactory;
 import model.component.Component;
-import model.component.ComponentInterface;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class Simulator {

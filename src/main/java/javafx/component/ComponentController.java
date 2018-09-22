@@ -6,16 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import model.ComponentFactory;
 import model.component.Component;
-import model.component.ComponentInterface;
 import simulator.Simulator;
 
 import java.io.InputStream;
 
 public class ComponentController implements Controller {
 
-    ComponentInterface componentModel;
+    Component componentModel;
 
     @FXML
     private Parent component;
