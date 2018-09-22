@@ -1,21 +1,18 @@
 package fileIO;
 
-import org.json.JSONObject;
-import simulator.Simulator;
-
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.stream.Collectors;
 
 public class Load {
 
     public static void loadFromFile(String fileName) {
+        loadTextFromFile(fileName);
+    }
 
-        try {
-            String fileText = new String(Files.readAllBytes(Paths.get(fileName)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    static String loadTextFromFile(String fileName) {
+        InputStream inputStream = Load.class.getResourceAsStream(fileName);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
+        return reader.lines().collect(Collectors.joining());
     }
 }
