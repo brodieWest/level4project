@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.simulation.SimulationController;
 import model.ComponentFactory;
+import model.component.Component;
 import model.component.ComponentInterface;
 
 import java.io.IOException;
@@ -56,11 +57,9 @@ public class Simulator {
 
         simulationController.placeComponent(componentFxml,xCoord,yCoord);
 
-        ComponentInterface newComponent = ComponentFactory.getComponent(type, xCoord, yCoord);
+        Component componentModel = ComponentFactory.getComponent(type, xCoord, yCoord);
 
-        InputStream inputstream = Simulator.class.getResourceAsStream(newComponent.getImageLocation());
-        Image image = new Image(inputstream);
-        controller.getImageView().setImage(image);
+        controller.showComponent(componentModel);
 
     }
 
