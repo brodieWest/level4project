@@ -1,11 +1,14 @@
 package simulator;
 
 import javafx.component.ComponentController;
+import javafx.fxml.FXMLLoader;
 import javafx.main.MainController;
+import javafx.scene.Parent;
 import javafx.simulation.SimulationController;
 import model.component.ComponentInterface;
 import model.component.NotGate;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Simulator {
@@ -36,12 +39,13 @@ public class Simulator {
 
     public static synchronized void addComponent(String type, int xCoord, int yCoord) {
         // TODO ComponentInterface newComponent = ComponentFactory(type, xCoord, yCoord)
+        //    Parent componentFxml = FXMLLoader.load(Simulator.class.getClassLoader().getResource("fxml/component.fxml"));
     }
 
     // current plan is that after they are created, component controller will add themselves here
     // using this
     public static synchronized void addComponentController(ComponentController componentController) {
-
+        // TODO
     }
 
     public static synchronized void removeComponent() {

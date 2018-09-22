@@ -5,9 +5,8 @@
 <?import javafx.geometry.Insets?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="javafx.simulation.SimulationController"
-            fx:id="simulationGridPane">
-    <GridPane>
+            fx:controller="javafx.simulation.SimulationController">
+    <GridPane fx:id="simulationGridPane">
         <gridLinesVisible>true</gridLinesVisible>
         <!-- very hard coded will be created in controller dynamically in future -->
         <VBox GridPane.rowIndex="0" GridPane.columnIndex="1">
