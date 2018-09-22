@@ -4,7 +4,7 @@
       "type" : "not",
       "uuid": "not1",
       "xCoord": 1,
-      "yCoord": 1,
+      "yCoord": 2,
       "inputPorts" : [
         "input1"
       ],
@@ -13,9 +13,9 @@
       ]
     },
     {
-      "type" : "binaryInput",
+      "type" : "and",
       "uuid": "binaryInput1",
-      "xCoord": 0,
+      "xCoord": 1,
       "yCoord": 1,
       "outputPorts" : [
         "output1"
@@ -24,8 +24,8 @@
     {
       "type" : "binaryOutput",
       "uuid": "binaryOutput1",
-      "xCoord": 2,
-      "yCoord": 1,
+      "xCoord": 1,
+      "yCoord": 3,
       "inputs" : [
         "input1"
       ]

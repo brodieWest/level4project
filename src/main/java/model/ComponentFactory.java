@@ -16,7 +16,7 @@ public class ComponentFactory {
         if(type.equals("or")) {
             return new OrGate(xCoord, yCoord);
         } else {
-            return null;
+            return new NotGate(xCoord, yCoord);
         }
     }
 }

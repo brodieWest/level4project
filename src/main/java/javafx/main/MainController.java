@@ -17,7 +17,7 @@ public class MainController implements Controller {
 
     @FXML
     protected void loadFile() {
-        //Load.loadFromFile("CHANGEME");
+        Load.loadFromFile("/FileFormatExample");
 
     }
 
