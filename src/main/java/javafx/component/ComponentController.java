@@ -13,7 +13,7 @@ import java.io.InputStream;
 
 public class ComponentController implements Controller {
 
-    Component componentModel;
+    private Component componentModel;
 
     @FXML
     private Parent component;
@@ -28,10 +28,15 @@ public class ComponentController implements Controller {
         return imageView;
     }
 
-    public void showComponent(Component componentModel) {
+    public void initialiseComponent(Component componentModel) {
+        this.componentModel = componentModel;
 
         InputStream inputstream = Simulator.class.getResourceAsStream(componentModel.getImageLocation());
         Image image = new Image(inputstream);
         imageView.setImage(image);
+    }
+
+    public Component getComponentModel() {
+        return componentModel;
     }
 }

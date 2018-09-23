@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.main.MainController;
 import javafx.scene.Parent;
 import javafx.simulation.SimulationController;
+import javafx.stage.Stage;
 import model.ComponentFactory;
 import model.component.Component;
 
@@ -14,7 +15,7 @@ import java.util.Map;
 
 public class Simulator {
 
-    private static Map<String,ComponentController> components = new HashMap<>();
+    private static Map<String,ComponentController> componentControllers = new HashMap<>();
 
     private static MainController mainController;
 
@@ -51,13 +52,16 @@ public class Simulator {
             return;
         }
 
-        ComponentController controller = fxmlLoader.getController();
+        ComponentController componentController = fxmlLoader.getController();
 
         simulationController.placeComponent(componentNode,xCoord,yCoord);
 
         Component componentModel = ComponentFactory.getComponent(type, xCoord, yCoord);
 
-        controller.showComponent(componentModel);
+        componentController.initialiseComponent(componentModel);
+
+        // TODO: should check that uuid does not already exist
+        componentControllers.put(componentModel.getUuid(), componentController);
 
     }
 

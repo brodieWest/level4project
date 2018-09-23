@@ -24,7 +24,7 @@ public abstract class Component {
         setUuid();
     }
 
-    private synchronized void setUuid() {
+    private void setUuid() {
         uuid = this.getStringIdentifier() + Integer.toString(this.getUuidGenerator());
     }
 
