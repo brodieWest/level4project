@@ -16,11 +16,17 @@ public abstract class Component {
 
     String imageLocation;
 
+    private String uuid;
+
     Component(int xCoord, int yCoord){
         this.xCoord = xCoord;
         this.yCoord = yCoord;
+        setUuid();
     }
 
+    private synchronized void setUuid() {
+        uuid = this.getStringIdentifier() + Integer.toString(this.getUuidGenerator());
+    }
 
     // simulates the component over a single gate delay
     public abstract void processGateDelay();
@@ -52,5 +58,13 @@ public abstract class Component {
 
     public String getImageLocation() {
         return imageLocation;
+    }
+
+    public abstract int getUuidGenerator();
+
+    public abstract String getStringIdentifier();
+
+    public String getUuid() {
+        return uuid;
     }
 }

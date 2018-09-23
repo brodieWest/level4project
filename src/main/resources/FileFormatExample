@@ -22,7 +22,7 @@
       ]
     },
     {
-      "type" : "binaryOutput",
+      "type" : "or",
       "uuid": "binaryOutput1",
       "xCoord": 1,
       "yCoord": 3,

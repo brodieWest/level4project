@@ -9,11 +9,12 @@ import model.ComponentFactory;
 import model.component.Component;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Simulator {
 
-    private static ArrayList<ComponentController> components = new ArrayList<>();
+    private static Map<String,ComponentController> components = new HashMap<>();
 
     private static MainController mainController;
 
