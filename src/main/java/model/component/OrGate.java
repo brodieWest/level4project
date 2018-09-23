@@ -24,6 +24,8 @@ public class OrGate extends Component {
 
     public OrGate(int xCoord, int yCoord) {
         super(xCoord, yCoord);
-        imageLocation = "/images/orImage.png";
+        addNewInput("input1");
+        addNewInput("input2");
+        addNewOutput("ouput1");
     }
 }

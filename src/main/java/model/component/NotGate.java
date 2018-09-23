@@ -23,6 +23,7 @@ public class NotGate extends Component {
 
     public NotGate(int xCoord, int yCoord) {
         super(xCoord, yCoord);
-        imageLocation = "/images/notImage.png";
+        addNewInput("input1");
+        addNewOutput("ouput1");
     }
 }

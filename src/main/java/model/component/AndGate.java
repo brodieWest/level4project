@@ -24,7 +24,8 @@ public class AndGate extends Component {
 
     public AndGate(int xCoord, int yCoord) {
         super(xCoord, yCoord);
-        imageLocation = "/images/andImage.png";
-
+        addNewInput("input1");
+        addNewInput("input2");
+        addNewOutput("ouput1");
     }
 }

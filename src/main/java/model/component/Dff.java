@@ -27,5 +27,8 @@ public class Dff extends Component {
 
     public Dff(int xCoord, int yCoord) {
         super(xCoord, yCoord);
+        addNewInput("input1");
+        addNewInput("input2");
+        addNewOutput("ouput1");
     }
 }
