@@ -30,7 +30,10 @@ public class ComponentController implements Controller {
 
     public void initialiseComponent(Component componentModel) {
         this.componentModel = componentModel;
+        setImage();
+    }
 
+    private void setImage() {
         InputStream inputstream = Simulator.class.getResourceAsStream(componentModel.getImageLocation());
         Image image = new Image(inputstream);
         imageView.setImage(image);
@@ -39,4 +42,9 @@ public class ComponentController implements Controller {
     public Component getComponentModel() {
         return componentModel;
     }
+
+    public void deleteImageAsExample() {
+        imageView.setImage(null);
+    }
+
 }

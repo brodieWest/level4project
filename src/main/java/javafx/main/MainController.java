@@ -2,7 +2,6 @@ package javafx.main;
 
 import fileIO.Load;
 import javafx.Controller;
-import javafx.component.ComponentController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,7 +30,7 @@ public class MainController implements Controller {
     }
 
     public void initialize(){
-        FXMLLoader fxmlLoader = new FXMLLoader(Simulator.class.getClassLoader().getResource("fxml/simulationGridPane.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Simulator.class.getClassLoader().getResource("fxml/simulation.fxml"));
 
         Parent simulationNode;
 

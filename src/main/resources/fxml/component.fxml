@@ -8,7 +8,7 @@
             fx:controller="javafx.component.ComponentController"
             fx:id="component">
     <VBox fx:id="componentVBox">
-        <ImageView fx:id="imageView"/>
+        <ImageView fx:id="imageView" onMouseClicked="#deleteImageAsExample"/>
     </VBox>
 
 </AnchorPane>
