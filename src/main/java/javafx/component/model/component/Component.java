@@ -1,9 +1,8 @@
-package model.component;
+package javafx.component.model.component;
 
-import model.PortType;
-import model.Wire;
+import javafx.component.model.PortType;
+import javafx.component.model.Wire;
 
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 

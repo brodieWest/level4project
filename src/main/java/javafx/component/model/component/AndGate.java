@@ -1,9 +1,14 @@
-package model.component;
+package javafx.component.model.component;
 
-public class OrGate extends Component {
-
+public class AndGate extends Component {
 
     private static int uuidGenerator = 0;
+
+
+    @Override
+    public void processGateDelay() {
+        // TODO: set nextLogic on ouput based on input
+    }
 
     @Override
     public int getUuidGenerator() {
@@ -13,16 +18,11 @@ public class OrGate extends Component {
 
     @Override
     public String getStringIdentifier() {
-        return "or";
+        return "and";
     }
 
 
-    @Override
-    public void processGateDelay() {
-        // TODO: set nextLogic on ouput based on input
-    }
-
-    public OrGate(int xCoord, int yCoord) {
+    public AndGate(int xCoord, int yCoord) {
         super(xCoord, yCoord);
         addNewInput("input1");
         addNewInput("input2");

@@ -1,4 +1,4 @@
-package model.component;
+package javafx.component.model.component;
 
 import org.junit.Test;
 

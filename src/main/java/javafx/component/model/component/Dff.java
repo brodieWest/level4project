@@ -1,7 +1,10 @@
-package model.component;
+package javafx.component.model.component;
 
-public class NotGate extends Component {
+import javafx.component.model.Logic;
 
+public class Dff extends Component {
+
+    Logic storedValue;
 
     private static int uuidGenerator = 0;
 
@@ -13,17 +16,19 @@ public class NotGate extends Component {
 
     @Override
     public String getStringIdentifier() {
-        return "not";
+        return "dff";
     }
+
 
     @Override
     public void processGateDelay() {
-        // TODO: set nextLogic on ouput based on input
+        // TODO: set nextLogic on ouput based on input and stored value
     }
 
-    public NotGate(int xCoord, int yCoord) {
+    public Dff(int xCoord, int yCoord) {
         super(xCoord, yCoord);
         addNewInput("input1");
+        addNewInput("input2");
         addNewOutput("ouput1");
     }
 }

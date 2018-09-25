@@ -6,8 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import model.component.Component;
-import simulator.Simulator;
+import javafx.component.model.component.Component;
+import javafx.simulation.model.Simulator;
 
 import java.io.InputStream;
 

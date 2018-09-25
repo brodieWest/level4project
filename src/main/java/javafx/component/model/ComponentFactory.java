@@ -1,9 +1,9 @@
-package model;
+package javafx.component.model;
 
-import model.component.AndGate;
-import model.component.Component;
-import model.component.NotGate;
-import model.component.OrGate;
+import javafx.component.model.component.AndGate;
+import javafx.component.model.component.Component;
+import javafx.component.model.component.NotGate;
+import javafx.component.model.component.OrGate;
 
 public class ComponentFactory {
     public static Component getComponent(String type, int xCoord, int yCoord) {

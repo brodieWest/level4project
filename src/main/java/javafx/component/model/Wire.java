@@ -1,4 +1,4 @@
-package model;
+package javafx.component.model;
 
 public class Wire {
 

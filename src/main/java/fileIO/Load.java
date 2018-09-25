@@ -1,19 +1,19 @@
 package fileIO;
 
-import model.Wire;
+import javafx.simulation.SimulationController;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import simulator.Simulator;
+import javafx.simulation.model.Simulator;
 
 import java.io.*;
 import java.util.stream.Collectors;
 
 public class Load {
 
-    public static void loadFromFile(String fileName) {
+    public static void loadFromFile(String fileName, SimulationController simulationController) {
         JSONObject circuit = new JSONObject(loadTextFromFile(fileName));
 
-        loadComponents(circuit);
+        loadComponents(circuit, simulationController);
 
         JSONArray wires = circuit.getJSONArray("wires");
 
@@ -23,12 +23,12 @@ public class Load {
         }
     }
 
-    private static void loadComponents(JSONObject circuit) {
+    private static void loadComponents(JSONObject circuit, SimulationController simulationController) {
         JSONArray components = circuit.getJSONArray("components");
 
         for(Object componentObject : components) {
             JSONObject component = (JSONObject)componentObject;
-            Simulator.addComponent(component.getString("type"), component.getInt("xCoord"), component.getInt("yCoord"));
+            simulationController.addComponent(component.getString("type"), component.getInt("xCoord"), component.getInt("yCoord"));
         }
     }
 
