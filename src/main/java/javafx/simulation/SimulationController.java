@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.main.MainController;
 import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.simulation.model.Simulator;
 
@@ -18,7 +19,7 @@ import java.util.Map;
 
 public class SimulationController implements Controller {
     @FXML
-    GridPane simulationGridPane;
+    AnchorPane simulationPane;
 
 
     private Map<String,ComponentController> componentControllers = new HashMap<>();
@@ -77,7 +78,8 @@ public class SimulationController implements Controller {
     }
 
     private void placeComponent(Parent componentNode, int xCoord, int yCoord) {
-        GridPane.setConstraints(componentNode, yCoord, xCoord);
-        simulationGridPane.getChildren().add(componentNode);
+        simulationPane.getChildren().add(componentNode);
+        AnchorPane.setTopAnchor(componentNode, xCoord*100.0);
+        AnchorPane.setLeftAnchor(componentNode, yCoord*100.0);
     }
 }
