@@ -6,39 +6,42 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="javafx.simulation.SimulationController">
-    <GridPane fx:id="simulationGridPane">
-        <gridLinesVisible>true</gridLinesVisible>
-        <!-- very hard coded will be created in controller dynamically in future -->
-        <VBox GridPane.rowIndex="0" GridPane.columnIndex="1">
-            <padding><Insets left="100"/></padding>
-        </VBox>
-        <VBox GridPane.rowIndex="0" GridPane.columnIndex="2">
-            <padding><Insets left="100"/></padding>
-        </VBox>
-        <VBox GridPane.rowIndex="0" GridPane.columnIndex="3">
-            <padding><Insets left="100"/></padding>
-        </VBox>
-        <VBox GridPane.rowIndex="0" GridPane.columnIndex="4">
-            <padding><Insets left="100"/></padding>
-        </VBox>
-        <VBox GridPane.rowIndex="0" GridPane.columnIndex="5">
-            <padding><Insets left="100"/></padding>
-        </VBox>
-        <VBox GridPane.rowIndex="1" GridPane.columnIndex="0">
-            <padding><Insets top="100"/></padding>
-        </VBox>
-        <VBox GridPane.rowIndex="2" GridPane.columnIndex="0">
-            <padding><Insets top="100"/></padding>
-        </VBox>
-        <VBox GridPane.rowIndex="3" GridPane.columnIndex="0">
-            <padding><Insets top="100"/></padding>
-        </VBox>
-        <VBox GridPane.rowIndex="4" GridPane.columnIndex="0">
-            <padding><Insets top="100"/></padding>
-        </VBox>
-        <VBox GridPane.rowIndex="5" GridPane.columnIndex="0">
-            <padding><Insets top="100"/></padding>
-        </VBox>
-    </GridPane>
+    <StackPane>
+        <GridPane fx:id="simulationGridPane">
+            <gridLinesVisible>true</gridLinesVisible>
+            <!-- very hard coded will be created in controller dynamically in future -->
+            <VBox GridPane.rowIndex="0" GridPane.columnIndex="1">
+                <padding><Insets left="100"/></padding>
+            </VBox>
+            <VBox GridPane.rowIndex="0" GridPane.columnIndex="2">
+                <padding><Insets left="100"/></padding>
+            </VBox>
+            <VBox GridPane.rowIndex="0" GridPane.columnIndex="3">
+                <padding><Insets left="100"/></padding>
+            </VBox>
+            <VBox GridPane.rowIndex="0" GridPane.columnIndex="4">
+                <padding><Insets left="100"/></padding>
+            </VBox>
+            <VBox GridPane.rowIndex="0" GridPane.columnIndex="5">
+                <padding><Insets left="100"/></padding>
+            </VBox>
+            <VBox GridPane.rowIndex="1" GridPane.columnIndex="0">
+                <padding><Insets top="100"/></padding>
+            </VBox>
+            <VBox GridPane.rowIndex="2" GridPane.columnIndex="0">
+                <padding><Insets top="100"/></padding>
+            </VBox>
+            <VBox GridPane.rowIndex="3" GridPane.columnIndex="0">
+                <padding><Insets top="100"/></padding>
+            </VBox>
+            <VBox GridPane.rowIndex="4" GridPane.columnIndex="0">
+                <padding><Insets top="100"/></padding>
+            </VBox>
+            <VBox GridPane.rowIndex="5" GridPane.columnIndex="0">
+                <padding><Insets top="100"/></padding>
+            </VBox>
+        </GridPane>
+        <AnchorPane></AnchorPane>
+    </StackPane>
 
 </AnchorPane>
