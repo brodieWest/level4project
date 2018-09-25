@@ -1,5 +1,6 @@
 package fileIO;
 
+import model.Wire;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import simulator.Simulator;
@@ -12,6 +13,17 @@ public class Load {
     public static void loadFromFile(String fileName) {
         JSONObject circuit = new JSONObject(loadTextFromFile(fileName));
 
+        loadComponents(circuit);
+
+        JSONArray wires = circuit.getJSONArray("wires");
+
+        for(Object wireOject : wires) {
+            JSONObject wire = (JSONObject)wireOject;
+            // Wire wire = Simulator.addWire();
+        }
+    }
+
+    private static void loadComponents(JSONObject circuit) {
         JSONArray components = circuit.getJSONArray("components");
 
         for(Object componentObject : components) {

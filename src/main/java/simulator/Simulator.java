@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.simulation.SimulationController;
 import javafx.stage.Stage;
 import model.ComponentFactory;
+import model.Wire;
 import model.component.Component;
 
 import java.io.IOException;
@@ -69,8 +70,9 @@ public class Simulator {
         // TODO
     }
 
-    public static synchronized void addWire() {
-        // TODO
+    public static synchronized Wire addWire() {
+        //Wire wire = new Wire();
+        return null;
     }
 
     public static synchronized void removeWire() {
