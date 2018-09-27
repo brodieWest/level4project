@@ -21,4 +21,19 @@ public class ComponentTest {
 
         assertEquals("or1", orGate.getUuid());
     }
+
+    @Test
+    public void addNewInput() {
+        Component and = new AndGate(new Coordinate(1,1));
+
+        assertEquals(30,and.getInputs().get("input1").getOffset().getX());
+        assertEquals(10,and.getInputs().get("input1").getOffset().getY());
+
+        assertEquals(30,and.getInputs().get("input2").getOffset().getX());
+        assertEquals(20,and.getInputs().get("input2").getOffset().getY());
+    }
+
+    @Test
+    public void addNewOutput() {
+    }
 }

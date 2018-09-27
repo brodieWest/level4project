@@ -1,6 +1,7 @@
 package javafx.component.model.component;
 
 import javafx.component.model.Coordinate;
+import javafx.component.model.Port;
 import javafx.component.model.PortType;
 import javafx.component.model.Wire;
 
@@ -8,12 +9,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Component {
-    private Map<String, Wire> inputs = new HashMap<>();
-    private Map<String, Wire> outputs = new HashMap<>();
+    private Map<String, Port> inputs = new HashMap<>();
+    private Map<String, Port> outputs = new HashMap<>();
 
     private Coordinate coordinate;
 
     private String uuid;
+
+    private int SIZE = 100;
+    private int PORT_OFFSET = 30;
 
     Component(Coordinate coordinate){
         this.coordinate = coordinate;
@@ -30,20 +34,22 @@ public abstract class Component {
 
     // TODO check if valid
     void addNewInput(String name) {
-        inputs.put(name, null);
+        Coordinate coordinate = new Coordinate(PORT_OFFSET,inputs.size()*10+10);
+        inputs.put(name, new Port(coordinate));
     }
 
     // TODO check if valid
     void addNewOutput(String name) {
-        outputs.put(name, null);
+        Coordinate coordinate = new Coordinate(SIZE-PORT_OFFSET,outputs.size()*10+10);
+        outputs.put(name, new Port(coordinate));
     }
 
     public void deleteIO(String name, PortType portType) {
         //TODO
     }
 
-    public void addWireToIO(String name, Wire wire, PortType portType) {
-        //TODO
+    public void addWireToInput(String inputName, Wire wire, PortType portType) {
+
     }
 
     public void deleteWireToIO(String name, PortType portType) {
@@ -64,5 +70,13 @@ public abstract class Component {
 
     public String getUuid() {
         return uuid;
+    }
+
+    Map<String, Port> getInputs() {
+        return inputs;
+    }
+
+    Map<String, Port> getOutputs() {
+        return outputs;
     }
 }
