@@ -1,6 +1,6 @@
 package javafx.component.model.component;
 
-import javafx.component.model.Coordinate;
+import javafx.component.model.Coordinates;
 import javafx.component.model.Logic;
 
 public class Dff extends Component {
@@ -26,8 +26,8 @@ public class Dff extends Component {
         // TODO: set nextLogic on ouput based on input and stored value
     }
 
-    public Dff(Coordinate coordinate) {
-        super(coordinate);
+    public Dff(Coordinates coordinates) {
+        super(coordinates);
         addNewInput("input1");
         addNewInput("input2");
         addNewOutput("ouput1");

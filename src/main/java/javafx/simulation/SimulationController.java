@@ -3,8 +3,8 @@ package javafx.simulation;
 import javafx.Controller;
 import javafx.component.ComponentController;
 import javafx.component.model.ComponentFactory;
-import javafx.component.model.Coordinate;
-import javafx.component.model.Wire;
+import javafx.component.model.Coordinates;
+import javafx.component.Wire.Wire;
 import javafx.component.model.component.Component;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +12,8 @@ import javafx.main.MainController;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.simulation.model.Simulator;
+import utils.Fxml;
+import utils.FxmlLoaderUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -26,6 +28,8 @@ public class SimulationController implements Controller {
 
     private MainController mainController;
 
+    private Map<String, Wire> wires = new HashMap<>();
+
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
@@ -38,24 +42,13 @@ public class SimulationController implements Controller {
         // TODO
     }
 
-    public void addComponent(String type, Coordinate coordinate) {
+    public void addComponent(String type, Coordinates coordinates) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Simulator.class.getClassLoader().getResource("fxml/components/" + type + ".fxml"));
+        Fxml fxml = FxmlLoaderUtils.loadFxml( "fxml/components/" + type + ".fxml");
+        placeComponent(fxml.getNode(), coordinates);
+        ComponentController componentController = (ComponentController)fxml.getController();
 
-        Parent componentNode;
-
-        try {
-            componentNode = fxmlLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
-
-        ComponentController componentController = fxmlLoader.getController();
-
-        placeComponent(componentNode,coordinate);
-
-        Component componentModel = ComponentFactory.getComponent(type, coordinate);
+        Component componentModel = ComponentFactory.getComponent(type, coordinates);
 
         componentController.initialiseComponent(componentModel);
 
@@ -68,18 +61,18 @@ public class SimulationController implements Controller {
         // TODO
     }
 
-    public Wire addWire() {
-        //Wire wire = new Wire();
-        return null;
+    public void addWire() {
+        Wire wire = new Wire();
+        wires.put(wire.getUuid(), wire);
     }
 
     public void removeWire() {
         // TODO
     }
 
-    private void placeComponent(Parent componentNode, Coordinate coordinate) {
+    private void placeComponent(Parent componentNode, Coordinates coordinates) {
         simulationPane.getChildren().add(componentNode);
-        AnchorPane.setTopAnchor(componentNode, coordinate.getX()*100.0);
-        AnchorPane.setLeftAnchor(componentNode, coordinate.getY()*100.0);
+        AnchorPane.setTopAnchor(componentNode, coordinates.getX()*100.0);
+        AnchorPane.setLeftAnchor(componentNode, coordinates.getY()*100.0);
     }
 }

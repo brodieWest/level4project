@@ -6,17 +6,17 @@ import javafx.component.model.component.NotGate;
 import javafx.component.model.component.OrGate;
 
 public class ComponentFactory {
-    public static Component getComponent(String type, Coordinate coordinate) {
+    public static Component getComponent(String type, Coordinates coordinates) {
         if(type.equals("not")) {
-            return new NotGate(coordinate);
+            return new NotGate(coordinates);
         }
         if(type.equals("and")) {
-            return new AndGate(coordinate);
+            return new AndGate(coordinates);
         }
         if(type.equals("or")) {
-            return new OrGate(coordinate);
+            return new OrGate(coordinates);
         } else {
-            return new NotGate(coordinate);
+            return new NotGate(coordinates);
         }
     }
 }

@@ -1,22 +1,24 @@
 package javafx.component.model;
 
+import javafx.component.Wire.Wire;
+
 public class Port {
 
-    private Coordinate offset;
+    private Coordinates offset;
 
     private Wire wire;
 
     private Logic state;
 
-    public Port(Coordinate offset) {
+    public Port(Coordinates offset) {
         this.offset = offset;
     }
 
-    public Coordinate getOffset() {
+    public Coordinates getOffset() {
         return offset;
     }
 
-    public void setOffset(Coordinate offset) {
+    public void setOffset(Coordinates offset) {
         this.offset = offset;
     }
 

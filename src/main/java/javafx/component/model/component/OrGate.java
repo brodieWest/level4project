@@ -1,6 +1,6 @@
 package javafx.component.model.component;
 
-import javafx.component.model.Coordinate;
+import javafx.component.model.Coordinates;
 
 public class OrGate extends Component {
 
@@ -24,8 +24,8 @@ public class OrGate extends Component {
         // TODO: set nextLogic on ouput based on input
     }
 
-    public OrGate(Coordinate coordinate) {
-        super(coordinate);
+    public OrGate(Coordinates coordinates) {
+        super(coordinates);
         addNewInput("input1");
         addNewInput("input2");
         addNewOutput("ouput1");

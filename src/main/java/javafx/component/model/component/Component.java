@@ -1,26 +1,27 @@
 package javafx.component.model.component;
 
-import javafx.component.model.Coordinate;
+import javafx.Onscreen;
+import javafx.component.model.Coordinates;
 import javafx.component.model.Port;
 import javafx.component.model.PortType;
-import javafx.component.model.Wire;
+import javafx.component.Wire.Wire;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Component {
+public abstract class Component implements Onscreen {
     private Map<String, Port> inputs = new HashMap<>();
     private Map<String, Port> outputs = new HashMap<>();
 
-    private Coordinate coordinate;
+    private Coordinates coordinates;
 
     private String uuid;
 
     private int SIZE = 100;
     private int PORT_OFFSET = 30;
 
-    Component(Coordinate coordinate){
-        this.coordinate = coordinate;
+    Component(Coordinates coordinates){
+        this.coordinates = coordinates;
         setUuid();
     }
 
@@ -34,14 +35,14 @@ public abstract class Component {
 
     // TODO check if valid
     void addNewInput(String name) {
-        Coordinate coordinate = new Coordinate(PORT_OFFSET,inputs.size()*10+10);
-        inputs.put(name, new Port(coordinate));
+        Coordinates coordinates = new Coordinates(PORT_OFFSET,inputs.size()*10+10);
+        inputs.put(name, new Port(coordinates));
     }
 
     // TODO check if valid
     void addNewOutput(String name) {
-        Coordinate coordinate = new Coordinate(SIZE-PORT_OFFSET,outputs.size()*10+10);
-        outputs.put(name, new Port(coordinate));
+        Coordinates coordinates = new Coordinates(SIZE-PORT_OFFSET,outputs.size()*10+10);
+        outputs.put(name, new Port(coordinates));
     }
 
     public void deleteIO(String name, PortType portType) {
@@ -56,8 +57,8 @@ public abstract class Component {
         //TODO
     }
 
-    public Coordinate getCoordinate() {
-        return coordinate;
+    public Coordinates getCoordinates() {
+        return coordinates;
     }
 
     public String getImageLocation() {

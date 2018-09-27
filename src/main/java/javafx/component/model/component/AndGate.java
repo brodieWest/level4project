@@ -1,6 +1,6 @@
 package javafx.component.model.component;
 
-import javafx.component.model.Coordinate;
+import javafx.component.model.Coordinates;
 
 public class AndGate extends Component {
 
@@ -24,8 +24,8 @@ public class AndGate extends Component {
     }
 
 
-    public AndGate(Coordinate coordinate) {
-        super(coordinate);
+    public AndGate(Coordinates coordinates) {
+        super(coordinates);
         addNewInput("input1");
         addNewInput("input2");
         addNewOutput("ouput1");
