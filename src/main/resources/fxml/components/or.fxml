@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.Arc?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="javafx.component.ComponentController"
+            fx:id="component">
+    <VBox fx:id="componentVBox">
+        <Group fx:id="svgGroup" onMouseClicked="#deleteImageAsExample">
+
+            <Rectangle x ="20" y="20" width="5" height="60"/>
+
+            <Arc centerX="25" centerY="50" radiusX="50" radiusY="30" startAngle="-90" length="180"/>
+
+            <Arc centerX="20" centerY="50" radiusX="15" radiusY="30" startAngle="-90" length ="180" fill="white"/>
+        </Group>
+    </VBox>
+
+</AnchorPane>
