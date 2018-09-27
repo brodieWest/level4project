@@ -1,5 +1,7 @@
 package javafx.component.model.component;
 
+import javafx.component.model.Coordinate;
+
 public class NotGate extends Component {
 
 
@@ -21,8 +23,8 @@ public class NotGate extends Component {
         // TODO: set nextLogic on ouput based on input
     }
 
-    public NotGate(int xCoord, int yCoord) {
-        super(xCoord, yCoord);
+    public NotGate(Coordinate coordinate) {
+        super(coordinate);
         addNewInput("input1");
         addNewOutput("ouput1");
     }

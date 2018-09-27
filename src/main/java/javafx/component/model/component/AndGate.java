@@ -1,5 +1,7 @@
 package javafx.component.model.component;
 
+import javafx.component.model.Coordinate;
+
 public class AndGate extends Component {
 
     private static int uuidGenerator = 0;
@@ -22,8 +24,8 @@ public class AndGate extends Component {
     }
 
 
-    public AndGate(int xCoord, int yCoord) {
-        super(xCoord, yCoord);
+    public AndGate(Coordinate coordinate) {
+        super(coordinate);
         addNewInput("input1");
         addNewInput("input2");
         addNewOutput("ouput1");

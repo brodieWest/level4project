@@ -1,5 +1,6 @@
 package fileIO;
 
+import javafx.component.model.Coordinate;
 import javafx.simulation.SimulationController;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,7 +29,8 @@ public class Load {
 
         for(Object componentObject : components) {
             JSONObject component = (JSONObject)componentObject;
-            simulationController.addComponent(component.getString("type"), component.getInt("xCoord"), component.getInt("yCoord"));
+            Coordinate coordinate = new Coordinate(component.getInt("xCoord"), component.getInt("yCoord"));
+            simulationController.addComponent(component.getString("type"), coordinate);
         }
     }
 

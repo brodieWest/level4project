@@ -3,6 +3,7 @@ package javafx.simulation;
 import javafx.Controller;
 import javafx.component.ComponentController;
 import javafx.component.model.ComponentFactory;
+import javafx.component.model.Coordinate;
 import javafx.component.model.Wire;
 import javafx.component.model.component.Component;
 import javafx.fxml.FXML;
@@ -37,7 +38,7 @@ public class SimulationController implements Controller {
         // TODO
     }
 
-    public void addComponent(String type, int xCoord, int yCoord) {
+    public void addComponent(String type, Coordinate coordinate) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Simulator.class.getClassLoader().getResource("fxml/components/" + type + ".fxml"));
 
@@ -52,9 +53,9 @@ public class SimulationController implements Controller {
 
         ComponentController componentController = fxmlLoader.getController();
 
-        placeComponent(componentNode,xCoord,yCoord);
+        placeComponent(componentNode,coordinate);
 
-        Component componentModel = ComponentFactory.getComponent(type, xCoord, yCoord);
+        Component componentModel = ComponentFactory.getComponent(type, coordinate);
 
         componentController.initialiseComponent(componentModel);
 
@@ -76,9 +77,9 @@ public class SimulationController implements Controller {
         // TODO
     }
 
-    private void placeComponent(Parent componentNode, int xCoord, int yCoord) {
+    private void placeComponent(Parent componentNode, Coordinate coordinate) {
         simulationPane.getChildren().add(componentNode);
-        AnchorPane.setTopAnchor(componentNode, xCoord*100.0);
-        AnchorPane.setLeftAnchor(componentNode, yCoord*100.0);
+        AnchorPane.setTopAnchor(componentNode, coordinate.getX()*100.0);
+        AnchorPane.setLeftAnchor(componentNode, coordinate.getY()*100.0);
     }
 }

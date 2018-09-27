@@ -1,5 +1,6 @@
 package javafx.component.model.component;
 
+import javafx.component.model.Coordinate;
 import javafx.component.model.PortType;
 import javafx.component.model.Wire;
 
@@ -10,14 +11,12 @@ public abstract class Component {
     private Map<String, Wire> inputs = new HashMap<>();
     private Map<String, Wire> outputs = new HashMap<>();
 
-    private int xCoord;
-    private int yCoord;
+    private Coordinate coordinate;
 
     private String uuid;
 
-    Component(int xCoord, int yCoord){
-        this.xCoord = xCoord;
-        this.yCoord = yCoord;
+    Component(Coordinate coordinate){
+        this.coordinate = coordinate;
         setUuid();
     }
 
@@ -51,12 +50,8 @@ public abstract class Component {
         //TODO
     }
 
-    public int getxCoord() {
-        return xCoord;
-    }
-
-    public int getyCoord() {
-        return yCoord;
+    public Coordinate getCoordinate() {
+        return coordinate;
     }
 
     public String getImageLocation() {
