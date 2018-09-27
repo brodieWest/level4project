@@ -61,7 +61,7 @@ public class ComponentController implements Controller {
     }
 
     public void deleteImageAsExample() {
-        
+
     }
 
 }

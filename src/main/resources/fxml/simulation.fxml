@@ -4,9 +4,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="javafx.simulation.SimulationController">
-    <StackPane>
-        <AnchorPane fx:id="simulationPane"/>
-    </StackPane>
+            fx:controller="javafx.simulation.SimulationController"
+            fx:id="simulationPane">
 
 </AnchorPane>

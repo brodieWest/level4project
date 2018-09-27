@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.main.MainController;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.simulation.model.Simulator;
 
 import java.io.IOException;
@@ -40,7 +39,7 @@ public class SimulationController implements Controller {
 
     public void addComponent(String type, int xCoord, int yCoord) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Simulator.class.getClassLoader().getResource("fxml/component.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Simulator.class.getClassLoader().getResource("fxml/components/" + type + ".fxml"));
 
         Parent componentNode;
 
