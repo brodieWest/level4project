@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 
 public class Load {
 
+    private final static int COMPONENT_POSTITION_FACTOR = 100;
+
     public static void loadFromFile(String fileName, SimulationController simulationController) {
         JSONObject circuit = new JSONObject(loadTextFromFile(fileName));
 
@@ -25,7 +27,7 @@ public class Load {
 
         for(Object componentObject : components) {
             JSONObject component = (JSONObject)componentObject;
-            Coordinates coordinates = new Coordinates(component.getInt("xCoord"), component.getInt("yCoord"));
+            Coordinates coordinates = new Coordinates(component.getInt("xCoord") * COMPONENT_POSTITION_FACTOR , component.getInt("yCoord") * COMPONENT_POSTITION_FACTOR);
             simulationController.addComponent(component.getString("type"), coordinates);
         }
     }

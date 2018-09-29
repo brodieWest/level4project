@@ -20,6 +20,7 @@ public class WireController implements Controller {
     }
 
     public void displayWire(Coordinates startCoordinates, Coordinates endCoordinates) {
+        System.out.println("printing line, startCoords: " + startCoordinates.getX() + ", " + startCoordinates.getY() + " endCoords: " + endCoordinates.getX() + ", " + endCoordinates.getY() );
         MoveTo moveToStart = new MoveTo(startCoordinates.getX(),startCoordinates.getY());
         LineTo lineToEnd = new LineTo(endCoordinates.getX(),endCoordinates.getY());
         path.getElements().add(moveToStart);
@@ -27,6 +28,6 @@ public class WireController implements Controller {
     }
 
     public void deleteOnClick() {
-        path.setFill(Paint.valueOf("yellow"));
+        path.setStroke(Paint.valueOf("yellow"));
     }
 }

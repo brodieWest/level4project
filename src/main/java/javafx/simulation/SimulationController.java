@@ -97,7 +97,7 @@ public class SimulationController implements Controller {
 
     private void placeComponent(Parent componentNode, Coordinates coordinates) {
         simulationPane.getChildren().add(componentNode);
-        AnchorPane.setTopAnchor(componentNode, coordinates.getX()*100.0);
-        AnchorPane.setLeftAnchor(componentNode, coordinates.getY()*100.0);
+        AnchorPane.setTopAnchor(componentNode, coordinates.getY()*1.0);
+        AnchorPane.setLeftAnchor(componentNode, coordinates.getX()*1.0);
     }
 }
