@@ -37,7 +37,8 @@ public class ComponentController implements Controller {
     }
 
     public void deleteImageAsExample() {
-
+        Shape shape = (Shape)svgGroup.getChildren().get(0);
+        shape.setFill(Paint.valueOf("yellow"));
     }
 
 }

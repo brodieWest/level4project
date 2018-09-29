@@ -1,6 +1,7 @@
 package javafx.wire;
 
 import javafx.Controller;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
@@ -23,5 +24,9 @@ public class WireController implements Controller {
         LineTo lineToEnd = new LineTo(endCoordinates.getX(),endCoordinates.getY());
         path.getElements().add(moveToStart);
         path.getElements().add(lineToEnd);
+    }
+
+    public void deleteOnClick() {
+        path.setFill(Paint.valueOf("yellow"));
     }
 }
