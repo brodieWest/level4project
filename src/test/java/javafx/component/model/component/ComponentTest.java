@@ -1,6 +1,6 @@
 package javafx.component.model.component;
 
-import javafx.component.model.Coordinates;
+import model.Coordinates;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -26,14 +26,19 @@ public class ComponentTest {
     public void addNewInput() {
         Component and = new AndGate(new Coordinates(1,1));
 
-        assertEquals(30,and.getInputs().get("input1").getOffset().getX());
-        assertEquals(10,and.getInputs().get("input1").getOffset().getY());
+        assertEquals(30,and.getInput("input1").getOffset().getX());
+        assertEquals(10,and.getInput("input1").getOffset().getY());
 
-        assertEquals(30,and.getInputs().get("input2").getOffset().getX());
-        assertEquals(20,and.getInputs().get("input2").getOffset().getY());
+        assertEquals(30,and.getInput("input2").getOffset().getX());
+        assertEquals(20,and.getInput("input2").getOffset().getY());
     }
 
     @Test
     public void addNewOutput() {
+        Component not = new NotGate(new Coordinates(1,1));
+
+        assertEquals(70,not.getOutput("output1").getOffset().getX());
+        assertEquals(10,not.getOutput("output1").getOffset().getY());
+
     }
 }

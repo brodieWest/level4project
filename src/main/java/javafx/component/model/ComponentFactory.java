@@ -4,6 +4,7 @@ import javafx.component.model.component.AndGate;
 import javafx.component.model.component.Component;
 import javafx.component.model.component.NotGate;
 import javafx.component.model.component.OrGate;
+import model.Coordinates;
 
 public class ComponentFactory {
     public static Component getComponent(String type, Coordinates coordinates) {

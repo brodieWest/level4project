@@ -1,6 +1,6 @@
-package javafx.component.model;
+package model;
 
-import javafx.component.Wire.Wire;
+import javafx.wire.Wire;
 
 public class Port {
 

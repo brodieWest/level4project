@@ -1,4 +1,4 @@
-package javafx.component.model;
+package model;
 
 public enum Logic {
     ZERO(0), ONE(1), UNDEFINDED(2);

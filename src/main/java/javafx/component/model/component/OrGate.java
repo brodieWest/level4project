@@ -1,6 +1,6 @@
 package javafx.component.model.component;
 
-import javafx.component.model.Coordinates;
+import model.Coordinates;
 
 public class OrGate extends Component {
 
@@ -28,6 +28,6 @@ public class OrGate extends Component {
         super(coordinates);
         addNewInput("input1");
         addNewInput("input2");
-        addNewOutput("ouput1");
+        addNewOutput("output1");
     }
 }

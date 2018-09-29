@@ -9,6 +9,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
 import javafx.simulation.SimulationController;
 import javafx.simulation.model.Simulator;
+import utils.Fxml;
+import utils.FxmlLoaderUtils;
 
 import java.io.IOException;
 
@@ -30,18 +32,11 @@ public class MainController implements Controller {
     }
 
     public void initialize(){
-        FXMLLoader fxmlLoader = new FXMLLoader(Simulator.class.getClassLoader().getResource("fxml/simulation.fxml"));
+        Fxml fxml = FxmlLoaderUtils.loadFxml("fxml/simulation.fxml");
 
-        Parent simulationNode;
+        Parent simulationNode = fxml.getNode();
 
-        try {
-            simulationNode = fxmlLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
-
-        this.simulationController = fxmlLoader.getController();
+        this.simulationController = (SimulationController)fxml.getController();
 
         simulationController.setMainController(this);
 

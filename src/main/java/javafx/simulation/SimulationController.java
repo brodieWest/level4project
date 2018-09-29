@@ -3,19 +3,18 @@ package javafx.simulation;
 import javafx.Controller;
 import javafx.component.ComponentController;
 import javafx.component.model.ComponentFactory;
-import javafx.component.model.Coordinates;
-import javafx.component.Wire.Wire;
+import javafx.wire.WireController;
+import model.Coordinates;
+import javafx.wire.Wire;
 import javafx.component.model.component.Component;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.main.MainController;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import javafx.simulation.model.Simulator;
+import model.Port;
 import utils.Fxml;
 import utils.FxmlLoaderUtils;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +27,7 @@ public class SimulationController implements Controller {
 
     private MainController mainController;
 
-    private Map<String, Wire> wires = new HashMap<>();
+    private Map<String, WireController> wireControllers = new HashMap<>();
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
@@ -61,9 +60,35 @@ public class SimulationController implements Controller {
         // TODO
     }
 
-    public void addWire() {
+    public void addWire(String startComonentName, String startPortName, String endComponentName, String endPortName) {
+        Fxml fxml = FxmlLoaderUtils.loadFxml("fxml/wire.fxml");
+
+        WireController wireController = (WireController)fxml.getController();
+
+        Parent wireNode = fxml.getNode();
+        simulationPane.getChildren().add(wireNode);
+
         Wire wire = new Wire();
-        wires.put(wire.getUuid(), wire);
+
+        wireController.initialiseWire(wire);
+
+        displayWire(wireController, startComonentName, startPortName, endComponentName, endPortName);
+
+        wireControllers.put(wire.getUuid(), wireController);
+    }
+
+    private void displayWire(WireController wireController, String startComonentName, String startPortName, String endComponentName, String endPortName) {
+        Component startComponent = componentControllers.get(startComonentName).getComponentModel();
+        Port startPort = startComponent.getOutput(startPortName);
+        int startX = startComponent.getCoordinates().getX() + startPort.getOffset().getX();
+        int startY = startComponent.getCoordinates().getY() + startPort.getOffset().getY();
+
+        Component endComponent = componentControllers.get(startComonentName).getComponentModel();
+        Port endPort = endComponent.getInput(endPortName);
+        int endX = endComponent.getCoordinates().getX() + endPort.getOffset().getX();
+        int endY = endComponent.getCoordinates().getY() + endPort.getOffset().getY();
+
+        wireController.displayWire(new Coordinates(startX, startY), new Coordinates(endX, endY));
     }
 
     public void removeWire() {

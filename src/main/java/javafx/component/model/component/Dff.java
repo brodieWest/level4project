@@ -1,7 +1,7 @@
 package javafx.component.model.component;
 
-import javafx.component.model.Coordinates;
-import javafx.component.model.Logic;
+import model.Coordinates;
+import model.Logic;
 
 public class Dff extends Component {
 

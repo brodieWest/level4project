@@ -35,7 +35,7 @@
     {
       "uuid" : "wire1",
       "input" : {
-        "component" : "binaryInput",
+        "component" : "and1",
         "port" : "output1"
       },
       "output" : {
@@ -50,7 +50,7 @@
         "port" : "output1"
       },
       "output" : {
-        "component" : "binaryOutput",
+        "component" : "or1",
         "port" : "input1"
       }
     }

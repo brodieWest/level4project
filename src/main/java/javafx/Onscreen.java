@@ -1,6 +1,6 @@
 package javafx;
 
-import javafx.component.model.Coordinates;
+import model.Coordinates;
 
 public interface Onscreen {
 

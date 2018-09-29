@@ -1,10 +1,10 @@
 package javafx.component.model.component;
 
 import javafx.Onscreen;
-import javafx.component.model.Coordinates;
-import javafx.component.model.Port;
+import model.Coordinates;
+import model.Port;
 import javafx.component.model.PortType;
-import javafx.component.Wire.Wire;
+import javafx.wire.Wire;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +43,14 @@ public abstract class Component implements Onscreen {
     void addNewOutput(String name) {
         Coordinates coordinates = new Coordinates(SIZE-PORT_OFFSET,outputs.size()*10+10);
         outputs.put(name, new Port(coordinates));
+    }
+
+    public Port getOutput(String outputUuid) {
+        return outputs.get(outputUuid);
+    }
+
+    public Port getInput(String outputUuid) {
+        return inputs.get(outputUuid);
     }
 
     public void deleteIO(String name, PortType portType) {

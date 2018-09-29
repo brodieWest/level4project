@@ -1,4 +1,4 @@
-package javafx.component.model;
+package model;
 
 public class Coordinates {
 

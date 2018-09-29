@@ -1,6 +1,6 @@
 package javafx.component.model.component;
 
-import javafx.component.model.Coordinates;
+import model.Coordinates;
 
 public class NotGate extends Component {
 
@@ -26,6 +26,6 @@ public class NotGate extends Component {
     public NotGate(Coordinates coordinates) {
         super(coordinates);
         addNewInput("input1");
-        addNewOutput("ouput1");
+        addNewOutput("output1");
     }
 }

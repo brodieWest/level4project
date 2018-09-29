@@ -1,6 +1,8 @@
 package fileIO;
 
-import javafx.component.model.Coordinates;
+import javafx.component.model.component.Component;
+import javafx.wire.Wire;
+import model.Coordinates;
 import javafx.simulation.SimulationController;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -15,12 +17,7 @@ public class Load {
 
         loadComponents(circuit, simulationController);
 
-        JSONArray wires = circuit.getJSONArray("wires");
-
-        for(Object wireOject : wires) {
-            JSONObject wire = (JSONObject)wireOject;
-            // Wire wire = Simulator.addWire();
-        }
+        loadWires(circuit, simulationController);
     }
 
     private static void loadComponents(JSONObject circuit, SimulationController simulationController) {
@@ -30,6 +27,19 @@ public class Load {
             JSONObject component = (JSONObject)componentObject;
             Coordinates coordinates = new Coordinates(component.getInt("xCoord"), component.getInt("yCoord"));
             simulationController.addComponent(component.getString("type"), coordinates);
+        }
+    }
+
+    private static void loadWires(JSONObject circuit, SimulationController simulationController) {
+        JSONArray wires = circuit.getJSONArray("wires");
+
+        for(Object wireOject : wires) {
+            JSONObject wireJson = (JSONObject)wireOject;
+            JSONObject inputJson = wireJson.getJSONObject("input");
+            JSONObject outputJson = wireJson.getJSONObject("output");
+            simulationController.addWire(inputJson.getString("component"), inputJson.getString("port"), outputJson.getString("component"), outputJson.getString("port") );
+
+            //wire.setInput()
         }
     }
 

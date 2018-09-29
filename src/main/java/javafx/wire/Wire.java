@@ -1,9 +1,9 @@
-package javafx.component.Wire;
+package javafx.wire;
 
 import javafx.Onscreen;
-import javafx.component.model.Coordinates;
-import javafx.component.model.Logic;
-import javafx.component.model.Port;
+import model.Coordinates;
+import model.Logic;
+import model.Port;
 
 import java.util.Map;
 
