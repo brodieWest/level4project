@@ -6,19 +6,19 @@ import model.Port;
 import javafx.component.model.PortType;
 import javafx.wire.Wire;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Component implements Onscreen {
-    private Map<String, Port> inputs = new HashMap<>();
-    private Map<String, Port> outputs = new HashMap<>();
+    private List<Port> inputs = new ArrayList<>();
+    private List<Port> outputs = new ArrayList<>();
 
     private Coordinates coordinates;
 
     private String uuid;
 
     private int SIZE = 100;
-    private int PORT_OFFSET = 30;
+    private int PORT_OFFSET = 20;
 
     Component(Coordinates coordinates){
         this.coordinates = coordinates;
@@ -34,23 +34,29 @@ public abstract class Component implements Onscreen {
 
 
     // TODO check if valid
-    void addNewInput(String name) {
-        Coordinates coordinates = new Coordinates(PORT_OFFSET,inputs.size()*10+10);
-        inputs.put(name, new Port(coordinates));
+    void addNewInput() {
+        inputs.add(new Port());
+        for(int i = 0; i < inputs.size(); i++) {
+            Port port = inputs.get(i);
+            port.setOffset(new Coordinates(PORT_OFFSET, PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(inputs.size()+1)) ));
+        }
     }
 
     // TODO check if valid
-    void addNewOutput(String name) {
-        Coordinates coordinates = new Coordinates(SIZE-PORT_OFFSET,outputs.size()*10+10);
-        outputs.put(name, new Port(coordinates));
+    void addNewOutput() {
+        outputs.add(new Port());
+        for(int i = 0; i < outputs.size(); i++) {
+            Port port = outputs.get(i);
+            port.setOffset(new Coordinates(SIZE-PORT_OFFSET, PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(outputs.size()+1)) ));
+        }
     }
 
-    public Port getOutput(String outputUuid) {
-        return outputs.get(outputUuid);
+    public Port getOutput(int outputNo) {
+        return outputs.get(outputNo);
     }
 
-    public Port getInput(String outputUuid) {
-        return inputs.get(outputUuid);
+    public Port getInput(int inputNo) {
+        return inputs.get(inputNo);
     }
 
     public void deleteIO(String name, PortType portType) {
@@ -81,11 +87,11 @@ public abstract class Component implements Onscreen {
         return uuid;
     }
 
-    Map<String, Port> getInputs() {
+    List<Port> getInputs() {
         return inputs;
     }
 
-    Map<String, Port> getOutputs() {
+    List<Port> getOutputs() {
         return outputs;
     }
 }

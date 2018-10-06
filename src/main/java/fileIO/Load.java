@@ -35,7 +35,7 @@ public class Load {
             JSONObject wireJson = (JSONObject)wireOject;
             JSONObject inputJson = wireJson.getJSONObject("input");
             JSONObject outputJson = wireJson.getJSONObject("output");
-            simulationController.addWire(inputJson.getString("component"), inputJson.getString("port"), outputJson.getString("component"), outputJson.getString("port") );
+            simulationController.addWire(inputJson.getString("component"), inputJson.getInt("port"), outputJson.getString("component"), outputJson.getInt("port") );
 
             //wire.setInput()
         }

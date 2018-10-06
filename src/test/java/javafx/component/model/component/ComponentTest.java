@@ -24,21 +24,21 @@ public class ComponentTest {
 
     @Test
     public void addNewInput() {
-        Component and = new AndGate(new Coordinates(1,1));
+        Component and = ComponentFactory.getComponent("and", new Coordinates(1,1));
 
-        assertEquals(30,and.getInput("input1").getOffset().getX());
-        assertEquals(10,and.getInput("input1").getOffset().getY());
+        assertEquals(20,and.getInput(0).getOffset().getX());
+        assertEquals(40,and.getInput(0).getOffset().getY());
 
-        assertEquals(30,and.getInput("input2").getOffset().getX());
-        assertEquals(20,and.getInput("input2").getOffset().getY());
+        assertEquals(20,and.getInput(1).getOffset().getX());
+        assertEquals(60,and.getInput(1).getOffset().getY());
     }
 
     @Test
     public void addNewOutput() {
-        Component not = new NotGate(new Coordinates(1,1));
+        Component not = ComponentFactory.getComponent("not", new Coordinates(1,1));
 
-        assertEquals(70,not.getOutput("output1").getOffset().getX());
-        assertEquals(10,not.getOutput("output1").getOffset().getY());
+        assertEquals(80,not.getOutput(0).getOffset().getX());
+        assertEquals(50,not.getOutput(0).getOffset().getY());
 
     }
 }

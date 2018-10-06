@@ -6,10 +6,10 @@
       "xCoord": 100,
       "yCoord": 0,
       "inputPorts" : [
-        "input1"
+        0
       ],
       "outputPorts" : [
-        "output1"
+        0
       ]
     },
     {
@@ -18,7 +18,7 @@
       "xCoord": 0,
       "yCoord": 0,
       "outputPorts" : [
-        "output1"
+        0
       ]
     },
     {
@@ -27,7 +27,7 @@
       "xCoord": 200,
       "yCoord": 0,
       "inputs" : [
-        "input1"
+        0
       ]
     }
   ],
@@ -35,23 +35,23 @@
     {
       "uuid" : "wire1",
       "input" : {
-        "component" : "and1",
-        "port" : "output1"
+        "component" : "input1",
+        "port" : 0
       },
       "output" : {
         "component" : "not1",
-        "port" : "input1"
+        "port" : 0
       }
     },
     {
       "uuid" : "wire2",
       "input" : {
         "component" : "not1",
-        "port" : "output1"
+        "port" : 0
       },
       "output" : {
-        "component" : "or1",
-        "port" : "input1"
+        "component" : "output1",
+        "port" : 0
       }
     }
   ]

@@ -60,7 +60,7 @@ public class SimulationController implements Controller {
         // TODO
     }
 
-    public void addWire(String startComonentName, String startPortName, String endComponentName, String endPortName) {
+    public void addWire(String startComponentName, int startPortNo, String endComponentName, int endPortNo) {
         Fxml fxml = FxmlLoaderUtils.loadFxml("fxml/wire.fxml");
 
         WireController wireController = (WireController)fxml.getController();
@@ -72,19 +72,19 @@ public class SimulationController implements Controller {
 
         wireController.initialiseWire(wire);
 
-        displayWire(wireController, startComonentName, startPortName, endComponentName, endPortName);
+        displayWire(wireController, startComponentName, startPortNo, endComponentName, endPortNo);
 
         wireControllers.put(wire.getUuid(), wireController);
     }
 
-    private void displayWire(WireController wireController, String startComonentName, String startPortName, String endComponentName, String endPortName) {
-        Component startComponent = componentControllers.get(startComonentName).getComponentModel();
-        Port startPort = startComponent.getOutput(startPortName);
+    private void displayWire(WireController wireController, String startComponentName, int startPortNo, String endComponentName, int endPortNo) {
+        Component startComponent = componentControllers.get(startComponentName).getComponentModel();
+        Port startPort = startComponent.getOutput(startPortNo);
         int startX = startComponent.getCoordinates().getX() + startPort.getOffset().getX();
         int startY = startComponent.getCoordinates().getY() + startPort.getOffset().getY();
 
-        Component endComponent = componentControllers.get(startComonentName).getComponentModel();
-        Port endPort = endComponent.getInput(endPortName);
+        Component endComponent = componentControllers.get(endComponentName).getComponentModel();
+        Port endPort = endComponent.getInput(endPortNo);
         int endX = endComponent.getCoordinates().getX() + endPort.getOffset().getX();
         int endY = endComponent.getCoordinates().getY() + endPort.getOffset().getY();
 

@@ -28,8 +28,5 @@ public class Dff extends Component {
 
     public Dff(Coordinates coordinates) {
         super(coordinates);
-        addNewInput("input1");
-        addNewInput("input2");
-        addNewOutput("ouput1");
     }
 }

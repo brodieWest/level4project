@@ -6,29 +6,29 @@ public class ComponentFactory {
     public static Component getComponent(String type, Coordinates coordinates) {
         if(type.equals("not")) {
             NotGate not = new NotGate(coordinates);
-            not.addNewInput("input1");
-            not.addNewOutput("output1");
+            not.addNewInput();
+            not.addNewOutput();
             return not;
         } else if(type.equals("and")) {
             AndGate and = new AndGate(coordinates);
-            and.addNewInput("input1");
-            and.addNewInput("input2");
-            and.addNewOutput("output1");
+            and.addNewInput();
+            and.addNewInput();
+            and.addNewOutput();
             return and;
         } else if(type.equals("or")) {
             OrGate or = new OrGate(coordinates);
-            or.addNewInput("input1");
-            or.addNewInput("input2");
-            or.addNewOutput("output1");
+            or.addNewInput();
+            or.addNewInput();
+            or.addNewOutput();
             return or;
         } else if(type.equals("input")) {
                 Input input = new Input(coordinates);
-                input.addNewOutput("output1");
+                input.addNewOutput();
                 return input;
         } else if(type.equals("output")) {
-            Input input = new Input(coordinates);
-            input.addNewOutput("input1");
-            return input;
+            Output output = new Output(coordinates);
+            output.addNewInput();
+            return output;
         } else {
             return new NotGate(coordinates);
         }

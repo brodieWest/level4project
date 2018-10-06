@@ -10,8 +10,7 @@ public class Port {
 
     private Logic state;
 
-    public Port(Coordinates offset) {
-        this.offset = offset;
+    public Port() {
     }
 
     public Coordinates getOffset() {
