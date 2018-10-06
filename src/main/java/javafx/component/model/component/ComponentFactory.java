@@ -29,6 +29,8 @@ public class ComponentFactory {
         } else if(type.equals("input")) {
                 Input input = new Input(coordinates);
                 input.addNewOutput();
+                input.getOutput(0).getLogic().setValue(false);
+                input.getOutput(0).getLogic().setUndefined(false);
                 return input;
         } else if(type.equals("output")) {
             Output output = new Output(coordinates);

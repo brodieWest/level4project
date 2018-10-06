@@ -43,7 +43,7 @@ public class ComponentController implements Controller {
 
     public void switchInputValue() {
         Input input = (Input)this.componentModel;
-        Logic inputLogic = input.getLogic();
+        Logic inputLogic = input.getOutput(0).getLogic();
         Shape shape = (Shape)svgGroup.getChildren().get(0);
 
         if(inputLogic.value()) {
