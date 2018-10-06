@@ -29,11 +29,7 @@ public class Mainfx extends Application {
     }
 
     public static File openFileWindow() {
-        File file = fileChooser.showOpenDialog(stage);
-        if (file != null) {
-            return file;
-        }
-        return null;
+        return fileChooser.showOpenDialog(stage);
     }
 
 

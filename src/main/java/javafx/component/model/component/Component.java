@@ -3,7 +3,7 @@ package javafx.component.model.component;
 import javafx.Onscreen;
 import model.Coordinates;
 import model.Port;
-import javafx.component.model.PortType;
+import model.PortType;
 import javafx.wire.Wire;
 
 import java.util.ArrayList;

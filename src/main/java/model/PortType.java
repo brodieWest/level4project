@@ -1,4 +1,4 @@
-package javafx.component.model;
+package model;
 
 public enum PortType {
     INPUT, OUTPUT

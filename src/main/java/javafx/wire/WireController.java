@@ -30,4 +30,8 @@ public class WireController implements Controller {
     public void deleteOnClick() {
         path.setStroke(Paint.valueOf("yellow"));
     }
+
+    public Wire getWire() {
+        return wire;
+    }
 }

@@ -5,6 +5,7 @@ import model.Coordinates;
 import model.Logic;
 import model.Port;
 
+import java.util.List;
 import java.util.Map;
 
 public class Wire implements Onscreen {
@@ -15,7 +16,7 @@ public class Wire implements Onscreen {
 
     private Coordinates coordinates;
 
-    private Map<String,Port> output;
+    private List<Port> output;
 
     private String uuid;
 
