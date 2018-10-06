@@ -21,6 +21,11 @@ public class ComponentFactory {
             or.addNewInput();
             or.addNewOutput();
             return or;
+        } else if (type.equals("dff")) {
+            Dff dff = new Dff(coordinates);
+            dff.addNewInput();
+            dff.addNewOutput();
+            return dff;
         } else if(type.equals("input")) {
                 Input input = new Input(coordinates);
                 input.addNewOutput();
