@@ -23,7 +23,7 @@ public class MainController implements Controller {
 
     @FXML
     protected void loadFile() {
-        Load.loadFromFile("/fileExamples/or", simulationController);
+        Load.loadFromFile(simulationController);
 
     }
 

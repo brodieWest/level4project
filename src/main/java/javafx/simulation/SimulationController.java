@@ -67,6 +67,7 @@ public class SimulationController implements Controller {
 
         Parent wireNode = fxml.getNode();
         simulationPane.getChildren().add(wireNode);
+        wireNode.toBack();
 
         Wire wire = new Wire();
 

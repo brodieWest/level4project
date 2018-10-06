@@ -1,5 +1,6 @@
 package fileIO;
 
+import javafx.main.Mainfx;
 import model.Coordinates;
 import javafx.simulation.SimulationController;
 import org.json.JSONArray;
@@ -10,8 +11,8 @@ import java.util.stream.Collectors;
 
 public class Load {
 
-    public static void loadFromFile(String fileName, SimulationController simulationController) {
-        JSONObject circuit = new JSONObject(loadTextFromFile(fileName));
+    public static void loadFromFile(SimulationController simulationController) {
+        JSONObject circuit = new JSONObject(loadTextFromFile());
 
         loadComponents(circuit, simulationController);
 
@@ -41,9 +42,16 @@ public class Load {
         }
     }
 
-    static String loadTextFromFile(String fileName) {
-        InputStream inputStream = Load.class.getResourceAsStream(fileName);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+    private static String loadTextFromFile() {
+        File file = Mainfx.openFileWindow();
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            return reader.lines().collect(Collectors.joining());
+        } catch (FileNotFoundException | NullPointerException e) {
+            //TODO show error to user
+            e.printStackTrace();
+        }
 
         return reader.lines().collect(Collectors.joining());
     }
