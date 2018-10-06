@@ -24,10 +24,7 @@ public class AndGate extends Component {
     }
 
 
-    public AndGate(Coordinates coordinates) {
+    AndGate(Coordinates coordinates) {
         super(coordinates);
-        addNewInput("input1");
-        addNewInput("input2");
-        addNewOutput("output1");
     }
 }

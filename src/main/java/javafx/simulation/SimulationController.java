@@ -2,7 +2,7 @@ package javafx.simulation;
 
 import javafx.Controller;
 import javafx.component.ComponentController;
-import javafx.component.model.ComponentFactory;
+import javafx.component.model.component.ComponentFactory;
 import javafx.wire.WireController;
 import model.Coordinates;
 import javafx.wire.Wire;

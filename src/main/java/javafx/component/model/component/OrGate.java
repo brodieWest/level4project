@@ -24,10 +24,7 @@ public class OrGate extends Component {
         // TODO: set nextLogic on ouput based on input
     }
 
-    public OrGate(Coordinates coordinates) {
+    OrGate(Coordinates coordinates) {
         super(coordinates);
-        addNewInput("input1");
-        addNewInput("input2");
-        addNewOutput("output1");
     }
 }

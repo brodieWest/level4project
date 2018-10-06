@@ -23,9 +23,7 @@ public class NotGate extends Component {
         // TODO: set nextLogic on ouput based on input
     }
 
-    public NotGate(Coordinates coordinates) {
+    NotGate(Coordinates coordinates) {
         super(coordinates);
-        addNewInput("input1");
-        addNewOutput("output1");
     }
 }
