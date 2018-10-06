@@ -5,7 +5,7 @@ import model.Logic;
 
 public class Dff extends Component {
 
-    Logic storedValue;
+    Logic storedValue = new Logic();
 
     private static int uuidGenerator = 0;
 
@@ -23,7 +23,7 @@ public class Dff extends Component {
 
     @Override
     public void processGateDelay() {
-        // TODO: set nextLogic on ouput based on input and stored value
+        // TODO: set nextLogic on ouput based on input and stored logic
     }
 
     public Dff(Coordinates coordinates) {

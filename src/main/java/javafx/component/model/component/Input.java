@@ -1,10 +1,13 @@
 package javafx.component.model.component;
 
 import model.Coordinates;
+import model.Logic;
 
 public class Input extends Component {
 
     private static int uuidGenerator = 0;
+
+    private Logic logic = new Logic();
 
 
     @Override
@@ -26,5 +29,15 @@ public class Input extends Component {
 
     Input(Coordinates coordinates) {
         super(coordinates);
+        logic.setValue(false);
+        logic.setUndefined(false);
+    }
+
+    public Logic getLogic() {
+        return logic;
+    }
+
+    public void setLogic(Logic logic) {
+        this.logic = logic;
     }
 }

@@ -6,7 +6,7 @@ public class Logic {
 
     private boolean undefined = true;
 
-    Logic() {
+    public Logic() {
     }
 
     public boolean value() {
