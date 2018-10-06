@@ -38,7 +38,17 @@ public class SimulationController implements Controller {
     }
 
     public synchronized void gateDelay() {
-        // TODO
+        for(ComponentController controller : componentControllers.values()) {
+            Component component = controller.getComponentModel();
+            component.processGateDelay();
+            if(component.getStringIdentifier().equals("output")) {
+                controller.switchOutputValue();
+            }
+        }
+
+        for(WireController wireController : wireControllers.values()) {
+            wireController.getWire().passSignal();
+        }
     }
 
     public void addComponent(String type, Coordinates coordinates) {

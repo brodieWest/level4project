@@ -1,7 +1,7 @@
-package javafx.component.model.component;
+package javafx.component.model.component.Io;
 
+import javafx.component.model.component.Component;
 import model.Coordinates;
-import model.Logic;
 
 public class Input extends Component {
 
@@ -25,7 +25,7 @@ public class Input extends Component {
     }
 
 
-    Input(Coordinates coordinates) {
+    public Input(Coordinates coordinates) {
         super(coordinates);
     }
 }

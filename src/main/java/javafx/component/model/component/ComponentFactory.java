@@ -1,5 +1,7 @@
 package javafx.component.model.component;
 
+import javafx.component.model.component.Io.Input;
+import javafx.component.model.component.Io.Output;
 import model.Coordinates;
 
 public class ComponentFactory {

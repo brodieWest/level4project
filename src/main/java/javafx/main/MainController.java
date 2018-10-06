@@ -27,6 +27,11 @@ public class MainController implements Controller {
 
     }
 
+    @FXML
+    private void gateDelay() {
+        simulationController.gateDelay();
+    }
+
     public void initialize(){
         Fxml fxml = FxmlLoaderUtils.loadFxml("fxml/simulation.fxml");
 

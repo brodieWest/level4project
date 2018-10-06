@@ -22,11 +22,9 @@ public class NotGate extends Component {
 
     @Override
     public void processGateDelay() {
-        Port input = getInput(0);
-        Port output = getOutput(0);
 
-        Logic inputLogic = input.getLogic();
-        Logic outputLogic = output.getLogic();
+        Logic inputLogic = getInput(0).getLogic();
+        Logic outputLogic = getOutput(0).getLogic();
 
         outputLogic.setValue(!inputLogic.value());
         outputLogic.setUndefined(inputLogic.isUndefined());

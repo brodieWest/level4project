@@ -20,7 +20,7 @@ public abstract class Component implements Onscreen {
     private int SIZE = 100;
     private int PORT_OFFSET = 20;
 
-    Component(Coordinates coordinates){
+    public Component(Coordinates coordinates){
         this.coordinates = coordinates;
         setUuid();
     }
@@ -34,7 +34,7 @@ public abstract class Component implements Onscreen {
 
 
     // TODO check if valid
-    void addNewInput() {
+    protected void addNewInput() {
         inputs.add(new Port());
         for(int i = 0; i < inputs.size(); i++) {
             Port port = inputs.get(i);
@@ -43,7 +43,7 @@ public abstract class Component implements Onscreen {
     }
 
     // TODO check if valid
-    void addNewOutput() {
+    protected void addNewOutput() {
         outputs.add(new Port());
         for(int i = 0; i < outputs.size(); i++) {
             Port port = outputs.get(i);

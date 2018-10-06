@@ -1,7 +1,6 @@
 package javafx.component;
 
 import javafx.Controller;
-import javafx.component.model.component.Input;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -42,9 +41,11 @@ public class ComponentController implements Controller {
     }
 
     public void switchInputValue() {
-        Input input = (Input)this.componentModel;
+        Component input = this.componentModel;
         Logic inputLogic = input.getOutput(0).getLogic();
         Shape shape = (Shape)svgGroup.getChildren().get(0);
+
+        //TODO set all ports to undefined
 
         if(inputLogic.value()) {
             inputLogic.setValue(false);
@@ -54,6 +55,20 @@ public class ComponentController implements Controller {
             inputLogic.setValue(true);
             text.setText("1");
             shape.setFill(Paint.valueOf("yellow"));
+        }
+    }
+
+    public void switchOutputValue() {
+        Component output = this.componentModel;
+        Logic inputLogic = output.getInput(0).getLogic();
+        Shape shape = (Shape)svgGroup.getChildren().get(0);
+
+        if(inputLogic.value()) {
+            text.setText("1");
+            shape.setFill(Paint.valueOf("yellow"));
+        } else {
+            text.setText("0");
+            shape.setFill(Paint.valueOf("white"));
         }
     }
 

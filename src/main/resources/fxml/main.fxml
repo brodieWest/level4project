@@ -45,7 +45,7 @@
         <AnchorPane>
             <padding><Insets left="25" top="25" bottom="25" right="25"/></padding>
             <Button text="Clock Tick" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
-            <Button text="Gate Delay" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="100.0"/>
+            <Button text="Gate Delay" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="100.0" onMouseClicked="#gateDelay"/>
         </AnchorPane>
     </bottom>
 

@@ -1,6 +1,8 @@
 package javafx.component.model.component;
 
 import model.Coordinates;
+import model.Logic;
+import model.Port;
 
 public class AndGate extends Component {
 
@@ -9,7 +11,13 @@ public class AndGate extends Component {
 
     @Override
     public void processGateDelay() {
-        // TODO: set nextLogic on ouput based on input
+        Logic inputLogic0 = getInput(0).getLogic();
+        Logic inputLogic1 = getInput(1).getLogic();
+        Logic outputLogic = getOutput(0).getLogic();
+
+        outputLogic.setValue(inputLogic0.value() && inputLogic1.value());
+        outputLogic.setUndefined(inputLogic0.isUndefined() || inputLogic1.isUndefined());
+
     }
 
     @Override
