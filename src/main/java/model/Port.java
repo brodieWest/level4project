@@ -8,7 +8,7 @@ public class Port {
 
     private Wire wire;
 
-    private Logic state;
+    private Logic logic = new Logic();
 
     public Port() {
     }
@@ -29,11 +29,11 @@ public class Port {
         this.wire = wire;
     }
 
-    public Logic getState() {
-        return state;
+    public Logic getLogic() {
+        return logic;
     }
 
-    public void setState(Logic state) {
-        this.state = state;
+    public void setLogic(Logic logic) {
+        this.logic = logic;
     }
 }

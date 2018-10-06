@@ -1,14 +1,27 @@
 package model;
 
-public enum Logic {
-    ZERO(0), ONE(1), UNDEFINDED(2);
+public class Logic {
 
-    int value;
+    private boolean value;
 
-    Logic(int value) {
+    private boolean undefined = true;
+
+    Logic() {
     }
 
-    public int getValue() {
+    public boolean value() {
         return value;
+    }
+
+    public void setValue(boolean value) {
+        this.value = value;
+    }
+
+    public boolean isUndefined() {
+        return undefined;
+    }
+
+    public void setUndefined(boolean undefined) {
+        this.undefined = undefined;
     }
 }

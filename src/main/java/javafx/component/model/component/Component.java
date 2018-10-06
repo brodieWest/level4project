@@ -82,12 +82,4 @@ public abstract class Component implements Onscreen {
     public String getUuid() {
         return uuid;
     }
-
-    List<Port> getInputs() {
-        return inputs;
-    }
-
-    List<Port> getOutputs() {
-        return outputs;
-    }
 }
