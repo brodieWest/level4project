@@ -1,10 +1,10 @@
 package utils;
 
 import javafx.Controller;
-import javafx.component.ComponentController;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.simulation.model.Simulator;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
@@ -21,7 +21,8 @@ public class FxmlLoaderUtils {
         } catch (IOException e) {
             // TODO better error handling
             e.printStackTrace();
-            return null;
+            componentNode = new VBox();
+            Platform.exit();
         }
 
         Controller controller = fxmlLoader.getController();
