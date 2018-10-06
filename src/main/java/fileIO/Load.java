@@ -18,8 +18,8 @@ public class Load {
     private static String INPUT = "input";
     private static String OUTPUT = "output";
     private static String PORT = "port";
-    private static String XCOORD = "xcoord";
-    private static String YCOORD = "ycoord";
+    private static String XCOORD = "xCoord";
+    private static String YCOORD = "yCoord";
 
     public static void loadFromFile(SimulationController simulationController) {
         String JsonText = loadTextFromFile();

@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Text?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="javafx.component.ComponentController"
@@ -11,6 +12,7 @@
 
     <Group fx:id="svgGroup" onMouseClicked="#deleteImageAsExample">
         <SVGPath content="M 20 20 L 20 80 L 80 80 L 80 20 L 20 20 M 45 80 L 50 70 L 55 80 z" stroke="BLACK" fill="white" strokeWidth="5.0"/>
+        <Text text="Dff" x="40" y="50" stroke="black"/>
     </Group>
 
 </AnchorPane>
