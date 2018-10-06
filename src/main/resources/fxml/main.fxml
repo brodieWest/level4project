@@ -18,6 +18,9 @@
                     <MenuItem text="Load" fx:id="load" onAction="#loadFile"/>
                     <MenuItem text="Save"/>
                 </Menu>
+                <Menu text="Edit">
+                    <MenuItem text="Clear" onAction="#clear"/>
+                </Menu>
             </MenuBar>
         </VBox>
     </top>

@@ -51,6 +51,11 @@ public class SimulationController implements Controller {
         }
     }
 
+    public void clear() {
+        componentControllers.clear();
+        wireControllers.clear();
+    }
+
     public void addComponent(String type, Coordinates coordinates) {
 
         Fxml fxml = FxmlLoaderUtils.loadFxml( "fxml/components/" + type + ".fxml");

@@ -23,8 +23,13 @@ public class MainController implements Controller {
 
     @FXML
     protected void loadFile() {
+        simulationController.clear();
         Load.loadFromFile(simulationController);
+    }
 
+    @FXML
+    private void clear() {
+        simulationController.clear();
     }
 
     @FXML
