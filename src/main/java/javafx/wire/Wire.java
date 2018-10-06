@@ -5,18 +5,18 @@ import model.Coordinates;
 import model.Logic;
 import model.Port;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class Wire implements Onscreen {
 
-    private Logic logic;
 
     private Port input;
 
     private Coordinates coordinates;
 
-    private List<Port> output;
+    private List<Port> outputs = new ArrayList<>();
 
     private String uuid;
 
@@ -27,12 +27,14 @@ public class Wire implements Onscreen {
         uuidGenerator++;
     }
 
-    public Logic getLogic() {
-        return logic;
-    }
+    public void passSignal() {
+        Logic inputLogic = input.getLogic();
 
-    public void PassSignal() {
-        // TODO: ouputs == input
+        for(Port output : outputs) {
+            Logic outputLogic = output.getLogic();
+            outputLogic.setValue(inputLogic.value());
+            outputLogic.setUndefined(inputLogic.isUndefined());
+        }
     }
 
     @Override
@@ -43,5 +45,21 @@ public class Wire implements Onscreen {
     @Override
     public String getUuid() {
         return uuid;
+    }
+
+    public Port getInput() {
+        return input;
+    }
+
+    public void setInput(Port input) {
+        this.input = input;
+    }
+
+    public Port getOutput(int portNo) {
+        return outputs.get(portNo);
+    }
+
+    public void addOutput(Port output) {
+        this.outputs.add(output);
     }
 }

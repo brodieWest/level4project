@@ -28,12 +28,8 @@ public class NotGate extends Component {
         Logic inputLogic = input.getLogic();
         Logic outputLogic = output.getLogic();
 
-        if(inputLogic.isUndefined()) {
-            outputLogic.setUndefined(true);
-        } else {
-            outputLogic.setValue(!inputLogic.value());
-            outputLogic.setUndefined(false);
-        }
+        outputLogic.setValue(!inputLogic.value());
+        outputLogic.setUndefined(inputLogic.isUndefined());
     }
 
     NotGate(Coordinates coordinates) {

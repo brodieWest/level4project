@@ -89,7 +89,7 @@ public class SimulationController implements Controller {
         int endX = endComponent.getCoordinates().getX() + endPort.getOffset().getX();
         int endY = endComponent.getCoordinates().getY() + endPort.getOffset().getY();
 
-        wireController.displayWire(new Coordinates(startX, startY), new Coordinates(endX, endY));
+        wireController.displayWire(new Coordinates(startX, startY), new Coordinates(endX, endY), startPort, endPort);
     }
 
     public void removeWire() {

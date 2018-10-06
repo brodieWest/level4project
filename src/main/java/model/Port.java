@@ -32,8 +32,4 @@ public class Port {
     public Logic getLogic() {
         return logic;
     }
-
-    public void setLogic(Logic logic) {
-        this.logic = logic;
-    }
 }

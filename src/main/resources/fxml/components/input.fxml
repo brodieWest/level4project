@@ -12,7 +12,7 @@
 
     <Group fx:id="svgGroup" onMouseClicked="#switchInputValue">
         <SVGPath content="M 20 20 L 20 80 L 80 80 L 80 20 L 20 20 z" stroke="BLACK" fill="white" strokeWidth="5.0" />
-        <Text text="0" fx:id="text" x="50" y="50"/>
+        <Text text="0" fx:id="text" x="50" y="50" stroke="black"/>
     </Group>
 
 </AnchorPane>
