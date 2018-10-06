@@ -11,8 +11,23 @@ import java.util.stream.Collectors;
 
 public class Load {
 
+    private static String COMPONENTS = "components";
+    private static String COMPONENT = "component";
+    private static String TYPE = "type";
+    private static String WIRES = "wires";
+    private static String INPUT = "input";
+    private static String OUTPUT = "output";
+    private static String PORT = "port";
+    private static String XCOORD = "xcoord";
+    private static String YCOORD = "ycoord";
+
     public static void loadFromFile(SimulationController simulationController) {
-        JSONObject circuit = new JSONObject(loadTextFromFile());
+        String JsonText = loadTextFromFile();
+        if(JsonText == null) {
+            //TODO show user error message
+            return;
+        }
+        JSONObject circuit = new JSONObject(JsonText);
 
         loadComponents(circuit, simulationController);
 
@@ -20,23 +35,23 @@ public class Load {
     }
 
     private static void loadComponents(JSONObject circuit, SimulationController simulationController) {
-        JSONArray components = circuit.getJSONArray("components");
+        JSONArray components = circuit.getJSONArray(COMPONENTS);
 
         for(Object componentObject : components) {
             JSONObject component = (JSONObject)componentObject;
-            Coordinates coordinates = new Coordinates(component.getInt("xCoord"), component.getInt("yCoord"));
-            simulationController.addComponent(component.getString("type"), coordinates);
+            Coordinates coordinates = new Coordinates(component.getInt(XCOORD), component.getInt(YCOORD));
+            simulationController.addComponent(component.getString(TYPE), coordinates);
         }
     }
 
     private static void loadWires(JSONObject circuit, SimulationController simulationController) {
-        JSONArray wires = circuit.getJSONArray("wires");
+        JSONArray wires = circuit.getJSONArray(WIRES);
 
         for(Object wireOject : wires) {
             JSONObject wireJson = (JSONObject)wireOject;
-            JSONObject inputJson = wireJson.getJSONObject("input");
-            JSONObject outputJson = wireJson.getJSONObject("output");
-            simulationController.addWire(inputJson.getString("component"), inputJson.getInt("port"), outputJson.getString("component"), outputJson.getInt("port") );
+            JSONObject inputJson = wireJson.getJSONObject(INPUT);
+            JSONObject outputJson = wireJson.getJSONObject(OUTPUT);
+            simulationController.addWire(inputJson.getString(COMPONENT), inputJson.getInt(PORT), outputJson.getString(COMPONENT), outputJson.getInt(PORT) );
 
             //wire.setInput()
         }
@@ -44,7 +59,7 @@ public class Load {
 
     private static String loadTextFromFile() {
         File file = Mainfx.openFileWindow();
-        BufferedReader reader = null;
+        BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(file));
             return reader.lines().collect(Collectors.joining());
@@ -53,6 +68,6 @@ public class Load {
             e.printStackTrace();
         }
 
-        return reader.lines().collect(Collectors.joining());
+        return null;
     }
 }

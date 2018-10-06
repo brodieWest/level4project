@@ -75,10 +75,6 @@ public abstract class Component implements Onscreen {
         return coordinates;
     }
 
-    public String getImageLocation() {
-        return "/images/" + getStringIdentifier() + "Image.png";
-    }
-
     public abstract int getUuidGenerator();
 
     public abstract String getStringIdentifier();
