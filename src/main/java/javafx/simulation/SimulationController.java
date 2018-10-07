@@ -52,8 +52,10 @@ public class SimulationController implements Controller {
     }
 
     public void clear() {
+        // not working because uuids don't reset
         componentControllers.clear();
         wireControllers.clear();
+        simulationPane.getChildren().clear();
     }
 
     public void addComponent(String type, Coordinates coordinates) {
