@@ -22,6 +22,10 @@ public class SimulationController implements Controller {
     @FXML
     AnchorPane simulationPane;
 
+    private static String COMPONENT_PATH = "fxml/components/%s.fxml";
+    private static String WIRE_PATH = "fxml/wire.fxml";
+    private static String OUTPUT = "output";
+
 
     private Map<String,ComponentController> componentControllers = new HashMap<>();
 
@@ -33,15 +37,15 @@ public class SimulationController implements Controller {
         this.mainController = mainController;
     }
 
-    public synchronized void clockTick() {
+    public void clockTick() {
         // TODO
     }
 
-    public synchronized void gateDelay() {
+    public void gateDelay() {
         for(ComponentController controller : componentControllers.values()) {
             Component component = controller.getComponentModel();
             component.processGateDelay();
-            if(component.getStringIdentifier().equals("output")) {
+            if(component.getStringIdentifier().equals(OUTPUT)) {
                 controller.switchOutputValue();
             }
         }
@@ -49,6 +53,14 @@ public class SimulationController implements Controller {
         for(WireController wireController : wireControllers.values()) {
             wireController.getWire().passSignal();
         }
+    }
+
+    public void resetSimulation() {
+        for(ComponentController controller : componentControllers.values()) {
+            controller.getComponentModel().reset();
+        }
+
+        gateDelay();
     }
 
     public void clear() {
@@ -60,16 +72,17 @@ public class SimulationController implements Controller {
 
     public void addComponent(String type, Coordinates coordinates) {
 
-        Fxml fxml = FxmlLoaderUtils.loadFxml( "fxml/components/" + type + ".fxml");
-        placeComponent(fxml.getNode(), coordinates);
+        Fxml fxml = FxmlLoaderUtils.loadFxml( String.format(COMPONENT_PATH, type));
         ComponentController componentController = (ComponentController)fxml.getController();
 
         Component componentModel = ComponentFactory.getComponent(type, coordinates);
 
-        componentController.initialiseComponent(componentModel);
+        componentController.initialiseComponent(componentModel, this);
 
         // TODO: should check that uuid does not already exist
         componentControllers.put(componentModel.getUuid(), componentController);
+
+        placeComponent(fxml.getNode(), coordinates);
 
     }
 
@@ -78,7 +91,7 @@ public class SimulationController implements Controller {
     }
 
     public void addWire(String startComponentName, int startPortNo, String endComponentName, int endPortNo) {
-        Fxml fxml = FxmlLoaderUtils.loadFxml("fxml/wire.fxml");
+        Fxml fxml = FxmlLoaderUtils.loadFxml(WIRE_PATH);
 
         WireController wireController = (WireController)fxml.getController();
 
@@ -88,26 +101,14 @@ public class SimulationController implements Controller {
 
         Wire wire = new Wire();
 
-        wireController.initialiseWire(wire);
+        Component startComponent = componentControllers.get(startComponentName).getComponentModel();
+        Component endComponent = componentControllers.get(endComponentName).getComponentModel();
 
-        displayWire(wireController, startComponentName, startPortNo, endComponentName, endPortNo);
+        wireController.initialiseWire(wire, startComponent, startPortNo, endComponent, endPortNo);
 
         wireControllers.put(wire.getUuid(), wireController);
     }
 
-    private void displayWire(WireController wireController, String startComponentName, int startPortNo, String endComponentName, int endPortNo) {
-        Component startComponent = componentControllers.get(startComponentName).getComponentModel();
-        Port startPort = startComponent.getOutput(startPortNo);
-        int startX = startComponent.getCoordinates().getX() + startPort.getOffset().getX();
-        int startY = startComponent.getCoordinates().getY() + startPort.getOffset().getY();
-
-        Component endComponent = componentControllers.get(endComponentName).getComponentModel();
-        Port endPort = endComponent.getInput(endPortNo);
-        int endX = endComponent.getCoordinates().getX() + endPort.getOffset().getX();
-        int endY = endComponent.getCoordinates().getY() + endPort.getOffset().getY();
-
-        wireController.displayWire(new Coordinates(startX, startY), new Coordinates(endX, endY), startPort, endPort);
-    }
 
     public void removeWire() {
         // TODO

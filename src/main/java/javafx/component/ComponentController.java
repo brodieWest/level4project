@@ -9,11 +9,14 @@ import javafx.component.model.component.Component;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.*;
 import javafx.scene.text.Text;
+import javafx.simulation.SimulationController;
 import model.Logic;
 
 public class ComponentController implements Controller {
 
     private Component componentModel;
+
+    private SimulationController simulationController;
 
     @FXML
     private Text text;
@@ -27,8 +30,9 @@ public class ComponentController implements Controller {
     @FXML
     private Group svgGroup;
 
-    public void initialiseComponent(Component componentModel) {
+    public void initialiseComponent(Component componentModel, SimulationController simulationController) {
         this.componentModel = componentModel;
+        this.simulationController = simulationController;
     }
 
     public Component getComponentModel() {
@@ -45,7 +49,8 @@ public class ComponentController implements Controller {
         Logic inputLogic = input.getOutput(0).getLogic();
         Shape shape = (Shape)svgGroup.getChildren().get(0);
 
-        //TODO set all ports to undefined
+        simulationController.resetSimulation();
+        inputLogic.setUndefined(false);
 
         if(inputLogic.value()) {
             inputLogic.setValue(false);
@@ -63,7 +68,10 @@ public class ComponentController implements Controller {
         Logic inputLogic = output.getInput(0).getLogic();
         Shape shape = (Shape)svgGroup.getChildren().get(0);
 
-        if(inputLogic.value()) {
+        if(inputLogic.isUndefined()) {
+            text.setText("U");
+            shape.setFill(Paint.valueOf("lightgray"));
+        } else if(inputLogic.value()) {
             text.setText("1");
             shape.setFill(Paint.valueOf("yellow"));
         } else {

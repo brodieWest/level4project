@@ -15,6 +15,8 @@ public class MainController implements Controller {
 
     private SimulationController simulationController;
 
+    private static String SIMULATION_FXML_PATH = "fxml/simulation.fxml";
+
     @FXML
     private VBox simulationVBox;
 
@@ -38,7 +40,7 @@ public class MainController implements Controller {
     }
 
     public void initialize(){
-        Fxml fxml = FxmlLoaderUtils.loadFxml("fxml/simulation.fxml");
+        Fxml fxml = FxmlLoaderUtils.loadFxml(SIMULATION_FXML_PATH);
 
         Parent simulationNode = fxml.getNode();
 

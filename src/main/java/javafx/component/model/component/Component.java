@@ -32,6 +32,15 @@ public abstract class Component implements Onscreen {
     // simulates the component over a single gate delay
     public abstract void processGateDelay();
 
+    public void reset() {
+        for(Port input : inputs) {
+            input.getLogic().setUndefined(true);
+        }
+        for(Port output : outputs) {
+            output.getLogic().setUndefined(true);
+        }
+    }
+
 
     // TODO check if valid
     protected void addNewInput() {
