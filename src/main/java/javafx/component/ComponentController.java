@@ -18,6 +18,13 @@ public class ComponentController implements Controller {
 
     private SimulationController simulationController;
 
+    private static String LOGIC_0 = "0";
+    private static String LOGIC_1 = "1";
+    private static String LOGIC_UNDEFINED = "U";
+    private static String LOGIC_0_COLOUR = "white";
+    private static String LOGIC_1_COLOUR = "yellow";
+    private static String LOGIC_UNDEFINED_COLOUR = "lightgrey";
+
     @FXML
     private Text text;
 
@@ -47,18 +54,15 @@ public class ComponentController implements Controller {
     public void switchInputValue() {
         Component input = this.componentModel;
         Logic inputLogic = input.getOutput(0).getLogic();
-        Shape shape = (Shape)svgGroup.getChildren().get(0);
 
         simulationController.resetSimulation();
 
         if(inputLogic.value()) {
             inputLogic.setValue(false);
-            text.setText("0");
-            shape.setFill(Paint.valueOf("white"));
+            ioShowValue(LOGIC_0, LOGIC_0_COLOUR);
         } else {
             inputLogic.setValue(true);
-            text.setText("1");
-            shape.setFill(Paint.valueOf("yellow"));
+            ioShowValue(LOGIC_1, LOGIC_1_COLOUR);
         }
         simulationController.gateDelay();
     }
@@ -66,18 +70,21 @@ public class ComponentController implements Controller {
     public void showOutputValue() {
         Component output = this.componentModel;
         Logic inputLogic = output.getInput(0).getLogic();
-        Shape shape = (Shape)svgGroup.getChildren().get(0);
+
 
         if(inputLogic.isUndefined()) {
-            text.setText("U");
-            shape.setFill(Paint.valueOf("lightgray"));
+            ioShowValue(LOGIC_UNDEFINED, LOGIC_UNDEFINED_COLOUR);
         } else if(inputLogic.value()) {
-            text.setText("1");
-            shape.setFill(Paint.valueOf("yellow"));
+            ioShowValue(LOGIC_1, LOGIC_1_COLOUR);
         } else {
-            text.setText("0");
-            shape.setFill(Paint.valueOf("white"));
+            ioShowValue(LOGIC_0, LOGIC_0_COLOUR);
         }
+    }
+
+    private void ioShowValue(String textString, String colour) {
+        Shape shape = (Shape)svgGroup.getChildren().get(0);
+        text.setText(textString);
+        shape.setFill(Paint.valueOf(colour));
     }
 
 }

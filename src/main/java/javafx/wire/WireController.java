@@ -18,6 +18,10 @@ public class WireController implements Controller {
 
     private Wire wire;
 
+    private static String LOGIC_0_COLOUR = "black";
+    private static String LOGIC_1_COLOUR = "yellow";
+    private static String LOGIC_UNDEFINED_COLOUR = "lightgrey";
+
     public void initialiseWire(Wire wire, Component startComponent, int startPortNo, Component endComponent, int endPortNo) {
         this.wire = wire;
 
@@ -48,11 +52,11 @@ public class WireController implements Controller {
         Logic inputLogic = wire.getInput().getLogic();
 
         if(inputLogic.isUndefined()) {
-            path.setStroke(Paint.valueOf("lightgray"));
+            path.setStroke(Paint.valueOf(LOGIC_0_COLOUR));
         } else if(inputLogic.value()) {
-            path.setStroke(Paint.valueOf("yellow"));
+            path.setStroke(Paint.valueOf(LOGIC_1_COLOUR));
         } else {
-            path.setStroke(Paint.valueOf("black"));
+            path.setStroke(Paint.valueOf(LOGIC_UNDEFINED_COLOUR));
         }
     }
 
