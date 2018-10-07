@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.main.MainController;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import model.Port;
 import utils.Fxml;
 import utils.FxmlLoaderUtils;
 
@@ -45,13 +44,19 @@ public class SimulationController implements Controller {
         for(ComponentController controller : componentControllers.values()) {
             Component component = controller.getComponentModel();
             component.processGateDelay();
-            if(component.getStringIdentifier().equals(OUTPUT)) {
-                controller.switchOutputValue();
-            }
         }
 
         for(WireController wireController : wireControllers.values()) {
             wireController.getWire().passSignal();
+            wireController.showSignal();
+        }
+
+        //TODO improve efficiency here
+        for(ComponentController controller : componentControllers.values()) {
+            Component component = controller.getComponentModel();
+            if(component.getStringIdentifier().equals(OUTPUT)) {
+                controller.showOutputValue();
+            }
         }
     }
 
@@ -59,8 +64,6 @@ public class SimulationController implements Controller {
         for(ComponentController controller : componentControllers.values()) {
             controller.getComponentModel().reset();
         }
-
-        gateDelay();
     }
 
     public void clear() {

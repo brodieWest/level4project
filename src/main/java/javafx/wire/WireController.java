@@ -9,6 +9,7 @@ import javafx.scene.shape.MoveTo;
 import model.Coordinates;
 import javafx.fxml.FXML;
 import javafx.scene.shape.Path;
+import model.Logic;
 import model.Port;
 
 public class WireController implements Controller {
@@ -43,8 +44,20 @@ public class WireController implements Controller {
 
     }
 
+    public void showSignal() {
+        Logic inputLogic = wire.getInput().getLogic();
+
+        if(inputLogic.isUndefined()) {
+            path.setStroke(Paint.valueOf("lightgray"));
+        } else if(inputLogic.value()) {
+            path.setStroke(Paint.valueOf("yellow"));
+        } else {
+            path.setStroke(Paint.valueOf("black"));
+        }
+    }
+
     public void deleteOnClick() {
-        path.setStroke(Paint.valueOf("yellow"));
+        //path.setStroke(Paint.valueOf("yellow"));
     }
 
     public Wire getWire() {

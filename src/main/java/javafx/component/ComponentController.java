@@ -50,7 +50,6 @@ public class ComponentController implements Controller {
         Shape shape = (Shape)svgGroup.getChildren().get(0);
 
         simulationController.resetSimulation();
-        inputLogic.setUndefined(false);
 
         if(inputLogic.value()) {
             inputLogic.setValue(false);
@@ -61,9 +60,10 @@ public class ComponentController implements Controller {
             text.setText("1");
             shape.setFill(Paint.valueOf("yellow"));
         }
+        simulationController.gateDelay();
     }
 
-    public void switchOutputValue() {
+    public void showOutputValue() {
         Component output = this.componentModel;
         Logic inputLogic = output.getInput(0).getLogic();
         Shape shape = (Shape)svgGroup.getChildren().get(0);

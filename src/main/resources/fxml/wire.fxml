@@ -5,6 +5,6 @@
 <Group xmlns="http://javafx.com/javafx"
        xmlns:fx="http://javafx.com/fxml"
        fx:controller="javafx.wire.WireController">
-    <Path fx:id="path" fill="black" onMouseClicked="#deleteOnClick" strokeWidth="5"/>
+    <Path fx:id="path" fill="lightgray" onMouseClicked="#deleteOnClick" strokeWidth="5"/>
 
 </Group>
