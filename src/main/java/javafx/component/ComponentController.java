@@ -64,7 +64,7 @@ public class ComponentController implements Controller {
             inputLogic.setValue(true);
             ioShowValue(LOGIC_1, LOGIC_1_COLOUR);
         }
-        simulationController.gateDelay();
+        simulationController.wireDelay();
     }
 
     public void showOutputValue() {

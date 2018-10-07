@@ -47,7 +47,7 @@ public class SimulationController implements Controller {
             }
         }
         resetSimulation();
-        gateDelay();
+        wireDelay();
     }
 
     public void gateDelay() {
@@ -56,6 +56,11 @@ public class SimulationController implements Controller {
             component.processGateDelay();
         }
 
+        wireDelay();
+
+    }
+
+    public void wireDelay() {
         for(WireController wireController : wireControllers.values()) {
             wireController.getWire().passSignal();
             wireController.showSignal();
