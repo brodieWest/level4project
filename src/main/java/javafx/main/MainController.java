@@ -41,6 +41,11 @@ public class MainController implements Controller {
         simulationController.gateDelay();
     }
 
+    @FXML
+    private void clockTick() {
+        simulationController.clockTick();
+    }
+
     public void initialize(){
         Fxml fxml = FxmlLoaderUtils.loadFxml(SIMULATION_FXML_PATH);
 

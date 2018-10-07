@@ -52,11 +52,11 @@ public class WireController implements Controller {
         Logic inputLogic = wire.getInput().getLogic();
 
         if(inputLogic.isUndefined()) {
-            path.setStroke(Paint.valueOf(LOGIC_0_COLOUR));
+            path.setStroke(Paint.valueOf(LOGIC_UNDEFINED_COLOUR));
         } else if(inputLogic.value()) {
             path.setStroke(Paint.valueOf(LOGIC_1_COLOUR));
         } else {
-            path.setStroke(Paint.valueOf(LOGIC_UNDEFINED_COLOUR));
+            path.setStroke(Paint.valueOf(LOGIC_0_COLOUR));
         }
     }
 

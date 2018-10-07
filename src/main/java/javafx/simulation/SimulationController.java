@@ -3,6 +3,7 @@ package javafx.simulation;
 import javafx.Controller;
 import javafx.component.ComponentController;
 import javafx.component.model.component.ComponentFactory;
+import javafx.component.model.component.Dff;
 import javafx.wire.WireController;
 import model.Coordinates;
 import javafx.wire.Wire;
@@ -37,7 +38,16 @@ public class SimulationController implements Controller {
     }
 
     public void clockTick() {
-        // TODO
+        // TODO improve efficiency here
+        for(ComponentController controller : componentControllers.values()) {
+            Component component = controller.getComponentModel();
+            if(component.getStringIdentifier().equals("dff")) {
+                Dff dff = (Dff) component;
+                dff.processClockTick();
+            }
+        }
+        resetSimulation();
+        gateDelay();
     }
 
     public void gateDelay() {
