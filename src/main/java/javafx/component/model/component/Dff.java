@@ -23,17 +23,11 @@ public class Dff extends Component {
 
     @Override
     public void processGateDelay() {
-        Logic outputLogic = getOutput(0).getLogic();
-
-        outputLogic.setValue(storedValue.value());
-        outputLogic.setUndefined(storedValue.isUndefined());
+        getOutput(0).getLogic().copy(storedValue);
     }
 
     public void processClockTick() {
-        Logic inputLogic = getInput(0).getLogic();
-
-        storedValue.setValue(inputLogic.value());
-        storedValue.setUndefined(inputLogic.isUndefined());
+        storedValue.copy(getInput(0).getLogic());
     }
 
     public Dff(Coordinates coordinates) {

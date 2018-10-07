@@ -28,12 +28,8 @@ public class Wire implements Onscreen {
     }
 
     public void passSignal() {
-        Logic inputLogic = input.getLogic();
-
         for(Port output : outputs) {
-            Logic outputLogic = output.getLogic();
-            outputLogic.setValue(inputLogic.value());
-            outputLogic.setUndefined(inputLogic.isUndefined());
+            output.getLogic().copy(input.getLogic());
         }
     }
 

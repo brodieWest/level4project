@@ -24,4 +24,9 @@ public class Logic {
     public void setUndefined(boolean undefined) {
         this.undefined = undefined;
     }
+
+    public void copy(Logic logic) {
+        value = logic.value();
+        undefined = logic.isUndefined();
+    }
 }
