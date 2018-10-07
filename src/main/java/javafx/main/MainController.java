@@ -27,6 +27,8 @@ public class MainController implements Controller {
     protected void loadFile() {
         simulationController.clear();
         Load.loadFromFile(simulationController);
+        simulationController.resetSimulation();
+        simulationController.gateDelay();
     }
 
     @FXML
