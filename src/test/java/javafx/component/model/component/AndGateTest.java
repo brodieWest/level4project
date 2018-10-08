@@ -17,6 +17,7 @@ public class AndGateTest {
 
     @Before
     public void setup() {
+        ComponentFactory.initialise();
         and = ComponentFactory.getComponent("and", new Coordinates(0,0));
         inputLogic0 = and.getInput(0).getLogic();
         inputLogic1 = and.getInput(1).getLogic();

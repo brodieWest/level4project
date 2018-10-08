@@ -2,6 +2,7 @@ package javafx.main;
 
 import fileIO.Load;
 import javafx.Controller;
+import javafx.component.model.component.ComponentFactory;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.MenuItem;
@@ -28,7 +29,7 @@ public class MainController implements Controller {
         simulationController.clear();
         Load.loadFromFile(simulationController);
         simulationController.resetSimulation();
-        simulationController.gateDelay();
+        simulationController.wireDelay();
     }
 
     @FXML

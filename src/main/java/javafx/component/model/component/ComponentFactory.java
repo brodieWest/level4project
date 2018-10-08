@@ -7,42 +7,67 @@ import javafx.component.model.component.gates.NotGate;
 import javafx.component.model.component.gates.OrGate;
 import model.Coordinates;
 
+import java.util.*;
+
 public class ComponentFactory {
+
+    private static Map<String,Integer> counter = new HashMap<>();
+
+    private static String[] primatives = {"and", "or", "not", "output", "input", "dff"};
+
     public static Component getComponent(String type, Coordinates coordinates) {
+
+        Component newComponent;
+
+        counter.put(type, counter.get(type) + 1);
+
+        String uuid = type + counter.get(type);
+
         if(type.equals("not")) {
-            NotGate not = new NotGate(coordinates);
-            not.addNewInput();
-            not.addNewOutput();
-            return not;
+            newComponent = new NotGate(coordinates, uuid);
+            newComponent.addNewInput();
+            newComponent.addNewOutput();
         } else if(type.equals("and")) {
-            AndGate and = new AndGate(coordinates);
-            and.addNewInput();
-            and.addNewInput();
-            and.addNewOutput();
-            return and;
+            newComponent = new AndGate(coordinates, uuid);
+            newComponent.addNewInput();
+            newComponent.addNewInput();
+            newComponent.addNewOutput();
         } else if(type.equals("or")) {
-            OrGate or = new OrGate(coordinates);
-            or.addNewInput();
-            or.addNewInput();
-            or.addNewOutput();
-            return or;
+            newComponent = new OrGate(coordinates, uuid);
+            newComponent.addNewInput();
+            newComponent.addNewInput();
+            newComponent.addNewOutput();
         } else if (type.equals("dff")) {
-            Dff dff = new Dff(coordinates);
-            dff.addNewInput();
-            dff.addNewOutput();
-            return dff;
+            newComponent = new Dff(coordinates, uuid);
+            newComponent.addNewInput();
+            newComponent.addNewOutput();
         } else if(type.equals("input")) {
-                Input input = new Input(coordinates);
-                input.addNewOutput();
-                input.getOutput(0).getLogic().setValue(false);
-                input.getOutput(0).getLogic().setUndefined(false);
-                return input;
+            newComponent = new Input(coordinates, uuid);
+            newComponent.addNewOutput();
+            newComponent.getOutput(0).getLogic().setValue(false);
+            newComponent.getOutput(0).getLogic().setUndefined(false);
         } else if(type.equals("output")) {
-            Output output = new Output(coordinates);
-            output.addNewInput();
-            return output;
+            newComponent = new Output(coordinates, uuid);
+            newComponent.addNewInput();
         } else {
-            return new NotGate(coordinates);
+            // TODO look through blackboxes
+            newComponent = new NotGate(coordinates, uuid);
+        }
+
+
+
+        return newComponent;
+    }
+
+    public static void initialise() {
+        for(String primative : primatives) {
+            counter.put(primative, 0);
+        }
+    }
+
+    public static void resetCounter() {
+        for(String key : counter.keySet()) {
+            counter.put(key, 0);
         }
     }
 }

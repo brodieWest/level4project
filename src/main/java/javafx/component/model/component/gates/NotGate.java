@@ -7,15 +7,6 @@ import model.Port;
 
 public class NotGate extends Component {
 
-
-    private static int uuidGenerator = 0;
-
-    @Override
-    public int getUuidGenerator() {
-        uuidGenerator++;
-        return uuidGenerator;
-    }
-
     @Override
     public String getStringIdentifier() {
         return "not";
@@ -31,7 +22,7 @@ public class NotGate extends Component {
         outputLogic.setUndefined(inputLogic.isUndefined());
     }
 
-    public NotGate(Coordinates coordinates) {
-        super(coordinates);
+    public NotGate(Coordinates coordinates, String uuid) {
+        super(coordinates, uuid);
     }
 }

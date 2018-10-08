@@ -6,15 +6,6 @@ import model.Logic;
 
 public class OrGate extends Component {
 
-
-    private static int uuidGenerator = 0;
-
-    @Override
-    public int getUuidGenerator() {
-        uuidGenerator++;
-        return uuidGenerator;
-    }
-
     @Override
     public String getStringIdentifier() {
         return "or";
@@ -31,7 +22,7 @@ public class OrGate extends Component {
         outputLogic.setUndefined(inputLogic0.isUndefined() || inputLogic1.isUndefined());
     }
 
-    public OrGate(Coordinates coordinates) {
-        super(coordinates);
+    public OrGate(Coordinates coordinates, String uuid) {
+        super(coordinates, uuid);
     }
 }

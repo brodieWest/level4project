@@ -7,14 +7,6 @@ public class Dff extends Component {
 
     Logic storedValue = new Logic();
 
-    private static int uuidGenerator = 0;
-
-    @Override
-    public int getUuidGenerator() {
-        uuidGenerator++;
-        return uuidGenerator;
-    }
-
     @Override
     public String getStringIdentifier() {
         return "dff";
@@ -30,7 +22,7 @@ public class Dff extends Component {
         storedValue.copy(getInput(0).getLogic());
     }
 
-    public Dff(Coordinates coordinates) {
-        super(coordinates);
+    public Dff(Coordinates coordinates, String uuid) {
+        super(coordinates, uuid);
     }
 }

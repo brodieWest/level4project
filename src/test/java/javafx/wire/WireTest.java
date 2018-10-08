@@ -1,5 +1,6 @@
 package javafx.wire;
 
+import javafx.component.model.component.ComponentFactory;
 import model.Logic;
 import model.Port;
 import org.junit.Before;
@@ -15,6 +16,7 @@ public class WireTest {
 
     @Before
     public void setup() {
+        ComponentFactory.initialise();
         wire = new Wire();
         Port input = new Port();
         Port output = new Port();

@@ -7,9 +7,6 @@ import model.Port;
 
 public class AndGate extends Component {
 
-    private static int uuidGenerator = 0;
-
-
     @Override
     public void processGateDelay() {
         Logic inputLogic0 = getInput(0).getLogic();
@@ -22,18 +19,12 @@ public class AndGate extends Component {
     }
 
     @Override
-    public int getUuidGenerator() {
-        uuidGenerator++;
-        return uuidGenerator;
-    }
-
-    @Override
     public String getStringIdentifier() {
         return "and";
     }
 
 
-    public AndGate(Coordinates coordinates) {
-        super(coordinates);
+    public AndGate(Coordinates coordinates, String uuid) {
+        super(coordinates, uuid);
     }
 }

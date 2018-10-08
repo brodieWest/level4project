@@ -82,7 +82,7 @@ public class SimulationController implements Controller {
     }
 
     public void clear() {
-        // not working because uuids don't reset
+        ComponentFactory.resetCounter();
         componentControllers.clear();
         wireControllers.clear();
         simulationPane.getChildren().clear();
@@ -97,7 +97,6 @@ public class SimulationController implements Controller {
 
         componentController.initialiseComponent(componentModel, this);
 
-        // TODO: should check that uuid does not already exist
         componentControllers.put(componentModel.getUuid(), componentController);
 
         placeComponent(fxml.getNode(), coordinates);

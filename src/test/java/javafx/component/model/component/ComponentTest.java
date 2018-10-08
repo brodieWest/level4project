@@ -3,23 +3,29 @@ package javafx.component.model.component;
 import javafx.component.model.component.gates.AndGate;
 import javafx.component.model.component.gates.OrGate;
 import model.Coordinates;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class ComponentTest {
 
+    @Before
+    public void setup() {
+        ComponentFactory.initialise();
+    }
+
     @Test
     public void getUuid() {
-        AndGate andGate = new AndGate(new Coordinates(1,1));
+        AndGate andGate = (AndGate)ComponentFactory.getComponent("and", new Coordinates(1,1));
 
         assertEquals("and1", andGate.getUuid());
 
-        AndGate andGate2 = new AndGate(new Coordinates(1,1));
+        AndGate andGate2 = (AndGate)ComponentFactory.getComponent("and", new Coordinates(1,1));
 
         assertEquals("and2", andGate2.getUuid());
 
-        OrGate orGate = new OrGate(new Coordinates(1,1));
+        OrGate orGate = (OrGate)ComponentFactory.getComponent("or", new Coordinates(1,1));
 
         assertEquals("or1", orGate.getUuid());
     }
