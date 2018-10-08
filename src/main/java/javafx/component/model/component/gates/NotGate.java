@@ -1,9 +1,11 @@
-package javafx.component.model.component;
+package javafx.component.model.component.gates;
 
+import javafx.component.model.component.Component;
 import model.Coordinates;
 import model.Logic;
+import model.Port;
 
-public class OrGate extends Component {
+public class NotGate extends Component {
 
 
     private static int uuidGenerator = 0;
@@ -16,21 +18,20 @@ public class OrGate extends Component {
 
     @Override
     public String getStringIdentifier() {
-        return "or";
+        return "not";
     }
-
 
     @Override
     public void processGateDelay() {
-        Logic inputLogic0 = getInput(0).getLogic();
-        Logic inputLogic1 = getInput(1).getLogic();
+
+        Logic inputLogic = getInput(0).getLogic();
         Logic outputLogic = getOutput(0).getLogic();
 
-        outputLogic.setValue(inputLogic0.value() || inputLogic1.value());
-        outputLogic.setUndefined(inputLogic0.isUndefined() || inputLogic1.isUndefined());
+        outputLogic.setValue(!inputLogic.value());
+        outputLogic.setUndefined(inputLogic.isUndefined());
     }
 
-    OrGate(Coordinates coordinates) {
+    public NotGate(Coordinates coordinates) {
         super(coordinates);
     }
 }

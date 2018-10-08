@@ -2,6 +2,9 @@ package javafx.component.model.component;
 
 import javafx.component.model.component.Io.Input;
 import javafx.component.model.component.Io.Output;
+import javafx.component.model.component.gates.AndGate;
+import javafx.component.model.component.gates.NotGate;
+import javafx.component.model.component.gates.OrGate;
 import model.Coordinates;
 
 public class ComponentFactory {

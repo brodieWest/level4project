@@ -1,5 +1,7 @@
 package javafx.component.model.component;
 
+import javafx.component.model.component.gates.AndGate;
+import javafx.component.model.component.gates.OrGate;
 import model.Coordinates;
 import org.junit.Test;
 

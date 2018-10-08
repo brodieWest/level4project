@@ -1,5 +1,6 @@
-package javafx.component.model.component;
+package javafx.component.model.component.gates;
 
+import javafx.component.model.component.Component;
 import model.Coordinates;
 import model.Logic;
 import model.Port;
@@ -32,7 +33,7 @@ public class AndGate extends Component {
     }
 
 
-    AndGate(Coordinates coordinates) {
+    public AndGate(Coordinates coordinates) {
         super(coordinates);
     }
 }
