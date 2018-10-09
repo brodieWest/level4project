@@ -1,7 +1,8 @@
 package javafx.simulation;
 
 import javafx.Controller;
-import javafx.component.ComponentController;
+import javafx.component.controllers.ComponentController;
+import javafx.component.controllers.OutputController;
 import javafx.component.model.component.ComponentFactory;
 import javafx.component.model.component.Dff;
 import javafx.wire.WireController;
@@ -70,7 +71,8 @@ public class SimulationController implements Controller {
         for(ComponentController controller : componentControllers.values()) {
             Component component = controller.getComponentModel();
             if(component.getStringIdentifier().equals(OUTPUT)) {
-                controller.showOutputValue();
+                OutputController outputController = (OutputController) controller;
+                outputController.showOutputValue();
             }
         }
     }

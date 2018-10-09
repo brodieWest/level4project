@@ -6,9 +6,6 @@ import model.Coordinates;
 public class ReusableComponent extends Component implements Synchronous {
 
 
-
-
-
     public ReusableComponent(Coordinates coordinates, String uuid, String type) {
         super(coordinates, uuid, type);
     }
