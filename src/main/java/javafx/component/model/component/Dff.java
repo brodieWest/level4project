@@ -1,9 +1,10 @@
 package javafx.component.model.component;
 
+import javafx.component.Synchronous;
 import model.Coordinates;
 import model.Logic;
 
-public class Dff extends Component {
+public class Dff extends Component implements Synchronous {
 
     Logic storedValue = new Logic();
 
@@ -13,6 +14,7 @@ public class Dff extends Component {
         getOutput(0).getLogic().copy(storedValue);
     }
 
+    @Override
     public void processClockTick() {
         storedValue.copy(getInput(0).getLogic());
     }
