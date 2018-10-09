@@ -64,6 +64,10 @@ public class WireController implements Controller {
         //path.setStroke(Paint.valueOf("yellow"));
     }
 
+    public void passSignal() {
+        wire.passSignal();
+    }
+
     public Wire getWire() {
         return wire;
     }

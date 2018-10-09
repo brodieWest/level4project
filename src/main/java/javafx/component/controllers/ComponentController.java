@@ -37,6 +37,12 @@ public class ComponentController implements Controller {
         //shape.setFill(Paint.valueOf("yellow"));
     }
 
+    public void processGateDelay() {
+        componentModel.processGateDelay();
+    }
 
+    public void reset() {
+        componentModel.reset();
+    }
 
 }

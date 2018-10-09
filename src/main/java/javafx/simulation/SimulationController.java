@@ -3,6 +3,7 @@ package javafx.simulation;
 import javafx.Controller;
 import javafx.component.controllers.ComponentController;
 import javafx.component.controllers.OutputController;
+import javafx.component.controllers.SynchronousController;
 import javafx.component.model.component.ComponentFactory;
 import javafx.component.model.component.Dff;
 import javafx.wire.WireController;
@@ -41,10 +42,9 @@ public class SimulationController implements Controller {
     public void clockTick() {
         // TODO improve efficiency here
         for(ComponentController controller : componentControllers.values()) {
-            Component component = controller.getComponentModel();
-            if(component.getStringIdentifier().equals("dff")) {
-                Dff dff = (Dff) component;
-                dff.processClockTick();
+            if(controller instanceof SynchronousController) {
+                SynchronousController synchronousController = (SynchronousController)controller;
+                synchronousController.processClockTick();
             }
         }
         resetSimulation();
@@ -53,8 +53,7 @@ public class SimulationController implements Controller {
 
     public void gateDelay() {
         for(ComponentController controller : componentControllers.values()) {
-            Component component = controller.getComponentModel();
-            component.processGateDelay();
+            controller.processGateDelay();
         }
 
         wireDelay();
@@ -63,7 +62,7 @@ public class SimulationController implements Controller {
 
     public void wireDelay() {
         for(WireController wireController : wireControllers.values()) {
-            wireController.getWire().passSignal();
+            wireController.passSignal();
             wireController.showSignal();
         }
 
@@ -79,7 +78,7 @@ public class SimulationController implements Controller {
 
     public void resetSimulation() {
         for(ComponentController controller : componentControllers.values()) {
-            controller.getComponentModel().reset();
+            controller.reset();
         }
     }
 
