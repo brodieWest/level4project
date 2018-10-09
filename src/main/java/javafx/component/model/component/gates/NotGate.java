@@ -8,11 +8,6 @@ import model.Port;
 public class NotGate extends Component {
 
     @Override
-    public String getStringIdentifier() {
-        return "not";
-    }
-
-    @Override
     public void processGateDelay() {
 
         Logic inputLogic = getInput(0).getLogic();
@@ -22,7 +17,7 @@ public class NotGate extends Component {
         outputLogic.setUndefined(inputLogic.isUndefined());
     }
 
-    public NotGate(Coordinates coordinates, String uuid) {
-        super(coordinates, uuid);
+    public NotGate(Coordinates coordinates, String uuid, String type) {
+        super(coordinates, uuid, type);
     }
 }

@@ -33,6 +33,10 @@ public class Wire implements Onscreen {
         }
     }
 
+    public static void reset() {
+        uuidGenerator = 0;
+    }
+
     @Override
     public Coordinates getCoordinates() {
         return null;

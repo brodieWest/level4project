@@ -6,11 +6,6 @@ import model.Logic;
 
 public class OrGate extends Component {
 
-    @Override
-    public String getStringIdentifier() {
-        return "or";
-    }
-
 
     @Override
     public void processGateDelay() {
@@ -22,7 +17,7 @@ public class OrGate extends Component {
         outputLogic.setUndefined(inputLogic0.isUndefined() || inputLogic1.isUndefined());
     }
 
-    public OrGate(Coordinates coordinates, String uuid) {
-        super(coordinates, uuid);
+    public OrGate(Coordinates coordinates, String uuid, String type) {
+        super(coordinates, uuid, type);
     }
 }

@@ -24,34 +24,34 @@ public class ComponentFactory {
         String uuid = type + counter.get(type);
 
         if(type.equals("not")) {
-            newComponent = new NotGate(coordinates, uuid);
+            newComponent = new NotGate(coordinates, uuid, type);
             newComponent.addNewInput();
             newComponent.addNewOutput();
         } else if(type.equals("and")) {
-            newComponent = new AndGate(coordinates, uuid);
+            newComponent = new AndGate(coordinates, uuid, type);
             newComponent.addNewInput();
             newComponent.addNewInput();
             newComponent.addNewOutput();
         } else if(type.equals("or")) {
-            newComponent = new OrGate(coordinates, uuid);
+            newComponent = new OrGate(coordinates, uuid, type);
             newComponent.addNewInput();
             newComponent.addNewInput();
             newComponent.addNewOutput();
         } else if (type.equals("dff")) {
-            newComponent = new Dff(coordinates, uuid);
+            newComponent = new Dff(coordinates, uuid, type);
             newComponent.addNewInput();
             newComponent.addNewOutput();
         } else if(type.equals("input")) {
-            newComponent = new Input(coordinates, uuid);
+            newComponent = new Input(coordinates, uuid, type);
             newComponent.addNewOutput();
             newComponent.getOutput(0).getLogic().setValue(false);
             newComponent.getOutput(0).getLogic().setUndefined(false);
         } else if(type.equals("output")) {
-            newComponent = new Output(coordinates, uuid);
+            newComponent = new Output(coordinates, uuid, type);
             newComponent.addNewInput();
         } else {
             // TODO look through blackboxes
-            newComponent = new NotGate(coordinates, uuid);
+            newComponent = new NotGate(coordinates, uuid, type);
         }
 
 

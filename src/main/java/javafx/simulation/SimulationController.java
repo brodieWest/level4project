@@ -83,6 +83,7 @@ public class SimulationController implements Controller {
 
     public void clear() {
         ComponentFactory.resetCounter();
+        Wire.reset();
         componentControllers.clear();
         wireControllers.clear();
         simulationPane.getChildren().clear();

@@ -9,13 +9,8 @@ public class Output extends Component {
         // TODO: set nextLogic on ouput based on input
     }
 
-    @Override
-    public String getStringIdentifier() {
-        return "output";
-    }
 
-
-    public Output(Coordinates coordinates, String uuid) {
-        super(coordinates, uuid);
+    public Output(Coordinates coordinates, String uuid, String type) {
+        super(coordinates, uuid, type);
     }
 }

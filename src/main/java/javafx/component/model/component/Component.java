@@ -16,13 +16,15 @@ public abstract class Component implements Onscreen {
     private Coordinates coordinates;
 
     private String uuid;
+    private String type;
 
     private int SIZE = 100;
     private int PORT_OFFSET = 20;
 
-    public Component(Coordinates coordinates, String uuid){
+    public Component(Coordinates coordinates, String uuid, String type){
         this.coordinates = coordinates;
         this.uuid = uuid;
+        this.type = type;
     }
 
     // simulates the component over a single gate delay
@@ -80,7 +82,9 @@ public abstract class Component implements Onscreen {
         return coordinates;
     }
 
-    public abstract String getStringIdentifier();
+    public String getStringIdentifier() {
+        return type;
+    }
 
     public String getUuid() {
         return uuid;

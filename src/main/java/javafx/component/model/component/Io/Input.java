@@ -12,17 +12,12 @@ public class Input extends Component {
     }
 
     @Override
-    public String getStringIdentifier() {
-        return "input";
-    }
-
-    @Override
     public void reset() {
         getOutput(0).getLogic().setUndefined(false);
     }
 
 
-    public Input(Coordinates coordinates, String uuid) {
-        super(coordinates, uuid);
+    public Input(Coordinates coordinates, String uuid, String type) {
+        super(coordinates, uuid, type);
     }
 }

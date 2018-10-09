@@ -18,13 +18,7 @@ public class AndGate extends Component {
 
     }
 
-    @Override
-    public String getStringIdentifier() {
-        return "and";
-    }
-
-
-    public AndGate(Coordinates coordinates, String uuid) {
-        super(coordinates, uuid);
+    public AndGate(Coordinates coordinates, String uuid, String type) {
+        super(coordinates, uuid, type);
     }
 }

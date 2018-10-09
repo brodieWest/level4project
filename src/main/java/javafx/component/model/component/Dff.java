@@ -7,11 +7,6 @@ public class Dff extends Component {
 
     Logic storedValue = new Logic();
 
-    @Override
-    public String getStringIdentifier() {
-        return "dff";
-    }
-
 
     @Override
     public void processGateDelay() {
@@ -22,7 +17,7 @@ public class Dff extends Component {
         storedValue.copy(getInput(0).getLogic());
     }
 
-    public Dff(Coordinates coordinates, String uuid) {
-        super(coordinates, uuid);
+    public Dff(Coordinates coordinates, String uuid, String type) {
+        super(coordinates, uuid, type);
     }
 }
