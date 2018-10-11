@@ -1,9 +1,10 @@
 package javafx.simulation;
 
 import javafx.Controller;
+import javafx.component.Synchronous;
 import javafx.component.controllers.ComponentController;
 import javafx.component.controllers.OutputController;
-import javafx.component.controllers.SynchronousController;
+import javafx.component.controllers.DffController;
 import javafx.component.model.component.ComponentFactory;
 import javafx.component.model.component.Dff;
 import javafx.wire.WireController;
@@ -42,8 +43,8 @@ public class SimulationController implements Controller {
     public void clockTick() {
         // TODO improve efficiency here
         for(ComponentController controller : componentControllers.values()) {
-            if(controller instanceof SynchronousController) {
-                SynchronousController synchronousController = (SynchronousController)controller;
+            if(controller instanceof Synchronous) {
+                Synchronous synchronousController = (Synchronous)controller;
                 synchronousController.processClockTick();
             }
         }

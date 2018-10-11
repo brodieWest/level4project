@@ -19,7 +19,7 @@ public class WireController implements Controller {
     private Wire wire;
 
     private static String LOGIC_0_COLOUR = "black";
-    private static String LOGIC_1_COLOUR = "yellow";
+    private static String LOGIC_1_COLOUR = "blue";
     private static String LOGIC_UNDEFINED_COLOUR = "lightgrey";
 
     public void initialiseWire(Wire wire, Component startComponent, int startPortNo, Component endComponent, int endPortNo) {

@@ -22,6 +22,8 @@ public class Load {
     private static String YCOORD = "yCoord";
 
     public static void loadFromFile(SimulationController simulationController) {
+        simulationController.clear();
+
         String JsonText = loadTextFromFile();
         if(JsonText == null) {
             //TODO show user error message
@@ -32,6 +34,10 @@ public class Load {
         loadComponents(circuit, simulationController);
 
         loadWires(circuit, simulationController);
+
+        simulationController.resetSimulation();
+        simulationController.wireDelay();
+
     }
 
     private static void loadComponents(JSONObject circuit, SimulationController simulationController) {

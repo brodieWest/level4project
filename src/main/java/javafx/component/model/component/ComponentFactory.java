@@ -13,7 +13,7 @@ public class ComponentFactory {
 
     private static Map<String,Integer> counter = new HashMap<>();
 
-    private static String[] primatives = {"and", "or", "not", "output", "input", "dff"};
+    private static String[] primatives = {"and", "or", "not", "output", "input", "dff", "nand"}; // remove nand
 
     public static Component getComponent(String type, Coordinates coordinates) {
 
@@ -49,6 +49,8 @@ public class ComponentFactory {
         } else if(type.equals("output")) {
             newComponent = new Output(coordinates, uuid, type);
             newComponent.addNewInput();
+        } else if(type.equals("nand")) {
+            newComponent = new ReusableComponent(coordinates, uuid, type);
         } else {
             // TODO look through blackboxes
             newComponent = new NotGate(coordinates, uuid, type);
