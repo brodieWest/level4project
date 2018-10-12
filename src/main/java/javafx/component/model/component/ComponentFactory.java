@@ -15,13 +15,13 @@ public class ComponentFactory {
 
     private static String[] primatives = {"and", "or", "not", "output", "input", "dff", "nand"}; // remove nand
 
-    public static Component getComponent(String type, Coordinates coordinates) {
+    public static Component getComponent(String type, Coordinates coordinates, String uuid) {
 
         Component newComponent;
 
         counter.put(type, counter.get(type) + 1);
 
-        String uuid = type + counter.get(type);
+        //String uuid = type + counter.get(type);
 
         if(type.equals("not")) {
             newComponent = new NotGate(coordinates, uuid, type);

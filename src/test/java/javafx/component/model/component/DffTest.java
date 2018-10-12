@@ -17,7 +17,7 @@ public class DffTest {
     @Before
     public void setup() {
         ComponentFactory.initialise();
-        dff = (Dff)ComponentFactory.getComponent("dff", new Coordinates(0,0));
+        dff = (Dff)ComponentFactory.getComponent("dff", new Coordinates(0,0), "test");
         inputLogic = dff.getInput(0).getLogic();
         outputLogic = dff.getOutput(0).getLogic();
     }

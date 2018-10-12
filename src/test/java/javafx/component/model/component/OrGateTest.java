@@ -18,7 +18,7 @@ public class OrGateTest {
     @Before
     public void setup() {
         ComponentFactory.initialise();
-        or = ComponentFactory.getComponent("or", new Coordinates(0,0));
+        or = ComponentFactory.getComponent("or", new Coordinates(0,0), "testor");
         inputLogic0 = or.getInput(0).getLogic();
         inputLogic1 = or.getInput(1).getLogic();
         outputLogic = or.getOutput(0).getLogic();

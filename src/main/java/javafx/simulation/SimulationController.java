@@ -91,12 +91,12 @@ public class SimulationController implements Controller {
         simulationPane.getChildren().clear();
     }
 
-    public void addComponent(String type, Coordinates coordinates) {
+    public void addComponent(String type, Coordinates coordinates, String uuid) {
 
         Fxml fxml = FxmlLoaderUtils.loadFxml( String.format(COMPONENT_PATH, type));
         ComponentController componentController = (ComponentController)fxml.getController();
 
-        Component componentModel = ComponentFactory.getComponent(type, coordinates);
+        Component componentModel = ComponentFactory.getComponent(type, coordinates, uuid);
 
         componentController.initialiseComponent(componentModel, this);
 
