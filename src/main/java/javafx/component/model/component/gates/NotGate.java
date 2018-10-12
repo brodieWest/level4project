@@ -17,7 +17,7 @@ public class NotGate extends Component {
         outputLogic.setUndefined(inputLogic.isUndefined());
     }
 
-    public NotGate(Coordinates coordinates, String uuid, String type) {
-        super(coordinates, uuid, type);
+    public NotGate(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs) {
+        super(coordinates, uuid, type, noInputs, noOutputs);
     }
 }

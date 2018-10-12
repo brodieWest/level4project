@@ -15,7 +15,7 @@ public class ComponentFactory {
 
     private static String[] primatives = {"and", "or", "not", "output", "input", "dff", "nand"}; // remove nand
 
-    public static Component getComponent(String type, Coordinates coordinates, String uuid) {
+    public static Component getComponent(String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
 
         Component newComponent;
 
@@ -24,36 +24,24 @@ public class ComponentFactory {
         //String uuid = type + counter.get(type);
 
         if(type.equals("not")) {
-            newComponent = new NotGate(coordinates, uuid, type);
-            newComponent.addNewInput();
-            newComponent.addNewOutput();
+            newComponent = new NotGate(coordinates, uuid, type, noInputs,noOutputs);
         } else if(type.equals("and")) {
-            newComponent = new AndGate(coordinates, uuid, type);
-            newComponent.addNewInput();
-            newComponent.addNewInput();
-            newComponent.addNewOutput();
+            newComponent = new AndGate(coordinates, uuid, type, noInputs,noOutputs);
         } else if(type.equals("or")) {
-            newComponent = new OrGate(coordinates, uuid, type);
-            newComponent.addNewInput();
-            newComponent.addNewInput();
-            newComponent.addNewOutput();
+            newComponent = new OrGate(coordinates, uuid, type, noInputs,noOutputs);
         } else if (type.equals("dff")) {
-            newComponent = new Dff(coordinates, uuid, type);
-            newComponent.addNewInput();
-            newComponent.addNewOutput();
+            newComponent = new Dff(coordinates, uuid, type, noInputs,noOutputs);
         } else if(type.equals("input")) {
-            newComponent = new Input(coordinates, uuid, type);
-            newComponent.addNewOutput();
+            newComponent = new Input(coordinates, uuid, type, noInputs,noOutputs);
             newComponent.getOutput(0).getLogic().setValue(false);
             newComponent.getOutput(0).getLogic().setUndefined(false);
         } else if(type.equals("output")) {
-            newComponent = new Output(coordinates, uuid, type);
-            newComponent.addNewInput();
+            newComponent = new Output(coordinates, uuid, type, noInputs,noOutputs);
         } else if(type.equals("nand")) {
-            newComponent = new ReusableComponent(coordinates, uuid, type);
+            newComponent = new ReusableComponent(coordinates, uuid, type, noInputs,noOutputs);
         } else {
             // TODO look through blackboxes
-            newComponent = new NotGate(coordinates, uuid, type);
+            newComponent = new NotGate(coordinates, uuid, type, noInputs,noOutputs);
         }
 
 

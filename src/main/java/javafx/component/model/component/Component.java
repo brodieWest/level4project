@@ -21,10 +21,16 @@ public abstract class Component implements Onscreen {
     private int SIZE = 100;
     private int PORT_OFFSET = 20;
 
-    public Component(Coordinates coordinates, String uuid, String type){
+    public Component(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs){
         this.coordinates = coordinates;
         this.uuid = uuid;
         this.type = type;
+        for(int i=0;i<noInputs;i++) {
+            addNewInput();
+        }
+        for(int i=0;i<noOutputs;i++) {
+            addNewOutput();
+        }
     }
 
     // simulates the component over a single gate delay
@@ -41,7 +47,7 @@ public abstract class Component implements Onscreen {
 
 
     // TODO check if valid
-    protected void addNewInput() {
+    public void addNewInput() {
         inputs.add(new Port());
         for(int i = 0; i < inputs.size(); i++) {
             Port port = inputs.get(i);
@@ -50,7 +56,7 @@ public abstract class Component implements Onscreen {
     }
 
     // TODO check if valid
-    protected void addNewOutput() {
+    public void addNewOutput() {
         outputs.add(new Port());
         for(int i = 0; i < outputs.size(); i++) {
             Port port = outputs.get(i);

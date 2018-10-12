@@ -21,6 +21,8 @@ public class Load {
     private static String XCOORD = "xCoord";
     private static String YCOORD = "yCoord";
     private static String UUID = "uuid";
+    private static String INPUTPORTS = "inputPorts";
+    private static String OUTPUTPORTS = "outputPorts";
 
     public static void loadFromFile(SimulationController simulationController) {
         simulationController.clear();
@@ -46,8 +48,24 @@ public class Load {
 
         for(Object componentObject : components) {
             JSONObject component = (JSONObject)componentObject;
+            String uuid = component.getString(UUID);
             Coordinates coordinates = new Coordinates(component.getInt(XCOORD), component.getInt(YCOORD));
-            simulationController.addComponent(component.getString(TYPE), coordinates, component.getString(UUID));
+
+            int inputPorts, outputPorts;
+
+            if(component.has(INPUTPORTS)) {
+                inputPorts = component.getInt(INPUTPORTS);
+            } else {
+                inputPorts = 0;
+            }
+
+            if(component.has(OUTPUTPORTS)) {
+                outputPorts = component.getInt(OUTPUTPORTS);
+            } else {
+                outputPorts = 0;
+            }
+
+            simulationController.addComponent(component.getString(TYPE), coordinates, uuid, inputPorts, outputPorts);
         }
     }
 

@@ -10,7 +10,7 @@ public class Output extends Component {
     }
 
 
-    public Output(Coordinates coordinates, String uuid, String type) {
-        super(coordinates, uuid, type);
+    public Output(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs) {
+        super(coordinates, uuid, type, noInputs, noOutputs);
     }
 }
