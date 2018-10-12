@@ -27,7 +27,7 @@
       "uuid": "output1",
       "xCoord": 200,
       "yCoord": 50,
-      "outputPorts" : 1
+      "inputPorts" : 1
     }
   ],
   "wires": [

@@ -24,15 +24,30 @@ public class Load {
     private static String INPUTPORTS = "inputPorts";
     private static String OUTPUTPORTS = "outputPorts";
 
-    public static void loadFromFile(SimulationController simulationController) {
-        simulationController.clear();
+    public static void loadWithFileChooser(SimulationController simulationController) {
 
-        String JsonText = loadTextFromFile();
-        if(JsonText == null) {
+
+        String jsonText = loadTextWithFileChooser();
+        if(jsonText == null) {
             //TODO show user error message
             return;
         }
-        JSONObject circuit = new JSONObject(JsonText);
+        load(simulationController,jsonText);
+    }
+
+    public static void loadFromFile(SimulationController simulationController, String fileName) {
+
+        InputStream inputStream = Load.class.getResourceAsStream(fileName);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        String file = reader.lines().collect(Collectors.joining());
+
+        load(simulationController, file);
+    }
+
+    private static void load(SimulationController simulationController, String file) {
+        simulationController.clear();
+
+        JSONObject circuit = new JSONObject(file);
 
         loadComponents(circuit, simulationController);
 
@@ -82,7 +97,7 @@ public class Load {
         }
     }
 
-    private static String loadTextFromFile() {
+    private static String loadTextWithFileChooser() {
         File file = Mainfx.openFileWindow();
         BufferedReader reader;
         try {

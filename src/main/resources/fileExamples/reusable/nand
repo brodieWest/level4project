@@ -13,7 +13,7 @@
       "uuid": "not1",
       "xCoord": 200,
       "yCoord": 50,
-      "inputPorts" : 2,
+      "inputPorts" : 1,
       "outputPorts" : 1
     },
     {
