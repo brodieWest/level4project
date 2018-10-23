@@ -37,7 +37,6 @@ public class Mainfx extends Application {
 
 
     public static void main(String[] args) {
-        ComponentFactory.initialise();
         launch(args);
     }
 }

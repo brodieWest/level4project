@@ -19,5 +19,7 @@ public class Input extends Component {
 
     public Input(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs) {
         super(coordinates, uuid, type, noInputs, noOutputs);
+        this.getOutput(0).getLogic().setValue(false);
+        this.getOutput(0).getLogic().setUndefined(false);
     }
 }

@@ -27,7 +27,6 @@ public class SimulationController implements Controller {
 
     private static String COMPONENT_PATH = "fxml/components/%s.fxml";
     private static String WIRE_PATH = "fxml/wire.fxml";
-    private static String OUTPUT = "output";
 
 
     Map<String,ComponentController> componentControllers = new HashMap<>();
@@ -83,7 +82,6 @@ public class SimulationController implements Controller {
     }
 
     public void clear() {
-        ComponentFactory.resetCounter();
         Wire.reset();
         componentControllers.clear();
         wireControllers.clear();
