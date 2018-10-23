@@ -18,9 +18,9 @@ public class WireController implements Controller {
 
     private Wire wire;
 
-    private static String LOGIC_0_COLOUR = "black";
-    private static String LOGIC_1_COLOUR = "blue";
-    private static String LOGIC_UNDEFINED_COLOUR = "lightgrey";
+    private static String LOGIC_0_COLOUR = "0x7293cb";
+    private static String LOGIC_1_COLOUR = "0xd35e60";
+    private static String LOGIC_UNDEFINED_COLOUR = "grey";
 
     public void initialiseWire(Wire wire, Component startComponent, int startPortNo, Component endComponent, int endPortNo) {
         this.wire = wire;

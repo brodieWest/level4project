@@ -1,6 +1,7 @@
 package javafx.component.controllers;
 
 import javafx.component.model.component.Component;
+import javafx.wire.Wire;
 import model.Logic;
 
 public class InputController extends IoController {
@@ -20,5 +21,9 @@ public class InputController extends IoController {
             ioShowValue(LOGIC_1, LOGIC_1_COLOUR);
         }
         simulationController.wireDelay();
+    }
+
+    public Wire getWire() {
+        return componentModel.getOutput(0).getWire();
     }
 }

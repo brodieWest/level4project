@@ -72,6 +72,10 @@ public abstract class Component implements Onscreen {
         return inputs.get(inputNo);
     }
 
+    public List<Port> getInputs() {
+        return inputs;
+    }
+
     public void deleteIO(String name, PortType portType) {
         //TODO
     }

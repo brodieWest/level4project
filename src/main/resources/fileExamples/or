@@ -2,7 +2,7 @@
   "components": [
     {
       "type" : "or",
-      "uuid": "and1",
+      "uuid": "or1",
       "xCoord": 100,
       "yCoord": 50,
       "inputPorts" : 2,

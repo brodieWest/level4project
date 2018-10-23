@@ -30,7 +30,7 @@ public class SimulationController implements Controller {
     private static String OUTPUT = "output";
 
 
-    private Map<String,ComponentController> componentControllers = new HashMap<>();
+    Map<String,ComponentController> componentControllers = new HashMap<>();
 
     private MainController mainController;
 
@@ -69,8 +69,7 @@ public class SimulationController implements Controller {
 
         //TODO improve efficiency here
         for(ComponentController controller : componentControllers.values()) {
-            Component component = controller.getComponentModel();
-            if(component.getStringIdentifier().equals(OUTPUT)) {
+            if(controller instanceof OutputController) {
                 OutputController outputController = (OutputController) controller;
                 outputController.showOutputValue();
             }

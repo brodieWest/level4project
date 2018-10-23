@@ -10,7 +10,7 @@
             fx:id="component">
 
         <Group fx:id="svgGroup" onMouseClicked="#deleteImageAsExample">
-            <SVGPath content="M 20 20 L 20 80 A 55 30 0 0 0 20 20" fill="white" strokeWidth="5" stroke="black"/>
+            <SVGPath content="M 20 20 L 20 80 A 55 30 0 0 0 20 20" fill="white" strokeWidth="3" stroke="darkslategray"/>
 
             <!--SVGPath content="M 20 20 L 20 80 C 80 80, 80 20, 20 20" fill="white" strokeWidth="5" stroke="black"/>
 
