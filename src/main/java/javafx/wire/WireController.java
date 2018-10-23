@@ -35,6 +35,8 @@ public class WireController implements Controller {
 
         wire.setInput(startPort);
         wire.addOutput(endPort);
+        startPort.setWire(wire);
+        endPort.setWire(wire);
 
         displayWire(new Coordinates(startX, startY), new Coordinates(endX, endY));
     }

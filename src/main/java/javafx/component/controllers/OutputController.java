@@ -1,6 +1,7 @@
 package javafx.component.controllers;
 
 import javafx.component.model.component.Component;
+import javafx.wire.Wire;
 import model.Logic;
 
 public class OutputController extends IoController {
@@ -17,5 +18,9 @@ public class OutputController extends IoController {
         } else {
             ioShowValue(LOGIC_0, LOGIC_0_COLOUR);
         }
+    }
+
+    public Wire getWire() {
+        return componentModel.getInput(0).getWire();
     }
 }

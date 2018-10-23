@@ -5,7 +5,7 @@
       "uuid": "dff1",
       "xCoord": 100,
       "yCoord": 0,
-      "inputPorts" : 2,
+      "inputPorts" : 1,
       "outputPorts" : 1
     },
     {

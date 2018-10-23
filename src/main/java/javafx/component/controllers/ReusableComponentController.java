@@ -42,6 +42,18 @@ public class ReusableComponentController extends ComponentController implements 
             wire.setInput(inputPort);
             inputPort.setWire(wire);
         }
+
+
+
+        List<Wire> outputWires = internalSimulation.getOutputWires();
+
+        for(int i=0; i<outputWires.size();i++) {
+            Wire wire = outputWires.get(i);
+            Port outputPort = componentModel.getOutput(i);
+
+            wire.addOutput(outputPort);
+            outputPort.setWire(wire);
+        }
     }
 
     @Override
@@ -52,6 +64,11 @@ public class ReusableComponentController extends ComponentController implements 
     @Override
     public void processGateDelay() {
         internalSimulation.gateDelay();
+    }
+
+    @Override
+    public void reset() {
+        internalSimulation.resetSimulation();
     }
 
 }
