@@ -25,7 +25,9 @@ public class Mainfx extends Application {
         this.stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 800, 500));
+        Scene mainScene = new Scene(root, 800, 500);
+        mainScene.getStylesheets().add(getClass().getResource("/fileExamples/css/css").toExternalForm());
+        primaryStage.setScene(mainScene);
         primaryStage.show();
     }
 

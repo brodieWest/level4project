@@ -11,7 +11,7 @@
             fx:id="component">
 
     <Group fx:id="svgGroup" onMouseClicked="#switchInputValue">
-        <SVGPath content="M 20 20 L 20 80 L 80 80 L 80 20 L 20 20 z" stroke="darkslategray" fill="0x7293cb" strokeWidth="3" />
+        <SVGPath content="M 20 20 L 20 80 L 80 80 L 80 20 L 20 20 z" fill="0x7293cb" id="component"/>
         <Text text="0" fx:id="text" x="50" y="50" stroke="black"/>
     </Group>
 
