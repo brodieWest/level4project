@@ -1,0 +1,4 @@
+#component {
+   -fx-stroke: "darkslategray";
+   -fx-stroke-width: 3;
+}
