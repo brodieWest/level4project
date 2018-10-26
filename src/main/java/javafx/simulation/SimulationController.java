@@ -24,10 +24,7 @@ import java.util.Map;
 
 public class SimulationController implements Controller {
     @FXML
-    AnchorPane simulationPane;
-
-    private static String COMPONENT_PATH = "fxml/components/%s.fxml";
-    private static String WIRE_PATH = "fxml/wire.fxml";
+    private AnchorPane simulationPane;
 
 
     Map<String,ComponentController> componentControllers = new HashMap<>();
@@ -36,7 +33,10 @@ public class SimulationController implements Controller {
 
     private Map<String, WireController> wireControllers = new HashMap<>();
 
-    public void setMainController(MainController mainController) {
+    private static String SIMULATION_FXML_PATH = "fxml/simulation.fxml";
+
+    public SimulationController(MainController mainController) {
+        FxmlLoaderUtils.loadFxml(SIMULATION_FXML_PATH, this);
         this.mainController = mainController;
     }
 
@@ -104,22 +104,16 @@ public class SimulationController implements Controller {
     }
 
     public void addWire(String startComponentName, int startPortNo, String endComponentName, int endPortNo) {
-        Fxml fxml = FxmlLoaderUtils.loadFxml(WIRE_PATH);
-
-        WireController wireController = (WireController)fxml.getController();
-
-        Parent wireNode = fxml.getNode();
-        simulationPane.getChildren().add(wireNode);
-        wireNode.toBack();
-
-        Wire wire = new Wire();
 
         Component startComponent = componentControllers.get(startComponentName).getComponentModel();
         Component endComponent = componentControllers.get(endComponentName).getComponentModel();
 
-        wireController.initialiseWire(wire, startComponent, startPortNo, endComponent, endPortNo);
+        WireController wireController = new WireController(startComponent, startPortNo, endComponent, endPortNo);
 
-        wireControllers.put(wire.getUuid(), wireController);
+        wireControllers.put(wireController.getUuid(), wireController);
+
+        displayWire(wireController.getGroup());
+
     }
 
 
@@ -133,7 +127,16 @@ public class SimulationController implements Controller {
         AnchorPane.setLeftAnchor(componentNode, coordinates.getX()*1.0);
     }
 
+    private void displayWire(Parent wireNode) {
+        simulationPane.getChildren().add(wireNode);
+        wireNode.toBack();
+    }
+
     public ComponentController getComponentController(String uuid) {
         return componentControllers.get(uuid);
+    }
+
+    public AnchorPane getSimulationPane() {
+        return simulationPane;
     }
 }

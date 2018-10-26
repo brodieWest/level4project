@@ -7,10 +7,9 @@
 <?import javafx.scene.text.Text?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="javafx.component.controllers.ReusableComponentController"
             fx:id="component">
 
-    <Group fx:id="svgGroup" onMouseClicked="#deleteImageAsExample">
+    <Group fx:id="svgGroup" >
         <SVGPath content="M 20 20 L 20 80 L 80 80 L 80 20 L 20 20 M 45 80 L 50 70 L 55 80 z" stroke="BLACK" fill="white" strokeWidth="5.0"/>
         <Text text="reusable" x="40" y="50" stroke="black"/>
     </Group>

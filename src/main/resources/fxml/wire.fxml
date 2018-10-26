@@ -4,7 +4,7 @@
 <?import javafx.scene.Group?>
 <Group xmlns="http://javafx.com/javafx"
        xmlns:fx="http://javafx.com/fxml"
-       fx:controller="javafx.wire.WireController">
+       fx:id="group">
     <Path fx:id="path" fill="lightgray" onMouseClicked="#deleteOnClick" strokeWidth="3"/>
 
 </Group>

@@ -3,12 +3,17 @@ package javafx.simulation;
 import javafx.component.controllers.ComponentController;
 import javafx.component.controllers.InputController;
 import javafx.component.controllers.OutputController;
+import javafx.main.MainController;
 import javafx.wire.Wire;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class InternalController extends SimulationController {
+
+    public InternalController() {
+        super(null);
+    }
 
     public List<Wire> getInputWires() {
         List<Wire> wires = new ArrayList<>();

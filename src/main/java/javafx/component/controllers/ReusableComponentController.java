@@ -48,12 +48,10 @@ public class ReusableComponentController extends ComponentController implements 
     }
 
     public void initialize() {
-        Fxml fxml = FxmlLoaderUtils.loadFxml(SIMULATION_FXML_PATH);
 
-        this.internalSimulation = (InternalController)fxml.getController();
+        this.internalSimulation = new InternalController();
 
-        Load.loadFromFile(internalSimulation, "/fileExamples/reusable/nand");
-
+        Load.loadFromFile(internalSimulation, "/fileExamples/reusable/nand"); //change this
 
     }
 
