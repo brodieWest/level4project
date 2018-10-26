@@ -22,7 +22,9 @@ public class ReusableComponentController extends ComponentController implements 
     public ReusableComponentController(SimulationController simulationController, String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
         super(simulationController, type, coordinates, uuid, noInputs, noOutputs);
 
+        this.internalSimulation = new InternalController();
 
+        Load.loadFromFile(internalSimulation, "/fileExamples/reusable/nand"); //change this
 
         List<Wire> inputWires = internalSimulation.getInputWires();
 
@@ -47,14 +49,6 @@ public class ReusableComponentController extends ComponentController implements 
         }
     }
 
-    public void initialize() {
-
-        this.internalSimulation = new InternalController();
-
-        Load.loadFromFile(internalSimulation, "/fileExamples/reusable/nand"); //change this
-
-    }
-
     @Override
     public void processClockTick() {
         internalSimulation.clockTick();
@@ -62,11 +56,13 @@ public class ReusableComponentController extends ComponentController implements 
 
     @Override
     public void processGateDelay() {
+        internalSimulation.wireDelay();
         internalSimulation.gateDelay();
     }
 
     @Override
     public void reset() {
+        super.reset();
         internalSimulation.resetSimulation();
     }
 
