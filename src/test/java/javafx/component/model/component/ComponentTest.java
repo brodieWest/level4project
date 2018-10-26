@@ -12,13 +12,12 @@ public class ComponentTest {
 
     @Before
     public void setup() {
-        ComponentFactory.initialise();
     }
 
 
     @Test
     public void addNewInput() {
-        Component and = ComponentFactory.getComponent("and", new Coordinates(1,1), "testand");
+        Component and = ComponentFactory.getComponent("and", new Coordinates(1,1), "testand",2,1);
 
         assertEquals(20,and.getInput(0).getOffset().getX());
         assertEquals(40,and.getInput(0).getOffset().getY());
@@ -29,7 +28,7 @@ public class ComponentTest {
 
     @Test
     public void addNewOutput() {
-        Component not = ComponentFactory.getComponent("not", new Coordinates(1,1), "testnot");
+        Component not = ComponentFactory.getComponent("not", new Coordinates(1,1), "testnot",2,1);
 
         assertEquals(80,not.getOutput(0).getOffset().getX());
         assertEquals(50,not.getOutput(0).getOffset().getY());

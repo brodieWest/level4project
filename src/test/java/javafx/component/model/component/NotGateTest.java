@@ -15,8 +15,7 @@ public class NotGateTest {
 
     @Before
     public void setup() {
-        ComponentFactory.initialise();
-        not =  ComponentFactory.getComponent("not", new Coordinates(0,0), "testnot");
+        not =  ComponentFactory.getComponent("not", new Coordinates(0,0), "testnot",1,1);
         notInputLogic = not.getInput(0).getLogic();
         notOutputLogic = not.getOutput(0).getLogic();
     }

@@ -6,6 +6,7 @@ import javafx.component.model.component.Component;
 import javafx.simulation.InternalController;
 import javafx.simulation.SimulationController;
 import javafx.wire.Wire;
+import model.Coordinates;
 import model.Port;
 import utils.Fxml;
 import utils.FxmlLoaderUtils;
@@ -18,19 +19,9 @@ public class ReusableComponentController extends ComponentController implements 
 
     private static String SIMULATION_FXML_PATH = "fxml/internalSimulation.fxml";
 
-    public void initialize() {
-        Fxml fxml = FxmlLoaderUtils.loadFxml(SIMULATION_FXML_PATH);
+    public ReusableComponentController(SimulationController simulationController, String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
+        super(simulationController, type, coordinates, uuid, noInputs, noOutputs);
 
-        this.internalSimulation = (InternalController)fxml.getController();
-
-        Load.loadFromFile(internalSimulation, "/fileExamples/reusable/nand");
-
-
-    }
-
-    @Override
-    public void initialiseComponent(Component componentModel, SimulationController simulationController) {
-        super.initialiseComponent(componentModel, simulationController);
 
 
         List<Wire> inputWires = internalSimulation.getInputWires();
@@ -54,6 +45,16 @@ public class ReusableComponentController extends ComponentController implements 
             wire.addOutput(outputPort);
             outputPort.setWire(wire);
         }
+    }
+
+    public void initialize() {
+        Fxml fxml = FxmlLoaderUtils.loadFxml(SIMULATION_FXML_PATH);
+
+        this.internalSimulation = (InternalController)fxml.getController();
+
+        Load.loadFromFile(internalSimulation, "/fileExamples/reusable/nand");
+
+
     }
 
     @Override

@@ -1,7 +1,10 @@
 package javafx.component.controllers;
 
+import javafx.component.model.component.Component;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Shape;
+import javafx.simulation.SimulationController;
+import model.Coordinates;
 
 class IoController extends ComponentController{
 
@@ -12,6 +15,11 @@ class IoController extends ComponentController{
     static String LOGIC_0_COLOUR = "0x7293cb";
     static String LOGIC_1_COLOUR = "0xd35e60";
     static String LOGIC_UNDEFINED_COLOUR = "lightgrey";
+
+    IoController(SimulationController simulationController, String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
+        super(simulationController, type, coordinates, uuid, noInputs, noOutputs);
+    }
+
 
     void ioShowValue(String textString, String colour) {
         Shape shape = (Shape)svgGroup.getChildren().get(0);

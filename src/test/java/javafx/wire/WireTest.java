@@ -16,7 +16,6 @@ public class WireTest {
 
     @Before
     public void setup() {
-        ComponentFactory.initialise();
         wire = new Wire();
         Port input = new Port();
         Port output = new Port();

@@ -3,6 +3,7 @@ package javafx.simulation;
 import javafx.Controller;
 import javafx.component.Synchronous;
 import javafx.component.controllers.ComponentController;
+import javafx.component.controllers.ComponentControllerFactory;
 import javafx.component.controllers.OutputController;
 import javafx.component.controllers.DffController;
 import javafx.component.model.component.ComponentFactory;
@@ -90,16 +91,11 @@ public class SimulationController implements Controller {
 
     public void addComponent(String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
 
-        Fxml fxml = FxmlLoaderUtils.loadFxml( String.format(COMPONENT_PATH, type));
-        ComponentController componentController = (ComponentController)fxml.getController();
+        ComponentController componentController = ComponentControllerFactory.getComponentController(this, type, coordinates, uuid, noInputs,noOutputs);
 
-        Component componentModel = ComponentFactory.getComponent(type, coordinates, uuid, noInputs,noOutputs);
+        componentControllers.put(componentController.getUuid(), componentController);
 
-        componentController.initialiseComponent(componentModel, this);
-
-        componentControllers.put(componentModel.getUuid(), componentController);
-
-        placeComponent(fxml.getNode(), coordinates);
+        placeComponent(componentController.getComponent(), coordinates);
 
     }
 

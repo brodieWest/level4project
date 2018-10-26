@@ -29,4 +29,19 @@ public class FxmlLoaderUtils {
 
         return new Fxml(controller, componentNode);
     }
+
+    public static void loadFxml(String fileName, Controller controller) {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(FxmlLoaderUtils.class.getClassLoader().getResource(fileName));
+
+        fxmlLoader.setController(controller);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException e) {
+            // TODO better error handling
+            e.printStackTrace();
+            Platform.exit();
+        }
+    }
 }
