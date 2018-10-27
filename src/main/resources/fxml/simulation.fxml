@@ -13,12 +13,12 @@
             id="simulation">
     <padding><Insets left="25" top="25" bottom="25" right="25"/></padding>
     <Group>
-        <StackPane fx:id="stackPane">
-                <AnchorPane fx:id="simulationPane" id="simulation" >
+
+                <AnchorPane fx:id="simulationPane" id="simulation" onScroll="#scrollEvent">
 
 
                 </AnchorPane>
-        </StackPane>
+
     </Group>
 
 </ScrollPane>

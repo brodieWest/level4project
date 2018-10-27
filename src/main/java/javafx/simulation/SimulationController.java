@@ -10,6 +10,8 @@ import javafx.component.model.component.ComponentFactory;
 import javafx.component.model.component.Dff;
 import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.ScrollEvent;
+import javafx.scene.input.ZoomEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.transform.Scale;
 import javafx.wire.WireController;
@@ -23,6 +25,7 @@ import javafx.scene.layout.AnchorPane;
 import utils.Fxml;
 import utils.FxmlLoaderUtils;
 
+import java.awt.event.ActionEvent;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,6 +39,7 @@ public class SimulationController implements Controller {
     @FXML
     private StackPane stackPane;
 
+    private Parent backGround = buildBackground();
 
     Map<String,ComponentController> componentControllers = new HashMap<>();
 
@@ -52,7 +56,7 @@ public class SimulationController implements Controller {
         FxmlLoaderUtils.loadFxml(SIMULATION_FXML_PATH, this);
         this.mainController = mainController;
 
-        //simulationPane.getChildren().add(buildBackground());
+        simulationPane.getChildren().add(backGround);
 
         scale.setPivotX(0);
         scale.setPivotY(0);
@@ -60,7 +64,7 @@ public class SimulationController implements Controller {
         simulationPane.getTransforms().add(scale);
     }
 
-    public Parent buildBackground() {
+    private Parent buildBackground() {
 
         return FxmlLoaderUtils.loadFxml(BACKGROUND_FXML_PATH).getNode();
     }
@@ -112,6 +116,8 @@ public class SimulationController implements Controller {
         componentControllers.clear();
         wireControllers.clear();
         simulationPane.getChildren().clear();
+        simulationPane.getChildren().add(backGround);
+        backGround.toBack();
     }
 
     public void addComponent(String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
@@ -155,6 +161,7 @@ public class SimulationController implements Controller {
     private void displayWire(Parent wireNode) {
         simulationPane.getChildren().add(wireNode);
         wireNode.toBack();
+        backGround.toBack();
     }
 
     public ComponentController getComponentController(String uuid) {
@@ -174,4 +181,18 @@ public class SimulationController implements Controller {
         scale.setX(scale.getX() / 1.5);
         scale.setY(scale.getY() / 1.5);
     }
+
+    public void scrollEvent(ScrollEvent action) {
+        if(action.isControlDown()) {
+            double zoomFactor = action.getDeltaY();
+            if(zoomFactor<1) {
+                scale.setX(scale.getX() / 1.1);
+                scale.setY(scale.getY() / 1.1);
+            } else {
+                scale.setX(scale.getX() * 1.1);
+                scale.setY(scale.getY() * 1.1);
+            }
+        }
+    }
+
 }
