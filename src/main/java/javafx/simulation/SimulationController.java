@@ -10,6 +10,8 @@ import javafx.component.model.component.ComponentFactory;
 import javafx.component.model.component.Dff;
 import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.transform.Scale;
 import javafx.wire.WireController;
 import model.Coordinates;
 import javafx.wire.Wire;
@@ -32,20 +34,35 @@ public class SimulationController implements Controller {
     private ScrollPane scrollPane;
 
     @FXML
-    private Group group;
+    private StackPane stackPane;
 
 
     Map<String,ComponentController> componentControllers = new HashMap<>();
 
     private MainController mainController;
 
+    private Scale scale = new Scale();
+
     private Map<String, WireController> wireControllers = new HashMap<>();
 
     private static String SIMULATION_FXML_PATH = "fxml/simulation.fxml";
+    private static String BACKGROUND_FXML_PATH = "fxml/background.fxml";
 
     public SimulationController(MainController mainController) {
         FxmlLoaderUtils.loadFxml(SIMULATION_FXML_PATH, this);
         this.mainController = mainController;
+
+        //simulationPane.getChildren().add(buildBackground());
+
+        scale.setPivotX(0);
+        scale.setPivotY(0);
+
+        simulationPane.getTransforms().add(scale);
+    }
+
+    public Parent buildBackground() {
+
+        return FxmlLoaderUtils.loadFxml(BACKGROUND_FXML_PATH).getNode();
     }
 
     public void clockTick() {
@@ -149,12 +166,12 @@ public class SimulationController implements Controller {
     }
 
     public void zoomIn() {
-        group.setScaleX(group.getScaleX() * 1.5);
-        group.setScaleY(group.getScaleY() * 1.5);
+        scale.setX(scale.getX() * 1.5);
+        scale.setY(scale.getY() * 1.5);
     }
 
     public void zoomOut() {
-        group.setScaleX(group.getScaleX() / 1.5);
-        group.setScaleY(group.getScaleY() / 1.5);
+        scale.setX(scale.getX() / 1.5);
+        scale.setY(scale.getY() / 1.5);
     }
 }

@@ -8,16 +8,18 @@
 
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:id="scrollPane">
+            fx:id="scrollPane"
+            pannable="true"
+            id="simulation">
     <padding><Insets left="25" top="25" bottom="25" right="25"/></padding>
     <Group>
-        <StackPane>
-            <Group fx:id="group">
-                <AnchorPane fx:id="simulationPane">
+        <StackPane fx:id="stackPane">
+                <AnchorPane fx:id="simulationPane" id="simulation" >
+
 
                 </AnchorPane>
-            </Group>
         </StackPane>
     </Group>
+
 </ScrollPane>
 

@@ -5,5 +5,5 @@
 }
 
 #simulation {
-    -fx-background-color: "darkslategray";
+    -fx-background-color: "white";
 }

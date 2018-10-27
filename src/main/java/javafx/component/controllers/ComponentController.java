@@ -9,6 +9,8 @@ import javafx.scene.Group;
 import javafx.component.model.component.Component;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.simulation.SimulationController;
 import model.Coordinates;
@@ -49,8 +51,8 @@ public class ComponentController implements Controller {
     }
 
     public void deleteImageAsExample() {
-        //Shape shape = (Shape)svgGroup.getChildren().get(0);
-        //shape.setFill(Paint.valueOf("yellow"));
+        Shape shape = (Shape)svgGroup.getChildren().get(0);
+        shape.setFill(Paint.valueOf("yellow"));
     }
 
     public void processGateDelay() {
