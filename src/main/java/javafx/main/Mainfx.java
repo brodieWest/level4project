@@ -1,7 +1,6 @@
 package javafx.main;
 
 import javafx.application.Application;
-import javafx.component.model.component.ComponentFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,7 +25,7 @@ public class Mainfx extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
         primaryStage.setTitle("Hello World");
         Scene mainScene = new Scene(root, 800, 500);
-        mainScene.getStylesheets().add(getClass().getResource("/fileExamples/css/css").toExternalForm());
+        mainScene.getStylesheets().add(getClass().getResource("/css/css").toExternalForm());
         primaryStage.setScene(mainScene);
         primaryStage.show();
     }

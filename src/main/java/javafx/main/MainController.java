@@ -5,6 +5,7 @@ import javafx.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.simulation.SimulationController;
 import utils.Fxml;
@@ -22,6 +23,9 @@ public class MainController implements Controller {
 
     @FXML
     private MenuItem load;
+
+    @FXML
+    private BorderPane borderPane;
 
     @FXML
     protected void loadFile() {
@@ -46,10 +50,20 @@ public class MainController implements Controller {
         simulationController.clockTick();
     }
 
+    @FXML
+    private void zoomIn() {
+        simulationController.zoomIn();
+    }
+
+    @FXML
+    private void zoomOut() {
+        simulationController.zoomOut();
+    }
+
     public void initialize(){
 
         this.simulationController = new SimulationController(this);
 
-        simulationVBox.getChildren().add(simulationController.getSimulationPane());
+        borderPane.setCenter(simulationController.getScrollPane());
     }
 }

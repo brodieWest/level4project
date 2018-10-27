@@ -69,23 +69,6 @@ public class ComponentController implements Controller {
         componentModel.addNewOutput();
     }
 
-    // delete me
-    public void switchInputValue() {
-        Component input = this.componentModel;
-        Logic inputLogic = input.getOutput(0).getLogic();
-
-        simulationController.resetSimulation();
-
-        if(inputLogic.value()) {
-            inputLogic.setValue(false);
-
-        } else {
-            inputLogic.setValue(true);
-
-        }
-        simulationController.wireDelay();
-    }
-
     public Parent getComponent() {
         return component;
     }

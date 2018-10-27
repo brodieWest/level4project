@@ -2,8 +2,22 @@
 
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:id="simulationPane">
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
 
-</AnchorPane>
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="scrollPane">
+    <padding><Insets left="25" top="25" bottom="25" right="25"/></padding>
+    <Group>
+        <StackPane>
+            <Group fx:id="group">
+                <AnchorPane fx:id="simulationPane">
+
+                </AnchorPane>
+            </Group>
+        </StackPane>
+    </Group>
+</ScrollPane>
+

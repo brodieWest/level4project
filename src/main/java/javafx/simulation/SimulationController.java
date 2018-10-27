@@ -8,6 +8,8 @@ import javafx.component.controllers.OutputController;
 import javafx.component.controllers.DffController;
 import javafx.component.model.component.ComponentFactory;
 import javafx.component.model.component.Dff;
+import javafx.scene.Group;
+import javafx.scene.control.ScrollPane;
 import javafx.wire.WireController;
 import model.Coordinates;
 import javafx.wire.Wire;
@@ -25,6 +27,12 @@ import java.util.Map;
 public class SimulationController implements Controller {
     @FXML
     private AnchorPane simulationPane;
+
+    @FXML
+    private ScrollPane scrollPane;
+
+    @FXML
+    private Group group;
 
 
     Map<String,ComponentController> componentControllers = new HashMap<>();
@@ -136,7 +144,17 @@ public class SimulationController implements Controller {
         return componentControllers.get(uuid);
     }
 
-    public AnchorPane getSimulationPane() {
-        return simulationPane;
+    public ScrollPane getScrollPane() {
+        return scrollPane;
+    }
+
+    public void zoomIn() {
+        group.setScaleX(group.getScaleX() * 1.5);
+        group.setScaleY(group.getScaleY() * 1.5);
+    }
+
+    public void zoomOut() {
+        group.setScaleX(group.getScaleX() / 1.5);
+        group.setScaleY(group.getScaleY() / 1.5);
     }
 }

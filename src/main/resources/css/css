@@ -1,0 +1,9 @@
+#component {
+    -fx-stroke: "darkslategray";
+    -fx-stroke-width: 3;
+    -fx-stroke-line-join: round;
+}
+
+#simulation {
+    -fx-background-color: "darkslategray";
+}

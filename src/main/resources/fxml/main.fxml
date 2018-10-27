@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ScrollPane?>
-<BorderPane fx:controller="javafx.main.MainController" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<BorderPane fx:controller="javafx.main.MainController" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:id="borderPane">
 
     <top>
         <VBox>
@@ -20,6 +19,8 @@
                 </Menu>
                 <Menu text="Edit">
                     <MenuItem text="Clear" onAction="#clear"/>
+                    <MenuItem text="Zoom In" onAction="#zoomIn"/>
+                    <MenuItem text="Zoom Out" onAction="#zoomOut"/>
                 </Menu>
             </MenuBar>
         </VBox>
@@ -35,11 +36,6 @@
         </VBox>
     </left>
     <center>
-        <ScrollPane>
-            <padding><Insets left="25" top="25" bottom="25" right="25"/></padding>
-            <VBox fx:id="simulationVBox">
-            </VBox>
-        </ScrollPane>
     </center>
     <right>
         <Label text="component decription here"/>
