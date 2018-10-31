@@ -12,12 +12,10 @@ public class ReusableComponent extends Component implements Synchronous {
 
     @Override
     public void processGateDelay() {
-        // go through internal collection of components, then wires performing each gate delay
     }
 
     @Override
     public void processClockTick() {
-        // go through internal collection of components, if synchronous process clock tick
 
     }
 }

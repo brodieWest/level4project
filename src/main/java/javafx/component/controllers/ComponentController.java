@@ -38,8 +38,7 @@ public class ComponentController implements Controller {
     Group svgGroup;
 
     ComponentController(SimulationController simulationController, String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
-        Component componentModel = ComponentFactory.getComponent(type, coordinates, uuid, noInputs,noOutputs);
-        this.componentModel = componentModel;
+        this.componentModel = ComponentFactory.getComponent(type, coordinates, uuid, noInputs,noOutputs);
         this.simulationController = simulationController;
 
         FxmlLoaderUtils.loadFxml(String.format(COMPONENT_PATH, componentModel.getStringIdentifier()), this);

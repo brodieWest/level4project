@@ -13,6 +13,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.input.ZoomEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Line;
 import javafx.scene.transform.Scale;
 import javafx.wire.WireController;
 import model.Coordinates;
@@ -39,7 +41,7 @@ public class SimulationController implements Controller {
     @FXML
     private StackPane stackPane;
 
-    private Parent backGround = buildBackground();
+    private Group backGround = buildBackground();
 
     Map<String,ComponentController> componentControllers = new HashMap<>();
 
@@ -51,6 +53,10 @@ public class SimulationController implements Controller {
 
     private static String SIMULATION_FXML_PATH = "fxml/simulation.fxml";
     private static String BACKGROUND_FXML_PATH = "fxml/background.fxml";
+    private static String BACKGROUND_LINE_COLOUR = "lightgray";
+
+    private static int SCREEN_SIZE = 10000;
+    private static int BACKGROUND_BOX_SIZE = 100;
 
     public SimulationController(MainController mainController) {
         FxmlLoaderUtils.loadFxml(SIMULATION_FXML_PATH, this);
@@ -64,9 +70,19 @@ public class SimulationController implements Controller {
         simulationPane.getTransforms().add(scale);
     }
 
-    private Parent buildBackground() {
+    private Group buildBackground() {
 
-        return FxmlLoaderUtils.loadFxml(BACKGROUND_FXML_PATH).getNode();
+        Group background = (Group)FxmlLoaderUtils.loadFxml(BACKGROUND_FXML_PATH).getNode();
+
+        for(int i=0;i<=SCREEN_SIZE;i+=BACKGROUND_BOX_SIZE) {
+            Line line1 = new Line(0,i,SCREEN_SIZE,i);
+            line1.setStroke(Paint.valueOf(BACKGROUND_LINE_COLOUR));
+
+            Line line2 = new Line(i,0,i,SCREEN_SIZE);
+            line2.setStroke(Paint.valueOf(BACKGROUND_LINE_COLOUR));
+            background.getChildren().addAll(line1,line2);
+        }
+        return background;
     }
 
     public void clockTick() {
