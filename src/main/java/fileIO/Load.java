@@ -26,7 +26,6 @@ public class Load {
 
     public static void loadWithFileChooser(SimulationController simulationController) {
 
-
         String jsonText = loadTextWithFileChooser();
         if(jsonText == null) {
             //TODO show user error message

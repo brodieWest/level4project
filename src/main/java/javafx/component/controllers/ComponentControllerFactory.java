@@ -1,5 +1,7 @@
 package javafx.component.controllers;
 
+import javafx.component.model.component.Component;
+import javafx.component.model.component.ComponentFactory;
 import javafx.simulation.SimulationController;
 import model.Coordinates;
 
@@ -20,19 +22,21 @@ public class ComponentControllerFactory {
         stdComponentControllers.put("dff", DffController.class);
         stdComponentControllers.put("input", InputController.class);
         stdComponentControllers.put("output", OutputController.class);
-        stdComponentControllers.put("nand", ReusableComponentController.class);
     }
 
     public static ComponentController getComponentController(SimulationController simulationController, String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
+        Component componentModel = ComponentFactory.getComponent(type, coordinates, uuid, noInputs,noOutputs);
 
         ComponentController newComponentController = null;
 
-        Class<? extends ComponentController> componentClass = stdComponentControllers.get(type);
+        Class<? extends ComponentController> componentClass;
+
+        componentClass = stdComponentControllers.getOrDefault(type, ReusableComponentController.class);
 
         Constructor constructor;
         try {
-            constructor = componentClass.getDeclaredConstructor(SimulationController.class, String.class, Coordinates.class, String.class, int.class, int.class);
-            newComponentController = (ComponentController) (constructor.newInstance(simulationController, type, coordinates, uuid, noInputs,noOutputs));
+            constructor = componentClass.getDeclaredConstructor(SimulationController.class, Component.class);
+            newComponentController = (ComponentController) (constructor.newInstance(simulationController, componentModel));
         } catch (NoSuchMethodException |InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }

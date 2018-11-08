@@ -1,7 +1,16 @@
-#component {
+.component {
     -fx-stroke: "darkslategray";
     -fx-stroke-width: 3;
     -fx-stroke-line-join: round;
+}
+
+.gate {
+    -fx-fill: "white";
+}
+
+.gateText {
+    -fx-font-weight: bold;
+    -fx-fill: "darkslategray";
 }
 
 #simulation {

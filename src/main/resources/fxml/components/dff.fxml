@@ -10,8 +10,8 @@
             fx:id="component">
 
     <Group fx:id="svgGroup" onMouseClicked="#deleteImageAsExample">
-        <SVGPath content="M 20 20 L 20 80 L 80 80 L 80 20 L 20 20 M 45 80 L 50 70 L 55 80 z" fill="white" id="component"/>
-        <Text text="Dff" x="40" y="50" stroke="black"/>
+        <SVGPath content="M 20 20 L 20 80 L 80 80 L 80 20 L 20 20 M 45 80 L 50 70 L 55 80 z" styleClass="component, gate"/>
+        <Text text="Dff" x="40" y="50" styleClass="gateText"/>
     </Group>
 
 </AnchorPane>

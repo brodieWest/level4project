@@ -17,10 +17,8 @@ public class ReusableComponentController extends ComponentController implements 
 
     private InternalController internalSimulation;
 
-    private static String SIMULATION_FXML_PATH = "fxml/internalSimulation.fxml";
-
-    public ReusableComponentController(SimulationController simulationController, String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
-        super(simulationController, type, coordinates, uuid, noInputs, noOutputs);
+    public ReusableComponentController(SimulationController  simulationController, Component componentModel) {
+        super(simulationController, componentModel);
 
         this.internalSimulation = new InternalController();
 

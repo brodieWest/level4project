@@ -9,8 +9,8 @@ import model.Logic;
 public class OutputController extends IoController {
 
 
-    public OutputController(SimulationController simulationController, String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
-        super(simulationController, type, coordinates, uuid, noInputs, noOutputs);
+    public OutputController(SimulationController simulationController, Component componentModel) {
+        super(simulationController, componentModel);
     }
 
     public void showOutputValue() {

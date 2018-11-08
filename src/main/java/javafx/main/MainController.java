@@ -4,9 +4,11 @@ import fileIO.Load;
 import javafx.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.simulation.SimulationController;
 import utils.Fxml;
 import utils.FxmlLoaderUtils;
@@ -26,6 +28,12 @@ public class MainController implements Controller {
 
     @FXML
     private BorderPane borderPane;
+
+    @FXML
+    private Label gateDelayCount;
+
+    @FXML
+    private Label clockTickCount;
 
     @FXML
     protected void loadFile() {
@@ -65,5 +73,13 @@ public class MainController implements Controller {
         this.simulationController = new SimulationController(this);
 
         borderPane.setCenter(simulationController.getScrollPane());
+    }
+
+    public void setGateDelayCount(int count) {
+        gateDelayCount.setText(String.valueOf(count));
+    }
+
+    public void setClockTickCount(int count) {
+        clockTickCount.setText(String.valueOf(count));
     }
 }

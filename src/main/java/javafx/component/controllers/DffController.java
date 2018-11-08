@@ -8,8 +8,8 @@ import model.Coordinates;
 public class DffController extends ComponentController implements Synchronous{
 
 
-    public DffController(SimulationController simulationController, String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
-        super(simulationController, type, coordinates, uuid, noInputs, noOutputs);
+    public DffController(SimulationController simulationController, Component componentModel) {
+        super(simulationController, componentModel);
     }
 
     @Override

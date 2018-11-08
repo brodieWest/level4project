@@ -16,8 +16,8 @@ class IoController extends ComponentController{
     static String LOGIC_1_COLOUR = "0xd35e60";
     static String LOGIC_UNDEFINED_COLOUR = "lightgrey";
 
-    IoController(SimulationController simulationController, String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
-        super(simulationController, type, coordinates, uuid, noInputs, noOutputs);
+    IoController(SimulationController simulationController, Component componentModel) {
+        super(simulationController, componentModel);
     }
 
 

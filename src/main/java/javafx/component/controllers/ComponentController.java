@@ -3,6 +3,7 @@ package javafx.component.controllers;
 import javafx.Controller;
 import javafx.application.Platform;
 import javafx.component.model.component.ComponentFactory;
+import javafx.component.model.component.ReusableComponent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -27,6 +28,7 @@ public class ComponentController implements Controller {
     SimulationController simulationController;
 
     private static String COMPONENT_PATH = "fxml/components/%s.fxml";
+    private static String REUSABLE = "reusable";
 
     @FXML
     Text text;
@@ -37,11 +39,15 @@ public class ComponentController implements Controller {
     @FXML
     Group svgGroup;
 
-    ComponentController(SimulationController simulationController, String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
-        this.componentModel = ComponentFactory.getComponent(type, coordinates, uuid, noInputs,noOutputs);
+    ComponentController(SimulationController simulationController, Component componentModel) {
+        this.componentModel = componentModel;
         this.simulationController = simulationController;
 
-        FxmlLoaderUtils.loadFxml(String.format(COMPONENT_PATH, componentModel.getStringIdentifier()), this);
+        if(componentModel instanceof ReusableComponent) {
+            FxmlLoaderUtils.loadFxml(String.format(COMPONENT_PATH,REUSABLE), this);
+        } else {
+            FxmlLoaderUtils.loadFxml(String.format(COMPONENT_PATH, componentModel.getStringIdentifier()), this);
+        }
 
     }
 

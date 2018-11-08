@@ -9,8 +9,8 @@ import model.Logic;
 public class InputController extends IoController {
 
 
-    public InputController(SimulationController simulationController, String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
-        super(simulationController, type, coordinates, uuid, noInputs, noOutputs);
+    public InputController(SimulationController simulationController, Component componentModel) {
+        super(simulationController, componentModel);
     }
 
     public void switchInputValue() {

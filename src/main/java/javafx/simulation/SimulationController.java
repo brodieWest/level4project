@@ -41,6 +41,10 @@ public class SimulationController implements Controller {
     @FXML
     private StackPane stackPane;
 
+    private int gateDelayCount = 0;
+
+    private int clockTickCount = 0;
+
     private Group backGround = buildBackground();
 
     Map<String,ComponentController> componentControllers = new HashMap<>();

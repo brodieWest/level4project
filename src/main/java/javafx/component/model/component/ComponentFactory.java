@@ -22,14 +22,15 @@ public class ComponentFactory {
         stdComponents.put("dff", Dff.class);
         stdComponents.put("input", Input.class);
         stdComponents.put("output", Output.class);
-        stdComponents.put("nand", ReusableComponent.class); //change this
     }
 
     public static Component getComponent(String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
 
         Component newComponent = null;
 
-        Class<? extends Component> componentClass = stdComponents.get(type);
+        Class<? extends Component> componentClass;
+
+        componentClass = stdComponents.getOrDefault(type, ReusableComponent.class);
 
         Constructor constructor;
         try {
