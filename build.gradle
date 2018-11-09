@@ -15,4 +15,5 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile "org.testfx:testfx-core:4.0.14-alpha"
     compile 'org.json:json:20171018'
+    compile 'org.apache.logging.log4j:json-core:2.11.1'
 }

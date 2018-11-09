@@ -99,6 +99,7 @@ public class SimulationController implements Controller {
         }
         resetSimulation();
         wireDelay();
+        updateClockTickCount();
     }
 
     public void gateDelay() {
@@ -107,6 +108,8 @@ public class SimulationController implements Controller {
         }
 
         wireDelay();
+
+        updateGateDelayCount();
 
     }
 
@@ -129,6 +132,7 @@ public class SimulationController implements Controller {
         for(ComponentController controller : componentControllers.values()) {
             controller.reset();
         }
+        clearGateDelayCount();
     }
 
     public void clear() {
@@ -138,6 +142,8 @@ public class SimulationController implements Controller {
         simulationPane.getChildren().clear();
         simulationPane.getChildren().add(backGround);
         backGround.toBack();
+        resetSimulation();
+        clearClockTickCount();
     }
 
     public void addComponent(String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
@@ -213,6 +219,30 @@ public class SimulationController implements Controller {
                 scale.setY(scale.getY() * 1.1);
             }
         }
+    }
+
+    private void updateGateDelayCount() {
+        gateDelayCount++;
+
+        mainController.setGateDelayCount(gateDelayCount);
+    }
+
+    private void clearGateDelayCount() {
+        gateDelayCount = 0;
+
+        mainController.setGateDelayCount(gateDelayCount);
+    }
+
+    private void updateClockTickCount() {
+        clockTickCount++;
+
+        mainController.setClockTickCount(clockTickCount);
+    }
+
+    private void clearClockTickCount() {
+        clockTickCount = 0;
+
+        mainController.setClockTickCount(clockTickCount);
     }
 
 }
