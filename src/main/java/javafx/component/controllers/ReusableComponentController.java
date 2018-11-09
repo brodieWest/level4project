@@ -17,12 +17,14 @@ public class ReusableComponentController extends ComponentController implements 
 
     private InternalController internalSimulation;
 
+    private static String REUSABLE_FILE_PATH = "/fileExamples/reusable/";
+
     public ReusableComponentController(SimulationController  simulationController, Component componentModel) {
         super(simulationController, componentModel);
 
         this.internalSimulation = new InternalController();
 
-        Load.loadFromFile(internalSimulation, "/fileExamples/reusable/nand"); //change this
+        Load.loadFromFile(internalSimulation, REUSABLE_FILE_PATH + componentModel.getStringIdentifier()); //change this
 
         List<Wire> inputWires = internalSimulation.getInputWires();
 
