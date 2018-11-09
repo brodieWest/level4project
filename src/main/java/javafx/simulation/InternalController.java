@@ -12,7 +12,7 @@ import java.util.List;
 public class InternalController extends SimulationController {
 
     public InternalController() {
-        super(null);
+        super();
     }
 
     public List<Wire> getInputWires() {

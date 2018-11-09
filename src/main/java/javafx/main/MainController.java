@@ -9,6 +9,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.simulation.MainSimulationController;
 import javafx.simulation.SimulationController;
 import utils.Fxml;
 import utils.FxmlLoaderUtils;
@@ -70,7 +71,7 @@ public class MainController implements Controller {
 
     public void initialize(){
 
-        this.simulationController = new SimulationController(this);
+        this.simulationController = new MainSimulationController(this);
 
         borderPane.setCenter(simulationController.getScrollPane());
     }

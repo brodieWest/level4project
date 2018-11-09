@@ -41,15 +41,10 @@ public class SimulationController implements Controller {
     @FXML
     private StackPane stackPane;
 
-    private int gateDelayCount = 0;
-
-    private int clockTickCount = 0;
 
     private Group backGround = buildBackground();
 
     Map<String,ComponentController> componentControllers = new HashMap<>();
-
-    private MainController mainController;
 
     private Scale scale = new Scale();
 
@@ -62,9 +57,9 @@ public class SimulationController implements Controller {
     private static int SCREEN_SIZE = 10000;
     private static int BACKGROUND_BOX_SIZE = 100;
 
-    public SimulationController(MainController mainController) {
+    public SimulationController() {
         FxmlLoaderUtils.loadFxml(SIMULATION_FXML_PATH, this);
-        this.mainController = mainController;
+
 
         simulationPane.getChildren().add(backGround);
 
@@ -99,7 +94,6 @@ public class SimulationController implements Controller {
         }
         resetSimulation();
         wireDelay();
-        updateClockTickCount();
     }
 
     public void gateDelay() {
@@ -109,7 +103,7 @@ public class SimulationController implements Controller {
 
         wireDelay();
 
-        updateGateDelayCount();
+
 
     }
 
@@ -132,7 +126,7 @@ public class SimulationController implements Controller {
         for(ComponentController controller : componentControllers.values()) {
             controller.reset();
         }
-        clearGateDelayCount();
+
     }
 
     public void clear() {
@@ -143,16 +137,18 @@ public class SimulationController implements Controller {
         simulationPane.getChildren().add(backGround);
         backGround.toBack();
         resetSimulation();
-        clearClockTickCount();
+
     }
 
-    public void addComponent(String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
+    public boolean addComponent(String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
 
         ComponentController componentController = ComponentControllerFactory.getComponentController(this, type, coordinates, uuid, noInputs,noOutputs);
+        if(componentController == null) return false;
 
         componentControllers.put(componentController.getUuid(), componentController);
 
         placeComponent(componentController.getComponent(), coordinates);
+        return true;
 
     }
 
@@ -221,28 +217,5 @@ public class SimulationController implements Controller {
         }
     }
 
-    private void updateGateDelayCount() {
-        gateDelayCount++;
-
-        mainController.setGateDelayCount(gateDelayCount);
-    }
-
-    private void clearGateDelayCount() {
-        gateDelayCount = 0;
-
-        mainController.setGateDelayCount(gateDelayCount);
-    }
-
-    private void updateClockTickCount() {
-        clockTickCount++;
-
-        mainController.setClockTickCount(clockTickCount);
-    }
-
-    private void clearClockTickCount() {
-        clockTickCount = 0;
-
-        mainController.setClockTickCount(clockTickCount);
-    }
 
 }

@@ -3,6 +3,8 @@ package fileIO;
 import javafx.main.Mainfx;
 import model.Coordinates;
 import javafx.simulation.SimulationController;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -23,6 +25,8 @@ public class Load {
     private static String UUID = "uuid";
     private static String INPUTPORTS = "inputPorts";
     private static String OUTPUTPORTS = "outputPorts";
+
+    private static Logger logger = LogManager.getLogger(Load.class);
 
     public static void loadWithFileChooser(SimulationController simulationController) {
 
@@ -48,7 +52,11 @@ public class Load {
 
         JSONObject circuit = new JSONObject(file);
 
-        loadComponents(circuit, simulationController);
+        if(!loadComponents(circuit, simulationController)) {
+            logger.error("failed to load components");
+            simulationController.clear();
+            return;
+        }
 
         loadWires(circuit, simulationController);
 
@@ -57,7 +65,7 @@ public class Load {
 
     }
 
-    private static void loadComponents(JSONObject circuit, SimulationController simulationController) {
+    private static boolean loadComponents(JSONObject circuit, SimulationController simulationController) {
         JSONArray components = circuit.getJSONArray(COMPONENTS);
 
         for(Object componentObject : components) {
@@ -79,8 +87,9 @@ public class Load {
                 outputPorts = 0;
             }
 
-            simulationController.addComponent(component.getString(TYPE), coordinates, uuid, inputPorts, outputPorts);
+            if (!simulationController.addComponent(component.getString(TYPE), coordinates, uuid, inputPorts, outputPorts)) return false;
         }
+        return true;
     }
 
     private static void loadWires(JSONObject circuit, SimulationController simulationController) {
