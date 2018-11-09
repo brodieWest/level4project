@@ -1,6 +1,7 @@
 package javafx.component.model.component;
 
 import javafx.Onscreen;
+import javafx.scene.Parent;
 import model.Coordinates;
 import model.Port;
 import model.PortType;

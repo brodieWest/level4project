@@ -13,6 +13,10 @@
     -fx-fill: "darkslategray";
 }
 
+.descriptionText {
+    -fx-wrapping-width: 200;
+}
+
 #simulation {
     -fx-background-color: "white";
 }

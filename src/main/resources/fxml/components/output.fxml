@@ -9,7 +9,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:id="component">
 
-    <Group fx:id="svgGroup">
+    <Group fx:id="svgGroup" onMouseEntered="#displayText">
         <SVGPath content="M 20 20 L 20 80 L 80 80 L 80 20 L 20 20 z" styleClass="component"/>
         <Text text="U" fx:id="text" x="50" y="50" styleClass="gateText"/>
     </Group>

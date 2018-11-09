@@ -217,5 +217,8 @@ public class SimulationController implements Controller {
         }
     }
 
+    public void displayText(Parent parent) {
+    }
+
 
 }

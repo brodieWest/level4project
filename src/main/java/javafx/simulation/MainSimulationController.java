@@ -1,6 +1,7 @@
 package javafx.simulation;
 
 import javafx.main.MainController;
+import javafx.scene.Parent;
 
 public class MainSimulationController extends SimulationController {
 
@@ -37,6 +38,11 @@ public class MainSimulationController extends SimulationController {
     public void clear() {
         super.clear();
         clearClockTickCount();
+    }
+
+    @Override
+    public void displayText(Parent parent) {
+        mainController.displayText(parent);
     }
 
 

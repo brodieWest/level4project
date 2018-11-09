@@ -19,7 +19,8 @@ public class MainController implements Controller {
 
     private SimulationController simulationController;
 
-
+    @FXML
+    private VBox componentDescription;
 
     @FXML
     private VBox simulationVBox;
@@ -82,5 +83,9 @@ public class MainController implements Controller {
 
     public void setClockTickCount(int count) {
         clockTickCount.setText(String.valueOf(count));
+    }
+
+    public void displayText(Parent parent) {
+        borderPane.setRight(parent);
     }
 }

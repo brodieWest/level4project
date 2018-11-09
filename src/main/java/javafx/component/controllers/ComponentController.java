@@ -1,6 +1,7 @@
 package javafx.component.controllers;
 
 import javafx.Controller;
+import javafx.Descriptions;
 import javafx.application.Platform;
 import javafx.component.model.component.ComponentFactory;
 import javafx.component.model.component.ReusableComponent;
@@ -82,5 +83,11 @@ public class ComponentController implements Controller {
 
     public String getUuid() {
         return componentModel.getUuid();
+    }
+
+    public void displayText() {
+        if (Descriptions.hasDescription(componentModel.getStringIdentifier())) {
+            simulationController.displayText(Descriptions.getDescription(componentModel.getStringIdentifier()));
+        }
     }
 }

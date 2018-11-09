@@ -9,7 +9,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:id="component">
 
-        <Group fx:id="svgGroup" onMouseClicked="#deleteImageAsExample">
+        <Group fx:id="svgGroup" onMouseEntered="#displayText">
             <SVGPath content="M 20 20 L 20 80 L 60 50 z"  styleClass="component, gate"/>
 
             <Circle centerX="70" centerY="50" radius="10"  styleClass="component, gate"/>
