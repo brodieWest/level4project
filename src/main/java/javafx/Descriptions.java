@@ -1,6 +1,7 @@
 package javafx;
 
 import javafx.scene.Parent;
+import utils.fxml.Fxml;
 import utils.fxml.FxmlLoaderUtils;
 
 import java.io.File;
@@ -21,8 +22,11 @@ public class Descriptions {
             for(File file : listOfFiles) {
                 String fileName = file.getName();
                 String type = fileName.substring(0,fileName.lastIndexOf(CHARACTER_AFTER_TYPE));
-                Parent description = FxmlLoaderUtils.loadFxml(DESCRIPTION_PATH + fileName).getNode();
-                descriptions.put(type, description);
+                Fxml fxml = FxmlLoaderUtils.loadFxml(DESCRIPTION_PATH + fileName);
+                if(fxml != null) {
+                    Parent description = fxml.getNode();
+                    descriptions.put(type, description);
+                }
             }
         }
     }

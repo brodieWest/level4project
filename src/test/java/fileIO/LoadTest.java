@@ -90,10 +90,18 @@ public class LoadTest {
             "]}");
 
     @Test
+    public void loadFromFileError() {
+        SimulationController mocksim = mock(SimulationController.class);
+
+        assertFalse(Load.loadFromFile(mocksim, "notAFilePath"));
+    }
+
+    @Test
     public void load() {
         SimulationController mocksim = mock(SimulationController.class);
 
         when(mocksim.addComponent(anyString(), any(Coordinates.class), anyString(), anyInt(),anyInt())).thenReturn(true);
+        when(mocksim.addWire(anyString(),anyInt(),anyString(),anyInt())).thenReturn(true);
 
 
 
@@ -104,6 +112,8 @@ public class LoadTest {
 
         verify(mocksim).addComponent(eq("input"), inputCoordinatesCaptor.capture(), eq("input1"), eq(0), eq(1));
         verify(mocksim).addComponent(eq("not"), notCoordinatesCaptor.capture(), eq("not1"), eq(1), eq(1));
+        verify(mocksim).resetSimulation();
+        verify(mocksim).wireDelay();
 
         assertEquals(new Coordinates(0,0), inputCoordinatesCaptor.getValue());
         assertEquals(new Coordinates(100,900), notCoordinatesCaptor.getValue());
@@ -113,11 +123,23 @@ public class LoadTest {
 
 
     @Test
-    public void loadWithError() {
+    public void loadWithComponentError() {
         SimulationController mocksim = mock(SimulationController.class);
 
         when(mocksim.addComponent(anyString(), any(Coordinates.class), anyString(), anyInt(),anyInt())).thenReturn(false);
 
+
+        Load.load(mocksim,file);
+
+        verify(mocksim, times(2)).clear();
+    }
+
+    @Test
+    public void loadWithWireError() {
+        SimulationController mocksim = mock(SimulationController.class);
+
+        when(mocksim.addComponent(anyString(), any(Coordinates.class), anyString(), anyInt(),anyInt())).thenReturn(true);
+        when(mocksim.addWire(anyString(),anyInt(),anyString(),anyInt())).thenReturn(false);
 
         Load.load(mocksim,file);
 
@@ -145,10 +167,12 @@ public class LoadTest {
     @Test
     public void loadWires() {
         SimulationController mocksim = mock(SimulationController.class);
+        when(mocksim.addWire(anyString(),anyInt(),anyString(),anyInt())).thenReturn(true);
 
         Load.loadWires(testWireJson, mocksim);
 
         verify(mocksim).addWire(eq("input1"), eq(0), eq("not1"), eq(0));
         verify(mocksim).addWire(eq("not1"), eq(0), eq("output1"), eq(10));
     }
+
 }

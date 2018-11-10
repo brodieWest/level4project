@@ -149,7 +149,8 @@ public class SimulationController implements Controller {
         // TODO
     }
 
-    public void addWire(String startComponentName, int startPortNo, String endComponentName, int endPortNo) {
+    public boolean addWire(String startComponentName, int startPortNo, String endComponentName, int endPortNo) {
+        if(!componentControllers.containsKey(startComponentName) || !componentControllers.containsKey(endComponentName)) return false;
 
         Component startComponent = componentControllers.get(startComponentName).getComponentModel();
         Component endComponent = componentControllers.get(endComponentName).getComponentModel();
@@ -160,6 +161,7 @@ public class SimulationController implements Controller {
 
         displayWire(wireController.getGroup());
 
+        return true;
     }
 
 

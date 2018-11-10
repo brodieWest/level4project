@@ -7,10 +7,14 @@ import javafx.simulation.InternalController;
 import javafx.simulation.SimulationController;
 import javafx.wire.Wire;
 import model.Port;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 public class ReusableComponentController extends ComponentController implements Synchronous {
+
+    private Logger logger = LogManager.getLogger(ReusableComponentController.class);
 
     private InternalController internalSimulation;
 
@@ -21,7 +25,9 @@ public class ReusableComponentController extends ComponentController implements 
 
         this.internalSimulation = new InternalController();
 
-        Load.loadFromFile(internalSimulation, REUSABLE_FILE_PATH + componentModel.getStringIdentifier()); //change this
+        if(!Load.loadFromFile(internalSimulation, REUSABLE_FILE_PATH + componentModel.getStringIdentifier())) {
+            logger.error(String.format("Failed to build internal simulation for %s", componentModel.getStringIdentifier()));
+        }
 
         List<Wire> inputWires = internalSimulation.getInputWires();
 

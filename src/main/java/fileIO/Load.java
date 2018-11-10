@@ -37,13 +37,14 @@ public class Load {
         load(simulationController,jsonText);
     }
 
-    public static void loadFromFile(SimulationController simulationController, String fileName) {
-
+    public static boolean loadFromFile(SimulationController simulationController, String fileName) {
         InputStream inputStream = Load.class.getResourceAsStream(fileName);
+        if(inputStream == null) return false;
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String file = reader.lines().collect(Collectors.joining());
 
         load(simulationController, file);
+        return true;
     }
 
     static void load(SimulationController simulationController, String file) {
@@ -51,13 +52,11 @@ public class Load {
 
         JSONObject circuit = new JSONObject(file);
 
-        if(!loadComponents(circuit, simulationController)) {
+        if(!loadComponents(circuit, simulationController) || !loadWires(circuit, simulationController)) {
             logger.error("failed to load components");
             simulationController.clear();
             return;
         }
-
-        loadWires(circuit, simulationController);
 
         simulationController.resetSimulation();
         simulationController.wireDelay();
@@ -91,17 +90,18 @@ public class Load {
         return true;
     }
 
-    static void loadWires(JSONObject circuit, SimulationController simulationController) {
+    static boolean loadWires(JSONObject circuit, SimulationController simulationController) {
         JSONArray wires = circuit.getJSONArray(WIRES);
 
         for(Object wireOject : wires) {
             JSONObject wireJson = (JSONObject)wireOject;
             JSONObject inputJson = wireJson.getJSONObject(INPUT);
             JSONObject outputJson = wireJson.getJSONObject(OUTPUT);
-            simulationController.addWire(inputJson.getString(COMPONENT), inputJson.getInt(PORT), outputJson.getString(COMPONENT), outputJson.getInt(PORT) );
-
-            //wire.setInput()
+            if (!simulationController.addWire(inputJson.getString(COMPONENT), inputJson.getInt(PORT), outputJson.getString(COMPONENT), outputJson.getInt(PORT))) {
+                return false;
+            }
         }
+        return true;
     }
 
     private static String loadTextWithFileChooser() {

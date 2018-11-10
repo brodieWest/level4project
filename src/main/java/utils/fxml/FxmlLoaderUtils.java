@@ -5,10 +5,13 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
 public class FxmlLoaderUtils {
+    private static Logger logger = LogManager.getLogger(FxmlLoaderUtils.class);
 
     public static Fxml loadFxml(String fileName) {
 
@@ -18,11 +21,9 @@ public class FxmlLoaderUtils {
 
         try {
             componentNode = fxmlLoader.load();
-        } catch (IOException e) {
-            // TODO better error handling
-            e.printStackTrace();
-            componentNode = new VBox();
-            Platform.exit();
+        } catch (IOException | ExceptionInInitializerError e) {
+            logger.error(String.format("Failed to get component Node from FxmlLoader. FilePath: %s", fileName));
+            return null;
         }
 
         Controller controller = fxmlLoader.getController();
@@ -39,9 +40,7 @@ public class FxmlLoaderUtils {
         try {
             fxmlLoader.load();
         } catch (IOException e) {
-            // TODO better error handling
-            e.printStackTrace();
-            Platform.exit();
+            logger.error(String.format("Failed to load fxml given controller. FilePath: %s. Controller type: %s", fileName, controller.getClass().getName()));
         }
     }
 }

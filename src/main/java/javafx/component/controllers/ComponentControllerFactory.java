@@ -32,7 +32,7 @@ public class ComponentControllerFactory {
     public static ComponentController getComponentController(SimulationController simulationController, String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
         Component componentModel = ComponentFactory.getComponent(type, coordinates, uuid, noInputs,noOutputs);
 
-        ComponentController newComponentController = null;
+        ComponentController newComponentController;
 
         Class<? extends ComponentController> componentClass;
 
@@ -44,6 +44,8 @@ public class ComponentControllerFactory {
             newComponentController = (ComponentController) (constructor.newInstance(simulationController, componentModel));
         } catch (NoSuchMethodException |InstantiationException | IllegalAccessException | InvocationTargetException e) {
             logger.error(String.format("failed to build controller for %s", type));
+            e.printStackTrace();
+            return null;
         }
 
         return newComponentController;

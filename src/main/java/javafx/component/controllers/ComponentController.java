@@ -47,11 +47,6 @@ public class ComponentController implements Controller {
         return componentModel;
     }
 
-    public void deleteImageAsExample() {
-        Shape shape = (Shape)svgGroup.getChildren().get(0);
-        shape.setFill(Paint.valueOf("yellow"));
-    }
-
     public void processGateDelay() {
         componentModel.processGateDelay();
     }
