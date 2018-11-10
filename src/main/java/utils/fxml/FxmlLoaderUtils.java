@@ -1,4 +1,4 @@
-package utils;
+package utils.fxml;
 
 import javafx.Controller;
 import javafx.application.Platform;

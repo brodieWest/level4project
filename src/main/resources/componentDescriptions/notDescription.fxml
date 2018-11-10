@@ -15,10 +15,8 @@
       spacing="10">
     <fx:define>
         <FXCollections fx:factory="observableArrayList" fx:id="tableData">
-            <Row x="0" y="0" output="0"/>
-            <Row x="0" y="1" output="0"/>
-            <Row x="1" y="0" output="0"/>
-            <Row x="1" y="1" output="1"/>
+            <Row x="0" output="1"/>
+            <Row x="1" output="0"/>
         </FXCollections>
     </fx:define>
     <padding>
@@ -33,11 +31,6 @@
             <TableColumn text="x" prefWidth="50">
                 <cellValueFactory>
                     <PropertyValueFactory property="x"/>
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn text="y" prefWidth="50">
-                <cellValueFactory>
-                    <PropertyValueFactory property="y"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="output" prefWidth="89">

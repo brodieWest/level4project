@@ -5,13 +5,9 @@ import javafx.component.Synchronous;
 import javafx.component.controllers.ComponentController;
 import javafx.component.controllers.ComponentControllerFactory;
 import javafx.component.controllers.OutputController;
-import javafx.component.controllers.DffController;
-import javafx.component.model.component.ComponentFactory;
-import javafx.component.model.component.Dff;
 import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.input.ZoomEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
@@ -21,13 +17,10 @@ import model.Coordinates;
 import javafx.wire.Wire;
 import javafx.component.model.component.Component;
 import javafx.fxml.FXML;
-import javafx.main.MainController;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import utils.Fxml;
-import utils.FxmlLoaderUtils;
+import utils.fxml.FxmlLoaderUtils;
 
-import java.awt.event.ActionEvent;
 import java.util.HashMap;
 import java.util.Map;
 

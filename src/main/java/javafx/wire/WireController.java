@@ -4,7 +4,6 @@ import javafx.Controller;
 import javafx.component.model.component.Component;
 import javafx.scene.Parent;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import model.Coordinates;
@@ -12,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.shape.Path;
 import model.Logic;
 import model.Port;
-import utils.FxmlLoaderUtils;
+import utils.fxml.FxmlLoaderUtils;
 
 public class WireController implements Controller {
     @FXML

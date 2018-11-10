@@ -16,15 +16,15 @@
     <fx:define>
         <FXCollections fx:factory="observableArrayList" fx:id="tableData">
             <Row x="0" y="0" output="0"/>
-            <Row x="0" y="1" output="0"/>
-            <Row x="1" y="0" output="0"/>
+            <Row x="0" y="1" output="1"/>
+            <Row x="1" y="0" output="1"/>
             <Row x="1" y="1" output="1"/>
         </FXCollections>
     </fx:define>
     <padding>
         <Insets bottom="5" right="5" left="5" top="5"/>
     </padding>
-    <Text text="Boolean logic value AND&#10;&#10;True only if all of the inputs are True" styleClass="descriptionText" wrappingWidth="190"/>
+    <Text text="Boolean logic value OR&#10;&#10;True only if any of the inputs are True" styleClass="descriptionText" wrappingWidth="190"/>
     <TableView fx:id="table" styleClass="truthTable">
         <items>
             <fx:reference source="tableData"/>

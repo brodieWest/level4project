@@ -32,7 +32,6 @@ public class Load {
 
         String jsonText = loadTextWithFileChooser();
         if(jsonText == null) {
-            //TODO show user error message
             return;
         }
         load(simulationController,jsonText);
@@ -112,8 +111,7 @@ public class Load {
             reader = new BufferedReader(new FileReader(file));
             return reader.lines().collect(Collectors.joining());
         } catch (FileNotFoundException | NullPointerException e) {
-            //TODO show error to user
-            e.printStackTrace();
+            logger.error("No file was chosen");
         }
 
         return null;

@@ -2,25 +2,16 @@ package javafx.component.controllers;
 
 import javafx.Controller;
 import javafx.Descriptions;
-import javafx.application.Platform;
-import javafx.component.model.component.ComponentFactory;
 import javafx.component.model.component.ReusableComponent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.component.model.component.Component;
 import javafx.scene.Parent;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.simulation.SimulationController;
-import model.Coordinates;
-import model.Logic;
-import utils.Fxml;
-import utils.FxmlLoaderUtils;
-
-import java.io.IOException;
+import utils.fxml.FxmlLoaderUtils;
 
 public class ComponentController implements Controller {
 

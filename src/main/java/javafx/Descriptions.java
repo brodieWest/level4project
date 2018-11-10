@@ -1,8 +1,7 @@
 package javafx;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import utils.FxmlLoaderUtils;
+import utils.fxml.FxmlLoaderUtils;
 
 import java.io.File;
 import java.util.HashMap;

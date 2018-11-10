@@ -6,10 +6,7 @@ import javafx.component.model.component.Component;
 import javafx.simulation.InternalController;
 import javafx.simulation.SimulationController;
 import javafx.wire.Wire;
-import model.Coordinates;
 import model.Port;
-import utils.Fxml;
-import utils.FxmlLoaderUtils;
 
 import java.util.List;
 

@@ -8,11 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.simulation.MainSimulationController;
 import javafx.simulation.SimulationController;
-import utils.Fxml;
-import utils.FxmlLoaderUtils;
 
 
 public class MainController implements Controller {
