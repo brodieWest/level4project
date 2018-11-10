@@ -31,6 +31,8 @@ public class Mainfx extends Application {
     }
 
     public static File openFileWindow() {
+        File defaultDirectory = new File(Mainfx.class.getClassLoader().getResource("fileExamples/").getFile());
+        fileChooser.setInitialDirectory(defaultDirectory);
         return fileChooser.showOpenDialog(stage);
     }
 

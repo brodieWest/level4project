@@ -18,8 +18,8 @@
         <VBox>
         <padding><Insets bottom="2" /></padding>
             <MenuBar>
-                <Menu text="File">
-                    <MenuItem text="Load" fx:id="load" onAction="#loadFile"/>
+                <Menu text="File" id="file">
+                    <MenuItem text="Load" fx:id="load" onAction="#loadFile" id="load"/>
                     <MenuItem text="Save"/>
                 </Menu>
                 <Menu text="Edit">
@@ -50,7 +50,7 @@
             <padding><Insets left="25" top="25" bottom="25" right="25"/></padding>
             <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" spacing="12" alignment="CENTER_LEFT">
                 <Label text="0" fx:id="gateDelayCount"/>
-                <Button text="Gate Delay" onMouseClicked="#gateDelay"/>
+                <Button text="Gate Delay" onMouseClicked="#gateDelay" id="gateDelay"/>
                 <Label text="0" fx:id="clockTickCount"/>
                 <Button text="Clock Tick" onMouseClicked="#clockTick"/>
             </HBox>
