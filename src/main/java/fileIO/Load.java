@@ -46,7 +46,7 @@ public class Load {
         load(simulationController, file);
     }
 
-    private static void load(SimulationController simulationController, String file) {
+    static void load(SimulationController simulationController, String file) {
         simulationController.clear();
 
         JSONObject circuit = new JSONObject(file);
@@ -64,7 +64,7 @@ public class Load {
 
     }
 
-    private static boolean loadComponents(JSONObject circuit, SimulationController simulationController) {
+    static boolean loadComponents(JSONObject circuit, SimulationController simulationController) {
         JSONArray components = circuit.getJSONArray(COMPONENTS);
 
         for(Object componentObject : components) {
@@ -91,7 +91,7 @@ public class Load {
         return true;
     }
 
-    private static void loadWires(JSONObject circuit, SimulationController simulationController) {
+    static void loadWires(JSONObject circuit, SimulationController simulationController) {
         JSONArray wires = circuit.getJSONArray(WIRES);
 
         for(Object wireOject : wires) {

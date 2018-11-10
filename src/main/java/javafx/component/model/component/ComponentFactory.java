@@ -6,6 +6,8 @@ import javafx.component.model.component.gates.AndGate;
 import javafx.component.model.component.gates.NotGate;
 import javafx.component.model.component.gates.OrGate;
 import model.Coordinates;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -24,6 +26,8 @@ public class ComponentFactory {
         stdComponents.put("output", Output.class);
     }
 
+    private static Logger logger = LogManager.getLogger(ComponentFactory.class);
+
     public static Component getComponent(String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
 
         Component newComponent = null;
@@ -37,7 +41,7 @@ public class ComponentFactory {
             constructor = componentClass.getDeclaredConstructor(Coordinates.class , String.class, String.class , int.class, int.class);
             newComponent = (Component) (constructor.newInstance(coordinates, uuid, type, noInputs,noOutputs));
         } catch (NoSuchMethodException |InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
+            logger.error(String.format("failed to build component model for %s", type));
         }
 
         return newComponent;
