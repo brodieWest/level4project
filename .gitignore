@@ -87,3 +87,6 @@ fabric.properties
 
 
 ### project specific ###
+
+# log4j output
+.log
