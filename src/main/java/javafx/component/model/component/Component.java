@@ -52,7 +52,7 @@ public abstract class Component implements Onscreen {
         inputs.add(new Port(this));
         for(int i = 0; i < inputs.size(); i++) {
             Port port = inputs.get(i);
-            port.setOffset(new Coordinates(PORT_OFFSET, PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(inputs.size()+1)) ));
+            port.setOffset(new Coordinates(SIZE/2, PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(inputs.size()+1)) ));
         }
     }
 
@@ -61,7 +61,7 @@ public abstract class Component implements Onscreen {
         outputs.add(new Port(this));
         for(int i = 0; i < outputs.size(); i++) {
             Port port = outputs.get(i);
-            port.setOffset(new Coordinates(SIZE-PORT_OFFSET, PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(outputs.size()+1)) ));
+            port.setOffset(new Coordinates(SIZE/2, PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(outputs.size()+1)) ));
         }
     }
 

@@ -20,11 +20,11 @@ import static org.junit.Assert.*;
 
 public class LoadTest {
 
-    private final String file = loadTextFromFile("/fileExamples/filejson");
+    private final String file = loadTextFromFile("/fileExamplesForTesting/filejson");
 
-    private final JSONObject testWireJson = new JSONObject(loadTextFromFile("/fileExamples/wirejson"));
+    private final JSONObject testWireJson = new JSONObject(loadTextFromFile("/fileExamplesForTesting/wirejson"));
 
-    private final JSONObject testComponentJson = new JSONObject(loadTextFromFile("/fileExamples/componentjson"));
+    private final JSONObject testComponentJson = new JSONObject(loadTextFromFile("/fileExamplesForTesting/componentjson"));
 
     @Test
     public void loadFromFileError() {

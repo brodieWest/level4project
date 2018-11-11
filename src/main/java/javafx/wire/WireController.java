@@ -11,12 +11,14 @@ import javafx.fxml.FXML;
 import javafx.scene.shape.Path;
 import model.Logic;
 import model.Port;
+import model.WireIdentifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import utils.fxml.FxmlLoaderUtils;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class WireController implements Controller {
     @FXML
@@ -35,7 +37,7 @@ public class WireController implements Controller {
 
     private static Logger logger = LogManager.getLogger(WireController.class);
 
-    public WireController(String uuid, Port startPort, ArrayList<Port> endPorts) {
+    public WireController(String uuid, Port startPort, ArrayList<WireIdentifier> endPorts) {
         FxmlLoaderUtils.loadFxml(WIRE_PATH, this);
 
         Wire wire = new Wire(uuid);
@@ -44,20 +46,24 @@ public class WireController implements Controller {
         wire.setInput(startPort);
         startPort.setWire(wire);
 
-        for(Port endPort : endPorts) {
+        for(WireIdentifier identifier : endPorts) {
+            Port endPort = identifier.getPort();
             wire.addOutput(endPort);
             endPort.setWire(wire);
-            displayWire(startPort.getPosition(), endPort.getPosition());
+            displayWire(startPort.getPosition(), endPort.getPosition(), identifier.getCorners());
         }
     }
 
-    private void displayWire(Coordinates startCoordinates, Coordinates endCoordinates) {
+    private void displayWire(Coordinates startCoordinates, Coordinates endCoordinates, List<Coordinates> corners) {
         logger.info(String.format("printing line, startCoords: (%d, %d), endCoords: (%d, %d)", startCoordinates.getX(), startCoordinates.getY(), endCoordinates.getX(), endCoordinates.getY() ));
-        MoveTo moveToStart = new MoveTo(startCoordinates.getX(),startCoordinates.getY());
-        LineTo lineToEnd = new LineTo(endCoordinates.getX(),endCoordinates.getY());
-        path.getElements().add(moveToStart);
-        path.getElements().add(lineToEnd);
 
+        path.getElements().add(new MoveTo(startCoordinates.getX(),startCoordinates.getY()));
+
+        for(Coordinates cornerCoords : corners) {
+            path.getElements().add(new LineTo(cornerCoords.getX(), cornerCoords.getY()));
+        }
+
+        path.getElements().add(new LineTo(endCoordinates.getX(),endCoordinates.getY()));
     }
 
     public void showSignal() {

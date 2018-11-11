@@ -27,6 +27,7 @@ public class Load {
     private static String UUID = "uuid";
     private static String INPUTPORTS = "inputPorts";
     private static String OUTPUTPORTS = "outputPorts";
+    private static String CORNER = "corner";
 
     private static Logger logger = LogManager.getLogger(Load.class);
 
@@ -117,10 +118,22 @@ public class Load {
             for(Object object : outputsJson) {
                 JSONObject outputJson = (JSONObject) object;
 
-                outputPorts.add(new PortIdentifier(outputJson.getString(COMPONENT), outputJson.getInt(PORT)));
+                PortIdentifier portIdentifier = new PortIdentifier(outputJson.getString(COMPONENT), outputJson.getInt(PORT));
+
+                if(outputJson.has(CORNER)) {
+                    JSONArray cornersJson = outputJson.getJSONArray(CORNER);
+
+                    for(Object cornerObject : cornersJson) {
+                        JSONObject cornerJson = (JSONObject) cornerObject;
+
+                        portIdentifier.addCorner(new Coordinates(cornerJson.getInt(XCOORD), cornerJson.getInt(YCOORD)));
+                    }
+                }
+
+                outputPorts.add(portIdentifier);
             }
 
-            if (!simulationController.addWire(wireJson.getString("uuid"), inputPort, outputPorts)) {
+            if (!simulationController.addWire(wireJson.getString(UUID), inputPort, outputPorts)) {
                 logger.error(String.format("wire loading failed at input %s %d", inputJson.getString(COMPONENT), inputJson.getInt(PORT)));
                 return false;
             }

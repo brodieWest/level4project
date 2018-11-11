@@ -17,6 +17,11 @@
     -fx-wrapping-width: 200;
 }
 
+.wire {
+    -fx-stroke-width: 3;
+    -fx-stroke-line-join: round;
+}
+
 #simulation {
     -fx-background-color: "white";
 }

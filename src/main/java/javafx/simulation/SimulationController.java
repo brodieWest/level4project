@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import model.Port;
 import model.PortIdentifier;
+import model.WireIdentifier;
 import utils.fxml.FxmlLoaderUtils;
 
 import java.util.ArrayList;
@@ -160,7 +161,7 @@ public class SimulationController implements Controller {
 
         Component startComponent = componentControllers.get(startComponentName).getComponentModel();
 
-        ArrayList<Port> outputPorts = new ArrayList<>();
+        ArrayList<WireIdentifier> outputPorts = new ArrayList<>();
 
         for(PortIdentifier outputPort : endPortIdentifiers) {
             String endComponentName = outputPort.getComponent();
@@ -169,7 +170,7 @@ public class SimulationController implements Controller {
             if(!componentControllers.containsKey(endComponentName)) return false;
             Component endComponent = componentControllers.get(endComponentName).getComponentModel();
             if(endComponent.getInputSize() -1 < endPortNo) return false;
-            outputPorts.add(endComponent.getInput(endPortNo));
+            outputPorts.add(new WireIdentifier(endComponent.getInput(endPortNo),outputPort.getCorners()));
         }
 
 

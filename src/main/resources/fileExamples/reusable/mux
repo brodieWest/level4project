@@ -71,7 +71,17 @@
       "output" : [
         {
         "component" : "and1",
-        "port" : 0
+        "port" : 0,
+          "corner" : [
+            {
+              "xCoord": 100,
+              "yCoord": 50
+            },
+            {
+              "xCoord": 100,
+              "yCoord": 90
+            }
+          ]
         }
       ]
     },
@@ -84,11 +94,31 @@
       "output" : [
         {
           "component" : "and1",
-          "port" : 1
+          "port" : 1,
+          "corner" : [
+            {
+              "xCoord": 100,
+              "yCoord": 150
+            },
+            {
+              "xCoord": 100,
+              "yCoord": 110
+            }
+          ]
         },
         {
           "component" : "not1",
-          "port" : 0
+          "port" : 0,
+          "corner" : [
+            {
+              "xCoord": 100,
+              "yCoord": 150
+            },
+            {
+              "xCoord": 100,
+              "yCoord": 190
+            }
+          ]
         }
       ]
     },
@@ -101,7 +131,17 @@
       "output" : [
         {
           "component" : "and2",
-          "port" : 1
+          "port" : 1,
+          "corner" : [
+            {
+              "xCoord": 200,
+              "yCoord": 250
+            },
+            {
+              "xCoord": 200,
+              "yCoord": 210
+            }
+          ]
         }
       ]
     },
@@ -127,7 +167,17 @@
       "output" : [
         {
           "component" : "or1",
-          "port" : 0
+          "port" : 0,
+          "corner" : [
+            {
+              "xCoord": 300,
+              "yCoord": 100
+            },
+            {
+              "xCoord": 300,
+              "yCoord": 140
+            }
+          ]
         }
       ]
     },
@@ -140,7 +190,17 @@
       "output" : [
         {
           "component" : "or1",
-          "port" : 1
+          "port" : 1,
+          "corner" : [
+            {
+              "xCoord": 300,
+              "yCoord": 200
+            },
+            {
+              "xCoord": 300,
+              "yCoord": 160
+            }
+          ]
         }
       ]
     },

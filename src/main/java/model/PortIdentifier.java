@@ -2,12 +2,15 @@ package model;
 
 import javafx.component.model.component.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class PortIdentifier {
 
     private String componentName;
     private int portNo;
+    private List<Coordinates> corners = new ArrayList<>();
 
     public PortIdentifier(String componentName, int portNo) {
         this.componentName = componentName;
@@ -20,6 +23,14 @@ public class PortIdentifier {
 
     public int getPortNo() {
         return portNo;
+    }
+
+    public List<Coordinates> getCorners() {
+        return corners;
+    }
+
+    public void addCorner(Coordinates coordinates) {
+        corners.add(coordinates);
     }
 
     @Override
