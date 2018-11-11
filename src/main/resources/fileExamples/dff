@@ -30,10 +30,12 @@
         "component" : "input1",
         "port" : 0
       },
-      "output" : {
+      "output" : [
+        {
         "component" : "dff1",
         "port" : 0
-      }
+        }
+      ]
     },
     {
       "uuid" : "wire2",
@@ -41,10 +43,12 @@
         "component" : "dff1",
         "port" : 0
       },
-      "output" : {
+      "output" : [
+        {
         "component" : "output1",
         "port" : 0
-      }
+        }
+      ]
     }
   ]
 }

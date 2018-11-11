@@ -3,12 +3,14 @@ package fileIO;
 import javafx.main.Mainfx;
 import model.Coordinates;
 import javafx.simulation.SimulationController;
+import model.PortIdentifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class Load {
@@ -53,7 +55,12 @@ public class Load {
         JSONObject circuit = new JSONObject(file);
 
         if(!loadComponents(circuit, simulationController) || !loadWires(circuit, simulationController)) {
-            logger.error("failed to load components");
+            if(!loadComponents(circuit, simulationController)) {
+                logger.error("failed to load components");
+            }
+            if(!loadWires(circuit, simulationController)) {
+                logger.error("failed to load wires");
+            }
             simulationController.clear();
             return;
         }
@@ -93,11 +100,23 @@ public class Load {
     static boolean loadWires(JSONObject circuit, SimulationController simulationController) {
         JSONArray wires = circuit.getJSONArray(WIRES);
 
-        for(Object wireOject : wires) {
-            JSONObject wireJson = (JSONObject)wireOject;
+        for(Object wireObject : wires) {
+            JSONObject wireJson = (JSONObject)wireObject;
             JSONObject inputJson = wireJson.getJSONObject(INPUT);
-            JSONObject outputJson = wireJson.getJSONObject(OUTPUT);
-            if (!simulationController.addWire(inputJson.getString(COMPONENT), inputJson.getInt(PORT), outputJson.getString(COMPONENT), outputJson.getInt(PORT))) {
+            JSONArray outputsJson = wireJson.getJSONArray(OUTPUT);
+
+            PortIdentifier inputPort = new PortIdentifier(inputJson.getString(COMPONENT), inputJson.getInt(PORT));
+
+            ArrayList<PortIdentifier> outputPorts = new ArrayList<>();
+
+            for(Object object : outputsJson) {
+                JSONObject outputJson = (JSONObject) object;
+
+                outputPorts.add(new PortIdentifier(outputJson.getString(COMPONENT), outputJson.getInt(PORT)));
+            }
+
+            if (!simulationController.addWire(inputPort, outputPorts)) {
+                logger.error(String.format("wire loading failed at input %s %d", inputJson.getString(COMPONENT), inputJson.getInt(PORT)));
                 return false;
             }
         }

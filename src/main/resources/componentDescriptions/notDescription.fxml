@@ -22,7 +22,7 @@
     <padding>
         <Insets bottom="5" right="5" left="5" top="5"/>
     </padding>
-    <Text text="Boolean logic value AND&#10;&#10;True only if all of the inputs are True" styleClass="descriptionText" wrappingWidth="190"/>
+    <Text text="Boolean logic value NOT&#10;&#10;Output value is the inverse of the input value." styleClass="descriptionText" wrappingWidth="190"/>
     <TableView fx:id="table" styleClass="truthTable">
         <items>
             <fx:reference source="tableData"/>

@@ -11,10 +11,12 @@ import javafx.fxml.FXML;
 import javafx.scene.shape.Path;
 import model.Logic;
 import model.Port;
-import model.PortIdentifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import utils.fxml.FxmlLoaderUtils;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class WireController implements Controller {
     @FXML
@@ -33,15 +35,17 @@ public class WireController implements Controller {
 
     private static Logger logger = LogManager.getLogger(WireController.class);
 
-    public WireController(Port startPort, Port endPort) {
+    public WireController(Port startPort, ArrayList<Port> endPorts) {
         FxmlLoaderUtils.loadFxml(WIRE_PATH, this);
 
         wire.setInput(startPort);
-        wire.addOutput(endPort);
         startPort.setWire(wire);
-        endPort.setWire(wire);
 
-        displayWire(startPort.getPosition(), endPort.getPosition());
+        for(Port endPort : endPorts) {
+            wire.addOutput(endPort);
+            endPort.setWire(wire);
+            displayWire(startPort.getPosition(), endPort.getPosition());
+        }
     }
 
     private void displayWire(Coordinates startCoordinates, Coordinates endCoordinates) {

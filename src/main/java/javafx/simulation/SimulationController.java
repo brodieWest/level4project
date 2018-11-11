@@ -19,9 +19,11 @@ import javafx.component.model.component.Component;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+import model.Port;
 import model.PortIdentifier;
 import utils.fxml.FxmlLoaderUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -150,14 +152,31 @@ public class SimulationController implements Controller {
         // TODO
     }
 
-    public boolean addWire(String startComponentName, int startPortNo, String endComponentName, int endPortNo) {
-        if(!componentControllers.containsKey(startComponentName) || !componentControllers.containsKey(endComponentName)) return false;
+    public boolean addWire(PortIdentifier startPortIdentifier, ArrayList<PortIdentifier> endPortIdentifiers) {
+        String startComponentName = startPortIdentifier.getComponent();
+        int startPortNo = startPortIdentifier.getPortNo();
+
+
+        if(!componentControllers.containsKey(startComponentName)) return false;
 
         Component startComponent = componentControllers.get(startComponentName).getComponentModel();
-        Component endComponent = componentControllers.get(endComponentName).getComponentModel();
 
-        if(startComponent.getOutputSize() -1 < startPortNo || endComponent.getInputSize() -1 < endPortNo) return false;
-        WireController wireController = new WireController(startComponent.getOutput(startPortNo), endComponent.getInput(endPortNo));
+        ArrayList<Port> outputPorts = new ArrayList<>();
+
+        for(PortIdentifier outputPort : endPortIdentifiers) {
+            String endComponentName = outputPort.getComponent();
+            int endPortNo = outputPort.getPortNo();
+
+            if(!componentControllers.containsKey(endComponentName)) return false;
+            Component endComponent = componentControllers.get(endComponentName).getComponentModel();
+            if(endComponent.getInputSize() -1 < endPortNo) return false;
+            outputPorts.add(endComponent.getInput(endPortNo));
+        }
+
+
+
+        if(startComponent.getOutputSize() -1 < startPortNo) return false;
+        WireController wireController = new WireController(startComponent.getOutput(startPortNo), outputPorts);
 
         wireControllers.put(wireController.getUuid(), wireController);
 
@@ -184,7 +203,7 @@ public class SimulationController implements Controller {
     }
 
     ComponentController getComponentController(String uuid) {
-        return componentControllers.get(uuid);
+        return componentControllers.getOrDefault(uuid, null);
     }
 
     WireController getWireController(String uuid) {

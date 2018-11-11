@@ -41,10 +41,12 @@
         "component" : "not1",
         "port" : 0
       },
-      "output" : {
+      "output" : [
+        {
         "component" : "output1",
         "port" : 0
-      }
+        }
+      ]
     }
   ]
 }

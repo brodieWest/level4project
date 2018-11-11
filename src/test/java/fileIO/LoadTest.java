@@ -2,10 +2,13 @@ package fileIO;
 
 import javafx.simulation.SimulationController;
 import model.Coordinates;
+import model.PortIdentifier;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.ArgumentMatchers;
+
+import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
 
@@ -38,36 +41,40 @@ public class LoadTest {
             "        \"component\" : \"input1\",\n" +
             "        \"port\" : 0\n" +
             "      },\n" +
-            "      \"output\" : {\n" +
+            "      \"output\" : [{\n" +
             "        \"component\" : \"not1\",\n" +
             "        \"port\" : 10\n" +
-            "      }\n" +
+            "      }]\n" +
             "    }" +
             "  ]\n" +
             "}";
 
     private final JSONObject testWireJson = new JSONObject(" { \"wires\": [\n" +
             "    {\n" +
-            "      \"uuid\" : \"wire1\",\n" +
-            "      \"input\" : {\n" +
-            "        \"component\" : \"input1\",\n" +
-            "        \"port\" : 0\n" +
-            "      },\n" +
-            "      \"output\" : {\n" +
-            "        \"component\" : \"not1\",\n" +
-            "        \"port\" : 0\n" +
-            "      }\n" +
-            "    },\n" +
-            "    {\n" +
             "      \"uuid\" : \"wire2\",\n" +
             "      \"input\" : {\n" +
             "        \"component\" : \"not1\",\n" +
             "        \"port\" : 0\n" +
             "      },\n" +
-            "      \"output\" : {\n" +
-            "        \"component\" : \"output1\",\n" +
+            "      \"output\" : [{\n" +
+            "        \"component\" : \"not1\",\n" +
             "        \"port\" : 10\n" +
-            "      }\n" +
+            "      }]" +
+            "    },\n" +
+            "    {  \"uuid\" : \"wire1\",\n" +
+            "      \"input\" : {\n" +
+            "        \"component\" : \"input1\",\n" +
+            "        \"port\" : 0\n" +
+            "      },\n" +
+            "      \"output\" : [{\n" +
+            "        \"component\" : \"not1\",\n" +
+            "        \"port\" : 0\n" +
+            "      }," +
+            "     {\n" +
+            "        \"component\" : \"not4\",\n" +
+            "        \"port\" : 6\n" +
+            "      }" +
+            "     ]\n" +
             "    }\n" +
             "  ]}");
 
@@ -101,7 +108,7 @@ public class LoadTest {
         SimulationController mocksim = mock(SimulationController.class);
 
         when(mocksim.addComponent(anyString(), any(Coordinates.class), anyString(), anyInt(),anyInt())).thenReturn(true);
-        when(mocksim.addWire(anyString(),anyInt(),anyString(),anyInt())).thenReturn(true);
+        when(mocksim.addWire(any(PortIdentifier.class),any(ArrayList.class))).thenReturn(true);
 
 
 
@@ -118,7 +125,13 @@ public class LoadTest {
         assertEquals(new Coordinates(0,0), inputCoordinatesCaptor.getValue());
         assertEquals(new Coordinates(100,900), notCoordinatesCaptor.getValue());
 
-        verify(mocksim).addWire(eq("input1"), eq(0), eq("not1"), eq(10));
+        ArgumentCaptor<PortIdentifier> inputPort = ArgumentCaptor.forClass(PortIdentifier.class);
+        ArgumentCaptor<ArrayList<PortIdentifier>> outputPorts = ArgumentCaptor.forClass(ArrayList.class);
+
+        verify(mocksim).addWire(inputPort.capture(),outputPorts.capture());
+
+        assertEquals(new PortIdentifier("input1",0), inputPort.getValue());
+        assertEquals(new PortIdentifier("not1",10), outputPorts.getValue().get(0));
     }
 
 
@@ -139,7 +152,8 @@ public class LoadTest {
         SimulationController mocksim = mock(SimulationController.class);
 
         when(mocksim.addComponent(anyString(), any(Coordinates.class), anyString(), anyInt(),anyInt())).thenReturn(true);
-        when(mocksim.addWire(anyString(),anyInt(),anyString(),anyInt())).thenReturn(false);
+        //when(mocksim.addWire(anyString(),anyInt(),anyString(),anyInt())).thenReturn(false);
+        when(mocksim.addWire(any(PortIdentifier.class),any(ArrayList.class))).thenReturn(false);
 
         Load.load(mocksim,file);
 
@@ -167,12 +181,20 @@ public class LoadTest {
     @Test
     public void loadWires() {
         SimulationController mocksim = mock(SimulationController.class);
-        when(mocksim.addWire(anyString(),anyInt(),anyString(),anyInt())).thenReturn(true);
+        when(mocksim.addWire(any(PortIdentifier.class),any(ArrayList.class))).thenReturn(true);
 
         Load.loadWires(testWireJson, mocksim);
 
-        verify(mocksim).addWire(eq("input1"), eq(0), eq("not1"), eq(0));
-        verify(mocksim).addWire(eq("not1"), eq(0), eq("output1"), eq(10));
+        ArgumentCaptor<PortIdentifier> inputPort = ArgumentCaptor.forClass(PortIdentifier.class);
+        ArgumentCaptor<ArrayList<PortIdentifier>> outputPorts = ArgumentCaptor.forClass(ArrayList.class);
+
+
+        verify(mocksim, times(2)).addWire(inputPort.capture(),outputPorts.capture());
+
+        assertEquals(new PortIdentifier("input1",0), inputPort.getValue());
+        assertEquals(new PortIdentifier("not1",0), outputPorts.getValue().get(0));
+        assertEquals(new PortIdentifier("not4",6), outputPorts.getValue().get(1));
+
     }
 
 }

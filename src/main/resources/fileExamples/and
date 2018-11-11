@@ -37,10 +37,12 @@
         "component" : "input1",
         "port" : 0
       },
-      "output" : {
+      "output" : [
+        {
         "component" : "and1",
         "port" : 0
-      }
+        }
+      ]
     },
     {
       "uuid" : "wire2",

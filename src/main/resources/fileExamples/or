@@ -37,10 +37,12 @@
         "component" : "input1",
         "port" : 0
       },
-      "output" : {
+      "output" : [
+        {
         "component" : "or1",
         "port" : 0
-      }
+        }
+      ]
     },
     {
       "uuid" : "wire2",
@@ -48,10 +50,12 @@
         "component" : "input2",
         "port" : 0
       },
-      "output" : {
+      "output" : [
+        {
         "component" : "or1",
         "port" : 1
-      }
+        }
+      ]
     },
     {
       "uuid" : "wire3",
@@ -59,10 +63,12 @@
         "component" : "or1",
         "port" : 0
       },
-      "output" : {
+      "output" : [
+        {
         "component" : "output1",
         "port" : 0
-      }
+        }
+      ]
     }
   ]
 }
