@@ -19,10 +19,10 @@ public class ComponentTest {
     public void addNewInput() {
         Component and = ComponentFactory.getComponent("and", new Coordinates(1,1), "testand",2,1);
 
-        assertEquals(20,and.getInput(0).getOffset().getX());
+        assertEquals(50,and.getInput(0).getOffset().getX());
         assertEquals(40,and.getInput(0).getOffset().getY());
 
-        assertEquals(20,and.getInput(1).getOffset().getX());
+        assertEquals(50,and.getInput(1).getOffset().getX());
         assertEquals(60,and.getInput(1).getOffset().getY());
     }
 
@@ -30,7 +30,7 @@ public class ComponentTest {
     public void addNewOutput() {
         Component not = ComponentFactory.getComponent("not", new Coordinates(1,1), "testnot",2,1);
 
-        assertEquals(80,not.getOutput(0).getOffset().getX());
+        assertEquals(50,not.getOutput(0).getOffset().getX());
         assertEquals(50,not.getOutput(0).getOffset().getY());
 
     }

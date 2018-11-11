@@ -2,8 +2,10 @@ package javafx.wire;
 
 import javafx.Controller;
 import javafx.component.model.component.Component;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import model.Coordinates;
@@ -25,7 +27,7 @@ public class WireController implements Controller {
     private Path path;
 
     @FXML
-    private Parent group;
+    private Group group;
 
     private Wire wire;
 
@@ -50,20 +52,46 @@ public class WireController implements Controller {
             Port endPort = identifier.getPort();
             wire.addOutput(endPort);
             endPort.setWire(wire);
-            displayWire(startPort.getPosition(), endPort.getPosition(), identifier.getCorners());
         }
+
+        displayWire(startPort.getPosition(), endPorts);
     }
 
-    private void displayWire(Coordinates startCoordinates, Coordinates endCoordinates, List<Coordinates> corners) {
-        logger.info(String.format("printing line, startCoords: (%d, %d), endCoords: (%d, %d)", startCoordinates.getX(), startCoordinates.getY(), endCoordinates.getX(), endCoordinates.getY() ));
+    private void displayWire(Coordinates startCoordinates, ArrayList<WireIdentifier> endPorts) {
 
-        path.getElements().add(new MoveTo(startCoordinates.getX(),startCoordinates.getY()));
+        List<Coordinates> oldCorners = null;
 
-        for(Coordinates cornerCoords : corners) {
-            path.getElements().add(new LineTo(cornerCoords.getX(), cornerCoords.getY()));
+        boolean breakFound = true;
+
+        for(WireIdentifier identifier : endPorts) {
+
+            path.getElements().add(new MoveTo(startCoordinates.getX(),startCoordinates.getY()));
+
+            List<Coordinates> corners = identifier.getCorners();
+            Coordinates endCoordinates = identifier.getPort().getPosition();
+
+            logger.info(String.format("printing line, startCoords: (%d, %d), endCoords: (%d, %d)", startCoordinates.getX(), startCoordinates.getY(), endCoordinates.getX(), endCoordinates.getY() ));
+
+            for (int i=0;i<corners.size();i++) {
+                Coordinates cornerCoords = corners.get(i);
+                path.getElements().add(new LineTo(cornerCoords.getX(), cornerCoords.getY()));
+
+                if(!breakFound && i>0) {
+                    if(i<oldCorners.size()) {
+                        if (!cornerCoords.equals(oldCorners.get(i))) {
+                            group.getChildren().add(new Circle(corners.get(i-1).getX(), corners.get(i-1).getY(), 3));
+                        }
+                    }
+                }
+            }
+
+            path.getElements().add(new LineTo(endCoordinates.getX(),endCoordinates.getY()));
+
+            oldCorners = corners;
+            breakFound = false;
         }
 
-        path.getElements().add(new LineTo(endCoordinates.getX(),endCoordinates.getY()));
+
     }
 
     public void showSignal() {
