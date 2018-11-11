@@ -1,0 +1,28 @@
+{ "wires": [
+ {
+"uuid" : "wire2",
+"input" : {
+"component" : "not1",
+"port" : 0
+},
+"output" : [{
+"component" : "not1",
+"port" : 10
+}]
+},
+{  "uuid" : "wire1",
+"input" : {
+"component" : "input1",
+"port" : 0
+},
+"output" : [{
+"component" : "not1",
+"port" : 0
+},
+{
+"component" : "not4",
+"port" : 6
+}
+]
+}
+]}

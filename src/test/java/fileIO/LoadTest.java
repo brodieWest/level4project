@@ -8,7 +8,11 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.ArgumentMatchers;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import static org.mockito.Mockito.*;
 
@@ -16,85 +20,11 @@ import static org.junit.Assert.*;
 
 public class LoadTest {
 
-    private final String file = "{\n" +
-            "  \"components\": [\n" +
-            "    {\n" +
-            "      \"type\" : \"not\",\n" +
-            "      \"uuid\": \"not1\",\n" +
-            "      \"xCoord\": 100,\n" +
-            "      \"yCoord\": 900,\n" +
-            "      \"inputPorts\" : 1,\n" +
-            "      \"outputPorts\" : 1\n" +
-            "    },\n" +
-            "    {\n" +
-            "      \"type\" : \"input\",\n" +
-            "      \"uuid\": \"input1\",\n" +
-            "      \"xCoord\": 0,\n" +
-            "      \"yCoord\": 0,\n" +
-            "      \"outputPorts\" : 1\n" +
-            "    }" +
-            "  ],\n" +
-            "  \"wires\": [\n" +
-            "    {\n" +
-            "      \"uuid\" : \"wire1\",\n" +
-            "      \"input\" : {\n" +
-            "        \"component\" : \"input1\",\n" +
-            "        \"port\" : 0\n" +
-            "      },\n" +
-            "      \"output\" : [{\n" +
-            "        \"component\" : \"not1\",\n" +
-            "        \"port\" : 10\n" +
-            "      }]\n" +
-            "    }" +
-            "  ]\n" +
-            "}";
+    private final String file = loadTextFromFile("/fileExamples/filejson");
 
-    private final JSONObject testWireJson = new JSONObject(" { \"wires\": [\n" +
-            "    {\n" +
-            "      \"uuid\" : \"wire2\",\n" +
-            "      \"input\" : {\n" +
-            "        \"component\" : \"not1\",\n" +
-            "        \"port\" : 0\n" +
-            "      },\n" +
-            "      \"output\" : [{\n" +
-            "        \"component\" : \"not1\",\n" +
-            "        \"port\" : 10\n" +
-            "      }]" +
-            "    },\n" +
-            "    {  \"uuid\" : \"wire1\",\n" +
-            "      \"input\" : {\n" +
-            "        \"component\" : \"input1\",\n" +
-            "        \"port\" : 0\n" +
-            "      },\n" +
-            "      \"output\" : [{\n" +
-            "        \"component\" : \"not1\",\n" +
-            "        \"port\" : 0\n" +
-            "      }," +
-            "     {\n" +
-            "        \"component\" : \"not4\",\n" +
-            "        \"port\" : 6\n" +
-            "      }" +
-            "     ]\n" +
-            "    }\n" +
-            "  ]}");
+    private final JSONObject testWireJson = new JSONObject(loadTextFromFile("/fileExamples/wirejson"));
 
-    private final JSONObject testComponentJson = new JSONObject( "  {\"components\": [\n" +
-            "    {\n" +
-            "      \"type\" : \"input\",\n" +
-            "      \"uuid\": \"input1\",\n" +
-            "      \"xCoord\": 0,\n" +
-            "      \"yCoord\": 0,\n" +
-            "      \"outputPorts\" : 1\n" +
-            "    }," +
-            "    {\n" +
-            "      \"type\" : \"not\",\n" +
-            "      \"uuid\": \"not1\",\n" +
-            "      \"xCoord\": 100,\n" +
-            "      \"yCoord\": 900,\n" +
-            "      \"inputPorts\" : 1,\n" +
-            "      \"outputPorts\" : 1\n" +
-            "    }\n" +
-            "]}");
+    private final JSONObject testComponentJson = new JSONObject(loadTextFromFile("/fileExamples/componentjson"));
 
     @Test
     public void loadFromFileError() {
@@ -108,7 +38,7 @@ public class LoadTest {
         SimulationController mocksim = mock(SimulationController.class);
 
         when(mocksim.addComponent(anyString(), any(Coordinates.class), anyString(), anyInt(),anyInt())).thenReturn(true);
-        when(mocksim.addWire(any(PortIdentifier.class),any(ArrayList.class))).thenReturn(true);
+        when(mocksim.addWire(anyString(),any(PortIdentifier.class),any(ArrayList.class))).thenReturn(true);
 
 
 
@@ -128,7 +58,7 @@ public class LoadTest {
         ArgumentCaptor<PortIdentifier> inputPort = ArgumentCaptor.forClass(PortIdentifier.class);
         ArgumentCaptor<ArrayList<PortIdentifier>> outputPorts = ArgumentCaptor.forClass(ArrayList.class);
 
-        verify(mocksim).addWire(inputPort.capture(),outputPorts.capture());
+        verify(mocksim).addWire(eq("wire1"), inputPort.capture(),outputPorts.capture());
 
         assertEquals(new PortIdentifier("input1",0), inputPort.getValue());
         assertEquals(new PortIdentifier("not1",10), outputPorts.getValue().get(0));
@@ -153,7 +83,7 @@ public class LoadTest {
 
         when(mocksim.addComponent(anyString(), any(Coordinates.class), anyString(), anyInt(),anyInt())).thenReturn(true);
         //when(mocksim.addWire(anyString(),anyInt(),anyString(),anyInt())).thenReturn(false);
-        when(mocksim.addWire(any(PortIdentifier.class),any(ArrayList.class))).thenReturn(false);
+        when(mocksim.addWire(anyString(), any(PortIdentifier.class),any(ArrayList.class))).thenReturn(false);
 
         Load.load(mocksim,file);
 
@@ -181,7 +111,7 @@ public class LoadTest {
     @Test
     public void loadWires() {
         SimulationController mocksim = mock(SimulationController.class);
-        when(mocksim.addWire(any(PortIdentifier.class),any(ArrayList.class))).thenReturn(true);
+        when(mocksim.addWire(anyString(), any(PortIdentifier.class),any(ArrayList.class))).thenReturn(true);
 
         Load.loadWires(testWireJson, mocksim);
 
@@ -189,12 +119,21 @@ public class LoadTest {
         ArgumentCaptor<ArrayList<PortIdentifier>> outputPorts = ArgumentCaptor.forClass(ArrayList.class);
 
 
-        verify(mocksim, times(2)).addWire(inputPort.capture(),outputPorts.capture());
+        verify(mocksim).addWire(eq("wire2"), inputPort.capture(),outputPorts.capture());
+        verify(mocksim).addWire(eq("wire1"), inputPort.capture(),outputPorts.capture());
 
         assertEquals(new PortIdentifier("input1",0), inputPort.getValue());
         assertEquals(new PortIdentifier("not1",0), outputPorts.getValue().get(0));
         assertEquals(new PortIdentifier("not4",6), outputPorts.getValue().get(1));
 
+    }
+
+
+    private static String loadTextFromFile(String fileName) {
+        InputStream inputStream = LoadTest.class.getResourceAsStream(fileName);
+        if(inputStream == null) return null;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        return reader.lines().collect(Collectors.joining());
     }
 
 }

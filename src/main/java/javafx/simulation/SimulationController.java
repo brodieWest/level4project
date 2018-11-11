@@ -126,7 +126,6 @@ public class SimulationController implements Controller {
     }
 
     public void clear() {
-        Wire.reset();
         componentControllers.clear();
         wireControllers.clear();
         simulationPane.getChildren().clear();
@@ -152,7 +151,7 @@ public class SimulationController implements Controller {
         // TODO
     }
 
-    public boolean addWire(PortIdentifier startPortIdentifier, ArrayList<PortIdentifier> endPortIdentifiers) {
+    public boolean addWire(String uuid, PortIdentifier startPortIdentifier, ArrayList<PortIdentifier> endPortIdentifiers) {
         String startComponentName = startPortIdentifier.getComponent();
         int startPortNo = startPortIdentifier.getPortNo();
 
@@ -176,7 +175,7 @@ public class SimulationController implements Controller {
 
 
         if(startComponent.getOutputSize() -1 < startPortNo) return false;
-        WireController wireController = new WireController(startComponent.getOutput(startPortNo), outputPorts);
+        WireController wireController = new WireController(uuid,startComponent.getOutput(startPortNo), outputPorts);
 
         wireControllers.put(wireController.getUuid(), wireController);
 

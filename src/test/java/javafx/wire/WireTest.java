@@ -18,7 +18,7 @@ public class WireTest {
 
     @Before
     public void setup() {
-        wire = new Wire();
+        wire = new Wire("wire1");
         Port input = new Port(mock(Component.class));
         Port output = new Port(mock(Component.class));
         wire.setInput(input);

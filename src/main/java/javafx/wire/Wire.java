@@ -20,21 +20,14 @@ public class Wire implements Onscreen {
 
     private String uuid;
 
-    private static int uuidGenerator = 0;
-
-    public Wire() {
-        uuid = "wire" + uuidGenerator;
-        uuidGenerator++;
+    public Wire(String uuid) {
+        this.uuid = uuid;
     }
 
-    public void passSignal() {
+    void passSignal() {
         for(Port output : outputs) {
             output.getLogic().copy(input.getLogic());
         }
-    }
-
-    public static void reset() {
-        uuidGenerator = 0;
     }
 
     @Override

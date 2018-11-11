@@ -24,8 +24,8 @@ public class SimulationControllerTest extends ApplicationTest {
         ArrayList<PortIdentifier> outputs = new ArrayList<>();
         outputs.add(new PortIdentifier("and2", 1));
 
-        assertFalse(simulationController.addWire(new PortIdentifier("and1", 1), outputs));
-        assertFalse(simulationController.addWire(new PortIdentifier("error",0), outputs));
+        assertFalse(simulationController.addWire("wire1", new PortIdentifier("and1", 1), outputs));
+        assertFalse(simulationController.addWire("wire2", new PortIdentifier("error",0), outputs));
     }
 
     @Test
@@ -38,7 +38,7 @@ public class SimulationControllerTest extends ApplicationTest {
         ArrayList<PortIdentifier> outputs = new ArrayList<>();
         outputs.add(new PortIdentifier("and2", 1));
 
-        assertTrue(simulationController.addWire(new PortIdentifier("and1", 0),outputs));
+        assertTrue(simulationController.addWire("wire0", new PortIdentifier("and1", 0),outputs));
 
         assertEquals("and1", simulationController.getWireController("wire0").getWire().getInput().getComponent().getUuid());
         assertEquals("and2", simulationController.getWireController("wire0").getWire().getOutput(0).getComponent().getUuid());
@@ -56,7 +56,7 @@ public class SimulationControllerTest extends ApplicationTest {
         outputs.add(new PortIdentifier("and2", 1));
         outputs.add(new PortIdentifier("and3", 0));
 
-        assertTrue(simulationController.addWire(new PortIdentifier("and1", 0),outputs));
+        assertTrue(simulationController.addWire("wire0", new PortIdentifier("and1", 0),outputs));
 
         assertEquals("and1", simulationController.getWireController("wire0").getWire().getInput().getComponent().getUuid());
         assertEquals("and2", simulationController.getWireController("wire0").getWire().getOutput(0).getComponent().getUuid());

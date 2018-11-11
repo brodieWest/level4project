@@ -1,0 +1,32 @@
+{
+"components": [
+{
+"type" : "not",
+"uuid": "not1",
+"xCoord": 100,
+"yCoord": 900,
+"inputPorts" : 1,
+"outputPorts" : 1
+},
+{
+"type" : "input",
+"uuid": "input1",
+"xCoord": 0,
+"yCoord": 0,
+"outputPorts" : 1
+}
+],
+"wires": [
+{
+"uuid" : "wire1",
+"input" : {
+"component" : "input1",
+"port" : 0
+},
+"output" : [{
+"component" : "not1",
+"port" : 10
+}]
+}
+]
+}

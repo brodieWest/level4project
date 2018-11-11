@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
-public class LoadTest extends ApplicationTest {
+public class UiIntegrationTests extends ApplicationTest {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -64,7 +64,7 @@ public class LoadTest extends ApplicationTest {
 
     @Test
     public void dff() {
-        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
+        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
 
         assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"U");
 

@@ -1,11 +1,11 @@
 {
   "components": [
     {
-      "type" : "and",
-      "uuid": "and1",
+      "type" : "mux",
+      "uuid": "mux1",
       "xCoord": 100,
-      "yCoord": 50,
-      "inputPorts" : 2,
+      "yCoord": 100,
+      "inputPorts" : 3,
       "outputPorts" : 1
     },
     {
@@ -23,10 +23,17 @@
       "outputPorts" : 1
     },
     {
+      "type" : "input",
+      "uuid": "input3",
+      "xCoord": 0,
+      "yCoord": 200,
+      "outputPorts" : 1
+    },
+    {
       "type" : "output",
       "uuid": "output1",
       "xCoord": 200,
-      "yCoord": 50,
+      "yCoord": 100,
       "inputPorts" : 1
     }
   ],
@@ -39,8 +46,8 @@
       },
       "output" : [
         {
-        "component" : "and1",
-        "port" : 0
+          "component" : "mux1",
+          "port" : 0
         }
       ]
     },
@@ -52,21 +59,34 @@
       },
       "output" : [
         {
-        "component" : "and1",
-        "port" : 1
+          "component" : "mux1",
+          "port" : 1
         }
       ]
     },
     {
       "uuid" : "wire3",
       "input" : {
-        "component" : "and1",
+        "component" : "input3",
         "port" : 0
       },
       "output" : [
         {
-        "component" : "output1",
+          "component" : "mux1",
+          "port" : 2
+        }
+      ]
+    },
+    {
+      "uuid" : "wire4",
+      "input" : {
+        "component" : "mux1",
         "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "output1",
+          "port" : 0
         }
       ]
     }

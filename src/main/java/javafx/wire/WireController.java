@@ -25,7 +25,7 @@ public class WireController implements Controller {
     @FXML
     private Parent group;
 
-    private Wire wire = new Wire();
+    private Wire wire;
 
     private static String LOGIC_0_COLOUR = "0x7293cb";
     private static String LOGIC_1_COLOUR = "0xd35e60";
@@ -35,8 +35,11 @@ public class WireController implements Controller {
 
     private static Logger logger = LogManager.getLogger(WireController.class);
 
-    public WireController(Port startPort, ArrayList<Port> endPorts) {
+    public WireController(String uuid, Port startPort, ArrayList<Port> endPorts) {
         FxmlLoaderUtils.loadFxml(WIRE_PATH, this);
+
+        Wire wire = new Wire(uuid);
+        this.wire = wire;
 
         wire.setInput(startPort);
         startPort.setWire(wire);

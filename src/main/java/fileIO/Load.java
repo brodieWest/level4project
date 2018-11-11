@@ -40,13 +40,18 @@ public class Load {
     }
 
     public static boolean loadFromFile(SimulationController simulationController, String fileName) {
-        InputStream inputStream = Load.class.getResourceAsStream(fileName);
-        if(inputStream == null) return false;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        String file = reader.lines().collect(Collectors.joining());
+        String file = loadTextFromFile(fileName);
+        if(file == null) return false;
 
         load(simulationController, file);
         return true;
+    }
+
+    private static String loadTextFromFile(String fileName) {
+        InputStream inputStream = Load.class.getResourceAsStream(fileName);
+        if(inputStream == null) return null;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        return reader.lines().collect(Collectors.joining());
     }
 
     static void load(SimulationController simulationController, String file) {
@@ -115,7 +120,7 @@ public class Load {
                 outputPorts.add(new PortIdentifier(outputJson.getString(COMPONENT), outputJson.getInt(PORT)));
             }
 
-            if (!simulationController.addWire(inputPort, outputPorts)) {
+            if (!simulationController.addWire(wireJson.getString("uuid"), inputPort, outputPorts)) {
                 logger.error(String.format("wire loading failed at input %s %d", inputJson.getString(COMPONENT), inputJson.getInt(PORT)));
                 return false;
             }
