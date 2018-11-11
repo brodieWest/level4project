@@ -1,5 +1,6 @@
 package javafx.wire;
 
+import javafx.component.model.component.Component;
 import javafx.component.model.component.ComponentFactory;
 import model.Logic;
 import model.Port;
@@ -7,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 public class WireTest {
 
@@ -17,8 +19,8 @@ public class WireTest {
     @Before
     public void setup() {
         wire = new Wire();
-        Port input = new Port();
-        Port output = new Port();
+        Port input = new Port(mock(Component.class));
+        Port output = new Port(mock(Component.class));
         wire.setInput(input);
         wire.addOutput(output);
         inputLogic = input.getLogic();

@@ -49,7 +49,7 @@ public abstract class Component implements Onscreen {
 
     // TODO check if valid
     public void addNewInput() {
-        inputs.add(new Port());
+        inputs.add(new Port(this));
         for(int i = 0; i < inputs.size(); i++) {
             Port port = inputs.get(i);
             port.setOffset(new Coordinates(PORT_OFFSET, PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(inputs.size()+1)) ));
@@ -58,7 +58,7 @@ public abstract class Component implements Onscreen {
 
     // TODO check if valid
     public void addNewOutput() {
-        outputs.add(new Port());
+        outputs.add(new Port(this));
         for(int i = 0; i < outputs.size(); i++) {
             Port port = outputs.get(i);
             port.setOffset(new Coordinates(SIZE-PORT_OFFSET, PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(outputs.size()+1)) ));
@@ -73,8 +73,12 @@ public abstract class Component implements Onscreen {
         return inputs.get(inputNo);
     }
 
-    public List<Port> getInputs() {
-        return inputs;
+    public int getInputSize() {
+        return inputs.size();
+    }
+
+    public int getOutputSize() {
+        return outputs.size();
     }
 
     public void deleteIO(String name, PortType portType) {

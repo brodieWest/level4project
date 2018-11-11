@@ -1,5 +1,6 @@
 package model;
 
+import javafx.component.model.component.Component;
 import javafx.wire.Wire;
 
 public class Port {
@@ -10,11 +11,18 @@ public class Port {
 
     private Logic logic = new Logic();
 
-    public Port() {
+    private Component component;
+
+    public Port(Component component) {
+        this.component = component;
     }
 
     public Coordinates getOffset() {
         return offset;
+    }
+
+    public Coordinates getPosition() {
+        return component.getCoordinates().addOffset(offset);
     }
 
     public void setOffset(Coordinates offset) {
@@ -31,5 +39,9 @@ public class Port {
 
     public Logic getLogic() {
         return logic;
+    }
+
+    public Component getComponent() {
+        return component;
     }
 }

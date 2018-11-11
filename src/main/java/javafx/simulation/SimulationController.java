@@ -19,6 +19,7 @@ import javafx.component.model.component.Component;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+import model.PortIdentifier;
 import utils.fxml.FxmlLoaderUtils;
 
 import java.util.HashMap;
@@ -155,7 +156,8 @@ public class SimulationController implements Controller {
         Component startComponent = componentControllers.get(startComponentName).getComponentModel();
         Component endComponent = componentControllers.get(endComponentName).getComponentModel();
 
-        WireController wireController = new WireController(startComponent, startPortNo, endComponent, endPortNo);
+        if(startComponent.getOutputSize() -1 < startPortNo || endComponent.getInputSize() -1 < endPortNo) return false;
+        WireController wireController = new WireController(startComponent.getOutput(startPortNo), endComponent.getInput(endPortNo));
 
         wireControllers.put(wireController.getUuid(), wireController);
 
@@ -181,8 +183,12 @@ public class SimulationController implements Controller {
         backGround.toBack();
     }
 
-    public ComponentController getComponentController(String uuid) {
+    ComponentController getComponentController(String uuid) {
         return componentControllers.get(uuid);
+    }
+
+    WireController getWireController(String uuid) {
+        return wireControllers.get(uuid);
     }
 
     public ScrollPane getScrollPane() {

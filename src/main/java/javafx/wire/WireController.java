@@ -11,6 +11,9 @@ import javafx.fxml.FXML;
 import javafx.scene.shape.Path;
 import model.Logic;
 import model.Port;
+import model.PortIdentifier;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import utils.fxml.FxmlLoaderUtils;
 
 public class WireController implements Controller {
@@ -28,31 +31,21 @@ public class WireController implements Controller {
 
     private static String WIRE_PATH = "fxml/wire.fxml";
 
-    public WireController(Component startComponent, int startPortNo, Component endComponent, int endPortNo) {
+    private static Logger logger = LogManager.getLogger(WireController.class);
+
+    public WireController(Port startPort, Port endPort) {
         FxmlLoaderUtils.loadFxml(WIRE_PATH, this);
-
-        Port startPort = startComponent.getOutput(startPortNo);
-        int startX = startComponent.getCoordinates().getX() + startPort.getOffset().getX();
-        int startY = startComponent.getCoordinates().getY() + startPort.getOffset().getY();
-
-        Port endPort = endComponent.getInput(endPortNo);
-        int endX = endComponent.getCoordinates().getX() + endPort.getOffset().getX();
-        int endY = endComponent.getCoordinates().getY() + endPort.getOffset().getY();
 
         wire.setInput(startPort);
         wire.addOutput(endPort);
         startPort.setWire(wire);
         endPort.setWire(wire);
 
-        displayWire(new Coordinates(startX, startY), new Coordinates(endX, endY));
-    }
-
-    public void initialiseWire(Wire wire, Component startComponent, int startPortNo, Component endComponent, int endPortNo) {
-
+        displayWire(startPort.getPosition(), endPort.getPosition());
     }
 
     private void displayWire(Coordinates startCoordinates, Coordinates endCoordinates) {
-        System.out.println("printing line, startCoords: " + startCoordinates.getX() + ", " + startCoordinates.getY() + " endCoords: " + endCoordinates.getX() + ", " + endCoordinates.getY() );
+        logger.info(String.format("printing line, startCoords: (%d, %d), endCoords: (%d, %d)", startCoordinates.getX(), startCoordinates.getY(), endCoordinates.getX(), endCoordinates.getY() ));
         MoveTo moveToStart = new MoveTo(startCoordinates.getX(),startCoordinates.getY());
         LineTo lineToEnd = new LineTo(endCoordinates.getX(),endCoordinates.getY());
         path.getElements().add(moveToStart);

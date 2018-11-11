@@ -12,6 +12,10 @@ public class Coordinates {
         this.y = y;
     }
 
+    public Coordinates addOffset(Coordinates coordinates) {
+        return new Coordinates(x + coordinates.getX(), y + coordinates.getY());
+    }
+
     public int getX() {
         return x;
     }

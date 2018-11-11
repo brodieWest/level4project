@@ -52,7 +52,7 @@
                 <Label text="0" fx:id="gateDelayCount"/>
                 <Button text="Gate Delay" onMouseClicked="#gateDelay" id="gateDelay"/>
                 <Label text="0" fx:id="clockTickCount"/>
-                <Button text="Clock Tick" onMouseClicked="#clockTick"/>
+                <Button text="Clock Tick" onMouseClicked="#clockTick" id="clockTick"/>
             </HBox>
         </AnchorPane>
     </bottom>
