@@ -1,6 +1,7 @@
 package javafx.component.model.component;
 
 import javafx.component.model.component.gates.AndGate;
+import javafx.component.model.component.gates.NotGate;
 import javafx.component.model.component.gates.OrGate;
 import model.Coordinates;
 import org.junit.Before;
@@ -17,7 +18,7 @@ public class ComponentTest {
 
     @Test
     public void addNewInput() {
-        Component and = ComponentFactory.getComponent("and", new Coordinates(1,1), "testand",2,1);
+        Component and = new AndGate(new Coordinates(1,1), "testand","and", 2,1);
 
         assertEquals(50,and.getInput(0).getOffset().getX());
         assertEquals(40,and.getInput(0).getOffset().getY());
@@ -28,7 +29,7 @@ public class ComponentTest {
 
     @Test
     public void addNewOutput() {
-        Component not = ComponentFactory.getComponent("not", new Coordinates(1,1), "testnot",2,1);
+        Component not = new NotGate(new Coordinates(1,1), "testnot","not", 2,1);
 
         assertEquals(50,not.getOutput(0).getOffset().getX());
         assertEquals(50,not.getOutput(0).getOffset().getY());

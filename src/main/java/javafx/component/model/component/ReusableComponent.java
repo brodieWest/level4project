@@ -6,7 +6,7 @@ import model.Coordinates;
 public class ReusableComponent extends Component{
 
 
-    ReusableComponent(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs) {
+    public ReusableComponent(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs) {
         super(coordinates, uuid, type, noInputs, noOutputs);
     }
 

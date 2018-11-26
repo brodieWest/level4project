@@ -1,7 +1,6 @@
 package javafx.wire;
 
 import javafx.component.model.component.Component;
-import javafx.component.model.component.ComponentFactory;
 import model.Logic;
 import model.Port;
 import org.junit.Before;

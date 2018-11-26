@@ -1,5 +1,6 @@
 package javafx.component.model.component;
 
+import javafx.component.model.component.gates.AndGate;
 import model.Coordinates;
 import model.Logic;
 import model.Port;
@@ -17,7 +18,7 @@ public class AndGateTest {
 
     @Before
     public void setup() {
-        and = ComponentFactory.getComponent("and", new Coordinates(0,0), "testand",2,1);
+        and = new AndGate(new Coordinates(0,0), "testand","and",2,1);
         inputLogic0 = and.getInput(0).getLogic();
         inputLogic1 = and.getInput(1).getLogic();
         outputLogic = and.getOutput(0).getLogic();

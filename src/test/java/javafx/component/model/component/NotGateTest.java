@@ -1,5 +1,6 @@
 package javafx.component.model.component;
 
+import javafx.component.model.component.gates.NotGate;
 import model.Coordinates;
 import model.Logic;
 import org.junit.Before;
@@ -15,7 +16,7 @@ public class NotGateTest {
 
     @Before
     public void setup() {
-        not =  ComponentFactory.getComponent("not", new Coordinates(0,0), "testnot",1,1);
+        not =  new NotGate(new Coordinates(0,0), "testnot","not", 1,1);
         notInputLogic = not.getInput(0).getLogic();
         notOutputLogic = not.getOutput(0).getLogic();
     }

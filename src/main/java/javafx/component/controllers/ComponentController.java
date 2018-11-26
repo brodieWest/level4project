@@ -31,7 +31,7 @@ public class ComponentController implements Controller {
     @FXML
     Group svgGroup;
 
-    ComponentController(SimulationController simulationController, Component componentModel) {
+    public ComponentController(SimulationController simulationController, Component componentModel) {
         this.componentModel = componentModel;
         this.simulationController = simulationController;
 
