@@ -9,7 +9,9 @@ import javafx.wire.Wire;
 import model.Port;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public class ReusableComponentController extends ComponentController implements Synchronous {
@@ -20,13 +22,14 @@ public class ReusableComponentController extends ComponentController implements 
 
     private static String REUSABLE_FILE_PATH = "/fileExamples/reusable/";
 
-    public ReusableComponentController(SimulationController  simulationController, Component componentModel) {
+    public ReusableComponentController(SimulationController  simulationController, Component componentModel) throws FileNotFoundException{
         super(simulationController, componentModel);
 
         this.internalSimulation = new InternalController();
 
         if(!Load.loadFromFile(internalSimulation, REUSABLE_FILE_PATH + componentModel.getStringIdentifier())) {
             logger.error(String.format("Failed to build internal simulation for %s", componentModel.getStringIdentifier()));
+            throw new FileNotFoundException();
         }
 
         List<Wire> inputWires = internalSimulation.getInputWires();

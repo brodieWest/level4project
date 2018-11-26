@@ -29,7 +29,6 @@ public class ComponentControllerFactoryTest extends ApplicationTest{
         assertNotNull(testNandController);
     }
 
-    @Ignore
     @Test
     public void getComponentControllerError() {
         ComponentController testError = ComponentControllerFactory.getComponentController(mock(SimulationController.class),"incorrect",new Coordinates(0,0), "not1",1,1);

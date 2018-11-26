@@ -1,21 +1,15 @@
 package javafx.component.controllers;
 
 import javafx.component.factories.*;
-import javafx.component.model.component.Component;
 import javafx.simulation.SimulationController;
 import model.Coordinates;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.simple.SimpleLogger;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ComponentControllerFactory {
-
-    private static Logger logger = LogManager.getLogger(ComponentControllerFactory.class);
+    private static ReusableFactory reusableFactory = new ReusableFactory();
 
 
     private static Map<String, SingleComponentFactory> stdComponentControllers = new HashMap<>();
@@ -30,8 +24,13 @@ public class ComponentControllerFactory {
     }
 
     public static ComponentController getComponentController(SimulationController simulationController, String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
-        SingleComponentFactory factory = stdComponentControllers.getOrDefault(type, new ReusableFactory());
-        return factory.getComponentController(simulationController, type, coordinates, uuid, noInputs, noOutputs);
+        SingleComponentFactory factory = stdComponentControllers.getOrDefault(type, reusableFactory);
+        try {
+            return factory.getComponentController(simulationController, type, coordinates, uuid, noInputs, noOutputs);
+        } catch (IOException e) {
+            return null;
+        }
+
     }
 
 }
