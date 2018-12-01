@@ -1,7 +1,15 @@
 package javafx.simulation;
 
+import javafx.component.controllers.ComponentController;
+import javafx.component.controllers.InputController;
+import javafx.component.model.component.Component;
+import javafx.component.model.component.Io.Input;
 import javafx.main.MainController;
 import javafx.scene.Parent;
+import javafx.simulation.model.Simulator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainSimulationController extends SimulationController {
 
@@ -10,6 +18,8 @@ public class MainSimulationController extends SimulationController {
     private int gateDelayCount = 0;
 
     private int clockTickCount = 0;
+
+    private Simulator simulator = new Simulator();
 
     public MainSimulationController(MainController mainController) {
         super();
@@ -68,5 +78,17 @@ public class MainSimulationController extends SimulationController {
         clockTickCount = 0;
 
         mainController.setClockTickCount(clockTickCount);
+    }
+
+    public void calculatePathDepth() {
+        List<Input> inputs = new ArrayList<>();
+
+        for(ComponentController componentController : componentControllers.values()) {
+            if(componentControllers instanceof InputController) {
+                inputs.add((Input)componentController.getComponentModel());
+            }
+
+        }
+        simulator.calculatePathDepth(inputs);
     }
 }

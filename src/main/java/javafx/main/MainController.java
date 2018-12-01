@@ -14,7 +14,7 @@ import javafx.simulation.SimulationController;
 
 public class MainController implements Controller {
 
-    private SimulationController simulationController;
+    private MainSimulationController simulationController;
 
     @FXML
     private VBox componentDescription;
@@ -40,6 +40,7 @@ public class MainController implements Controller {
         Load.loadWithFileChooser(simulationController);
         simulationController.resetSimulation();
         simulationController.wireDelay();
+        simulationController.calculatePathDepth();
     }
 
     @FXML

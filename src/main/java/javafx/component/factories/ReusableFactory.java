@@ -14,7 +14,7 @@ public class ReusableFactory extends SingleComponentFactory {
 
     @Override
     public ComponentController getComponentController(SimulationController simulationController, String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) throws FileNotFoundException {
-        Component componentModel = new ReusableComponent(coordinates, uuid, type, noInputs,noOutputs);
+        ReusableComponent componentModel = new ReusableComponent(coordinates, uuid, type, noInputs,noOutputs);
         return new ReusableComponentController(simulationController, componentModel);
     }
 }

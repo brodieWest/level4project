@@ -52,6 +52,10 @@ public class Wire implements Onscreen {
         return outputs.get(portNo);
     }
 
+    public List<Port> getOutputs() {
+        return outputs;
+    }
+
     public void addOutput(Port output) {
         this.outputs.add(output);
     }

@@ -9,6 +9,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.HBox?>
 
+<?import javafx.scene.control.CheckMenuItem?>
 <BorderPane fx:controller="javafx.main.MainController"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -24,8 +25,13 @@
                 </Menu>
                 <Menu text="Edit">
                     <MenuItem text="Clear" onAction="#clear"/>
+                </Menu>
+                <Menu text="View">
                     <MenuItem text="Zoom In" onAction="#zoomIn"/>
                     <MenuItem text="Zoom Out" onAction="#zoomOut"/>
+                </Menu>
+                <Menu text="Options">
+                    <CheckMenuItem text="Do path depth gate delays per clock tick"/>
                 </Menu>
             </MenuBar>
         </VBox>

@@ -42,7 +42,10 @@ public class Load {
 
     public static boolean loadFromFile(SimulationController simulationController, String fileName) {
         String file = loadTextFromFile(fileName);
-        if(file == null) return false;
+        if(file == null) {
+            logger.error(String.format("failed to load from: %s", fileName));
+            return false;
+        }
 
         load(simulationController, file);
         return true;

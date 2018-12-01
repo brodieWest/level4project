@@ -22,4 +22,9 @@ public class Dff extends Component implements Synchronous {
     public Dff(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs) {
         super(coordinates, uuid, type, noInputs, noOutputs);
     }
+
+    @Override
+    public int getPathDepth() {
+        return 1;
+    }
 }

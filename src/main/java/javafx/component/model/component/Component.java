@@ -19,6 +19,8 @@ public abstract class Component implements Onscreen {
     private String uuid;
     private String type;
 
+    private int pathDepth = 0;
+
     private int SIZE = 100;
     private int PORT_OFFSET = 20;
 
@@ -81,6 +83,15 @@ public abstract class Component implements Onscreen {
         return outputs.size();
     }
 
+    public List<Wire> getNextWires() {
+        List<Wire> wires = new ArrayList<>();
+
+        for(Port output : outputs) {
+            wires.add(output.getWire());
+        }
+        return wires;
+    }
+
     public void deleteIO(String name, PortType portType) {
         //TODO
     }
@@ -103,5 +114,13 @@ public abstract class Component implements Onscreen {
 
     public String getUuid() {
         return uuid;
+    }
+
+    public int getPathDepth() {
+        return pathDepth;
+    }
+
+    public void setPathDepth(int pathDepth) {
+        this.pathDepth = pathDepth;
     }
 }
