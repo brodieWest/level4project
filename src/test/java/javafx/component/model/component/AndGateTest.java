@@ -18,7 +18,7 @@ public class AndGateTest {
 
     @Before
     public void setup() {
-        and = new AndGate(new Coordinates(0,0), "testand","and",2,1);
+        and = new AndGate(new ComponentParameters(new Coordinates(0,0), "testand","and",2,1));
         inputLogic0 = and.getInput(0).getLogic();
         inputLogic1 = and.getInput(1).getLogic();
         outputLogic = and.getOutput(0).getLogic();

@@ -1,6 +1,7 @@
 package javafx.component.model.component.Io;
 
 import javafx.component.model.component.Component;
+import javafx.component.model.component.ComponentParameters;
 import model.Coordinates;
 import model.Port;
 
@@ -27,8 +28,8 @@ public class Input extends Component {
     }
 
 
-    public Input(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs) {
-        super(coordinates, uuid, type, noInputs, noOutputs);
+    public Input(ComponentParameters componentParameters) {
+        super(componentParameters);
         this.getOutput(0).getLogic().setValue(false);
         this.getOutput(0).getLogic().setUndefined(false);
     }

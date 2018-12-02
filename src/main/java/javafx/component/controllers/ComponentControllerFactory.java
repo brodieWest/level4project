@@ -1,6 +1,7 @@
 package javafx.component.controllers;
 
 import javafx.component.factories.*;
+import javafx.component.model.component.ComponentParameters;
 import javafx.simulation.SimulationController;
 import model.Coordinates;
 
@@ -23,10 +24,10 @@ public class ComponentControllerFactory {
         stdComponentControllers.put("output", new OutputFactory());
     }
 
-    public static ComponentController getComponentController(SimulationController simulationController, String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
-        SingleComponentFactory factory = stdComponentControllers.getOrDefault(type, reusableFactory);
+    public static ComponentController getComponentController(SimulationController simulationController, ComponentParameters componentParameters) {
+        SingleComponentFactory factory = stdComponentControllers.getOrDefault(componentParameters.getType(), reusableFactory);
         try {
-            return factory.getComponentController(simulationController, type, coordinates, uuid, noInputs, noOutputs);
+            return factory.getComponentController(simulationController, componentParameters);
         } catch (IOException e) {
             return null;
         }

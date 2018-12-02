@@ -5,6 +5,7 @@ import javafx.component.Synchronous;
 import javafx.component.controllers.ComponentController;
 import javafx.component.controllers.ComponentControllerFactory;
 import javafx.component.controllers.OutputController;
+import javafx.component.model.component.ComponentParameters;
 import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.ScrollEvent;
@@ -136,14 +137,14 @@ public class SimulationController implements Controller {
 
     }
 
-    public boolean addComponent(String type, Coordinates coordinates, String uuid, int noInputs, int noOutputs) {
+    public boolean addComponent(ComponentParameters componentParameters) {
 
-        ComponentController componentController = ComponentControllerFactory.getComponentController(this, type, coordinates, uuid, noInputs,noOutputs);
+        ComponentController componentController = ComponentControllerFactory.getComponentController(this, componentParameters);
         if(componentController == null) return false;
 
         componentControllers.put(componentController.getUuid(), componentController);
 
-        placeComponent(componentController.getComponent(), coordinates);
+        placeComponent(componentController.getComponent(), componentParameters.getCoordinates());
         return true;
 
     }

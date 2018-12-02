@@ -1,6 +1,7 @@
 package javafx.component.model.component.gates;
 
 import javafx.component.model.component.Component;
+import javafx.component.model.component.ComponentParameters;
 import model.Coordinates;
 import model.Logic;
 
@@ -27,7 +28,7 @@ public class OrGate extends Component {
         return 1;
     }
 
-    public OrGate(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs) {
-        super(coordinates, uuid, type, noInputs, noOutputs);
+    public OrGate(ComponentParameters componentParameters) {
+        super(componentParameters);
     }
 }

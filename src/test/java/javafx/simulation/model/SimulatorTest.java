@@ -1,6 +1,7 @@
 package javafx.simulation.model;
 
 import fileIO.Load;
+import javafx.component.model.component.ComponentParameters;
 import javafx.component.model.component.Dff;
 import javafx.component.model.component.Io.Input;
 import javafx.component.model.component.Io.Output;
@@ -29,11 +30,11 @@ public class SimulatorTest extends ApplicationTest {
     public void calculatePathDepthOneComponent() {
         Simulator simulator = new Simulator();
 
-        Input input = new Input(new Coordinates(0,0),"input1", "input", 0, 1);
+        Input input = new Input(new ComponentParameters(new Coordinates(0,0),"input1", "input", 0, 1));
 
-        NotGate not = new NotGate(new Coordinates(0,0),"not1", "not", 2,1);
+        NotGate not = new NotGate(new ComponentParameters(new Coordinates(0,0),"not1", "not", 2,1));
 
-        Output output = new Output(new Coordinates(0,0), "output1", "output", 1,0);
+        Output output = new Output(new ComponentParameters(new Coordinates(0,0), "output1", "output", 1,0));
 
         Wire wire1 = new Wire("wire1");
 
@@ -64,15 +65,15 @@ public class SimulatorTest extends ApplicationTest {
     public void calculatePathWithFlipFlop() {
         Simulator simulator = new Simulator();
 
-        Input input = new Input(new Coordinates(0,0),"input1", "input", 0, 1);
+        Input input = new Input(new ComponentParameters(new Coordinates(0,0),"input1", "input", 0, 1));
 
-        NotGate not = new NotGate(new Coordinates(0,0),"not1", "not", 1,1);
+        NotGate not = new NotGate(new ComponentParameters(new Coordinates(0,0),"not1", "not", 1,1));
 
-        Dff dff = new Dff(new Coordinates(0,0),"dff", "dff", 1,1);
+        Dff dff = new Dff(new ComponentParameters(new Coordinates(0,0),"dff", "dff", 1,1));
 
-        NotGate not2 = new NotGate(new Coordinates(0,0),"not2", "not", 1,1);
+        NotGate not2 = new NotGate(new ComponentParameters(new Coordinates(0,0),"not2", "not", 1,1));
 
-        Output output = new Output(new Coordinates(0,0), "output1", "output", 1,0);
+        Output output = new Output(new ComponentParameters(new Coordinates(0,0), "output1", "output", 1,0));
 
         Wire wire1 = new Wire("wire1");
 

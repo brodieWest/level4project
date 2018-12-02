@@ -14,8 +14,8 @@ public class ReusableComponent extends Component{
     private List<Wire> internalOutputs;
 
 
-    public ReusableComponent(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs) {
-        super(coordinates, uuid, type, noInputs, noOutputs);
+    public ReusableComponent(ComponentParameters componentParameters) {
+        super(componentParameters);
     }
 
     public void initialiseWires(List<Wire> inputWires, List<Wire> outputWires) {

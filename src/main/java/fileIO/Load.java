@@ -52,7 +52,7 @@ public class Load {
         return true;
     }
 
-    private static String loadTextFromFile(String fileName) {
+    static String loadTextFromFile(String fileName) {
         InputStream inputStream = Load.class.getResourceAsStream(fileName);
         if(inputStream == null) return null;
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -102,15 +102,9 @@ public class Load {
                 outputPorts = -1;
             }
 
-            ComponentParameters componentParameters = new ComponentParameters();
+            ComponentParameters componentParameters = new ComponentParameters(coordinates, uuid, component.getString(TYPE), inputPorts, outputPorts);
 
-            componentParameters.setType(component.getString(TYPE));
-            componentParameters.setCoordinates(coordinates);
-            componentParameters.setUuid(uuid);
-            componentParameters.setNoInputs(inputPorts);
-            componentParameters.setNoOutputs(outputPorts);
-
-            if (!simulationController.addComponent(component.getString(TYPE), coordinates, uuid, inputPorts, outputPorts)) return false;
+            if (!simulationController.addComponent(componentParameters)) return false;
         }
         return true;
     }

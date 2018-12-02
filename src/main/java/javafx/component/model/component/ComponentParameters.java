@@ -2,12 +2,22 @@ package javafx.component.model.component;
 
 import model.Coordinates;
 
+import java.util.Objects;
+
 public class ComponentParameters {
     private Coordinates coordinates;
     private String uuid;
     private String type;
     private int noInputs;
     private int noOutputs;
+
+    public ComponentParameters(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs) {
+        this.coordinates = coordinates;
+        this.uuid = uuid;
+        this.type = type;
+        this.noInputs = noInputs;
+        this.noOutputs = noOutputs;
+    }
 
     public Coordinates getCoordinates() {
         return coordinates;
@@ -47,5 +57,22 @@ public class ComponentParameters {
 
     public void setNoOutputs(int noOutputs) {
         this.noOutputs = noOutputs;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ComponentParameters that = (ComponentParameters) o;
+        return noInputs == that.noInputs &&
+                noOutputs == that.noOutputs &&
+                Objects.equals(coordinates, that.coordinates) &&
+                Objects.equals(uuid, that.uuid) &&
+                Objects.equals(type, that.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(coordinates, uuid, type, noInputs, noOutputs);
     }
 }

@@ -24,10 +24,12 @@ public abstract class Component implements Onscreen {
     private int SIZE = 100;
     private int PORT_OFFSET = 20;
 
-    public Component(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs){
-        this.coordinates = coordinates;
-        this.uuid = uuid;
-        this.type = type;
+    public Component(ComponentParameters componentParameters){
+        this.coordinates = componentParameters.getCoordinates();
+        this.uuid = componentParameters.getUuid();
+        this.type = componentParameters.getType();
+        int noInputs = componentParameters.getNoInputs();
+        int noOutputs = componentParameters.getNoOutputs();
         if(noInputs == -1) noInputs = this.getDefaultInputs();
         if(noOutputs == -1) noOutputs = this.getDefaultOutputs();
         for(int i=0;i<noInputs;i++) {

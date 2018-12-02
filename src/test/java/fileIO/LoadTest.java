@@ -1,5 +1,6 @@
 package fileIO;
 
+import javafx.component.model.component.ComponentParameters;
 import javafx.simulation.SimulationController;
 import model.Coordinates;
 import model.PortIdentifier;
@@ -14,6 +15,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import static fileIO.Load.loadTextFromFile;
 import static org.mockito.Mockito.*;
 
 import static org.junit.Assert.*;
@@ -37,7 +39,7 @@ public class LoadTest {
     public void load() {
         SimulationController mocksim = mock(SimulationController.class);
 
-        when(mocksim.addComponent(anyString(), any(Coordinates.class), anyString(), anyInt(),anyInt())).thenReturn(true);
+        when(mocksim.addComponent(any(ComponentParameters.class))).thenReturn(true);
         when(mocksim.addWire(anyString(),any(PortIdentifier.class),any(ArrayList.class))).thenReturn(true);
 
 
@@ -47,13 +49,17 @@ public class LoadTest {
         ArgumentCaptor<Coordinates> notCoordinatesCaptor = ArgumentCaptor.forClass(Coordinates.class);
         ArgumentCaptor<Coordinates> inputCoordinatesCaptor = ArgumentCaptor.forClass(Coordinates.class);
 
-        verify(mocksim).addComponent(eq("input"), inputCoordinatesCaptor.capture(), eq("input1"), eq(-1), eq(1));
-        verify(mocksim).addComponent(eq("not"), notCoordinatesCaptor.capture(), eq("not1"), eq(1), eq(1));
+        ArgumentCaptor<ComponentParameters> inputComponentParametersArgumentCaptor = ArgumentCaptor.forClass(ComponentParameters.class);
+        ArgumentCaptor<ComponentParameters> notComponentParametersArgumentCaptor = ArgumentCaptor.forClass(ComponentParameters.class);
+
+        //verify(mocksim).addComponent(inputComponentParametersArgumentCaptor.capture());
+        verify(mocksim, times(2)).addComponent(notComponentParametersArgumentCaptor.capture());
+
         verify(mocksim).resetSimulation();
         verify(mocksim).wireDelay();
 
-        assertEquals(new Coordinates(0,0), inputCoordinatesCaptor.getValue());
-        assertEquals(new Coordinates(100,900), notCoordinatesCaptor.getValue());
+        assertEquals(new ComponentParameters(new Coordinates(0,0), "input1", "input", -1, 1), notComponentParametersArgumentCaptor.getValue());
+        //assertEquals(new ComponentParameters(new Coordinates(100,900), "not1", "not", 1, 1), notComponentParametersArgumentCaptor.getValue());
 
         ArgumentCaptor<PortIdentifier> inputPort = ArgumentCaptor.forClass(PortIdentifier.class);
         ArgumentCaptor<ArrayList<PortIdentifier>> outputPorts = ArgumentCaptor.forClass(ArrayList.class);
@@ -69,7 +75,7 @@ public class LoadTest {
     public void loadWithComponentError() {
         SimulationController mocksim = mock(SimulationController.class);
 
-        when(mocksim.addComponent(anyString(), any(Coordinates.class), anyString(), anyInt(),anyInt())).thenReturn(false);
+        when(mocksim.addComponent(any(ComponentParameters.class))).thenReturn(false);
 
 
         Load.load(mocksim,file);
@@ -81,7 +87,7 @@ public class LoadTest {
     public void loadWithWireError() {
         SimulationController mocksim = mock(SimulationController.class);
 
-        when(mocksim.addComponent(anyString(), any(Coordinates.class), anyString(), anyInt(),anyInt())).thenReturn(true);
+        when(mocksim.addComponent(any(ComponentParameters.class))).thenReturn(true);
         //when(mocksim.addWire(anyString(),anyInt(),anyString(),anyInt())).thenReturn(false);
         when(mocksim.addWire(anyString(), any(PortIdentifier.class),any(ArrayList.class))).thenReturn(false);
 
@@ -94,18 +100,18 @@ public class LoadTest {
     public void loadComponents() {
         SimulationController mocksim = mock(SimulationController.class);
 
-        when(mocksim.addComponent(anyString(), any(Coordinates.class), anyString(), anyInt(),anyInt())).thenReturn(true);
+        when(mocksim.addComponent(any(ComponentParameters.class))).thenReturn(true);
 
         Load.loadComponents(testComponentJson, mocksim);
 
         ArgumentCaptor<Coordinates> notCoordinatesCaptor = ArgumentCaptor.forClass(Coordinates.class);
         ArgumentCaptor<Coordinates> inputCoordinatesCaptor = ArgumentCaptor.forClass(Coordinates.class);
 
-        verify(mocksim).addComponent(eq("input"), inputCoordinatesCaptor.capture(), eq("input1"), eq(-1), eq(1));
-        verify(mocksim).addComponent(eq("not"), notCoordinatesCaptor.capture(), eq("not1"), eq(1), eq(1));
+        ArgumentCaptor<ComponentParameters> notComponentParametersArgumentCaptor = ArgumentCaptor.forClass(ComponentParameters.class);
 
-        assertEquals(new Coordinates(0,0), inputCoordinatesCaptor.getValue());
-        assertEquals(new Coordinates(100,900), notCoordinatesCaptor.getValue());
+        verify(mocksim, times(2)).addComponent(notComponentParametersArgumentCaptor.capture());
+
+        assertEquals(new ComponentParameters(new Coordinates(100,900), "not1", "not", 1, 1), notComponentParametersArgumentCaptor.getValue());
     }
 
     @Test
@@ -135,5 +141,4 @@ public class LoadTest {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         return reader.lines().collect(Collectors.joining());
     }
-
 }

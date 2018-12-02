@@ -1,6 +1,7 @@
 package javafx.component.model.component.Io;
 
 import javafx.component.model.component.Component;
+import javafx.component.model.component.ComponentParameters;
 import model.Coordinates;
 
 public class Output extends Component {
@@ -20,7 +21,7 @@ public class Output extends Component {
     }
 
 
-    public Output(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs) {
-        super(coordinates, uuid, type, noInputs, noOutputs);
+    public Output(ComponentParameters componentParameters) {
+        super(componentParameters);
     }
 }
