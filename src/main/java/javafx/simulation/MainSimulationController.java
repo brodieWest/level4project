@@ -38,8 +38,10 @@ public class MainSimulationController extends SimulationController {
         super.clockTick();
         updateClockTickCount();
 
-        for(int i=0;i<simulator.getPathDepth();i++) {
-            gateDelay();
+        if(mainController.getLongClockTick()) {
+            for (int i = 0; i < simulator.getPathDepth(); i++) {
+                gateDelay();
+            }
         }
     }
 

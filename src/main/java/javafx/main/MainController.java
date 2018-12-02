@@ -4,6 +4,7 @@ import fileIO.Load;
 import javafx.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
@@ -33,6 +34,9 @@ public class MainController implements Controller {
 
     @FXML
     private Label clockTickCount;
+
+    @FXML
+    private CheckMenuItem checkMenuItem;
 
     @FXML
     protected void loadFile() {
@@ -85,5 +89,9 @@ public class MainController implements Controller {
 
     public void displayText(Parent parent) {
         borderPane.setRight(parent);
+    }
+
+    public boolean getLongClockTick() {
+        return checkMenuItem.isSelected();
     }
 }

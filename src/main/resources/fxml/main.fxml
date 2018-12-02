@@ -31,7 +31,7 @@
                     <MenuItem text="Zoom Out" onAction="#zoomOut"/>
                 </Menu>
                 <Menu text="Options">
-                    <CheckMenuItem text="Do path depth gate delays per clock tick"/>
+                    <CheckMenuItem text="Do path depth gate delays per clock tick" fx:id="checkMenuItem"/>
                 </Menu>
             </MenuBar>
         </VBox>
