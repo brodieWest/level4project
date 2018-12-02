@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.simulation.model.Simulator;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class MainSimulationController extends SimulationController {
@@ -36,6 +37,10 @@ public class MainSimulationController extends SimulationController {
     public void clockTick() {
         super.clockTick();
         updateClockTickCount();
+
+        for(int i=0;i<simulator.getPathDepth();i++) {
+            gateDelay();
+        }
     }
 
     @Override
@@ -83,8 +88,10 @@ public class MainSimulationController extends SimulationController {
     public void calculatePathDepth() {
         List<Input> inputs = new ArrayList<>();
 
-        for(ComponentController componentController : componentControllers.values()) {
-            if(componentControllers instanceof InputController) {
+        Collection<ComponentController> newComponentControllers = componentControllers.values();
+
+        for(ComponentController componentController : newComponentControllers) {
+            if(componentController instanceof InputController) {
                 inputs.add((Input)componentController.getComponentModel());
             }
 

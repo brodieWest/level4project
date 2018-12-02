@@ -6,6 +6,8 @@ import javafx.component.model.component.Io.Input;
 import javafx.component.model.component.Io.Output;
 import javafx.wire.Wire;
 import model.Port;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
 import java.util.List;
@@ -15,6 +17,8 @@ import java.util.Set;
 public class Simulator {
 
     private int pathDepth;
+
+    private static Logger logger = LogManager.getLogger(Simulator.class);
 
     public void calculatePathDepth(List<Input> inputs) {
         int maxPathDepth = 0;
@@ -49,6 +53,8 @@ public class Simulator {
             }
         }
         pathDepth = maxPathDepth;
+
+        logger.info(String.format("Path Depth is %d ", maxPathDepth));
     }
 
     public int getPathDepth() {
