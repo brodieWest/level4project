@@ -28,6 +28,8 @@ public abstract class Component implements Onscreen {
         this.coordinates = coordinates;
         this.uuid = uuid;
         this.type = type;
+        if(noInputs == -1) noInputs = this.getDefaultInputs();
+        if(noOutputs == -1) noOutputs = this.getDefaultOutputs();
         for(int i=0;i<noInputs;i++) {
             addNewInput();
         }
@@ -38,6 +40,10 @@ public abstract class Component implements Onscreen {
 
     // simulates the component over a single gate delay
     public abstract void processGateDelay();
+
+    public abstract int getDefaultInputs();
+
+    public abstract int getDefaultOutputs();
 
     public void reset() {
         for(Port input : inputs) {

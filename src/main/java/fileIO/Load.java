@@ -1,5 +1,6 @@
 package fileIO;
 
+import javafx.component.model.component.ComponentParameters;
 import javafx.main.Mainfx;
 import model.Coordinates;
 import javafx.simulation.SimulationController;
@@ -92,14 +93,22 @@ public class Load {
             if(component.has(INPUTPORTS)) {
                 inputPorts = component.getInt(INPUTPORTS);
             } else {
-                inputPorts = 0;
+                inputPorts = -1;
             }
 
             if(component.has(OUTPUTPORTS)) {
                 outputPorts = component.getInt(OUTPUTPORTS);
             } else {
-                outputPorts = 0;
+                outputPorts = -1;
             }
+
+            ComponentParameters componentParameters = new ComponentParameters();
+
+            componentParameters.setType(component.getString(TYPE));
+            componentParameters.setCoordinates(coordinates);
+            componentParameters.setUuid(uuid);
+            componentParameters.setNoInputs(inputPorts);
+            componentParameters.setNoOutputs(outputPorts);
 
             if (!simulationController.addComponent(component.getString(TYPE), coordinates, uuid, inputPorts, outputPorts)) return false;
         }

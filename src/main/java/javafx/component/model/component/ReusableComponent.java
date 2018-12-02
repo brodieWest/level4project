@@ -43,6 +43,16 @@ public class ReusableComponent extends Component{
     public void processGateDelay() {
     }
 
+    @Override
+    public int getDefaultInputs() {
+        return 0;
+    }
+
+    @Override
+    public int getDefaultOutputs() {
+        return 0;
+    }
+
     public List<Wire> getInternalWires() {
         return internalInputs;
     }

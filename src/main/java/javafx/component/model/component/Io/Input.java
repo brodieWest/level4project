@@ -12,6 +12,16 @@ public class Input extends Component {
     }
 
     @Override
+    public int getDefaultInputs() {
+        return 0;
+    }
+
+    @Override
+    public int getDefaultOutputs() {
+        return 1;
+    }
+
+    @Override
     public void reset() {
         getOutput(0).getLogic().setUndefined(false);
     }

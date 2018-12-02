@@ -9,6 +9,16 @@ public class Output extends Component {
         // TODO: set nextLogic on ouput based on input
     }
 
+    @Override
+    public int getDefaultInputs() {
+        return 1;
+    }
+
+    @Override
+    public int getDefaultOutputs() {
+        return 0;
+    }
+
 
     public Output(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs) {
         super(coordinates, uuid, type, noInputs, noOutputs);

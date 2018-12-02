@@ -15,6 +15,16 @@ public class Dff extends Component implements Synchronous {
     }
 
     @Override
+    public int getDefaultInputs() {
+        return 1;
+    }
+
+    @Override
+    public int getDefaultOutputs() {
+        return 1;
+    }
+
+    @Override
     public void processClockTick() {
         storedValue.copy(getInput(0).getLogic());
     }

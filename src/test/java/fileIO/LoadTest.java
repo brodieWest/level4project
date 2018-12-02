@@ -47,7 +47,7 @@ public class LoadTest {
         ArgumentCaptor<Coordinates> notCoordinatesCaptor = ArgumentCaptor.forClass(Coordinates.class);
         ArgumentCaptor<Coordinates> inputCoordinatesCaptor = ArgumentCaptor.forClass(Coordinates.class);
 
-        verify(mocksim).addComponent(eq("input"), inputCoordinatesCaptor.capture(), eq("input1"), eq(0), eq(1));
+        verify(mocksim).addComponent(eq("input"), inputCoordinatesCaptor.capture(), eq("input1"), eq(-1), eq(1));
         verify(mocksim).addComponent(eq("not"), notCoordinatesCaptor.capture(), eq("not1"), eq(1), eq(1));
         verify(mocksim).resetSimulation();
         verify(mocksim).wireDelay();
@@ -101,7 +101,7 @@ public class LoadTest {
         ArgumentCaptor<Coordinates> notCoordinatesCaptor = ArgumentCaptor.forClass(Coordinates.class);
         ArgumentCaptor<Coordinates> inputCoordinatesCaptor = ArgumentCaptor.forClass(Coordinates.class);
 
-        verify(mocksim).addComponent(eq("input"), inputCoordinatesCaptor.capture(), eq("input1"), eq(0), eq(1));
+        verify(mocksim).addComponent(eq("input"), inputCoordinatesCaptor.capture(), eq("input1"), eq(-1), eq(1));
         verify(mocksim).addComponent(eq("not"), notCoordinatesCaptor.capture(), eq("not1"), eq(1), eq(1));
 
         assertEquals(new Coordinates(0,0), inputCoordinatesCaptor.getValue());

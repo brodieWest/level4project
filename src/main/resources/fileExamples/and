@@ -4,30 +4,25 @@
       "type" : "and",
       "uuid": "and1",
       "xCoord": 100,
-      "yCoord": 50,
-      "inputPorts" : 2,
-      "outputPorts" : 1
+      "yCoord": 50
     },
     {
       "type" : "input",
       "uuid": "input1",
       "xCoord": 0,
-      "yCoord": 0,
-      "outputPorts" : 1
+      "yCoord": 0
     },
     {
       "type" : "input",
       "uuid": "input2",
       "xCoord": 0,
-      "yCoord": 100,
-      "outputPorts" : 1
+      "yCoord": 100
     },
     {
       "type" : "output",
       "uuid": "output1",
       "xCoord": 200,
-      "yCoord": 50,
-      "inputPorts" : 1
+      "yCoord": 50
     }
   ],
   "wires": [

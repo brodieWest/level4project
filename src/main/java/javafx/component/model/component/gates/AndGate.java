@@ -18,6 +18,16 @@ public class AndGate extends Component {
 
     }
 
+    @Override
+    public int getDefaultInputs() {
+        return 2;
+    }
+
+    @Override
+    public int getDefaultOutputs() {
+        return 1;
+    }
+
     public AndGate(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs) {
         super(coordinates, uuid, type, noInputs, noOutputs);
     }

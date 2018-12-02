@@ -17,6 +17,16 @@ public class OrGate extends Component {
         outputLogic.setUndefined(inputLogic0.isUndefined() || inputLogic1.isUndefined());
     }
 
+    @Override
+    public int getDefaultInputs() {
+        return 2;
+    }
+
+    @Override
+    public int getDefaultOutputs() {
+        return 1;
+    }
+
     public OrGate(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs) {
         super(coordinates, uuid, type, noInputs, noOutputs);
     }

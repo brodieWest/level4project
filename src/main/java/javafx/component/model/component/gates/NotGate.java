@@ -17,6 +17,16 @@ public class NotGate extends Component {
         outputLogic.setUndefined(inputLogic.isUndefined());
     }
 
+    @Override
+    public int getDefaultInputs() {
+        return 1;
+    }
+
+    @Override
+    public int getDefaultOutputs() {
+        return 1;
+    }
+
     public NotGate(Coordinates coordinates, String uuid, String type, int noInputs, int noOutputs) {
         super(coordinates, uuid, type, noInputs, noOutputs);
     }
