@@ -75,6 +75,10 @@ public abstract class Component implements Onscreen {
         return inputs.get(inputNo);
     }
 
+    public List<Port> getInputs() {
+        return inputs;
+    }
+
     public int getInputSize() {
         return inputs.size();
     }

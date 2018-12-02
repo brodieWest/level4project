@@ -43,8 +43,7 @@ public class ReusableComponent extends Component{
     public void processGateDelay() {
     }
 
-    @Override
-    public List<Wire> getNextWires() {
+    public List<Wire> getInternalWires() {
         return internalInputs;
     }
 

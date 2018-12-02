@@ -4,6 +4,7 @@ import javafx.component.Synchronous;
 import javafx.component.model.component.Component;
 import javafx.component.model.component.Io.Input;
 import javafx.component.model.component.Io.Output;
+import javafx.component.model.component.ReusableComponent;
 import javafx.wire.Wire;
 import model.Port;
 import org.apache.logging.log4j.LogManager;
@@ -23,6 +24,7 @@ public class Simulator {
     public void calculatePathDepth(List<Input> inputs) {
         int maxPathDepth = 0;
         Set<Port> visitedInputPorts = new HashSet<>();
+        Set<ReusableComponent> visitedReusables = new HashSet<>();
 
         Set<Component> components = new HashSet<>(inputs);
 
@@ -30,7 +32,15 @@ public class Simulator {
             Component component = components.iterator().next();
             components.remove(component);
             int currentDepth = component.getPathDepth();
-            List<Wire> outputWires = component.getNextWires();
+            List<Wire> outputWires;
+
+            if(component instanceof ReusableComponent && !visitedReusables.contains(component)) {
+                ReusableComponent reusableComponent = (ReusableComponent) component;
+                visitedReusables.add(reusableComponent);
+                outputWires = reusableComponent.getInternalWires();
+            } else  {
+                outputWires = component.getNextWires();
+            }
 
 
             if(currentDepth > maxPathDepth && !(component instanceof Output)) {
@@ -41,20 +51,22 @@ public class Simulator {
                 List<Port> outputs = wire.getOutputs();
 
                 for(Port output : outputs) {
-                    if(!visitedInputPorts.contains(output)) {
-                        Component newComponent = output.getComponent();
+                    Component newComponent = output.getComponent();
+                    visitedInputPorts.add(output);
+                    if(visitedInputPorts.containsAll(newComponent.getInputs())) {
                         components.add(newComponent);
-                        visitedInputPorts.add(output);
-                        if(newComponent.getPathDepth() < (currentDepth+1)) {
-                            newComponent.setPathDepth(currentDepth+1);
-                        }
+                    }
+                    if(component instanceof ReusableComponent) {
+                        newComponent.setPathDepth(currentDepth);
+                    } else if (newComponent.getPathDepth() < (currentDepth + 1)) {
+                        newComponent.setPathDepth(currentDepth + 1);
                     }
                 }
             }
         }
-        pathDepth = maxPathDepth;
+        pathDepth = maxPathDepth - visitedReusables.size();
 
-        logger.info(String.format("Path Depth is %d ", maxPathDepth));
+        logger.info(String.format("Path Depth is %d ", pathDepth));
     }
 
     public int getPathDepth() {
