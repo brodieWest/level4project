@@ -36,6 +36,7 @@ public class WireController implements Controller {
     private static String LOGIC_UNDEFINED_COLOUR = "grey";
 
     private static String WIRE_PATH = "fxml/wire.fxml";
+    private int SIZE = 100;
 
     private static Logger logger = LogManager.getLogger(WireController.class);
 
@@ -58,6 +59,8 @@ public class WireController implements Controller {
     }
 
     private void displayWire(Coordinates startCoordinates, ArrayList<WireIdentifier> endPorts) {
+
+        endPorts = addCorners(startCoordinates, endPorts);
 
         List<Coordinates> oldCorners = null;
 
@@ -92,6 +95,20 @@ public class WireController implements Controller {
         }
 
 
+    }
+
+    private ArrayList<WireIdentifier> addCorners(Coordinates startCoordinates, ArrayList<WireIdentifier> endPorts) {
+
+        for(WireIdentifier endPort : endPorts) {
+            Coordinates endPosition = endPort.getPort().getPosition();
+
+            if(endPort.getCorners().isEmpty() && !(startCoordinates.getY() == endPosition.getY())) {
+                int newX = (int) (SIZE * (Math.ceil(startCoordinates.getX()*1.0/SIZE)));
+                endPort.getCorners().add(new Coordinates(newX, startCoordinates.getY()));
+                endPort.getCorners().add(new Coordinates(newX, endPosition.getY()));
+            }
+        }
+        return endPorts;
     }
 
     public void showSignal() {

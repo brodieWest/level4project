@@ -48,17 +48,7 @@
       "output" : [
         {
           "component" : "and1",
-          "port" : 0,
-          "corner" : [
-            {
-              "xCoord": 100,
-              "yCoord": 50
-            },
-            {
-              "xCoord": 100,
-              "yCoord": 90
-            }
-          ]
+          "port" : 0
         }
       ]
     },
@@ -97,17 +87,7 @@
       "output" : [
         {
           "component" : "and1",
-          "port" : 1,
-          "corner" : [
-            {
-              "xCoord": 100,
-              "yCoord": 150
-            },
-            {
-              "xCoord": 100,
-              "yCoord": 110
-            }
-          ]
+          "port" : 1
         }
       ]
     },

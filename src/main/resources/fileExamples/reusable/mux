@@ -71,17 +71,7 @@
       "output" : [
         {
         "component" : "and1",
-        "port" : 0,
-          "corner" : [
-            {
-              "xCoord": 100,
-              "yCoord": 50
-            },
-            {
-              "xCoord": 100,
-              "yCoord": 90
-            }
-          ]
+        "port" : 0
         }
       ]
     },
@@ -94,31 +84,11 @@
       "output" : [
         {
           "component" : "and1",
-          "port" : 1,
-          "corner" : [
-            {
-              "xCoord": 100,
-              "yCoord": 150
-            },
-            {
-              "xCoord": 100,
-              "yCoord": 110
-            }
-          ]
+          "port" : 1
         },
         {
           "component" : "not1",
-          "port" : 0,
-          "corner" : [
-            {
-              "xCoord": 100,
-              "yCoord": 150
-            },
-            {
-              "xCoord": 100,
-              "yCoord": 190
-            }
-          ]
+          "port" : 0
         }
       ]
     },
@@ -167,17 +137,7 @@
       "output" : [
         {
           "component" : "or1",
-          "port" : 0,
-          "corner" : [
-            {
-              "xCoord": 300,
-              "yCoord": 100
-            },
-            {
-              "xCoord": 300,
-              "yCoord": 140
-            }
-          ]
+          "port" : 0
         }
       ]
     },
@@ -190,17 +150,7 @@
       "output" : [
         {
           "component" : "or1",
-          "port" : 1,
-          "corner" : [
-            {
-              "xCoord": 300,
-              "yCoord": 200
-            },
-            {
-              "xCoord": 300,
-              "yCoord": 160
-            }
-          ]
+          "port" : 1
         }
       ]
     },
