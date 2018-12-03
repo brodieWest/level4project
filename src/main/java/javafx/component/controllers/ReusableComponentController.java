@@ -4,6 +4,8 @@ import fileIO.Load;
 import javafx.component.Synchronous;
 import javafx.component.model.component.Component;
 import javafx.component.model.component.ReusableComponent;
+import javafx.fxml.FXML;
+import javafx.scene.text.Text;
 import javafx.simulation.InternalController;
 import javafx.simulation.SimulationController;
 import javafx.wire.Wire;
@@ -23,6 +25,9 @@ public class ReusableComponentController extends ComponentController implements 
 
     private static String REUSABLE_FILE_PATH = "/fileExamples/reusable/";
 
+    @FXML
+    private Text text;
+
     public ReusableComponentController(SimulationController  simulationController, ReusableComponent componentModel) throws FileNotFoundException{
         super(simulationController, componentModel);
 
@@ -38,6 +43,8 @@ public class ReusableComponentController extends ComponentController implements 
         List<Wire> outputWires = internalSimulation.getOutputWires();
 
         componentModel.initialiseWires(inputWires,outputWires);
+
+        text.setText(componentModel.getStringIdentifier());
     }
 
     @Override
