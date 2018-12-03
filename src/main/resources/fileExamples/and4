@@ -1,0 +1,128 @@
+{
+  "components": [
+    {
+      "type" : "and",
+      "uuid": "and1",
+      "xCoord": 100,
+      "yCoord": 50,
+      "inputPorts": 4
+    },
+    {
+      "type" : "input",
+      "uuid": "input1",
+      "xCoord": 0,
+      "yCoord": 0
+    },
+    {
+      "type" : "input",
+      "uuid": "input2",
+      "xCoord": 0,
+      "yCoord": 100
+    },
+    {
+      "type" : "input",
+      "uuid": "input3",
+      "xCoord": 0,
+      "yCoord": 200
+    },
+    {
+      "type" : "input",
+      "uuid": "input4",
+      "xCoord": 0,
+      "yCoord": 300
+    },
+    {
+      "type" : "output",
+      "uuid": "output1",
+      "xCoord": 200,
+      "yCoord": 50
+    }
+  ],
+  "wires": [
+    {
+      "uuid" : "wire1",
+      "input" : {
+        "component" : "input1",
+        "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "and1",
+          "port" : 0,
+          "corner" : [
+            {
+              "xCoord": 100,
+              "yCoord": 50
+            },
+            {
+              "xCoord": 100,
+              "yCoord": 90
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid" : "wire4",
+      "input" : {
+        "component" : "input3",
+        "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "and1",
+          "port" : 2
+        }
+      ]
+    },
+    {
+      "uuid" : "wire5",
+      "input" : {
+        "component" : "input4",
+        "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "and1",
+          "port" : 3
+        }
+      ]
+    },
+    {
+      "uuid" : "wire2",
+      "input" : {
+        "component" : "input2",
+        "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "and1",
+          "port" : 1,
+          "corner" : [
+            {
+              "xCoord": 100,
+              "yCoord": 150
+            },
+            {
+              "xCoord": 100,
+              "yCoord": 110
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid" : "wire3",
+      "input" : {
+        "component" : "and1",
+        "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "output1",
+          "port" : 0
+        }
+      ]
+    }
+  ]
+}

@@ -25,6 +25,55 @@ public class AndGateTest {
     }
 
     @Test
+    public void test4Parameters() {
+        AndGate and4 = new AndGate(new ComponentParameters(new Coordinates(0,0), "testand","and",4,1));
+        Logic and4inputLogic0 = and4.getInput(0).getLogic();
+        Logic and4inputLogic1 = and4.getInput(1).getLogic();
+        Logic and4inputLogic2 = and4.getInput(2).getLogic();
+        Logic and4inputLogic3 = and4.getInput(3).getLogic();
+        Logic and4outputLogic = and4.getOutput(0).getLogic();
+
+        and4inputLogic0.setUndefined(false);
+        and4inputLogic1.setUndefined(false);
+        and4inputLogic2.setUndefined(false);
+        and4inputLogic3.setUndefined(false);
+
+        and4inputLogic0.setValue(true);
+        and4inputLogic1.setValue(true);
+        and4inputLogic2.setValue(true);
+        and4inputLogic3.setValue(false);
+
+        and4.processGateDelay();
+
+        assertFalse(and4outputLogic.value());
+        assertFalse(and4outputLogic.isUndefined());
+    }
+
+    @Test
+    public void test4ParametersUndefined() {
+        AndGate and4 = new AndGate(new ComponentParameters(new Coordinates(0,0), "testand","and",4,1));
+        Logic and4inputLogic0 = and4.getInput(0).getLogic();
+        Logic and4inputLogic1 = and4.getInput(1).getLogic();
+        Logic and4inputLogic2 = and4.getInput(2).getLogic();
+        Logic and4inputLogic3 = and4.getInput(3).getLogic();
+        Logic and4outputLogic = and4.getOutput(0).getLogic();
+
+        and4inputLogic0.setUndefined(false);
+        and4inputLogic1.setUndefined(false);
+        and4inputLogic2.setUndefined(false);
+        and4inputLogic3.setUndefined(true);
+
+        and4inputLogic0.setValue(true);
+        and4inputLogic1.setValue(true);
+        and4inputLogic2.setValue(true);
+        and4inputLogic3.setValue(false);
+
+        and4.processGateDelay();
+
+        assertTrue(and4outputLogic.isUndefined());
+    }
+
+    @Test
     public void processGateDelay00() {
         inputLogic0.setUndefined(false);
         inputLogic1.setUndefined(false);

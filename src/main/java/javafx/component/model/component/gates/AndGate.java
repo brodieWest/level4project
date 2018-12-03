@@ -10,13 +10,16 @@ public class AndGate extends Component {
 
     @Override
     public void processGateDelay() {
-        Logic inputLogic0 = getInput(0).getLogic();
-        Logic inputLogic1 = getInput(1).getLogic();
-        Logic outputLogic = getOutput(0).getLogic();
+        boolean undefined = false;
+        boolean value = true;
 
-        outputLogic.setValue(inputLogic0.value() && inputLogic1.value());
-        outputLogic.setUndefined(inputLogic0.isUndefined() || inputLogic1.isUndefined());
+        for(Port input : getInputs()) {
+            undefined |= input.getLogic().isUndefined();
+            value &= input.getLogic().value();
+        }
 
+        getOutput(0).getLogic().setValue(value);
+        getOutput(0).getLogic().setUndefined(undefined);
     }
 
     @Override
