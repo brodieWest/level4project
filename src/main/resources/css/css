@@ -17,6 +17,10 @@
     -fx-wrapping-width: 200;
 }
 
+.tableColumn {
+    -fx-sortable: false;
+}
+
 .wire {
     -fx-stroke-width: 3;
     -fx-stroke-line-join: round;
