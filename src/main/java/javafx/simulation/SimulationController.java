@@ -227,6 +227,7 @@ public class SimulationController implements Controller {
 
     public void scrollEvent(ScrollEvent action) {
         if(action.isControlDown()) {
+            action.consume();
             double zoomFactor = action.getDeltaY();
             if(zoomFactor<1) {
                 scale.setX(scale.getX() / 1.1);
