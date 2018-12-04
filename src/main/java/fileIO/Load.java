@@ -69,13 +69,15 @@ public class Load {
 
         Evaluator evaluator = new Evaluator();
 
-        boolean loadVariablesCorrect = loadVariables(circuit, evaluator);
+        boolean loadConstantsCorrect = loadConstants(circuit, evaluator, simulationController);
 
         boolean loadComponentsCorrect = loadComponents(circuit, simulationController, evaluator);
 
+        addPortVariables(evaluator,simulationController);
+
         boolean loadWiresCorrect = loadWires(circuit, simulationController, evaluator);
 
-        if(!loadVariablesCorrect || !loadComponentsCorrect || !loadWiresCorrect) {
+        if(!loadConstantsCorrect || !loadComponentsCorrect || !loadWiresCorrect) {
             logger.info("clearing screen as loading failed");
             simulationController.clear();
             return;
@@ -86,13 +88,22 @@ public class Load {
 
     }
 
-    private static boolean loadVariables(JSONObject circuit, Evaluator evaluator) {
+    private static boolean loadConstants(JSONObject circuit, Evaluator evaluator, SimulationController simulationController) {
+        if(!circuit.has(CONSTANTS)) return true;
         JSONObject variableJson = circuit.getJSONObject(CONSTANTS);
 
         for(String key : variableJson.keySet()) {
             evaluator.putVariable(key, Integer.toString(variableJson.getInt(key)));
         }
         return true;
+    }
+
+    private static void addPortVariables(Evaluator evaluator, SimulationController simulationController) {
+        var portLocations = simulationController.getPortLocations();
+
+        for(String key : portLocations.keySet()) {
+            evaluator.putVariable(key, Integer.toString(portLocations.get(key)));
+        }
     }
 
     static boolean loadComponents(JSONObject circuit, SimulationController simulationController, Evaluator evaluator) {
@@ -167,7 +178,8 @@ public class Load {
                             xCoord = parseEval(cornerJson, XCOORD, evaluator);
                             yCoord = parseEval(cornerJson, YCOORD, evaluator);
                         } catch (EvaluationException e) {
-                            logger.error("failed to parse expression");
+                            logger.error("failed to parse expression in wires");
+                            e.printStackTrace();
                             return false;
                         }
 

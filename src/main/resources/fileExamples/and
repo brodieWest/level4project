@@ -39,7 +39,7 @@
         "corner" : [
             {
               "xCoord": 100,
-              "yCoord": 50
+              "yCoord": "#{input1.output0.y}"
             },
             {
               "xCoord": 100,

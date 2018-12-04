@@ -27,7 +27,7 @@ public class UiIntegrationTests extends ApplicationTest {
 
     @Test
     public void nandGate() {
-        clickOn("#file").clickOn("#load").push(KeyCode.ENTER).push(KeyCode.ENTER);
+        clickOn("#file").clickOn("#load").push(KeyCode.ENTER).push(KeyCode.DOWN).push(KeyCode.ENTER);
 
         assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"U");
 

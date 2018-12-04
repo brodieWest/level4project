@@ -8,7 +8,9 @@ import model.PortType;
 import javafx.wire.Wire;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public abstract class Component implements Onscreen {
     private List<Port> inputs = new ArrayList<>();
@@ -134,5 +136,28 @@ public abstract class Component implements Onscreen {
 
     public void setPathDepth(int pathDepth) {
         this.pathDepth = pathDepth;
+    }
+
+    public Map<String,Integer> getPortLocations() {
+
+        Map<String,Integer> portLocations = new HashMap<>();
+
+        for(int i=0;i<inputs.size();i++) {
+            String portId = uuid+".input"+Integer.toString(i)+".";
+            Coordinates portPosition = inputs.get(i).getPosition();
+
+            portLocations.put(portId+"x", portPosition.getX());
+            portLocations.put(portId+"y", portPosition.getY());
+        }
+
+        for(int i=0;i<outputs.size();i++) {
+            String portId = uuid+".output"+Integer.toString(i)+".";
+            Coordinates portPosition = outputs.get(i).getPosition();
+
+            portLocations.put(portId+"x", portPosition.getX());
+            portLocations.put(portId+"y", portPosition.getY());
+        }
+
+        return portLocations;
     }
 }

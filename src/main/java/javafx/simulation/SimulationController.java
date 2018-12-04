@@ -241,5 +241,13 @@ public class SimulationController implements Controller {
     public void displayText(Parent parent) {
     }
 
+    public Map<String,Integer> getPortLocations() {
+        Map<String, Integer> portLocations = new HashMap<>();
 
+        for(ComponentController componentController : componentControllers.values()) {
+            portLocations.putAll(componentController.getComponentModel().getPortLocations());
+        }
+
+        return portLocations;
+    }
 }

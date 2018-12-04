@@ -7,6 +7,8 @@ import model.Coordinates;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 public class ComponentTest {
@@ -34,5 +36,16 @@ public class ComponentTest {
         assertEquals(50,not.getOutput(0).getOffset().getX());
         assertEquals(50,not.getOutput(0).getOffset().getY());
 
+    }
+
+    @Test
+    public void getPortLocations() {
+        Component and = new AndGate(new ComponentParameters(new Coordinates(100,200), "testand","and", 2,1));
+
+        Map<String,Integer> map = and.getPortLocations();
+
+        assertEquals(150, (int)map.get("testand.input1.x"));
+        assertEquals(240, (int)map.get("testand.input0.y"));
+        assertEquals(150, (int)map.get("testand.output0.x"));
     }
 }
