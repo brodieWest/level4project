@@ -4,6 +4,7 @@ import javafx.component.model.component.ComponentParameters;
 import javafx.simulation.SimulationController;
 import model.Coordinates;
 import model.PortIdentifier;
+import net.sourceforge.jeval.Evaluator;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -45,9 +46,6 @@ public class LoadTest {
 
 
         Load.load(mocksim,file);
-
-        ArgumentCaptor<Coordinates> notCoordinatesCaptor = ArgumentCaptor.forClass(Coordinates.class);
-        ArgumentCaptor<Coordinates> inputCoordinatesCaptor = ArgumentCaptor.forClass(Coordinates.class);
 
         ArgumentCaptor<ComponentParameters> inputComponentParametersArgumentCaptor = ArgumentCaptor.forClass(ComponentParameters.class);
         ArgumentCaptor<ComponentParameters> notComponentParametersArgumentCaptor = ArgumentCaptor.forClass(ComponentParameters.class);
@@ -102,7 +100,9 @@ public class LoadTest {
 
         when(mocksim.addComponent(any(ComponentParameters.class))).thenReturn(true);
 
-        Load.loadComponents(testComponentJson, mocksim);
+        Evaluator evaluator = new Evaluator();
+
+        Load.loadComponents(testComponentJson, mocksim, evaluator);
 
         ArgumentCaptor<Coordinates> notCoordinatesCaptor = ArgumentCaptor.forClass(Coordinates.class);
         ArgumentCaptor<Coordinates> inputCoordinatesCaptor = ArgumentCaptor.forClass(Coordinates.class);
@@ -119,7 +119,12 @@ public class LoadTest {
         SimulationController mocksim = mock(SimulationController.class);
         when(mocksim.addWire(anyString(), any(PortIdentifier.class),any(ArrayList.class))).thenReturn(true);
 
-        Load.loadWires(testWireJson, mocksim);
+        Evaluator evaluator = new Evaluator();
+
+        evaluator.putVariable("size","50");
+        evaluator.putVariable("multiplier", "2");
+
+        Load.loadWires(testWireJson, mocksim, evaluator);
 
         ArgumentCaptor<PortIdentifier> inputPort = ArgumentCaptor.forClass(PortIdentifier.class);
         ArgumentCaptor<ArrayList<PortIdentifier>> outputPorts = ArgumentCaptor.forClass(ArrayList.class);

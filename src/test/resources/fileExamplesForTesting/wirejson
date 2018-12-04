@@ -14,7 +14,7 @@
             "yCoord": 0
           },
           {
-            "xCoord": 100,
+            "xCoord": "#{size}*#{multiplier}",
             "yCoord": 100
           }
         ]

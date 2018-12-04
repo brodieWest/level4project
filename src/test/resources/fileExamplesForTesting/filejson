@@ -1,9 +1,13 @@
 {
+  "constants": {
+    "size" : 50,
+    "multiplier" : 2
+  },
 "components": [
 {
 "type" : "not",
 "uuid": "not1",
-"xCoord": 100,
+"xCoord": "#{size}*#{multiplier}",
 "yCoord": 900,
 "inputPorts" : 1,
 "outputPorts" : 1
