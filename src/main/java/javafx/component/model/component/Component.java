@@ -7,10 +7,7 @@ import model.Port;
 import model.PortType;
 import javafx.wire.Wire;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class Component implements Onscreen {
     private List<Port> inputs = new ArrayList<>();
@@ -140,7 +137,7 @@ public abstract class Component implements Onscreen {
 
     public Map<String,Integer> getPortLocations() {
 
-        Map<String,Integer> portLocations = new HashMap<>();
+        Map<String,Integer> portLocations = new TreeMap<>();
 
         for(int i=0;i<inputs.size();i++) {
             String portId = uuid+".input"+Integer.toString(i)+".";
