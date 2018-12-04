@@ -1,0 +1,130 @@
+{
+  "components": [
+    {
+      "type" : "input",
+      "uuid": "input1",
+      "xCoord": 0,
+      "yCoord": 0
+    },
+    {
+      "type" : "input",
+      "uuid": "input2",
+      "xCoord": 0,
+      "yCoord": 100
+    },
+    {
+      "type" : "xor",
+      "uuid": "xor1",
+      "xCoord": 200,
+      "yCoord": 50
+    },
+    {
+      "type" : "and",
+      "uuid": "and1",
+      "xCoord": 200,
+      "yCoord": 150
+    },
+    {
+      "type" : "output",
+      "uuid": "output1",
+      "xCoord": 300,
+      "yCoord": 50
+    },
+    {
+      "type" : "output",
+      "uuid": "output2",
+      "xCoord": 300,
+      "yCoord": 150
+    }
+  ],
+  "wires": [
+    {
+      "uuid": "wire1",
+      "input": {
+        "component": "input1",
+        "port": 0
+      },
+      "output": [
+        {
+          "component": "xor1",
+          "port": 0,
+          "corner" : [
+            {
+              "xCoord" : 120,
+              "yCoord" : "#{input1.output0.y}"
+            },
+            {
+              "xCoord": 120,
+              "yCoord": "#{xor1.input0.y}"
+            },
+            {
+              "xCoord": 120,
+              "yCoord": "#{xor1.input0.y}"
+            }
+          ]
+        },
+        {
+          "component": "and1",
+          "port": 0,
+          "corner" : [
+            {
+              "xCoord" : 120,
+              "yCoord" : "#{input1.output0.y}"
+            },
+            {
+              "xCoord": 120,
+              "yCoord": "#{xor1.input0.y}"
+            },
+            {
+              "xCoord": 120,
+              "yCoord": "#{and1.input0.y}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "wire2",
+      "input": {
+        "component": "input2",
+        "port": 0
+      },
+      "output": [
+        {
+          "component": "xor1",
+          "port": 1
+        },
+        {
+          "component": "and1",
+          "port": 1
+        }
+      ]
+    },
+    {
+      "uuid": "wire3",
+      "input": {
+        "component": "xor1",
+        "port": 0
+      },
+      "output": [
+        {
+          "component": "output1",
+          "port": 0
+        }
+      ]
+    },
+    {
+      "uuid": "wire4",
+      "input": {
+        "component": "and1",
+        "port": 0
+      },
+      "output": [
+        {
+          "component": "output2",
+          "port": 0
+        }
+      ]
+    }
+  ]
+}

@@ -22,10 +22,10 @@ public class XorGate extends Component {
             }
         }
 
-        boolean value = true;
+        boolean value = false;
 
         if(contains0 && contains1) {
-            value = false;
+            value = true;
         }
 
         getOutput(0).getLogic().setValue(value);

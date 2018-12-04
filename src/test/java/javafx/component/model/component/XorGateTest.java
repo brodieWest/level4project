@@ -46,7 +46,7 @@ public class XorGateTest {
 
         and4.processGateDelay();
 
-        assertFalse(and4outputLogic.value());
+        assertTrue(and4outputLogic.value());
         assertFalse(and4outputLogic.isUndefined());
     }
 
@@ -84,7 +84,7 @@ public class XorGateTest {
 
         and.processGateDelay();
 
-        assertTrue(outputLogic.value());
+        assertFalse(outputLogic.value());
         assertFalse(outputLogic.isUndefined());
     }
 
@@ -97,7 +97,7 @@ public class XorGateTest {
 
         and.processGateDelay();
 
-        assertFalse(outputLogic.value());
+        assertTrue(outputLogic.value());
         assertFalse(outputLogic.isUndefined());
     }
 
@@ -110,7 +110,7 @@ public class XorGateTest {
 
         and.processGateDelay();
 
-        assertFalse(outputLogic.value());
+        assertTrue(outputLogic.value());
         assertFalse(outputLogic.isUndefined());
     }
 
@@ -123,7 +123,7 @@ public class XorGateTest {
 
         and.processGateDelay();
 
-        assertTrue(outputLogic.value());
+        assertFalse(outputLogic.value());
         assertFalse(outputLogic.isUndefined());
     }
 
