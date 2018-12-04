@@ -25,14 +25,13 @@ import static org.junit.Assert.*;
 
 public class SimulatorTest extends ApplicationTest {
 
-    @Ignore
     @Test
     public void calculatePathDepthOneComponent() {
         Simulator simulator = new Simulator();
 
         Input input = new Input(new ComponentParameters(new Coordinates(0,0),"input1", "input", 0, 1));
 
-        NotGate not = new NotGate(new ComponentParameters(new Coordinates(0,0),"not1", "not", 2,1));
+        NotGate not = new NotGate(new ComponentParameters(new Coordinates(0,0),"not1", "not", 1,1));
 
         Output output = new Output(new ComponentParameters(new Coordinates(0,0), "output1", "output", 1,0));
 
@@ -96,13 +95,13 @@ public class SimulatorTest extends ApplicationTest {
         wire2.addOutput(dff.getInput(0));
 
         dff.getOutput(0).setWire(wire3);
-        wire3.setInput(dff.getInput(0));
+        wire3.setInput(dff.getOutput(0));
 
         not2.getInput(0).setWire(wire3);
         wire3.addOutput(not2.getInput(0));
 
         not2.getOutput(0).setWire(wire4);
-        wire4.addOutput(not2.getInput(0));
+        wire4.addOutput(not2.getOutput(0));
 
         output.getInput(0).setWire(wire4);
         wire4.addOutput(output.getInput(0));
