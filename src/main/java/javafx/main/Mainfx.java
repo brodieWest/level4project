@@ -33,8 +33,11 @@ public class Mainfx extends Application {
     }
 
     public static File openFileWindow() {
-        File defaultDirectory = new File(Mainfx.class.getClassLoader().getResource("fileExamples/").getFile());
-        fileChooser.setInitialDirectory(defaultDirectory);
+        try {
+            File defaultDirectory = new File(Mainfx.class.getResource("fileExamples/").getFile());
+            fileChooser.setInitialDirectory(defaultDirectory);
+        } catch (NullPointerException ignored) {
+        }
         return fileChooser.showOpenDialog(stage);
     }
 

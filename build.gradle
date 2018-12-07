@@ -29,4 +29,5 @@ jar {
                 'Main-Class': 'javafx.main.Mainfx'
         )
     }
+    from configurations.compile.collect { entry -> zipTree(entry) }
 }
