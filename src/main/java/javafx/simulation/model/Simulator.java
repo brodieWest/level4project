@@ -54,7 +54,7 @@ public class Simulator {
                 for(Port output : outputs) {
                     Component newComponent = output.getComponent();
                     visitedInputPorts.add(output);
-                    if(visitedInputPorts.containsAll(newComponent.getInputs()) && !visitedComponents.contains(newComponent)) {
+                    if(visitedInputPorts.containsAll(newComponent.getInputs()) && (!visitedComponents.contains(newComponent) || newComponent instanceof ReusableComponent)) {
                         components.add(newComponent);
                         visitedComponents.add(newComponent);
                     }

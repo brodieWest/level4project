@@ -122,16 +122,6 @@
           ]
         }
       ]
-    },
-    {
-      "uuid" : "wire5",
-      "input" : {
-        "component" : "dff1",
-        "port" : 0
-      },
-      "output" : [
-
-      ]
     }
 
   ]
