@@ -5,6 +5,8 @@ import model.Logic;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -16,7 +18,7 @@ public class DffTest {
 
     @Before
     public void setup() {
-        dff = new Dff(new ComponentParameters(new Coordinates(0,0), "test","dff", 1,1));
+        dff = new Dff(new ComponentParameters(new Coordinates(0,0), "test","dff", new ArrayList<>()));
         inputLogic = dff.getInput(0).getLogic();
         outputLogic = dff.getOutput(0).getLogic();
     }

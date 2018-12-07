@@ -19,8 +19,8 @@ public class SimulationControllerTest extends ApplicationTest {
     public void addWireErrors() {
         SimulationController simulationController = new SimulationController();
 
-        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), "and1", "and",2,1));
-        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), "and2", "and",2,1));
+        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), "and1", "and",new ArrayList<>()));
+        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), "and2", "and",new ArrayList<>()));
 
         ArrayList<PortIdentifier> outputs = new ArrayList<>();
         outputs.add(new PortIdentifier("and2", 1));
@@ -33,8 +33,8 @@ public class SimulationControllerTest extends ApplicationTest {
     public void addWire() {
         SimulationController simulationController = new SimulationController();
 
-        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), "and1","and", 2,1));
-        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), "and2","and", 2,1));
+        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), "and1","and", new ArrayList<>()));
+        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), "and2","and", new ArrayList<>()));
 
         ArrayList<PortIdentifier> outputs = new ArrayList<>();
         outputs.add(new PortIdentifier("and2", 1));
@@ -49,9 +49,9 @@ public class SimulationControllerTest extends ApplicationTest {
     public void addWireMultipleOutputs() {
         SimulationController simulationController = new SimulationController();
 
-        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), "and1", "and",2,1));
-        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), "and2", "and",2,1));
-        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), "and3", "and",2,1));
+        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), "and1", "and",new ArrayList<>()));
+        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), "and2", "and",new ArrayList<>()));
+        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), "and3", "and",new ArrayList<>()));
 
         ArrayList<PortIdentifier> outputs = new ArrayList<>();
         outputs.add(new PortIdentifier("and2", 1));
@@ -68,7 +68,7 @@ public class SimulationControllerTest extends ApplicationTest {
     public void addComponent() {
         SimulationController simulationController = new SimulationController();
 
-        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), "and1", "and", 2,1));
+        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), "and1", "and", new ArrayList<>()));
 
         //assertEquals(0,lookup("#and").queryAs(Group.class).getLayoutX());
 

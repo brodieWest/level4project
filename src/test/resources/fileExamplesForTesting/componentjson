@@ -1,17 +1,21 @@
-{"components": [
 {
-"type" : "input",
-"uuid": "input1",
-"xCoord": 0,
-"yCoord": 0,
-"outputPorts" : 1
-},
-{
-"type" : "not",
-"uuid": "not1",
-"xCoord": 100,
-"yCoord": 900,
-"inputPorts" : 1,
-"outputPorts" : 1
+  "components": [
+    {
+      "type": "input",
+      "uuid": "input1",
+      "xCoord": 0,
+      "yCoord": 0,
+      "outputPorts": 1
+    },
+    {
+      "type": "not",
+      "uuid": "not1",
+      "xCoord": 100,
+      "yCoord": 900,
+      "inputPorts": {
+        "direction": "SOUTH"
+      },
+      "outputPorts": 1
+    }
+  ]
 }
-]}

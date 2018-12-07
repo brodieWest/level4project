@@ -6,6 +6,8 @@ import model.Logic;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class NotGateTest {
@@ -16,7 +18,7 @@ public class NotGateTest {
 
     @Before
     public void setup() {
-        not =  new NotGate(new ComponentParameters(new Coordinates(0,0), "testnot","not", 1,1));
+        not =  new NotGate(new ComponentParameters(new Coordinates(0,0), "testnot","not", new ArrayList<>()));
         notInputLogic = not.getInput(0).getLogic();
         notOutputLogic = not.getOutput(0).getLogic();
     }

@@ -4,6 +4,7 @@ import javafx.Onscreen;
 import javafx.scene.Parent;
 import model.Coordinates;
 import model.Port;
+import model.PortParameters;
 import model.PortType;
 import javafx.wire.Wire;
 
@@ -27,16 +28,7 @@ public abstract class Component implements Onscreen {
         this.coordinates = componentParameters.getCoordinates();
         this.uuid = componentParameters.getUuid();
         this.type = componentParameters.getType();
-        int noInputs = componentParameters.getNoInputs();
-        int noOutputs = componentParameters.getNoOutputs();
-        if(noInputs == -1) noInputs = this.getDefaultInputs();
-        if(noOutputs == -1) noOutputs = this.getDefaultOutputs();
-        for(int i=0;i<noInputs;i++) {
-            addNewInput();
-        }
-        for(int i=0;i<noOutputs;i++) {
-            addNewOutput();
-        }
+        addPorts(componentParameters.getPortParameters());
     }
 
     // simulates the component over a single gate delay
@@ -55,8 +47,24 @@ public abstract class Component implements Onscreen {
         }
     }
 
+    private void addPorts(List<PortParameters> portParameters) {
+        for(PortParameters parameters : portParameters) {
+            if(parameters.getPortType() == PortType.INPUT) {
+                addNewInput();
+            } else {
+                addNewOutput();
+            }
+        }
+        if(portParameters.isEmpty()) {
+            for(int i=0;i<getDefaultInputs();i++) {
+                addNewInput();
+            }
+            for(int i=0;i<getDefaultOutputs();i++) {
+                addNewOutput();
+            }
+        }
+    }
 
-    // TODO check if valid
     public void addNewInput() {
         inputs.add(new Port(this));
         for(int i = 0; i < inputs.size(); i++) {
@@ -65,7 +73,6 @@ public abstract class Component implements Onscreen {
         }
     }
 
-    // TODO check if valid
     public void addNewOutput() {
         outputs.add(new Port(this));
         for(int i = 0; i < outputs.size(); i++) {

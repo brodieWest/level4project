@@ -70,7 +70,7 @@ public class UiIntegrationTests extends ApplicationTest {
 
         clickOn("#gateDelay");
 
-        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"U");
+        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"0");
 
         clickOn("#input");
 
@@ -78,7 +78,7 @@ public class UiIntegrationTests extends ApplicationTest {
 
         clickOn("#gateDelay");
 
-        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"U");
+        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"0");
 
         clickOn("#clockTick");
 

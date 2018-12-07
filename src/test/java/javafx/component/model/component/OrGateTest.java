@@ -2,10 +2,12 @@ package javafx.component.model.component;
 
 import javafx.component.model.component.gates.AndGate;
 import javafx.component.model.component.gates.OrGate;
-import model.Coordinates;
-import model.Logic;
+import model.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -17,9 +19,20 @@ public class OrGateTest {
     private Logic inputLogic1;
     private Logic outputLogic;
 
+    private Component or4;
+
     @Before
     public void setup() {
-        or = new OrGate(new ComponentParameters(new Coordinates(0,0), "testor","or",2,1));
+        List<PortParameters> portParameters = new ArrayList<>();
+
+        portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
+
+        or4 = new OrGate(new ComponentParameters(new Coordinates(0,0), "testor","or",portParameters));
+        or = new OrGate(new ComponentParameters(new Coordinates(0,0), "testor","or",new ArrayList<>()));
         inputLogic0 = or.getInput(0).getLogic();
         inputLogic1 = or.getInput(1).getLogic();
         outputLogic = or.getOutput(0).getLogic();
@@ -28,7 +41,6 @@ public class OrGateTest {
 
     @Test
     public void test4Parameters() {
-        OrGate or4 = new OrGate(new ComponentParameters(new Coordinates(0,0), "testor","or",4,1));
         Logic or4inputLogic0 = or4.getInput(0).getLogic();
         Logic or4inputLogic1 = or4.getInput(1).getLogic();
         Logic or4inputLogic2 = or4.getInput(2).getLogic();
@@ -53,7 +65,6 @@ public class OrGateTest {
 
     @Test
     public void test4ParametersUndefined() {
-        OrGate or4 = new OrGate(new ComponentParameters(new Coordinates(0,0), "testor","or",4,1));
         Logic or4inputLogic0 = or4.getInput(0).getLogic();
         Logic or4inputLogic1 = or4.getInput(1).getLogic();
         Logic or4inputLogic2 = or4.getInput(2).getLogic();

@@ -13,6 +13,8 @@ public class Port {
 
     private Component component;
 
+    private Direction direction;
+
     public Port(Component component) {
         this.component = component;
     }
@@ -43,5 +45,13 @@ public class Port {
 
     public Component getComponent() {
         return component;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 }

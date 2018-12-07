@@ -2,10 +2,12 @@ package javafx.component.model.component;
 
 import javafx.component.model.component.gates.AndGate;
 import javafx.component.model.component.gates.XorGate;
-import model.Coordinates;
-import model.Logic;
+import model.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -17,9 +19,21 @@ public class XorGateTest {
     private Logic inputLogic1;
     private Logic outputLogic;
 
+    private Component and4;
+
     @Before
     public void setup() {
-        and = new XorGate(new ComponentParameters(new Coordinates(0,0), "testand","xor",2,1));
+        List<PortParameters> portParameters = new ArrayList<>();
+
+        portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
+
+        and4 = new XorGate(new ComponentParameters(new Coordinates(0,0), "testand4","xor",portParameters));
+
+        and = new XorGate(new ComponentParameters(new Coordinates(0,0), "testand","xor",new ArrayList<>()));
         inputLogic0 = and.getInput(0).getLogic();
         inputLogic1 = and.getInput(1).getLogic();
         outputLogic = and.getOutput(0).getLogic();
@@ -27,7 +41,6 @@ public class XorGateTest {
 
     @Test
     public void test4Parameters() {
-        XorGate and4 = new XorGate(new ComponentParameters(new Coordinates(0,0), "testand","xor",4,1));
         Logic and4inputLogic0 = and4.getInput(0).getLogic();
         Logic and4inputLogic1 = and4.getInput(1).getLogic();
         Logic and4inputLogic2 = and4.getInput(2).getLogic();
@@ -52,7 +65,6 @@ public class XorGateTest {
 
     @Test
     public void test4ParametersUndefined() {
-        AndGate and4 = new AndGate(new ComponentParameters(new Coordinates(0,0), "testand","and",4,1));
         Logic and4inputLogic0 = and4.getInput(0).getLogic();
         Logic and4inputLogic1 = and4.getInput(1).getLogic();
         Logic and4inputLogic2 = and4.getInput(2).getLogic();

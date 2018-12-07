@@ -2,9 +2,8 @@ package fileIO;
 
 import javafx.component.model.component.ComponentParameters;
 import javafx.main.Mainfx;
-import model.Coordinates;
+import model.*;
 import javafx.simulation.SimulationController;
-import model.PortIdentifier;
 import net.sourceforge.jeval.EvaluationException;
 import net.sourceforge.jeval.Evaluator;
 import org.apache.logging.log4j.LogManager;
@@ -14,6 +13,7 @@ import org.json.JSONObject;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Load {
@@ -125,21 +125,23 @@ public class Load {
 
             Coordinates coordinates = new Coordinates(xCoord,yCoord);
 
-            int inputPorts, outputPorts;
+            List<PortParameters> portParameters = new ArrayList<>();
 
             if(component.has(INPUTPORTS)) {
-                inputPorts = component.getInt(INPUTPORTS);
-            } else {
-                inputPorts = -1;
+                int inputPorts = component.getInt(INPUTPORTS);
+                for(int i=0;i<inputPorts;i++) {
+                    portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
+                }
             }
 
             if(component.has(OUTPUTPORTS)) {
-                outputPorts = component.getInt(OUTPUTPORTS);
-            } else {
-                outputPorts = -1;
+                int outputPorts = component.getInt(OUTPUTPORTS);
+                for(int i=0;i<outputPorts;i++) {
+                    portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT));
+                }
             }
 
-            ComponentParameters componentParameters = new ComponentParameters(coordinates, uuid, component.getString(TYPE), inputPorts, outputPorts);
+            ComponentParameters componentParameters = new ComponentParameters(coordinates, uuid, component.getString(TYPE), portParameters);
 
             if (!simulationController.addComponent(componentParameters)) {
                 logger.error("failed to load components");

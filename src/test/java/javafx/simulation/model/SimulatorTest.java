@@ -1,6 +1,7 @@
 package javafx.simulation.model;
 
 import fileIO.Load;
+import javafx.component.model.component.Component;
 import javafx.component.model.component.ComponentParameters;
 import javafx.component.model.component.Dff;
 import javafx.component.model.component.Io.Input;
@@ -20,6 +21,7 @@ import org.testfx.framework.junit.ApplicationTest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.CheckedOutputStream;
 
 import static org.junit.Assert.*;
 
@@ -29,11 +31,11 @@ public class SimulatorTest extends ApplicationTest {
     public void calculatePathDepthOneComponent() {
         Simulator simulator = new Simulator();
 
-        Input input = new Input(new ComponentParameters(new Coordinates(0,0),"input1", "input", 0, 1));
+        Input input = new Input(new ComponentParameters(new Coordinates(0,0),"input1", "input", new ArrayList<>()));
 
-        NotGate not = new NotGate(new ComponentParameters(new Coordinates(0,0),"not1", "not", 1,1));
+        NotGate not = new NotGate(new ComponentParameters(new Coordinates(0,0),"not1", "not", new ArrayList<>()));
 
-        Output output = new Output(new ComponentParameters(new Coordinates(0,0), "output1", "output", 1,0));
+        Output output = new Output(new ComponentParameters(new Coordinates(0,0), "output1", "output", new ArrayList<>()));
 
         Wire wire1 = new Wire("wire1");
 
@@ -51,7 +53,7 @@ public class SimulatorTest extends ApplicationTest {
         output.getInput(0).setWire(wire2);
         wire2.addOutput(output.getInput(0));
 
-        List<Input> inputs = new ArrayList<>();
+        List<Component> inputs = new ArrayList<>();
         inputs.add(input);
 
         simulator.calculatePathDepth(inputs);
@@ -64,15 +66,15 @@ public class SimulatorTest extends ApplicationTest {
     public void calculatePathWithFlipFlop() {
         Simulator simulator = new Simulator();
 
-        Input input = new Input(new ComponentParameters(new Coordinates(0,0),"input1", "input", 0, 1));
+        Input input = new Input(new ComponentParameters(new Coordinates(0,0),"input1", "input", new ArrayList<>()));
 
-        NotGate not = new NotGate(new ComponentParameters(new Coordinates(0,0),"not1", "not", 1,1));
+        NotGate not = new NotGate(new ComponentParameters(new Coordinates(0,0),"not1", "not", new ArrayList<>()));
 
-        Dff dff = new Dff(new ComponentParameters(new Coordinates(0,0),"dff", "dff", 1,1));
+        Dff dff = new Dff(new ComponentParameters(new Coordinates(0,0),"dff", "dff", new ArrayList<>()));
 
-        NotGate not2 = new NotGate(new ComponentParameters(new Coordinates(0,0),"not2", "not", 1,1));
+        NotGate not2 = new NotGate(new ComponentParameters(new Coordinates(0,0),"not2", "not", new ArrayList<>()));
 
-        Output output = new Output(new ComponentParameters(new Coordinates(0,0), "output1", "output", 1,0));
+        Output output = new Output(new ComponentParameters(new Coordinates(0,0), "output1", "output", new ArrayList<>()));
 
         Wire wire1 = new Wire("wire1");
 
@@ -106,7 +108,7 @@ public class SimulatorTest extends ApplicationTest {
         output.getInput(0).setWire(wire4);
         wire4.addOutput(output.getInput(0));
 
-        List<Input> inputs = new ArrayList<>();
+        List<Component> inputs = new ArrayList<>();
         inputs.add(input);
 
         simulator.calculatePathDepth(inputs);

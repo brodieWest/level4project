@@ -7,6 +7,7 @@ import model.Coordinates;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import static org.junit.Assert.*;
@@ -20,7 +21,7 @@ public class ComponentTest {
 
     @Test
     public void addNewInput() {
-        Component and = new AndGate(new ComponentParameters(new Coordinates(1,1), "testand","and", 2,1));
+        Component and = new AndGate(new ComponentParameters(new Coordinates(1,1), "testand","and", new ArrayList<>()));
 
         assertEquals(50,and.getInput(0).getOffset().getX());
         assertEquals(40,and.getInput(0).getOffset().getY());
@@ -31,7 +32,7 @@ public class ComponentTest {
 
     @Test
     public void addNewOutput() {
-        Component not = new NotGate(new ComponentParameters(new Coordinates(1,1), "testnot","not", 2,1));
+        Component not = new NotGate(new ComponentParameters(new Coordinates(1,1), "testnot","not", new ArrayList<>()));
 
         assertEquals(50,not.getOutput(0).getOffset().getX());
         assertEquals(50,not.getOutput(0).getOffset().getY());
@@ -40,7 +41,7 @@ public class ComponentTest {
 
     @Test
     public void getPortLocations() {
-        Component and = new AndGate(new ComponentParameters(new Coordinates(100,200), "testand","and", 2,1));
+        Component and = new AndGate(new ComponentParameters(new Coordinates(100,200), "testand","and", new ArrayList<>()));
 
         Map<String,Integer> map = and.getPortLocations();
 
