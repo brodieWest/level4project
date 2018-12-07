@@ -34,7 +34,7 @@ public class Mainfx extends Application {
 
     public static File openFileWindow() {
         try {
-            File defaultDirectory = new File(Mainfx.class.getResource("fileExamples/").getFile());
+            File defaultDirectory = new File(Mainfx.class.getClassLoader().getResource("fileExamples/").getFile());
             fileChooser.setInitialDirectory(defaultDirectory);
         } catch (NullPointerException ignored) {
         }
