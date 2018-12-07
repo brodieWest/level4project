@@ -2,10 +2,7 @@ package javafx.component.model.component;
 
 import javafx.Onscreen;
 import javafx.scene.Parent;
-import model.Coordinates;
-import model.Port;
-import model.PortParameters;
-import model.PortType;
+import model.*;
 import javafx.wire.Wire;
 
 import java.util.*;
@@ -13,6 +10,11 @@ import java.util.*;
 public abstract class Component implements Onscreen {
     private List<Port> inputs = new ArrayList<>();
     private List<Port> outputs = new ArrayList<>();
+
+    private List<Port> westPorts = new ArrayList<>();
+    private List<Port> eastPorts = new ArrayList<>();
+    private List<Port> southPorts = new ArrayList<>();
+    private List<Port> northPorts = new ArrayList<>();
 
     private Coordinates coordinates;
 
@@ -48,21 +50,49 @@ public abstract class Component implements Onscreen {
     }
 
     private void addPorts(List<PortParameters> portParameters) {
-        for(PortParameters parameters : portParameters) {
-            if(parameters.getPortType() == PortType.INPUT) {
-                addNewInput();
-            } else {
-                addNewOutput();
-            }
-        }
         if(portParameters.isEmpty()) {
             for(int i=0;i<getDefaultInputs();i++) {
-                addNewInput();
+                portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
             }
             for(int i=0;i<getDefaultOutputs();i++) {
-                addNewOutput();
+                portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT));
             }
         }
+
+        for(PortParameters parameters : portParameters) {
+            Port port = new Port(this);
+            if(parameters.getPortType() == PortType.INPUT) {
+                inputs.add(port);
+            } else {
+                outputs.add(port);
+            }
+            if(parameters.getDirection() == Direction.WEST) {
+                westPorts.add(port);
+                for(int i = 0; i < westPorts.size(); i++) {
+                    Port westPort = westPorts.get(i);
+                    westPort.setOffset(new Coordinates(SIZE/2, PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(westPorts.size()+1)) ));
+                }
+            } else if(parameters.getDirection() == Direction.EAST) {
+                eastPorts.add(port);
+                for(int i = 0; i < eastPorts.size(); i++) {
+                    Port eastPort = eastPorts.get(i);
+                    eastPort.setOffset(new Coordinates(SIZE/2, PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(eastPorts.size()+1)) ));
+                }
+            } else if(parameters.getDirection() == Direction.SOUTH) {
+                southPorts.add(port);
+                for(int i = 0; i < southPorts.size(); i++) {
+                    Port southPort = southPorts.get(i);
+                    southPort.setOffset(new Coordinates(PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(southPorts.size()+1)), SIZE/2 ));
+                }
+            } else if(parameters.getDirection() == Direction.NORTH) {
+                northPorts.add(port);
+                for(int i = 0; i < northPorts.size(); i++) {
+                    Port northPort = northPorts.get(i);
+                    northPort.setOffset(new Coordinates(PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(northPorts.size()+1)) , SIZE/2));
+                }
+            }
+        }
+
     }
 
     public void addNewInput() {
