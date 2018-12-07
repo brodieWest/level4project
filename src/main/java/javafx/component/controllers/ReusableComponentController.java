@@ -4,7 +4,13 @@ import fileIO.Load;
 import javafx.component.Synchronous;
 import javafx.component.model.component.Component;
 import javafx.component.model.component.ReusableComponent;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.main.Mainfx;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.text.Text;
 import javafx.simulation.InternalController;
 import javafx.simulation.SimulationController;
@@ -45,6 +51,18 @@ public class ReusableComponentController extends ComponentController implements 
         componentModel.initialiseWires(inputWires,outputWires);
 
         text.setText(componentModel.getStringIdentifier());
+    }
+
+    @FXML
+    private void showContextMenu(ContextMenuEvent contextMenuEvent) {
+        ContextMenu contextMenu = new ContextMenu();
+
+        MenuItem showContents = new MenuItem("Show contents in new window");
+        showContents.setOnAction(event -> Mainfx.newWindow(internalSimulation.getScrollPane(), this.getComponentModel().getStringIdentifier()));
+
+        contextMenu.getItems().add(showContents);
+
+        contextMenu.show(svgGroup, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY());
     }
 
     @Override

@@ -4,10 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -17,7 +17,9 @@ public class Mainfx extends Application {
 
     private static FileChooser fileChooser = new FileChooser();
 
-    private static Desktop desktop = Desktop.getDesktop();
+    private static AnchorPane root = new AnchorPane();
+
+    private static Scene newScene = new Scene(root, 800, 500);
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -34,6 +36,17 @@ public class Mainfx extends Application {
         File defaultDirectory = new File(Mainfx.class.getClassLoader().getResource("fileExamples/").getFile());
         fileChooser.setInitialDirectory(defaultDirectory);
         return fileChooser.showOpenDialog(stage);
+    }
+
+    public static void newWindow(Parent internal, String title) {
+        Stage stage = new Stage();
+        stage.setTitle(title);
+        root.getChildren().clear();
+        root.getChildren().add(internal);
+
+        newScene.getStylesheets().add(Mainfx.class.getResource("/css/css").toExternalForm());
+        stage.setScene(newScene);
+        stage.show();
     }
 
 
