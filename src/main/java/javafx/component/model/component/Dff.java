@@ -6,7 +6,7 @@ import model.Logic;
 
 public class Dff extends Component implements Synchronous {
 
-    Logic storedValue = new Logic();
+    private Logic storedValue = new Logic();
 
 
     @Override
@@ -26,11 +26,15 @@ public class Dff extends Component implements Synchronous {
 
     @Override
     public void processClockTick() {
-        storedValue.copy(getInput(0).getLogic());
+        if(!getInput(0).getLogic().isUndefined()) {
+            storedValue.copy(getInput(0).getLogic());
+        }
     }
 
     public Dff(ComponentParameters componentParameters) {
         super(componentParameters);
+        storedValue.setUndefined(false);
+        storedValue.setValue(false);
     }
 
     @Override

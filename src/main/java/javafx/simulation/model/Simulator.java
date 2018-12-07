@@ -57,7 +57,9 @@ public class Simulator {
                         components.add(newComponent);
                     }
                     if(component instanceof ReusableComponent) {
-                        newComponent.setPathDepth(currentDepth);
+                        if(newComponent.getPathDepth() < currentDepth) {
+                            newComponent.setPathDepth(currentDepth);
+                        }
                     } else if (newComponent.getPathDepth() < (currentDepth + 1)) {
                         newComponent.setPathDepth(currentDepth + 1);
                     }

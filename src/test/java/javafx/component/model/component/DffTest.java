@@ -22,33 +22,31 @@ public class DffTest {
     }
 
     @Test
-    public void checkGateDelayDoesNotEffectOutput() {
-        inputLogic.setUndefined(false);
-        inputLogic.setValue(false);
+    public void checkInitailly0() {
+        inputLogic.setValue(true);
 
-        dff.storedValue.setValue(true);
-        dff.storedValue.setValue(true);
+        assertTrue(outputLogic.isUndefined());
 
         dff.processGateDelay();
 
-        assertTrue(outputLogic.isUndefined());
-        assertTrue(outputLogic.value());
+        assertFalse(outputLogic.isUndefined());
+        assertFalse(outputLogic.value());
 
         dff.processGateDelay();
 
-        assertTrue(outputLogic.isUndefined());
-        assertTrue(outputLogic.value());
+        assertFalse(outputLogic.isUndefined());
+        assertFalse(outputLogic.value());
 
         dff.processGateDelay();
 
-        assertTrue(outputLogic.isUndefined());
-        assertTrue(outputLogic.value());
+        assertFalse(outputLogic.isUndefined());
+        assertFalse(outputLogic.value());
     }
 
     @Test
     public void processClockTick() {
         inputLogic.setUndefined(false);
-        inputLogic.setValue(false);
+        inputLogic.setValue(true);
 
         outputLogic.setUndefined(true);
         outputLogic.setValue(true);
@@ -56,11 +54,10 @@ public class DffTest {
         dff.processClockTick();
 
         assertTrue(outputLogic.isUndefined());
-        assertTrue(outputLogic.value());
 
         dff.processGateDelay();
 
         assertFalse(outputLogic.isUndefined());
-        assertFalse(outputLogic.value());
+        assertTrue(outputLogic.value());
     }
 }
