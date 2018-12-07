@@ -8,12 +8,9 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
-import model.Coordinates;
+import model.*;
 import javafx.fxml.FXML;
 import javafx.scene.shape.Path;
-import model.Logic;
-import model.Port;
-import model.WireIdentifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import utils.fxml.FxmlLoaderUtils;
@@ -55,12 +52,15 @@ public class WireController implements Controller {
             endPort.setWire(wire);
         }
 
-        displayWire(startPort.getPosition(), endPorts);
+        displayWire(startPort, endPorts);
     }
 
-    private void displayWire(Coordinates startCoordinates, ArrayList<WireIdentifier> endPorts) {
+    private void displayWire(Port startPort, ArrayList<WireIdentifier> endPorts) {
+        Coordinates startCoordinates = startPort.getPosition();
 
-        endPorts = addCorners(startCoordinates, endPorts);
+        if(startPort.getDirection() == Direction.EAST) {
+            endPorts = addCorners(startCoordinates, endPorts);
+        }
 
         List<Coordinates> oldCorners = null;
 

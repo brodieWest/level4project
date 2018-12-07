@@ -12,9 +12,11 @@
       "uuid": "not1",
       "xCoord": 100,
       "yCoord": 900,
-      "inputPorts": {
-        "direction": "SOUTH"
-      },
+      "inputPorts": [
+        {
+          "direction": "SOUTH"
+        }
+      ],
       "outputPorts": 1
     }
   ]

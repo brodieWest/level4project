@@ -32,6 +32,7 @@ public class Load {
     private static String OUTPUTPORTS = "outputPorts";
     private static String CORNER = "corner";
     private static String CONSTANTS = "constants";
+    private static String DIRECTION = "direction";
 
     private static Logger logger = LogManager.getLogger(Load.class);
 
@@ -128,16 +129,32 @@ public class Load {
             List<PortParameters> portParameters = new ArrayList<>();
 
             if(component.has(INPUTPORTS)) {
-                int inputPorts = component.getInt(INPUTPORTS);
-                for(int i=0;i<inputPorts;i++) {
-                    portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
+                if(component.get(INPUTPORTS) instanceof Integer) {
+                    int inputPorts = component.getInt(INPUTPORTS);
+                    for (int i = 0; i < inputPorts; i++) {
+                        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
+                    }
+                } else {
+                    JSONArray inputsJson = component.getJSONArray(INPUTPORTS);
+                    for (Object inputObject : inputsJson) {
+                        JSONObject inputJson = (JSONObject) inputObject;
+                        portParameters.add(new PortParameters(Direction.valueOf(inputJson.getString(DIRECTION)), PortType.INPUT));
+                    }
                 }
             }
 
             if(component.has(OUTPUTPORTS)) {
-                int outputPorts = component.getInt(OUTPUTPORTS);
-                for(int i=0;i<outputPorts;i++) {
-                    portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT));
+                if(component.get(OUTPUTPORTS) instanceof Integer) {
+                    int outputPorts = component.getInt(OUTPUTPORTS);
+                    for (int i = 0; i < outputPorts; i++) {
+                        portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT));
+                    }
+                } else {
+                    JSONArray outputsJson = component.getJSONArray(OUTPUTPORTS);
+                    for (Object inputObject : outputsJson) {
+                        JSONObject inputJson = (JSONObject) inputObject;
+                        portParameters.add(new PortParameters(Direction.valueOf(inputJson.getString(DIRECTION)), PortType.OUTPUT));
+                    }
                 }
             }
 

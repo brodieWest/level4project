@@ -55,14 +55,6 @@ public class ComponentController implements Controller {
         componentModel.reset();
     }
 
-    public void addInput() {
-        componentModel.addNewInput();
-    }
-
-    public void addOutput() {
-        componentModel.addNewOutput();
-    }
-
     public Parent getComponent() {
         return component;
     }

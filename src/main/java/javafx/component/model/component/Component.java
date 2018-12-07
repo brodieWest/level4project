@@ -60,7 +60,7 @@ public abstract class Component implements Onscreen {
         }
 
         for(PortParameters parameters : portParameters) {
-            Port port = new Port(this);
+            Port port = new Port(this, parameters);
             if(parameters.getPortType() == PortType.INPUT) {
                 inputs.add(port);
             } else {
@@ -93,22 +93,6 @@ public abstract class Component implements Onscreen {
             }
         }
 
-    }
-
-    public void addNewInput() {
-        inputs.add(new Port(this));
-        for(int i = 0; i < inputs.size(); i++) {
-            Port port = inputs.get(i);
-            port.setOffset(new Coordinates(SIZE/2, PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(inputs.size()+1)) ));
-        }
-    }
-
-    public void addNewOutput() {
-        outputs.add(new Port(this));
-        for(int i = 0; i < outputs.size(); i++) {
-            Port port = outputs.get(i);
-            port.setOffset(new Coordinates(SIZE/2, PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(outputs.size()+1)) ));
-        }
     }
 
     public Port getOutput(int outputNo) {

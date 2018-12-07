@@ -4,8 +4,18 @@
       "type" : "mux",
       "uuid": "mux1",
       "xCoord": 100,
-      "yCoord": 100,
-      "inputPorts" : 3,
+      "yCoord": 50,
+      "inputPorts" : [
+        {
+          "direction" : "WEST"
+        },
+        {
+          "direction" : "SOUTH"
+        },
+        {
+          "direction" : "WEST"
+        }
+      ],
       "outputPorts" : 1
     },
     {
@@ -18,22 +28,26 @@
     {
       "type" : "input",
       "uuid": "input2",
-      "xCoord": 0,
-      "yCoord": 100,
-      "outputPorts" : 1
+      "xCoord": 100,
+      "yCoord": 200,
+      "outputPorts" : [
+        {
+          "direction" : "NORTH"
+        }
+      ]
     },
     {
       "type" : "input",
       "uuid": "input3",
       "xCoord": 0,
-      "yCoord": 200,
+      "yCoord": 100,
       "outputPorts" : 1
     },
     {
       "type" : "output",
       "uuid": "output1",
       "xCoord": 200,
-      "yCoord": 100,
+      "yCoord": 50,
       "inputPorts" : 1
     }
   ],

@@ -15,8 +15,9 @@ public class Port {
 
     private Direction direction;
 
-    public Port(Component component) {
+    public Port(Component component, PortParameters portParameters) {
         this.component = component;
+        this.direction = portParameters.getDirection();
     }
 
     public Coordinates getOffset() {
