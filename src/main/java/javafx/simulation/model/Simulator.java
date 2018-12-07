@@ -21,10 +21,11 @@ public class Simulator {
 
     private static Logger logger = LogManager.getLogger(Simulator.class);
 
-    public void calculatePathDepth(List<Input> inputs) {
+    public void calculatePathDepth(List<Component> inputs) {
         int maxPathDepth = 0;
         Set<Port> visitedInputPorts = new HashSet<>();
         Set<ReusableComponent> visitedReusables = new HashSet<>();
+        Set<Component> visitedComponents = new HashSet<>();
 
         Set<Component> components = new HashSet<>(inputs);
 
@@ -53,20 +54,17 @@ public class Simulator {
                 for(Port output : outputs) {
                     Component newComponent = output.getComponent();
                     visitedInputPorts.add(output);
-                    if(visitedInputPorts.containsAll(newComponent.getInputs())) {
+                    if(visitedInputPorts.containsAll(newComponent.getInputs()) && !visitedComponents.contains(newComponent)) {
                         components.add(newComponent);
+                        visitedComponents.add(newComponent);
                     }
-                    if(component instanceof ReusableComponent) {
-                        if(newComponent.getPathDepth() < currentDepth) {
-                            newComponent.setPathDepth(currentDepth);
-                        }
-                    } else if (newComponent.getPathDepth() < (currentDepth + 1)) {
+                    if (newComponent.getPathDepth() < (currentDepth + 1)) {
                         newComponent.setPathDepth(currentDepth + 1);
                     }
                 }
             }
         }
-        pathDepth = maxPathDepth - visitedReusables.size();
+        pathDepth = maxPathDepth - visitedReusables.size() * 2;
 
         logger.info(String.format("Path Depth is %d ", pathDepth));
     }

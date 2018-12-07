@@ -1,8 +1,10 @@
 package javafx.simulation;
 
 import javafx.component.controllers.ComponentController;
+import javafx.component.controllers.DffController;
 import javafx.component.controllers.InputController;
 import javafx.component.model.component.Component;
+import javafx.component.model.component.Dff;
 import javafx.component.model.component.Io.Input;
 import javafx.main.MainController;
 import javafx.scene.Parent;
@@ -88,13 +90,13 @@ public class MainSimulationController extends SimulationController {
     }
 
     public void calculatePathDepth() {
-        List<Input> inputs = new ArrayList<>();
+        List<Component> inputs = new ArrayList<>();
 
         Collection<ComponentController> newComponentControllers = componentControllers.values();
 
         for(ComponentController componentController : newComponentControllers) {
-            if(componentController instanceof InputController) {
-                inputs.add((Input)componentController.getComponentModel());
+            if(componentController instanceof InputController || componentController instanceof DffController) {
+                inputs.add(componentController.getComponentModel());
             }
 
         }
