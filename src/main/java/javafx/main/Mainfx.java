@@ -15,6 +15,8 @@ public class Mainfx extends Application {
 
     private static Stage stage;
 
+    private static Stage reusableInternalStage = new Stage();
+
     private static FileChooser fileChooser = new FileChooser();
 
     private static AnchorPane root = new AnchorPane();
@@ -42,14 +44,13 @@ public class Mainfx extends Application {
     }
 
     public static void newWindow(Parent internal, String title) {
-        Stage stage = new Stage();
-        stage.setTitle(title);
+        reusableInternalStage.setTitle(title);
         root.getChildren().clear();
         root.getChildren().add(internal);
 
         newScene.getStylesheets().add(Mainfx.class.getResource("/css/css").toExternalForm());
-        stage.setScene(newScene);
-        stage.show();
+        reusableInternalStage.setScene(newScene);
+        reusableInternalStage.show();
     }
 
 
