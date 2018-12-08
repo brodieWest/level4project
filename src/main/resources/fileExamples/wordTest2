@@ -4,18 +4,24 @@
       "type": "wordInput",
       "uuid": "input1",
       "xCoord": 0,
-      "yCoord": 0,
+      "yCoord": 100,
       "outputPorts": [
         {
-          "direction": "WEST",
+          "direction": "EAST",
           "size": 4
         }
       ]
     },
     {
+      "type": "not",
+      "uuid": "not1",
+      "xCoord": 200,
+      "yCoord": 100
+    },
+    {
       "type": "wordOutput",
       "uuid": "output1",
-      "xCoord": 300,
+      "xCoord": 400,
       "yCoord": 0,
       "inputPorts": [
         {
@@ -40,7 +46,7 @@
     {
       "type" : "join",
       "uuid": "join1",
-      "xCoord": 200,
+      "xCoord": 300,
       "yCoord": 0,
       "outputPorts": [
         {
@@ -96,6 +102,19 @@
       "input" : {
         "component" : "split1",
         "port" : 3
+      },
+      "output" : [
+        {
+          "component" : "not1",
+          "port" : 0
+        }
+      ]
+    },
+    {
+      "uuid" : "wire7",
+      "input" : {
+        "component" : "not1",
+        "port" : 0
       },
       "output" : [
         {

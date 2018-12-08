@@ -40,7 +40,7 @@ public class WireController implements Controller {
     private static Logger logger = LogManager.getLogger(WireController.class);
 
     public WireController(String uuid, Port startPort, ArrayList<WireIdentifier> endPorts) {
-        FxmlLoaderUtils.loadFxml(WIRE_PATH, this);
+        loadFxml();
 
         Wire wire = new Wire(uuid);
         this.wire = wire;
@@ -57,6 +57,10 @@ public class WireController implements Controller {
         displayWire(startPort, endPorts);
     }
 
+    public void loadFxml() {
+        FxmlLoaderUtils.loadFxml(WIRE_PATH, this);
+    }
+
     private void displayWire(Port startPort, ArrayList<WireIdentifier> endPorts) {
         Coordinates startCoordinates = startPort.getPosition();
 
@@ -70,7 +74,7 @@ public class WireController implements Controller {
 
         for(WireIdentifier identifier : endPorts) {
 
-            path.getElements().add(new MoveTo(startCoordinates.getX(),startCoordinates.getY()));
+            addMoveTo(startCoordinates);
 
             List<Coordinates> corners = identifier.getCorners();
             Coordinates endCoordinates = identifier.getPort().getPosition();
@@ -79,7 +83,7 @@ public class WireController implements Controller {
 
             for (int i=0;i<corners.size();i++) {
                 Coordinates cornerCoords = corners.get(i);
-                path.getElements().add(new LineTo(cornerCoords.getX(), cornerCoords.getY()));
+                displayLine(cornerCoords);
 
                 if(!breakFound && i>0) {
                     if(i<oldCorners.size()) {
@@ -90,13 +94,22 @@ public class WireController implements Controller {
                 }
             }
 
-            path.getElements().add(new LineTo(endCoordinates.getX(),endCoordinates.getY()));
+            displayLine(endCoordinates);
 
             oldCorners = corners;
             breakFound = false;
         }
 
 
+    }
+
+
+    public void addMoveTo(Coordinates coordinates) {
+        path.getElements().add(new MoveTo(coordinates.getX(),coordinates.getY()));
+    }
+
+    public void displayLine(Coordinates coordinates) {
+        path.getElements().add(new LineTo(coordinates.getX(),coordinates.getY()));
     }
 
     private ArrayList<WireIdentifier> addCorners(Coordinates startCoordinates, ArrayList<WireIdentifier> endPorts) {

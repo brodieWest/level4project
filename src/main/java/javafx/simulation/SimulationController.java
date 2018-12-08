@@ -17,6 +17,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.transform.Scale;
 import javafx.wire.WireController;
+import javafx.wire.WordWireController;
 import model.Coordinates;
 import javafx.wire.Wire;
 import javafx.component.model.component.Component;
@@ -195,7 +196,14 @@ public class SimulationController implements Controller {
 
 
         if(startComponent.getOutputSize() -1 < startPortNo) return false;
-        WireController wireController = new WireController(uuid,startComponent.getOutput(startPortNo), outputPorts);
+
+        Port input = startComponent.getOutput(startPortNo);
+        WireController wireController;
+        if(input.getWord().size()>1) {
+            wireController = new WordWireController(uuid,input,outputPorts);
+        } else {
+            wireController = new WireController(uuid, input, outputPorts);
+        }
 
         wireControllers.put(wireController.getUuid(), wireController);
 
