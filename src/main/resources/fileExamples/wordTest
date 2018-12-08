@@ -1,0 +1,59 @@
+{
+  "components": [
+    {
+      "type": "not",
+      "uuid": "not1",
+      "xCoord": 100,
+      "yCoord": 0,
+      "inputPorts": 1,
+      "outputPorts": 1
+    },
+    {
+      "type": "wordInput",
+      "uuid": "input1",
+      "xCoord": 0,
+      "yCoord": 0,
+      "outputPorts": [
+        {
+          "direction": "WEST",
+          "size": 16
+        }
+      ]
+    },
+    {
+      "type" : "output",
+      "uuid": "output1",
+      "xCoord": 200,
+      "yCoord": 0,
+      "inputPorts" : 1
+    }
+  ],
+  "wires": [
+    {
+      "uuid" : "wire1",
+      "input" : {
+        "component" : "input1",
+        "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "not1",
+          "port" : 0
+        }
+      ]
+    },
+    {
+      "uuid" : "wire2",
+      "input" : {
+        "component" : "not1",
+        "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "output1",
+          "port" : 0
+        }
+      ]
+    }
+  ]
+}

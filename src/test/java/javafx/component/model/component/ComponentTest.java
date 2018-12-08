@@ -47,11 +47,11 @@ public class ComponentTest {
     public void addPort() {
         List<PortParameters> portParameters = new ArrayList<>();
 
-        portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT));
-        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
-        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
-        portParameters.add(new PortParameters(Direction.SOUTH, PortType.INPUT));
-        portParameters.add(new PortParameters(Direction.SOUTH, PortType.INPUT));
+        portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT,1));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
+        portParameters.add(new PortParameters(Direction.SOUTH, PortType.INPUT,1));
+        portParameters.add(new PortParameters(Direction.SOUTH, PortType.INPUT,1));
 
         Component and = new AndGate(new ComponentParameters(new Coordinates(0,0), "testand4","and",portParameters ));
 

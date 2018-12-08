@@ -33,6 +33,7 @@ public class Load {
     private static String CORNER = "corner";
     private static String CONSTANTS = "constants";
     private static String DIRECTION = "direction";
+    private static String SIZE = "size";
 
     private static Logger logger = LogManager.getLogger(Load.class);
 
@@ -132,13 +133,13 @@ public class Load {
                 if(component.get(INPUTPORTS) instanceof Integer) {
                     int inputPorts = component.getInt(INPUTPORTS);
                     for (int i = 0; i < inputPorts; i++) {
-                        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
+                        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
                     }
                 } else {
                     JSONArray inputsJson = component.getJSONArray(INPUTPORTS);
                     for (Object inputObject : inputsJson) {
                         JSONObject inputJson = (JSONObject) inputObject;
-                        portParameters.add(new PortParameters(Direction.valueOf(inputJson.getString(DIRECTION)), PortType.INPUT));
+                        portParameters.add(new PortParameters(Direction.valueOf(inputJson.getString(DIRECTION)), PortType.INPUT, inputJson.getInt(SIZE)));
                     }
                 }
             }
@@ -147,13 +148,13 @@ public class Load {
                 if(component.get(OUTPUTPORTS) instanceof Integer) {
                     int outputPorts = component.getInt(OUTPUTPORTS);
                     for (int i = 0; i < outputPorts; i++) {
-                        portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT));
+                        portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT,1));
                     }
                 } else {
                     JSONArray outputsJson = component.getJSONArray(OUTPUTPORTS);
                     for (Object inputObject : outputsJson) {
                         JSONObject inputJson = (JSONObject) inputObject;
-                        portParameters.add(new PortParameters(Direction.valueOf(inputJson.getString(DIRECTION)), PortType.OUTPUT));
+                        portParameters.add(new PortParameters(Direction.valueOf(inputJson.getString(DIRECTION)), PortType.OUTPUT, inputJson.getInt(SIZE)));
                     }
                 }
             }

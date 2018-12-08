@@ -35,9 +35,9 @@ public class ComponentControllerFactoryTest extends ApplicationTest{
     public void getComponentControllerNand() {
         List<PortParameters> portParameters = new ArrayList<>();
 
-        portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT));
-        portParameters.add(new PortParameters(Direction.WEST,PortType.INPUT));
-        portParameters.add(new PortParameters(Direction.WEST,PortType.INPUT));
+        portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT, 1));
+        portParameters.add(new PortParameters(Direction.WEST,PortType.INPUT, 1));
+        portParameters.add(new PortParameters(Direction.WEST,PortType.INPUT, 1));
 
         ComponentController testNandController = ComponentControllerFactory.getComponentController(mock(SimulationController.class),new ComponentParameters(new Coordinates(0,0), "not1","nand",portParameters));
         assertNotNull(testNandController);

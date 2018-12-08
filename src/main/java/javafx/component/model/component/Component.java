@@ -52,10 +52,10 @@ public abstract class Component implements Onscreen {
     private void addPorts(List<PortParameters> portParameters) {
         if(portParameters.isEmpty()) {
             for(int i=0;i<getDefaultInputs();i++) {
-                portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
+                portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
             }
             for(int i=0;i<getDefaultOutputs();i++) {
-                portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT));
+                portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT,1));
             }
         }
 

@@ -26,7 +26,7 @@ public class Wire implements Onscreen {
 
     void passSignal() {
         for(Port output : outputs) {
-            output.getLogic().copy(input.getLogic());
+            output.getWord().copy(input.getWord());
         }
     }
 

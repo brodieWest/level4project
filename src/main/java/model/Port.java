@@ -3,13 +3,16 @@ package model;
 import javafx.component.model.component.Component;
 import javafx.wire.Wire;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Port {
 
     private Coordinates offset;
 
     private Wire wire;
 
-    private Logic logic = new Logic();
+    private Word word;
 
     private Component component;
 
@@ -18,6 +21,7 @@ public class Port {
     public Port(Component component, PortParameters portParameters) {
         this.component = component;
         this.direction = portParameters.getDirection();
+        this.word = new Word(portParameters.getSize());
     }
 
     public Coordinates getOffset() {
@@ -41,7 +45,7 @@ public class Port {
     }
 
     public Logic getLogic() {
-        return logic;
+        return word.get(0);
     }
 
     public Component getComponent() {
@@ -54,5 +58,17 @@ public class Port {
 
     public void setDirection(Direction direction) {
         this.direction = direction;
+    }
+
+    public Word getWord() {
+        return word;
+    }
+
+    public void setWord(Word word) {
+        this.word = word;
+    }
+
+    public void setComponent(Component component) {
+        this.component = component;
     }
 }

@@ -25,11 +25,11 @@ public class OrGateTest {
     public void setup() {
         List<PortParameters> portParameters = new ArrayList<>();
 
-        portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT));
-        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
-        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
-        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
-        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
+        portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT,1));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
 
         or4 = new OrGate(new ComponentParameters(new Coordinates(0,0), "testor","or",portParameters));
         or = new OrGate(new ComponentParameters(new Coordinates(0,0), "testor","or",new ArrayList<>()));

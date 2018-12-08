@@ -25,11 +25,11 @@ public class XorGateTest {
     public void setup() {
         List<PortParameters> portParameters = new ArrayList<>();
 
-        portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT));
-        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
-        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
-        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
-        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
+        portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT,1));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
+        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
 
         and4 = new XorGate(new ComponentParameters(new Coordinates(0,0), "testand4","xor",portParameters));
 

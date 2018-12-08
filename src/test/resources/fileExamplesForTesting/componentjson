@@ -14,7 +14,8 @@
       "yCoord": 900,
       "inputPorts": [
         {
-          "direction": "SOUTH"
+          "direction": "SOUTH",
+          "size" : 1
         }
       ],
       "outputPorts": 1
