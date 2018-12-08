@@ -13,16 +13,41 @@
       ]
     },
     {
-      "type" : "wordOutput",
-      "uuid": "output1",
-      "xCoord": 200,
+      "type" : "split",
+      "uuid": "split1",
+      "xCoord": 100,
       "yCoord": 0,
       "inputPorts": [
         {
           "direction": "WEST",
           "size": 16
         }
-      ]
+      ],
+      "outputPorts" : 4
+    },
+    {
+      "type" : "output",
+      "uuid": "output1",
+      "xCoord": 200,
+      "yCoord": 0
+    },
+    {
+      "type" : "output",
+      "uuid": "output2",
+      "xCoord": 200,
+      "yCoord": 100
+    },
+    {
+      "type" : "output",
+      "uuid": "output3",
+      "xCoord": 200,
+      "yCoord": 200
+    },
+    {
+      "type" : "output",
+      "uuid": "output4",
+      "xCoord": 200,
+      "yCoord": 300
     }
   ],
   "wires": [
@@ -34,7 +59,59 @@
       },
       "output" : [
         {
+          "component" : "split1",
+          "port" : 0
+        }
+      ]
+    },
+    {
+      "uuid" : "wire2",
+      "input" : {
+        "component" : "split1",
+        "port" : 0
+      },
+      "output" : [
+        {
           "component" : "output1",
+          "port" : 0
+        }
+      ]
+    },
+    {
+      "uuid" : "wire3",
+      "input" : {
+        "component" : "split1",
+        "port" : 1
+      },
+      "output" : [
+        {
+          "component" : "output2",
+          "port" : 0
+        }
+      ]
+    },
+    {
+      "uuid" : "wire4",
+      "input" : {
+        "component" : "split1",
+        "port" : 2
+      },
+      "output" : [
+        {
+          "component" : "output3",
+          "port" : 0
+        }
+      ]
+    },
+    {
+      "uuid" : "wire5",
+      "input" : {
+        "component" : "split1",
+        "port" : 3
+      },
+      "output" : [
+        {
+          "component" : "output4",
           "port" : 0
         }
       ]

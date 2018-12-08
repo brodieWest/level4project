@@ -3,6 +3,7 @@ package javafx.simulation;
 import javafx.Controller;
 import javafx.component.OutputControllerInterface;
 import javafx.component.Synchronous;
+import javafx.component.WordComponent;
 import javafx.component.controllers.ComponentController;
 import javafx.component.controllers.ComponentControllerFactory;
 import javafx.component.controllers.OutputController;
@@ -48,6 +49,7 @@ public class SimulationController implements Controller {
     Map<String,ComponentController> componentControllers = new HashMap<>();
     private Map<String,OutputControllerInterface> outputControllers = new HashMap<>();
     private Map<String,Synchronous> synchronousControllers = new HashMap<>();
+    private Map<String, WordComponent> wordComponents = new HashMap<>();
 
     private Scale scale = new Scale();
 
@@ -120,10 +122,18 @@ public class SimulationController implements Controller {
             outputController.showOutputValue();
         }
 
+        for(WordComponent wordComponent : wordComponents.values()) {
+            wordComponent.wireDelay();
+        }
+
     }
 
     public void addOutput(OutputControllerInterface outputController) {
         outputControllers.put(outputController.getUuid(),outputController);
+    }
+
+    public void addWordComponent(WordComponent wordComponent) {
+        wordComponents.put(wordComponent.getUuid(),wordComponent);
     }
 
     public void resetSimulation() {

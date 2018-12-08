@@ -9,7 +9,7 @@ import java.util.*;
 
 public abstract class Component implements Onscreen {
     private List<Port> inputs = new ArrayList<>();
-    private List<Port> outputs = new ArrayList<>();
+    protected List<Port> outputs = new ArrayList<>();
 
     private List<Port> westPorts = new ArrayList<>();
     private List<Port> eastPorts = new ArrayList<>();

@@ -25,6 +25,7 @@ public class ComponentControllerFactory {
         stdComponentControllers.put("xor", new XorFactory());
         stdComponentControllers.put("wordInput", new WordInputFactory());
         stdComponentControllers.put("wordOutput", new WordOutputFactory());
+        stdComponentControllers.put("split", new SplitFactory());
     }
 
     public static ComponentController getComponentController(SimulationController simulationController, ComponentParameters componentParameters) {

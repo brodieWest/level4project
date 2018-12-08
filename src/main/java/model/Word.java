@@ -20,6 +20,7 @@ public class Word extends ArrayList<Logic> {
     public void setValue(int value) {
         String binary = Integer.toBinaryString(value);
         setUndefined(false);
+        setTo0();
 
         for(int i=0;i<binary.length();i++) {
             String bit = binary.substring(i,i+1);

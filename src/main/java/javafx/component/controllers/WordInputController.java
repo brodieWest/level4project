@@ -13,10 +13,11 @@ public class WordInputController extends ComponentController {
 
     public WordInputController(SimulationController simulationController, Component componentModel) {
         super(simulationController, componentModel);
+        changeWordValue();
     }
 
-
-    public void changeWordValue() {
+    @FXML
+    private void changeWordValue() {
         WordInput wordInput = (WordInput) componentModel;
 
         simulationController.resetSimulation();
