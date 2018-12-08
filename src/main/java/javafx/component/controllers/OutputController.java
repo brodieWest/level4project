@@ -1,16 +1,17 @@
 package javafx.component.controllers;
 
+import javafx.component.OutputControllerInterface;
 import javafx.component.model.component.Component;
 import javafx.simulation.SimulationController;
 import javafx.wire.Wire;
-import model.Coordinates;
 import model.Logic;
 
-public class OutputController extends IoController {
+public class OutputController extends IoController implements OutputControllerInterface {
 
 
     public OutputController(SimulationController simulationController, Component componentModel) {
         super(simulationController, componentModel);
+        simulationController.addOutput(this);
     }
 
     public void showOutputValue() {

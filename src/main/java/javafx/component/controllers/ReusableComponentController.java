@@ -19,6 +19,7 @@ import model.Port;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
+import utils.fxml.FxmlLoaderUtils;
 
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -30,6 +31,7 @@ public class ReusableComponentController extends ComponentController implements 
     private InternalController internalSimulation;
 
     private static String REUSABLE_FILE_PATH = "/fileExamples/reusable/";
+    private static String REUSABLE = "reusable";
 
     @FXML
     private Text text;
@@ -51,6 +53,13 @@ public class ReusableComponentController extends ComponentController implements 
         componentModel.initialiseWires(inputWires,outputWires);
 
         text.setText(componentModel.getStringIdentifier());
+
+        simulationController.addSynchronous(this);
+    }
+
+    @Override
+    public void loadFxml() {
+        FxmlLoaderUtils.loadFxml(String.format(COMPONENT_PATH,REUSABLE), this);
     }
 
     @FXML

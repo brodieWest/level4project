@@ -139,7 +139,11 @@ public class Load {
                     JSONArray inputsJson = component.getJSONArray(INPUTPORTS);
                     for (Object inputObject : inputsJson) {
                         JSONObject inputJson = (JSONObject) inputObject;
-                        portParameters.add(new PortParameters(Direction.valueOf(inputJson.getString(DIRECTION)), PortType.INPUT, inputJson.getInt(SIZE)));
+                        int size=1;
+                        if(inputJson.has(SIZE)) {
+                            size = inputJson.getInt(SIZE);
+                        }
+                        portParameters.add(new PortParameters(Direction.valueOf(inputJson.getString(DIRECTION)), PortType.INPUT, size));
                     }
                 }
             }
@@ -154,7 +158,11 @@ public class Load {
                     JSONArray outputsJson = component.getJSONArray(OUTPUTPORTS);
                     for (Object inputObject : outputsJson) {
                         JSONObject inputJson = (JSONObject) inputObject;
-                        portParameters.add(new PortParameters(Direction.valueOf(inputJson.getString(DIRECTION)), PortType.OUTPUT, inputJson.getInt(SIZE)));
+                        int size=1;
+                        if(inputJson.has(SIZE)) {
+                            size = inputJson.getInt(SIZE);
+                        }
+                        portParameters.add(new PortParameters(Direction.valueOf(inputJson.getString(DIRECTION)), PortType.OUTPUT, size));
                     }
                 }
             }

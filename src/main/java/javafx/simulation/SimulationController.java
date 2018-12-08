@@ -1,6 +1,7 @@
 package javafx.simulation;
 
 import javafx.Controller;
+import javafx.component.OutputControllerInterface;
 import javafx.component.Synchronous;
 import javafx.component.controllers.ComponentController;
 import javafx.component.controllers.ComponentControllerFactory;
@@ -45,6 +46,8 @@ public class SimulationController implements Controller {
     private Group backGround = buildBackground();
 
     Map<String,ComponentController> componentControllers = new HashMap<>();
+    private Map<String,OutputControllerInterface> outputControllers = new HashMap<>();
+    private Map<String,Synchronous> synchronousControllers = new HashMap<>();
 
     private Scale scale = new Scale();
 
@@ -85,15 +88,15 @@ public class SimulationController implements Controller {
     }
 
     public void clockTick() {
-        // TODO improve efficiency here
-        for(ComponentController controller : componentControllers.values()) {
-            if(controller instanceof Synchronous) {
-                Synchronous synchronousController = (Synchronous)controller;
-                synchronousController.processClockTick();
-            }
+        for(Synchronous synchronous : synchronousControllers.values()) {
+            synchronous.processClockTick();
         }
         resetSimulation();
         wireDelay();
+    }
+
+    public void addSynchronous(Synchronous synchronous) {
+        synchronousControllers.put(synchronous.getUuid(),synchronous);
     }
 
     public void gateDelay() {
@@ -113,20 +116,14 @@ public class SimulationController implements Controller {
             wireController.showSignal();
         }
 
-        //TODO improve efficiency here!!
-        for(ComponentController controller : componentControllers.values()) {
-            if(controller instanceof OutputController) {
-                OutputController outputController = (OutputController) controller;
-                outputController.showOutputValue();
-            }
+        for(OutputControllerInterface outputController : outputControllers.values()) {
+            outputController.showOutputValue();
         }
 
-        for(ComponentController controller : componentControllers.values()) {
-            if(controller instanceof WordOutputController) {
-                WordOutputController outputController = (WordOutputController) controller;
-                outputController.showOutputValue();
-            }
-        }
+    }
+
+    public void addOutput(OutputControllerInterface outputController) {
+        outputControllers.put(outputController.getUuid(),outputController);
     }
 
     public void resetSimulation() {

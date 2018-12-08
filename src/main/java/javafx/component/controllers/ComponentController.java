@@ -19,8 +19,7 @@ public class ComponentController implements Controller {
 
     SimulationController simulationController;
 
-    private static String COMPONENT_PATH = "fxml/components/%s.fxml";
-    private static String REUSABLE = "reusable";
+    static String COMPONENT_PATH = "fxml/components/%s.fxml";
 
     @FXML
     Text text;
@@ -35,13 +34,14 @@ public class ComponentController implements Controller {
         this.componentModel = componentModel;
         this.simulationController = simulationController;
 
-        if(componentModel instanceof ReusableComponent) {
-            FxmlLoaderUtils.loadFxml(String.format(COMPONENT_PATH,REUSABLE), this);
-        } else {
-            FxmlLoaderUtils.loadFxml(String.format(COMPONENT_PATH, componentModel.getStringIdentifier()), this);
-        }
+        loadFxml();
 
     }
+
+    public void loadFxml() {
+        FxmlLoaderUtils.loadFxml(String.format(COMPONENT_PATH, componentModel.getStringIdentifier()), this);
+    }
+
 
     public Component getComponentModel() {
         return componentModel;

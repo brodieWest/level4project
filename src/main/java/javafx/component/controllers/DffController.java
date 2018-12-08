@@ -10,6 +10,7 @@ public class DffController extends ComponentController implements Synchronous{
 
     public DffController(SimulationController simulationController, Component componentModel) {
         super(simulationController, componentModel);
+        simulationController.addSynchronous(this);
     }
 
     @Override
