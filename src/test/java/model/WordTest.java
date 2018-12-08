@@ -16,5 +16,29 @@ public class WordTest {
         assertFalse(word.get(1).value());
         assertTrue(word.get(2).value());
         assertFalse(word.get(3).value());
+        assertFalse(word.get(4).value());
+        assertFalse(word.get(5).value());
+        assertFalse(word.get(6).value());
+        assertFalse(word.get(7).value());
+        assertFalse(word.get(8).value());
+        assertFalse(word.get(9).value());
+    }
+
+    @Test
+    public void toStringTest() {
+        Word word = new Word(16);
+
+        word.setValue(5);
+
+        assertEquals("5", word.toString());
+    }
+
+    @Test
+    public void toStringHex() {
+        Word word = new Word(16);
+
+        word.setValue(10);
+
+        assertEquals("a", word.toString());
     }
 }

@@ -5,6 +5,7 @@ import javafx.component.Synchronous;
 import javafx.component.controllers.ComponentController;
 import javafx.component.controllers.ComponentControllerFactory;
 import javafx.component.controllers.OutputController;
+import javafx.component.controllers.WordOutputController;
 import javafx.component.model.component.ComponentParameters;
 import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
@@ -112,10 +113,17 @@ public class SimulationController implements Controller {
             wireController.showSignal();
         }
 
-        //TODO improve efficiency here
+        //TODO improve efficiency here!!
         for(ComponentController controller : componentControllers.values()) {
             if(controller instanceof OutputController) {
                 OutputController outputController = (OutputController) controller;
+                outputController.showOutputValue();
+            }
+        }
+
+        for(ComponentController controller : componentControllers.values()) {
+            if(controller instanceof WordOutputController) {
+                WordOutputController outputController = (WordOutputController) controller;
                 outputController.showOutputValue();
             }
         }
