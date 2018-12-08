@@ -113,17 +113,19 @@ public class SimulationController implements Controller {
     }
 
     public void wireDelay() {
-        for(WireController wireController : wireControllers.values()) {
-            wireController.passSignal();
-            wireController.showSignal();
-        }
+        for(int i=0;i<wordComponents.size()+1;i++) {
+            for (WireController wireController : wireControllers.values()) {
+                wireController.passSignal();
+                wireController.showSignal();
+            }
 
-        for(OutputControllerInterface outputController : outputControllers.values()) {
-            outputController.showOutputValue();
-        }
+            for (WordComponent wordComponent : wordComponents.values()) {
+                wordComponent.wireDelay();
+            }
 
-        for(WordComponent wordComponent : wordComponents.values()) {
-            wordComponent.wireDelay();
+            for (OutputControllerInterface outputController : outputControllers.values()) {
+                outputController.showOutputValue();
+            }
         }
 
     }

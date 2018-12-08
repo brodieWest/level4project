@@ -1,6 +1,7 @@
 package javafx.wire;
 
 import javafx.Controller;
+import javafx.component.WordComponent;
 import javafx.component.model.component.Component;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -8,6 +9,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
+import javafx.simulation.SimulationController;
 import model.*;
 import javafx.fxml.FXML;
 import javafx.scene.shape.Path;

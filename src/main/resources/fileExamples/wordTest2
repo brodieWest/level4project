@@ -1,0 +1,134 @@
+{
+  "components": [
+    {
+      "type": "wordInput",
+      "uuid": "input1",
+      "xCoord": 0,
+      "yCoord": 0,
+      "outputPorts": [
+        {
+          "direction": "WEST",
+          "size": 4
+        }
+      ]
+    },
+    {
+      "type": "wordOutput",
+      "uuid": "output1",
+      "xCoord": 300,
+      "yCoord": 0,
+      "inputPorts": [
+        {
+          "direction": "WEST",
+          "size": 4
+        }
+      ]
+    },
+    {
+      "type" : "split",
+      "uuid": "split1",
+      "xCoord": 100,
+      "yCoord": 0,
+      "inputPorts": [
+        {
+          "direction": "WEST",
+          "size": 4
+        }
+      ],
+      "outputPorts" : 4
+    },
+    {
+      "type" : "join",
+      "uuid": "join1",
+      "xCoord": 200,
+      "yCoord": 0,
+      "outputPorts": [
+        {
+          "direction": "EAST",
+          "size": 4
+        }
+      ],
+      "inputPorts" : 4
+    }
+  ],
+  "wires": [
+    {
+      "uuid" : "wire1",
+      "input" : {
+        "component" : "input1",
+        "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "split1",
+          "port" : 0
+        }
+      ]
+    },
+    {
+      "uuid" : "wire2",
+      "input" : {
+        "component" : "split1",
+        "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "join1",
+          "port" : 0
+        }
+      ]
+    },
+    {
+      "uuid" : "wire3",
+      "input" : {
+        "component" : "split1",
+        "port" : 2
+      },
+      "output" : [
+        {
+          "component" : "join1",
+          "port" : 2
+        }
+      ]
+    },
+    {
+      "uuid" : "wire4",
+      "input" : {
+        "component" : "split1",
+        "port" : 3
+      },
+      "output" : [
+        {
+          "component" : "join1",
+          "port" : 3
+        }
+      ]
+    },
+    {
+      "uuid" : "wire5",
+      "input" : {
+        "component" : "split1",
+        "port" : 1
+      },
+      "output" : [
+        {
+          "component" : "join1",
+          "port" : 1
+        }
+      ]
+    },
+    {
+      "uuid" : "wire6",
+      "input" : {
+        "component" : "join1",
+        "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "output1",
+          "port" : 0
+        }
+      ]
+    }
+  ]
+}

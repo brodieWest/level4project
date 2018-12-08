@@ -42,7 +42,7 @@ public class UiIntegrationTests extends ApplicationTest {
 
     @Test
     public void orGate() {
-        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
+        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
 
         assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"U");
 
@@ -64,7 +64,7 @@ public class UiIntegrationTests extends ApplicationTest {
 
     @Test
     public void dff() {
-        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
+        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
 
         assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"U");
 
