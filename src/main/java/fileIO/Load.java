@@ -1,9 +1,9 @@
 package fileIO;
 
-import javafx.component.model.component.ComponentParameters;
-import javafx.main.Mainfx;
+import ui.component.model.component.ComponentParameters;
+import ui.main.Mainfx;
 import model.*;
-import javafx.simulation.SimulationController;
+import ui.simulation.SimulationController;
 import net.sourceforge.jeval.EvaluationException;
 import net.sourceforge.jeval.Evaluator;
 import org.apache.logging.log4j.LogManager;

@@ -1,10 +1,8 @@
 package utils.fxml;
 
-import javafx.Controller;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.layout.VBox;
+import ui.Controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

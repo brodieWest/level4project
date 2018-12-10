@@ -1,8 +1,7 @@
 package utils.fxml;
 
-import javafx.Controller;
-import javafx.scene.Node;
 import javafx.scene.Parent;
+import ui.Controller;
 
 public class Fxml {
     private Controller controller;

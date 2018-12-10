@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.geometry.Insets?>
-<?import javafx.table.Row?>
+<?import ui.table.Row?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.collections.FXCollections?>
 <VBox xmlns="http://javafx.com/javafx"

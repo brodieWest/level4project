@@ -1,14 +1,13 @@
 package fileIO;
 
-import javafx.component.model.component.ComponentParameters;
-import javafx.simulation.SimulationController;
+import ui.component.model.component.ComponentParameters;
+import ui.simulation.SimulationController;
 import model.Coordinates;
 import model.PortIdentifier;
 import net.sourceforge.jeval.Evaluator;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.ArgumentMatchers;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -16,7 +15,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import static fileIO.Load.loadTextFromFile;
 import static org.mockito.Mockito.*;
 
 import static org.junit.Assert.*;

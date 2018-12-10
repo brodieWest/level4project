@@ -1,10 +1,7 @@
 package model;
 
-import javafx.component.model.component.Component;
-import javafx.wire.Wire;
-
-import java.util.ArrayList;
-import java.util.List;
+import ui.component.model.component.Component;
+import ui.wire.Wire;
 
 public class Port {
 

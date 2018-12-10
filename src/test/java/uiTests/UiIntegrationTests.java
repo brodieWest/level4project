@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
@@ -25,6 +26,7 @@ public class UiIntegrationTests extends ApplicationTest {
         primaryStage.show();
     }
 
+    @Ignore
     @Test
     public void nandGate() {
         clickOn("#file").clickOn("#load").push(KeyCode.ENTER).push(KeyCode.DOWN).push(KeyCode.ENTER);
@@ -40,6 +42,7 @@ public class UiIntegrationTests extends ApplicationTest {
         assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"1");
     }
 
+    @Ignore
     @Test
     public void orGate() {
         clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
@@ -61,7 +64,7 @@ public class UiIntegrationTests extends ApplicationTest {
 
     }
 
-
+    @Ignore
     @Test
     public void dff() {
         clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);

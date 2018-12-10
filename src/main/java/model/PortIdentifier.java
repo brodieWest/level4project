@@ -1,7 +1,5 @@
 package model;
 
-import javafx.component.model.component.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
