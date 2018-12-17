@@ -90,3 +90,6 @@ fabric.properties
 
 # log4j output
 *.log
+
+# e.g. JDK
+/buildDependences/
