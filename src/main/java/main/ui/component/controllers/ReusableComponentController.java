@@ -1,11 +1,13 @@
 package main.ui.component.controllers;
 
+import javafx.scene.Scene;
 import main.fileIO.Load;
 import javafx.fxml.FXML;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.text.Text;
+import main.ui.ComponentInternalWindow;
 import main.ui.component.Synchronous;
 import main.ui.component.model.component.ReusableComponent;
 import main.ui.main.Mainfx;
@@ -24,6 +26,8 @@ public class ReusableComponentController extends ComponentController implements 
     private Logger logger = LogManager.getLogger(ReusableComponentController.class);
 
     private InternalController internalSimulation;
+
+    private Scene newWindowScene;
 
     private static String REUSABLE_FILE_PATH = "/main/ui/main/fileExamples/reusable/";
     private static String REUSABLE = "reusable";
@@ -50,6 +54,9 @@ public class ReusableComponentController extends ComponentController implements 
         text.setText(componentModel.getStringIdentifier());
 
         simulationController.addSynchronous(this);
+
+        newWindowScene = new Scene(internalSimulation.getScrollPane());
+        newWindowScene.getStylesheets().add(Mainfx.class.getResource("css/css").toExternalForm());
     }
 
     @Override
@@ -62,7 +69,7 @@ public class ReusableComponentController extends ComponentController implements 
         ContextMenu contextMenu = new ContextMenu();
 
         MenuItem showContents = new MenuItem("Show contents in new window");
-        showContents.setOnAction(event -> Mainfx.newWindow(internalSimulation.getScrollPane(), this.getComponentModel().getStringIdentifier()));
+        showContents.setOnAction(event -> ComponentInternalWindow.newWindow(newWindowScene, this.getComponentModel().getStringIdentifier()));
 
         contextMenu.getItems().add(showContents);
 

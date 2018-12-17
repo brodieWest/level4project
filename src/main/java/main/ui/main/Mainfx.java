@@ -16,14 +16,6 @@ public class Mainfx extends Application {
 
     private static Stage stage;
 
-    //private static Stage reusableInternalStage = new Stage();
-
-   // private static FileChooser fileChooser = new FileChooser();
-
-    //private static AnchorPane root = new AnchorPane();
-
-    //private static Scene newScene = new Scene(root, 800, 500);
-
     @Override
     public void start(Stage primaryStage) throws IOException {
         this.stage = primaryStage;
@@ -47,17 +39,6 @@ public class Mainfx extends Application {
             return fileChooserWithoutDefault.showOpenDialog(stage);
         }
     }
-
-    public static void newWindow(Parent internal, String title) {
-        /*reusableInternalStage.setTitle(title);
-        root.getChildren().clear();
-        root.getChildren().add(internal);
-
-        newScene.getStylesheets().add(Mainfx.class.getResource("/css/css").toExternalForm());
-        reusableInternalStage.setScene(newScene);
-        reusableInternalStage.show();*/
-    }
-
 
     public static void main(String[] args) {
         launch(args);
