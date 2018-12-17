@@ -92,4 +92,4 @@ fabric.properties
 *.log
 
 # e.g. JDK
-/buildDependences/
+/buildDependencies/
