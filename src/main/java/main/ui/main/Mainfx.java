@@ -19,7 +19,6 @@ public class Mainfx extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         this.stage = primaryStage;
-        //System.out.println(getClass().getResource("fxml/logicsimMain.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("fxml/logicsimMain.fxml"));
         primaryStage.setTitle("Hello World");
         Scene mainScene = new Scene(root, 800, 500);

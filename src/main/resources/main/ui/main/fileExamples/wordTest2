@@ -7,7 +7,6 @@
       "yCoord": 100,
       "outputPorts": [
         {
-          "direction": "EAST",
           "size": 4
         }
       ]
@@ -25,7 +24,6 @@
       "yCoord": 0,
       "inputPorts": [
         {
-          "direction": "WEST",
           "size": 4
         }
       ]
@@ -37,7 +35,6 @@
       "yCoord": 0,
       "inputPorts": [
         {
-          "direction": "WEST",
           "size": 4
         }
       ],
@@ -50,7 +47,6 @@
       "yCoord": 0,
       "outputPorts": [
         {
-          "direction": "EAST",
           "size": 4
         }
       ],

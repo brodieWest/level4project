@@ -127,47 +127,13 @@ public class Load {
 
             Coordinates coordinates = new Coordinates(xCoord,yCoord);
 
-            List<PortParameters> portParameters = new ArrayList<>();
+            List<PortParameters> portParametersList = new ArrayList<>();
 
-            if(component.has(INPUTPORTS)) {
-                if(component.get(INPUTPORTS) instanceof Integer) {
-                    int inputPorts = component.getInt(INPUTPORTS);
-                    for (int i = 0; i < inputPorts; i++) {
-                        portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
-                    }
-                } else {
-                    JSONArray inputsJson = component.getJSONArray(INPUTPORTS);
-                    for (Object inputObject : inputsJson) {
-                        JSONObject inputJson = (JSONObject) inputObject;
-                        int size=1;
-                        if(inputJson.has(SIZE)) {
-                            size = inputJson.getInt(SIZE);
-                        }
-                        portParameters.add(new PortParameters(Direction.valueOf(inputJson.getString(DIRECTION)), PortType.INPUT, size));
-                    }
-                }
-            }
+            portParametersList.addAll(loadPort(component,PortType.INPUT));
 
-            if(component.has(OUTPUTPORTS)) {
-                if(component.get(OUTPUTPORTS) instanceof Integer) {
-                    int outputPorts = component.getInt(OUTPUTPORTS);
-                    for (int i = 0; i < outputPorts; i++) {
-                        portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT,1));
-                    }
-                } else {
-                    JSONArray outputsJson = component.getJSONArray(OUTPUTPORTS);
-                    for (Object inputObject : outputsJson) {
-                        JSONObject inputJson = (JSONObject) inputObject;
-                        int size=1;
-                        if(inputJson.has(SIZE)) {
-                            size = inputJson.getInt(SIZE);
-                        }
-                        portParameters.add(new PortParameters(Direction.valueOf(inputJson.getString(DIRECTION)), PortType.OUTPUT, size));
-                    }
-                }
-            }
+            portParametersList.addAll(loadPort(component,PortType.OUTPUT));
 
-            ComponentParameters componentParameters = new ComponentParameters(coordinates, uuid, component.getString(TYPE), portParameters);
+            ComponentParameters componentParameters = new ComponentParameters(coordinates, uuid, component.getString(TYPE), portParametersList);
 
             if (!simulationController.addComponent(componentParameters)) {
                 logger.error("failed to load components");
@@ -175,6 +141,34 @@ public class Load {
             }
         }
         return true;
+    }
+
+    private static List<PortParameters> loadPort(JSONObject component, PortType portType) {
+        List<PortParameters> portParametersList = new ArrayList<>();
+        String identifier = portType.getIdentifier();
+        if(component.has(identifier)) {
+            if(component.get(identifier) instanceof Integer) {
+                int outputPorts = component.getInt(identifier);
+                for (int i = 0; i < outputPorts; i++) {
+                    portParametersList.add(new PortParameters(portType.getDirection(), portType));
+                }
+            } else {
+                JSONArray outputsJson = component.getJSONArray(identifier);
+                for (Object inputObject : outputsJson) {
+                    JSONObject inputJson = (JSONObject) inputObject;
+                    int size=1;
+                    if(inputJson.has(SIZE)) {
+                        size = inputJson.getInt(SIZE);
+                    }
+                    Direction direction = portType.getDirection();
+                    if(inputJson.has(DIRECTION)) {
+                        direction = Direction.valueOf(inputJson.getString(DIRECTION));
+                    }
+                    portParametersList.add(new PortParameters(direction, portType, size));
+                }
+            }
+        }
+        return portParametersList;
     }
 
     static boolean loadWires(JSONObject circuit, SimulationController simulationController, Evaluator evaluator) {
