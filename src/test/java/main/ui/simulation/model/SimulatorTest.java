@@ -53,7 +53,6 @@ public class SimulatorTest extends ApplicationTest {
         assertEquals(1,simulator.getPathDepth());
     }
 
-    @Ignore
     @Test
     public void calculatePathWithFlipFlop() {
         Simulator simulator = new Simulator();
@@ -95,7 +94,7 @@ public class SimulatorTest extends ApplicationTest {
         wire3.addOutput(not2.getInput(0));
 
         not2.getOutput(0).setWire(wire4);
-        wire4.addOutput(not2.getOutput(0));
+        wire4.setInput(not2.getOutput(0));
 
         output.getInput(0).setWire(wire4);
         wire4.addOutput(output.getInput(0));

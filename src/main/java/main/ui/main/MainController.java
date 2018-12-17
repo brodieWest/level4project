@@ -38,6 +38,9 @@ public class MainController implements Controller {
     private CheckMenuItem checkMenuItem;
 
     @FXML
+    private Label pathDepthLabel;
+
+    @FXML
     protected void loadFile() {
         simulationController.clear();
         Load.loadWithFileChooser(simulationController);
@@ -84,6 +87,10 @@ public class MainController implements Controller {
 
     public void setClockTickCount(int count) {
         clockTickCount.setText(String.valueOf(count));
+    }
+
+    public void setPathDepth(int pathDepth) {
+        pathDepthLabel.setText(String.format("Path Depth: %s", String.valueOf(pathDepth)));
     }
 
     public void displayText(Parent parent) {
