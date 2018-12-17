@@ -26,10 +26,11 @@ public class UiIntegrationTests extends ApplicationTest {
         primaryStage.show();
     }
 
-    @Ignore
     @Test
     public void nandGate() {
-        clickOn("#file").clickOn("#load").push(KeyCode.ENTER).push(KeyCode.DOWN).push(KeyCode.ENTER);
+        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
+
+        clickOn("#file");
 
         assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"U");
 
@@ -42,10 +43,11 @@ public class UiIntegrationTests extends ApplicationTest {
         assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"1");
     }
 
-    @Ignore
     @Test
     public void orGate() {
-        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
+        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
+
+        clickOn("#file");
 
         assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"U");
 
@@ -64,10 +66,11 @@ public class UiIntegrationTests extends ApplicationTest {
 
     }
 
-    @Ignore
     @Test
     public void dff() {
-        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
+        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
+
+        clickOn("#file");
 
         assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"U");
 
