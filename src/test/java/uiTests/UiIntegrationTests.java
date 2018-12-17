@@ -18,10 +18,10 @@ public class UiIntegrationTests extends ApplicationTest {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/main/ui/main/fxml/logicsimMain.fxml"));
         primaryStage.setTitle("Hello World");
         Scene mainScene = new Scene(root, 800, 500);
-        mainScene.getStylesheets().add(getClass().getResource("/css/css").toExternalForm());
+        mainScene.getStylesheets().add(getClass().getResource("/main/ui/main/css/css").toExternalForm());
         primaryStage.setScene(mainScene);
         primaryStage.show();
     }

@@ -1,0 +1,68 @@
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.control.CheckMenuItem?>
+<BorderPane fx:controller="main.ui.main.MainController"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="borderPane">
+
+    <top>
+        <VBox>
+        <padding><Insets bottom="2" /></padding>
+            <MenuBar>
+                <Menu text="File" id="file">
+                    <MenuItem text="Load" fx:id="load" onAction="#loadFile" id="load"/>
+                    <MenuItem text="Save"/>
+                </Menu>
+                <Menu text="Edit">
+                    <MenuItem text="Clear" onAction="#clear"/>
+                </Menu>
+                <Menu text="View">
+                    <MenuItem text="Zoom In" onAction="#zoomIn"/>
+                    <MenuItem text="Zoom Out" onAction="#zoomOut"/>
+                </Menu>
+                <Menu text="Options">
+                    <CheckMenuItem text="Do path depth gate delays per clock tick" fx:id="checkMenuItem"/>
+                </Menu>
+            </MenuBar>
+        </VBox>
+    </top>
+    <left>
+        <VBox alignment="CENTER_LEFT">
+            <padding><Insets right="25" left="25"/></padding>
+            <!-- just placeholders will be loaded at runtime -->
+            <Button text="AND"/>
+            <Button text="OR"/>
+            <Button text="NOT"/>
+            <Button text="DFF"/>
+        </VBox>
+    </left>
+    <center>
+    </center>
+    <right>
+        <VBox fx:id="componentDescription" prefWidth="200"/>
+    </right>
+    <bottom>
+        <AnchorPane>
+            <padding><Insets left="25" top="25" bottom="25" right="25"/></padding>
+            <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" spacing="12" alignment="CENTER_LEFT">
+                <Label text="0" fx:id="gateDelayCount"/>
+                <Button text="Gate Delay" onMouseClicked="#gateDelay" id="gateDelay"/>
+                <Label text="0" fx:id="clockTickCount"/>
+                <Button text="Clock Tick" onMouseClicked="#clockTick" id="clockTick"/>
+            </HBox>
+        </AnchorPane>
+    </bottom>
+
+</BorderPane>
+
+
