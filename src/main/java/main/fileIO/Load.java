@@ -58,7 +58,7 @@ public class Load {
     }
 
     static String loadTextFromFile(String fileName) {
-        InputStream inputStream = Load.class.getResourceAsStream(fileName);
+        InputStream inputStream = Mainfx.class.getResourceAsStream(fileName);
         if(inputStream == null) return null;
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         return reader.lines().collect(Collectors.joining());

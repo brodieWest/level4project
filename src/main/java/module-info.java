@@ -1,4 +1,4 @@
-module main.ui.main {
+module main {
     requires javafx.controls;
     requires javafx.fxml;
     requires org.apache.logging.log4j;
@@ -10,5 +10,6 @@ module main.ui.main {
     opens main.ui.component.controllers to javafx.fxml;
     opens main.ui.wire to javafx.fxml;
     opens main.ui to javafx.fxml;
+    opens main.fxml to javafx.fxml;
     exports main.ui.main;
 }

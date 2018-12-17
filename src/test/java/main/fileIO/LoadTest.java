@@ -21,11 +21,11 @@ import static org.junit.Assert.*;
 
 public class LoadTest {
 
-    private final String file = loadTextFromFile("/fileExamplesForTesting/filejson");
+    private final String file = Load.loadTextFromFile("fileExamplesForTesting/filejson");
 
-    private final JSONObject testWireJson = new JSONObject(loadTextFromFile("/fileExamplesForTesting/wirejson"));
+    private final JSONObject testWireJson = new JSONObject(Load.loadTextFromFile("fileExamplesForTesting/wirejson"));
 
-    private final JSONObject testComponentJson = new JSONObject(loadTextFromFile("/fileExamplesForTesting/componentjson"));
+    private final JSONObject testComponentJson = new JSONObject(Load.loadTextFromFile("fileExamplesForTesting/componentjson"));
 
     @Test
     public void loadFromFileError() {
@@ -138,10 +138,4 @@ public class LoadTest {
     }
 
 
-    private static String loadTextFromFile(String fileName) {
-        InputStream inputStream = LoadTest.class.getResourceAsStream(fileName);
-        if(inputStream == null) return null;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        return reader.lines().collect(Collectors.joining());
-    }
 }

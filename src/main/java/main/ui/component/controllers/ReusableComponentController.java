@@ -54,7 +54,7 @@ public class ReusableComponentController extends ComponentController implements 
 
     @Override
     public void loadFxml() {
-        FxmlLoaderUtils.loadFxml(getClass().getResource(String.format(COMPONENT_PATH,REUSABLE)), this);
+        FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(String.format(COMPONENT_PATH,REUSABLE)), this);
     }
 
     @FXML
