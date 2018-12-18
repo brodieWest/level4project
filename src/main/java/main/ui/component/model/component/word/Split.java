@@ -16,8 +16,8 @@ public class Split extends Component implements WordComponent {
     public void wireDelay() {
         Word inputWord = getInput(0).getWord();
 
-        for(int i=0;i<outputs.size();i++) {
-            Port output = outputs.get(i);
+        for(int i=0;i<getOutputSize();i++) {
+            Port output = getOutput(i);
             output.getLogic().copy(inputWord.get(i));
         }
     }

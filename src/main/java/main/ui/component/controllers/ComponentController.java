@@ -23,7 +23,7 @@ public class ComponentController implements Controller {
     Text text;
 
     @FXML
-    private Parent component;
+    Parent component;
 
     @FXML
     Group svgGroup;

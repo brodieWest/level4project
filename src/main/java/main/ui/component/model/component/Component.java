@@ -7,8 +7,13 @@ import main.ui.wire.Wire;
 import java.util.*;
 
 public abstract class Component implements Onscreen {
-    protected List<Port> inputs = new ArrayList<>();
-    protected List<Port> outputs = new ArrayList<>();
+
+    private Map<PortType,List<Port>> portsByType = new TreeMap<>();
+
+    private Map<Direction,List<Port>> portsByDirection = new TreeMap<>();
+
+    private List<Port> inputs = new ArrayList<>();
+    private List<Port> outputs = new ArrayList<>();
 
     private List<Port> westPorts = new ArrayList<>();
     private List<Port> eastPorts = new ArrayList<>();
@@ -29,6 +34,15 @@ public abstract class Component implements Onscreen {
         this.coordinates = componentParameters.getCoordinates();
         this.uuid = componentParameters.getUuid();
         this.type = componentParameters.getType();
+
+        portsByType.put(PortType.INPUT, inputs);
+        portsByType.put(PortType.OUTPUT, outputs);
+
+        portsByDirection.put(Direction.EAST,eastPorts);
+        portsByDirection.put(Direction.WEST,westPorts);
+        portsByDirection.put(Direction.SOUTH,southPorts);
+        portsByDirection.put(Direction.NORTH,northPorts);
+
         addPorts(componentParameters.getPortParameters());
     }
 
@@ -48,51 +62,46 @@ public abstract class Component implements Onscreen {
         }
     }
 
+    private List<PortParameters> addDefaultPorts(PortType portType, int no) {
+        List<PortParameters> portParameters = new ArrayList<>();
+        for(int i=0;i<no;i++) {
+            portParameters.add(new PortParameters(portType.getDirection(), portType));
+        }
+        return portParameters;
+    }
+
     private void addPorts(List<PortParameters> portParameters) {
         if(portParameters.isEmpty()) {
-            for(int i=0;i<getDefaultInputs();i++) {
-                portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
-            }
-            for(int i=0;i<getDefaultOutputs();i++) {
-                portParameters.add(new PortParameters(Direction.EAST, PortType.OUTPUT,1));
-            }
+            portParameters.addAll(addDefaultPorts(PortType.OUTPUT,getDefaultOutputs()));
+            portParameters.addAll(addDefaultPorts(PortType.INPUT,getDefaultInputs()));
         }
 
         for(PortParameters parameters : portParameters) {
             Port port = new Port(this, parameters);
-            if(parameters.getPortType() == PortType.INPUT) {
-                inputs.add(port);
-            } else {
-                outputs.add(port);
-            }
-            if(parameters.getDirection() == Direction.WEST) {
-                westPorts.add(port);
-                for(int i = 0; i < westPorts.size(); i++) {
-                    Port westPort = westPorts.get(i);
-                    westPort.setOffset(new Coordinates(SIZE/2, PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(westPorts.size()+1)) ));
-                }
-            } else if(parameters.getDirection() == Direction.EAST) {
-                eastPorts.add(port);
-                for(int i = 0; i < eastPorts.size(); i++) {
-                    Port eastPort = eastPorts.get(i);
-                    eastPort.setOffset(new Coordinates(SIZE/2, PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(eastPorts.size()+1)) ));
-                }
-            } else if(parameters.getDirection() == Direction.SOUTH) {
-                southPorts.add(port);
-                for(int i = 0; i < southPorts.size(); i++) {
-                    Port southPort = southPorts.get(i);
-                    southPort.setOffset(new Coordinates(PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(southPorts.size()+1)), SIZE/2 ));
-                }
-            } else if(parameters.getDirection() == Direction.NORTH) {
-                northPorts.add(port);
-                for(int i = 0; i < northPorts.size(); i++) {
-                    Port northPort = northPorts.get(i);
-                    northPort.setOffset(new Coordinates(PORT_OFFSET + (i+1) * ((SIZE-2*PORT_OFFSET)/(northPorts.size()+1)) , SIZE/2));
-                }
+
+            PortType portType = parameters.getPortType();
+            portsByType.get(portType).add(port);
+
+            Direction direction = parameters.getDirection();
+            portsByDirection.get(direction).add(port);
+
+            List<Port> portsDirection = portsByDirection.get(direction);
+
+            for(int i = 0; i < portsDirection.size(); i++) {
+                Port currentPort = portsDirection.get(i);
+                currentPort.setOffset(getPortOffset(direction,i));
             }
         }
 
     }
+
+    private Coordinates getPortOffset(Direction direction, int position) {
+        if(direction == Direction.EAST || direction == Direction.WEST) {
+            return new Coordinates(SIZE/2, PORT_OFFSET + (position+1) * ((SIZE-2*PORT_OFFSET)/(portsByDirection.get(direction).size()+1)));
+        }
+        return  new Coordinates(PORT_OFFSET + (position+1) * ((SIZE-2*PORT_OFFSET)/(portsByDirection.get(direction).size()+1)) , SIZE/2);
+    }
+
 
     public Port getOutput(int outputNo) {
         return outputs.get(outputNo);
@@ -112,6 +121,14 @@ public abstract class Component implements Onscreen {
 
     public int getOutputSize() {
         return outputs.size();
+    }
+
+    private List<Port> getPorts(PortType portType) {
+        if(portType == PortType.INPUT) {
+            return inputs;
+        } else {
+            return outputs;
+        }
     }
 
     public List<Wire> getNextWires() {
@@ -159,22 +176,25 @@ public abstract class Component implements Onscreen {
 
         Map<String,Integer> portLocations = new TreeMap<>();
 
-        for(int i=0;i<inputs.size();i++) {
-            String portId = uuid+".input"+Integer.toString(i)+".";
-            Coordinates portPosition = inputs.get(i).getPosition();
+        portLocations.putAll(getPortLocation(PortType.INPUT));
+
+        portLocations.putAll(getPortLocation(PortType.OUTPUT));
+
+        return portLocations;
+    }
+
+    private Map<String,Integer> getPortLocation(PortType portType) {
+        List<Port> ports = getPorts(portType);
+
+        Map<String,Integer> portLocations = new TreeMap<>();
+
+        for(int i=0;i<ports.size();i++) {
+            String portId = uuid+"."+portType.getIdentifier()+i+".";
+            Coordinates portPosition = ports.get(i).getPosition();
 
             portLocations.put(portId+"x", portPosition.getX());
             portLocations.put(portId+"y", portPosition.getY());
         }
-
-        for(int i=0;i<outputs.size();i++) {
-            String portId = uuid+".output"+Integer.toString(i)+".";
-            Coordinates portPosition = outputs.get(i).getPosition();
-
-            portLocations.put(portId+"x", portPosition.getX());
-            portLocations.put(portId+"y", portPosition.getY());
-        }
-
         return portLocations;
     }
 }

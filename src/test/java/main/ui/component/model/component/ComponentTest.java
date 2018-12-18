@@ -73,8 +73,8 @@ public class ComponentTest {
 
         Map<String,Integer> map = and.getPortLocations();
 
-        assertEquals(150, (int)map.get("testand.input1.x"));
-        assertEquals(240, (int)map.get("testand.input0.y"));
-        assertEquals(150, (int)map.get("testand.output0.x"));
+        assertEquals(150, (int)map.get("testand.inputPorts1.x"));
+        assertEquals(240, (int)map.get("testand.inputPorts0.y"));
+        assertEquals(150, (int)map.get("testand.outputPorts0.x"));
     }
 }

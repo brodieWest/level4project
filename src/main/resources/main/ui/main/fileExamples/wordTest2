@@ -7,7 +7,7 @@
       "yCoord": 100,
       "outputPorts": [
         {
-          "size": 4
+          "size": 8
         }
       ]
     },
@@ -20,11 +20,11 @@
     {
       "type": "wordOutput",
       "uuid": "output1",
-      "xCoord": 400,
+      "xCoord": 800,
       "yCoord": 0,
       "inputPorts": [
         {
-          "size": 4
+          "size": 8
         }
       ]
     },
@@ -35,10 +35,10 @@
       "yCoord": 0,
       "inputPorts": [
         {
-          "size": 4
+          "size": 8
         }
       ],
-      "outputPorts" : 4
+      "outputPorts" : 8
     },
     {
       "type" : "join",
@@ -47,10 +47,10 @@
       "yCoord": 0,
       "outputPorts": [
         {
-          "size": 4
+          "size": 8
         }
       ],
-      "inputPorts" : 4
+      "inputPorts" : 8
     }
   ],
   "wires": [
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "uuid" : "wire4",
+      "uuid" : "wire8",
       "input" : {
         "component" : "split1",
         "port" : 3

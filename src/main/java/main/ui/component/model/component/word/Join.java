@@ -29,8 +29,8 @@ public class Join extends Component implements WordComponent {
     public void wireDelay() {
         Word outputWord = getOutput(0).getWord();
 
-        for(int i=0;i<inputs.size();i++) {
-            Port input = inputs.get(i);
+        for(int i=0;i<getInputSize();i++) {
+            Port input = getInput(i);
             outputWord.get(i).copy(input.getLogic());
         }
     }
