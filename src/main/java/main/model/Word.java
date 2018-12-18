@@ -22,6 +22,10 @@ public class Word extends ArrayList<Logic> {
         setUndefined(false);
         setTo0();
 
+        if(binary.length() > this.size()) {
+            binary = binary.substring(binary.length()-this.size());
+        }
+
         for(int i=0;i<binary.length();i++) {
             String bit = binary.substring(i,i+1);
             this.get(binary.length()-i-1).setValue(bit.equals("1"));
