@@ -133,6 +133,58 @@
       ]
     },
     {
+      "uuid" : "wire9",
+      "input" : {
+        "component" : "split1",
+        "port" : 4
+      },
+      "output" : [
+        {
+          "component" : "join1",
+          "port" : 4
+        }
+      ]
+    },
+    {
+      "uuid" : "wire10",
+      "input" : {
+        "component" : "split1",
+        "port" : 5
+      },
+      "output" : [
+        {
+          "component" : "join1",
+          "port" : 5
+        }
+      ]
+    },
+    {
+      "uuid" : "wire11",
+      "input" : {
+        "component" : "split1",
+        "port" : 6
+      },
+      "output" : [
+        {
+          "component" : "join1",
+          "port" : 6
+        }
+      ]
+    },
+    {
+      "uuid" : "wire12",
+      "input" : {
+        "component" : "split1",
+        "port" : 7
+      },
+      "output" : [
+        {
+          "component" : "join1",
+          "port" : 7
+        }
+      ]
+    },
+    {
       "uuid" : "wire6",
       "input" : {
         "component" : "join1",

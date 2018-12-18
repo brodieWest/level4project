@@ -21,7 +21,7 @@ import main.fxml.FxmlLoaderUtils;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-public class ReusableComponentController extends ComponentController implements Synchronous {
+public class ReusableComponentController extends ResizableComponentController implements Synchronous {
 
     private Logger logger = LogManager.getLogger(ReusableComponentController.class);
 

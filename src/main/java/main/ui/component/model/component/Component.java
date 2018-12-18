@@ -27,7 +27,8 @@ public abstract class Component implements Onscreen {
 
     private int pathDepth = 0;
 
-    private int SIZE = 100;
+    private int HEIGHT = 100;
+    private int WIDTH = 100;
     private int PORT_OFFSET = 20;
 
     public Component(ComponentParameters componentParameters){
@@ -84,22 +85,28 @@ public abstract class Component implements Onscreen {
 
             Direction direction = parameters.getDirection();
             portsByDirection.get(direction).add(port);
+        }
 
+        positionPorts();
+
+    }
+
+    public void positionPorts() {
+        for(Direction direction : Direction.values()) {
             List<Port> portsDirection = portsByDirection.get(direction);
-
-            for(int i = 0; i < portsDirection.size(); i++) {
+            int portsDirectionSize = portsDirection.size();
+            for(int i = 0; i < portsDirectionSize; i++) {
                 Port currentPort = portsDirection.get(i);
                 currentPort.setOffset(getPortOffset(direction,i));
             }
         }
-
     }
 
     private Coordinates getPortOffset(Direction direction, int position) {
         if(direction == Direction.EAST || direction == Direction.WEST) {
-            return new Coordinates(SIZE/2, PORT_OFFSET + (position+1) * ((SIZE-2*PORT_OFFSET)/(portsByDirection.get(direction).size()+1)));
+            return new Coordinates(WIDTH/2, PORT_OFFSET + (position+1) * ((HEIGHT-2*PORT_OFFSET)/(portsByDirection.get(direction).size()+1)));
         }
-        return  new Coordinates(PORT_OFFSET + (position+1) * ((SIZE-2*PORT_OFFSET)/(portsByDirection.get(direction).size()+1)) , SIZE/2);
+        return  new Coordinates(PORT_OFFSET + (position+1) * ((WIDTH-2*PORT_OFFSET)/(portsByDirection.get(direction).size()+1)) , HEIGHT/2);
     }
 
 
@@ -121,6 +128,10 @@ public abstract class Component implements Onscreen {
 
     public int getOutputSize() {
         return outputs.size();
+    }
+
+    public List<Port> getPortsByDirection(Direction direction) {
+        return portsByDirection.get(direction);
     }
 
     private List<Port> getPorts(PortType portType) {
@@ -196,5 +207,29 @@ public abstract class Component implements Onscreen {
             portLocations.put(portId+"y", portPosition.getY());
         }
         return portLocations;
+    }
+
+    public int getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public void setHEIGHT(int HEIGHT) {
+        this.HEIGHT = HEIGHT;
+    }
+
+    public int getWIDTH() {
+        return WIDTH;
+    }
+
+    public void setWIDTH(int WIDTH) {
+        this.WIDTH = WIDTH;
+    }
+
+    public int getPORT_OFFSET() {
+        return PORT_OFFSET;
+    }
+
+    public void setPORT_OFFSET(int PORT_OFFSET) {
+        this.PORT_OFFSET = PORT_OFFSET;
     }
 }
