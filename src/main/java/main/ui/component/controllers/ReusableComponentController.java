@@ -45,6 +45,8 @@ public class ReusableComponentController extends ResizableComponentController im
             throw new FileNotFoundException();
         }
 
+        internalSimulation.removeInputs();
+
         List<Wire> inputWires = internalSimulation.getInputWires();
 
         List<Wire> outputWires = internalSimulation.getOutputWires();
@@ -55,7 +57,9 @@ public class ReusableComponentController extends ResizableComponentController im
 
         simulationController.addSynchronous(this);
 
-        newWindowScene = new Scene(internalSimulation.getScrollPane());
+        simulationController.addReusableController(this);
+
+        newWindowScene = new Scene(internalSimulation.getScrollPane(),800,500);
         newWindowScene.getStylesheets().add(Mainfx.class.getResource("css/css").toExternalForm());
     }
 
@@ -91,6 +95,10 @@ public class ReusableComponentController extends ResizableComponentController im
     public void reset() {
         super.reset();
         internalSimulation.resetSimulation();
+    }
+
+    public void wireDelay() {
+        internalSimulation.wireDelay();
     }
 
 }

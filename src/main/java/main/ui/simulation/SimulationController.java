@@ -16,6 +16,7 @@ import main.ui.component.Synchronous;
 import main.ui.component.WordComponent;
 import main.ui.component.controllers.ComponentController;
 import main.ui.component.controllers.ComponentControllerFactory;
+import main.ui.component.controllers.ReusableComponentController;
 import main.ui.component.model.component.ComponentParameters;
 import main.ui.main.Mainfx;
 import main.ui.wire.WireController;
@@ -48,6 +49,7 @@ public class SimulationController implements Controller {
     private Map<String,OutputControllerInterface> outputControllers = new HashMap<>();
     private Map<String,Synchronous> synchronousControllers = new HashMap<>();
     private Map<String, WordComponent> wordComponents = new HashMap<>();
+    private Map<String, ReusableComponentController> reusableControllers = new HashMap<>();
 
     private Scale scale = new Scale();
 
@@ -99,6 +101,11 @@ public class SimulationController implements Controller {
         synchronousControllers.put(synchronous.getUuid(),synchronous);
     }
 
+
+    public void addReusableController(ReusableComponentController reusableController) {
+        reusableControllers.put(reusableController.getUuid(),reusableController);
+    }
+
     public void gateDelay() {
         for(ComponentController controller : componentControllers.values()) {
             controller.processGateDelay();
@@ -123,6 +130,10 @@ public class SimulationController implements Controller {
 
             for (OutputControllerInterface outputController : outputControllers.values()) {
                 outputController.showOutputValue();
+            }
+
+            for (ReusableComponentController reusableController : reusableControllers.values()) {
+                reusableController.wireDelay();
             }
         }
 
@@ -165,8 +176,10 @@ public class SimulationController implements Controller {
 
     }
 
-    public void removeComponent() {
-        // TODO
+    public void removeComponent(ComponentController componentController) {
+        componentControllers.remove(componentController.getUuid());
+
+        simulationPane.getChildren().remove(componentController.getComponent());
     }
 
     public boolean addWire(String uuid, PortIdentifier startPortIdentifier, ArrayList<PortIdentifier> endPortIdentifiers) {

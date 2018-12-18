@@ -14,6 +14,15 @@ public class InternalController extends SimulationController {
         super();
     }
 
+    public void removeInputs() {
+        for(ComponentController componentController : componentControllers.values()) {
+            if(componentController instanceof InputController) {
+                InputController inputController = (InputController) componentController;
+                removeComponent(inputController);
+            }
+        }
+    }
+
     public List<Wire> getInputWires() {
         List<Wire> wires = new ArrayList<>();
         for(ComponentController componentController : componentControllers.values()) {
