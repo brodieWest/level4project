@@ -34,6 +34,6 @@ public class Split extends Component implements WordComponent {
 
     @Override
     public int getDefaultOutputs() {
-        return 16;
+        return 4;
     }
 }

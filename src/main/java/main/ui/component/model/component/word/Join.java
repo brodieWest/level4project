@@ -17,7 +17,7 @@ public class Join extends Component implements WordComponent {
 
     @Override
     public int getDefaultInputs() {
-        return  16;
+        return  4;
     }
 
     @Override

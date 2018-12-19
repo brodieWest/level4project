@@ -1,5 +1,6 @@
 package main.ui.main;
 
+import javafx.scene.control.Button;
 import main.fileIO.Load;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -10,11 +11,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import main.model.Coordinates;
 import main.ui.Controller;
+import main.ui.component.controllers.ComponentControllerFactory;
 import main.ui.component.model.component.ComponentParameters;
 import main.ui.simulation.MainSimulationController;
+import main.ui.toolbar.ToolbarButtonController;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
 import java.util.UUID;
 
 
@@ -45,6 +49,9 @@ public class MainController implements Controller {
 
     @FXML
     private Label pathDepthLabel;
+
+    @FXML
+    private VBox toolbox;
 
     @FXML
     protected void loadFile() {
@@ -85,6 +92,18 @@ public class MainController implements Controller {
         this.simulationController = new MainSimulationController(this);
 
         borderPane.setCenter(simulationController.getScrollPane());
+
+        initialiseToolbar();
+    }
+
+    private void initialiseToolbar() {
+        Set<String> componentTypes = ComponentControllerFactory.getComponentTypes();
+
+        for(String type : componentTypes) {
+            Button button = new ToolbarButtonController(this,type).getToolbarButton();
+
+            toolbox.getChildren().add(button);
+        }
     }
 
     public void setGateDelayCount(int count) {
@@ -107,8 +126,7 @@ public class MainController implements Controller {
         return checkMenuItem.isSelected();
     }
 
-    @FXML
-    private void addAndGate() {
-        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), UUID.randomUUID().toString(),"and",new ArrayList<>()));
+    public void addComponent(String type) {
+        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), UUID.randomUUID().toString(),type,new ArrayList<>()));
     }
 }

@@ -6,7 +6,9 @@ import main.ui.simulation.SimulationController;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class ComponentControllerFactory {
     private static ReusableFactory reusableFactory = new ReusableFactory();
@@ -36,6 +38,10 @@ public class ComponentControllerFactory {
             return null;
         }
 
+    }
+
+    public static Set<String> getComponentTypes() {
+        return stdComponentControllers.keySet();
     }
 
 }

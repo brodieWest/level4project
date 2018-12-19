@@ -37,13 +37,13 @@
         </VBox>
     </top>
     <left>
-        <VBox alignment="CENTER_LEFT">
+        <VBox alignment="CENTER_LEFT" fx:id="toolbox">
             <padding><Insets right="25" left="25"/></padding>
             <!-- just placeholders will be loaded at runtime -->
-            <Button text="AND" onMouseClicked="#addAndGate"/>
-            <Button text="OR"/>
-            <Button text="NOT"/>
-            <Button text="DFF"/>
+            <!--Button text="AND" onMouseClicked="#addAndGate"/-->
+            <!--Button text="OR"/-->
+            <!--Button text="NOT"/-->
+            <!--Button text="DFF"/-->
         </VBox>
     </left>
     <center>

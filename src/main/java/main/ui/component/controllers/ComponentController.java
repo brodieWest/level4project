@@ -50,8 +50,8 @@ public class ComponentController implements Controller {
 
     @FXML
     private void findLocation(MouseEvent mouseEvent) {
-        oldX = svgGroup.getTranslateX() - mouseEvent.getSceneX();
-        oldY = svgGroup.getTranslateY() - mouseEvent.getSceneY();
+        oldX = getComponent().getTranslateX() - mouseEvent.getSceneX();
+        oldY = getComponent().getTranslateY() - mouseEvent.getSceneY();
         //simulationController.setPannable(false);
         //component.toFront();
     }
@@ -63,10 +63,10 @@ public class ComponentController implements Controller {
         double newTranslationY = mouseEvent.getSceneY() + oldY;
 
         //if (svgGroup.getLayoutX() + newTranslationX > simulationController.getScrollPane().getLayoutX()) {
-            svgGroup.setTranslateX(Math.round(newTranslationX/50.0)*50);
+            getComponent().setTranslateX(Math.round(newTranslationX/50.0)*50);
         //}
         //if(svgGroup.getLayoutY() + newTranslationY > simulationController.getScrollPane().getLayoutY()) {
-            svgGroup.setTranslateY(Math.round(newTranslationY/50.0)*50);
+            getComponent().setTranslateY(Math.round(newTranslationY/50.0)*50);
         //}
     }
 
