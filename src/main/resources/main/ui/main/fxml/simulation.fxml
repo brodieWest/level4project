@@ -9,7 +9,6 @@
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:id="scrollPane"
-            pannable="true"
             id="simulation">
     <padding><Insets left="25" top="25" bottom="25" right="25"/></padding>
     <Group>

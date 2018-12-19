@@ -1,5 +1,8 @@
 package main.ui.component.controllers;
 
+import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Shape;
 import main.ui.component.model.component.Component;
@@ -15,6 +18,9 @@ class IoController extends ComponentController{
     static String LOGIC_1_COLOUR = "0xd35e60";
     static String LOGIC_UNDEFINED_COLOUR = "lightgrey";
 
+    @FXML
+    private StackPane stackPane;
+
     IoController(SimulationController simulationController, Component componentModel) {
         super(simulationController, componentModel);
     }
@@ -24,5 +30,10 @@ class IoController extends ComponentController{
         Shape shape = (Shape)svgGroup.getChildren().get(0);
         text.setText(textString);
         shape.setFill(Paint.valueOf(colour));
+    }
+
+    @Override
+    public Parent getComponent() {
+        return stackPane;
     }
 }

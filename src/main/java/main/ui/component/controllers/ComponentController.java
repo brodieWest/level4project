@@ -3,6 +3,10 @@ package main.ui.component.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Parent;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Text;
 import main.ui.Controller;
 import main.ui.Descriptions;
@@ -28,6 +32,9 @@ public class ComponentController implements Controller {
     @FXML
     Group svgGroup;
 
+    private double oldX;
+    private double oldY;
+
     public ComponentController(SimulationController simulationController, Component componentModel) {
         this.componentModel = componentModel;
         this.simulationController = simulationController;
@@ -38,6 +45,29 @@ public class ComponentController implements Controller {
 
     public void loadFxml() {
         FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(String.format(COMPONENT_PATH, componentModel.getStringIdentifier())), this);
+    }
+
+
+    @FXML
+    private void findLocation(MouseEvent mouseEvent) {
+        oldX = svgGroup.getTranslateX() - mouseEvent.getSceneX();
+        oldY = svgGroup.getTranslateY() - mouseEvent.getSceneY();
+        //simulationController.setPannable(false);
+        //component.toFront();
+    }
+
+    @FXML
+    private void moveComponent(MouseEvent mouseEvent) {
+
+        double newTranslationX = mouseEvent.getSceneX() + oldX;
+        double newTranslationY = mouseEvent.getSceneY() + oldY;
+
+        //if (svgGroup.getLayoutX() + newTranslationX > simulationController.getScrollPane().getLayoutX()) {
+            svgGroup.setTranslateX(Math.round(newTranslationX/50.0)*50);
+        //}
+        //if(svgGroup.getLayoutY() + newTranslationY > simulationController.getScrollPane().getLayoutY()) {
+            svgGroup.setTranslateY(Math.round(newTranslationY/50.0)*50);
+        //}
     }
 
 
@@ -54,7 +84,7 @@ public class ComponentController implements Controller {
     }
 
     public Parent getComponent() {
-        return component;
+        return svgGroup;
     }
 
     public String getUuid() {

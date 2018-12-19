@@ -3,10 +3,12 @@ package main.ui.component.controllers;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.StackPane;
 import main.ui.component.model.component.Component;
 import main.ui.component.model.component.Io.WordInput;
 import main.ui.simulation.SimulationController;
@@ -19,6 +21,9 @@ public class WordInputController extends ComponentController {
     private TextField textField;
 
     private String oldTextValue;
+
+    @FXML
+    private StackPane stackPane;
 
     public WordInputController(SimulationController simulationController, Component componentModel) {
         super(simulationController, componentModel);
@@ -54,5 +59,10 @@ public class WordInputController extends ComponentController {
     @FXML
     private void select() {
         textField.selectAll();
+    }
+
+    @Override
+    public Parent getComponent() {
+        return stackPane;
     }
 }

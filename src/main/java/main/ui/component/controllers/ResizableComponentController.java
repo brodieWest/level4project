@@ -1,6 +1,8 @@
 package main.ui.component.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import main.model.Direction;
 import main.ui.component.model.component.Component;
@@ -12,6 +14,9 @@ abstract class ResizableComponentController extends ComponentController {
 
     @FXML
     private Rectangle rectangle;
+
+    @FXML
+    private StackPane stackPane;
 
     ResizableComponentController(SimulationController simulationController, Component componentModel) {
         super(simulationController, componentModel);
@@ -36,5 +41,10 @@ abstract class ResizableComponentController extends ComponentController {
         component.prefWidth(width);
 
         rectangle.setWidth(width - componentModel.getPORT_OFFSET() * 2);
+    }
+
+    @Override
+    public Parent getComponent() {
+        return stackPane;
     }
 }

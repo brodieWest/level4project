@@ -8,8 +8,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import main.model.Coordinates;
 import main.ui.Controller;
+import main.ui.component.model.component.ComponentParameters;
 import main.ui.simulation.MainSimulationController;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.UUID;
 
 
 public class MainController implements Controller {
@@ -99,5 +105,10 @@ public class MainController implements Controller {
 
     public boolean getLongClockTick() {
         return checkMenuItem.isSelected();
+    }
+
+    @FXML
+    private void addAndGate() {
+        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), UUID.randomUUID().toString(),"and",new ArrayList<>()));
     }
 }

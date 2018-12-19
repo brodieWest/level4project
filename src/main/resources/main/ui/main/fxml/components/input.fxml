@@ -9,12 +9,10 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:id="component" prefHeight="100" prefWidth="100">
 
-    <StackPane AnchorPane.bottomAnchor="20"
-               AnchorPane.leftAnchor="20"
-               AnchorPane.rightAnchor="20"
-               AnchorPane.topAnchor="20"
+    <StackPane
                onMouseClicked="#switchInputValue"
-               onMouseEntered="#displayText">
+               onMouseEntered="#displayText"
+               fx:id="stackPane">
         <Group fx:id="svgGroup" id="input">
             <SVGPath content="M 0 0 L 0 60 L 60 60 L 60 0 L 0 0 z" fill="0x7293cb" styleClass="component"/>
         </Group>

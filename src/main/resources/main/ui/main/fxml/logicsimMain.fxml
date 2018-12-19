@@ -40,7 +40,7 @@
         <VBox alignment="CENTER_LEFT">
             <padding><Insets right="25" left="25"/></padding>
             <!-- just placeholders will be loaded at runtime -->
-            <Button text="AND"/>
+            <Button text="AND" onMouseClicked="#addAndGate"/>
             <Button text="OR"/>
             <Button text="NOT"/>
             <Button text="DFF"/>
