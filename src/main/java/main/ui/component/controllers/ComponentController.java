@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Text;
+import main.model.Coordinates;
 import main.ui.Controller;
 import main.ui.Descriptions;
 import main.ui.component.model.component.Component;
@@ -62,12 +63,20 @@ public class ComponentController implements Controller {
         double newTranslationX = mouseEvent.getSceneX() + oldX;
         double newTranslationY = mouseEvent.getSceneY() + oldY;
 
-        //if (svgGroup.getLayoutX() + newTranslationX > simulationController.getScrollPane().getLayoutX()) {
+        double simulationX = simulationController.getBackground().getLayoutX();
+        double simulationY = simulationController.getBackground().getLayoutY();
+
+        if (getComponent().getLayoutX() + newTranslationX > simulationX) {
             getComponent().setTranslateX(Math.round(newTranslationX/50.0)*50);
-        //}
-        //if(svgGroup.getLayoutY() + newTranslationY > simulationController.getScrollPane().getLayoutY()) {
+        }
+        if(getComponent().getLayoutY() + newTranslationY > simulationY) {
             getComponent().setTranslateY(Math.round(newTranslationY/50.0)*50);
-        //}
+        }
+
+        double newX = getComponent().getLayoutX() + newTranslationX - simulationX;
+        double newY = getComponent().getLayoutY() + newTranslationY - simulationY;
+
+        componentModel.setCoordinates(new Coordinates((int)newX, (int)newY));
     }
 
 

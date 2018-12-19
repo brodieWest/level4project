@@ -167,6 +167,10 @@ public abstract class Component implements Onscreen {
         return coordinates;
     }
 
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
+
     public String getStringIdentifier() {
         return type;
     }

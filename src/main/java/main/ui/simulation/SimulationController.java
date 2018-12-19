@@ -287,4 +287,8 @@ public class SimulationController implements Controller {
 
         return portLocations;
     }
+
+    public Group getBackground() {
+        return backGround;
+    }
 }
