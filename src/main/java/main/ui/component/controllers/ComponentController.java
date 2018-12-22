@@ -6,23 +6,30 @@ import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Text;
 import main.model.ComponentParametersModel;
 import main.model.Coordinates;
+import main.model.Direction;
 import main.ui.Controller;
 import main.ui.Descriptions;
 import main.ui.component.model.component.Component;
 import main.ui.component.model.component.ComponentParameters;
 import main.ui.main.Mainfx;
+import main.ui.port.PortController;
 import main.ui.simulation.SimulationController;
 import main.fxml.FxmlLoaderUtils;
+
+import java.util.List;
 
 public class ComponentController implements Controller {
 
     Component componentModel;
 
     SimulationController simulationController;
+
+    private List<PortController> portControllers;
 
     static String COMPONENT_PATH = "fxml/components/%s.fxml";
 
@@ -44,6 +51,17 @@ public class ComponentController implements Controller {
 
         loadFxml();
 
+        portControllers = componentModel.getPortControllers();
+
+        for(PortController portController : portControllers) {
+            svgGroup.getChildren().add(portController.getLine());
+            portController.displayPort();
+        }
+
+        Line line = new Line(0,0,componentModel.getWIDTH(),componentModel.getHEIGHT());
+        line.setStroke(Paint.valueOf("transparent"));
+
+        svgGroup.getChildren().add(line);
     }
 
     public void loadFxml() {

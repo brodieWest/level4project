@@ -2,7 +2,7 @@ package main.ui.wire;
 
 import main.ui.Onscreen;
 import main.model.Coordinates;
-import main.model.Port;
+import main.ui.port.Port;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,7 @@ package main.ui.component.model.component.gates;
 
 import main.ui.component.model.component.Component;
 import main.ui.component.model.component.ComponentParameters;
-import main.model.Port;
+import main.ui.port.Port;
 
 public class OrGate extends Component {
 

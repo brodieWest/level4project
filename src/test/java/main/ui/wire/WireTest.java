@@ -2,6 +2,7 @@ package main.ui.wire;
 
 import main.ui.component.model.component.Component;
 import main.model.*;
+import main.ui.port.Port;
 import org.junit.Before;
 import org.junit.Test;
 

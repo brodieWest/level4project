@@ -1,11 +1,14 @@
-package main.model;
+package main.ui.port;
 
+import main.model.*;
 import main.ui.component.model.component.Component;
 import main.ui.wire.Wire;
 
 public class Port {
 
     private Coordinates offset;
+
+    private Coordinates endCoordinates;
 
     private Wire wire;
 
@@ -19,12 +22,16 @@ public class Port {
 
     private Direction direction;
 
+    private PortController portController;
+
     public Port(Component component, PortParameters portParameters) {
         this.component = component;
         this.size = portParameters.getSize();
         this.portType = portParameters.getPortType();
         this.direction = portParameters.getDirection();
         this.word = new Word(portParameters.getSize());
+
+        portController = new PortController(this);
     }
 
     public PortParameters getParameters() {
@@ -41,6 +48,16 @@ public class Port {
 
     public void setOffset(Coordinates offset) {
         this.offset = offset;
+
+        if(direction == Direction.NORTH) {
+            endCoordinates = new Coordinates(offset.getX(), 0);
+        } else if(direction == Direction.SOUTH) {
+            endCoordinates = new Coordinates(offset.getX(), component.getHEIGHT());
+        } else if(direction == Direction.EAST) {
+            endCoordinates = new Coordinates(component.getWIDTH(),offset.getY());
+        } else {
+            endCoordinates = new Coordinates(0,offset.getY());
+        }
     }
 
     public Wire getWire() {
@@ -49,6 +66,7 @@ public class Port {
 
     public void setWire(Wire wire) {
         this.wire = wire;
+        portController.hidePort();
     }
 
     public Logic getLogic() {
@@ -77,5 +95,13 @@ public class Port {
 
     public void setComponent(Component component) {
         this.component = component;
+    }
+
+    public PortController getPortController() {
+        return portController;
+    }
+
+    Coordinates getEndCoordinates() {
+        return endCoordinates;
     }
 }

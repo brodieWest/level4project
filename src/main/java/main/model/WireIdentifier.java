@@ -1,5 +1,7 @@
 package main.model;
 
+import main.ui.port.Port;
+
 import java.util.List;
 
 public class WireIdentifier {

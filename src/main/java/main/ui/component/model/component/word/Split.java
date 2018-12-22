@@ -3,7 +3,7 @@ package main.ui.component.model.component.word;
 import main.ui.component.WordComponent;
 import main.ui.component.model.component.Component;
 import main.ui.component.model.component.ComponentParameters;
-import main.model.Port;
+import main.ui.port.Port;
 import main.model.Word;
 
 public class Split extends Component implements WordComponent {

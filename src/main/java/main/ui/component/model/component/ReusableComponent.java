@@ -1,7 +1,7 @@
 package main.ui.component.model.component;
 
 import main.ui.wire.Wire;
-import main.model.Port;
+import main.ui.port.Port;
 
 import java.util.List;
 

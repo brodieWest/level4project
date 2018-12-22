@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Word extends ArrayList<Logic> {
 
-    Word(int size) {
+    public Word(int size) {
         super();
         for(int i=0;i<size;i++) {
             this.add(new Logic());

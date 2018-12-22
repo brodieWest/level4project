@@ -4,7 +4,7 @@ import main.ui.component.model.component.Component;
 import main.ui.component.model.component.Io.Output;
 import main.ui.component.model.component.ReusableComponent;
 import main.ui.wire.Wire;
-import main.model.Port;
+import main.ui.port.Port;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -13,7 +13,7 @@
                onMousePressed="#findLocation"
                onMouseDragged="#moveComponent">
         <Group fx:id="svgGroup" id="output">
-            <SVGPath content="M 0 0 L 0 60 L 60 60 L 60 0 L 0 0 z" styleClass="component, gate"/>
+            <SVGPath content="M 0 0 L 0 60 L 60 60 L 60 0 L 0 0 z" styleClass="component, gate" translateX="20" translateY="20"/>
         </Group>
         <Group StackPane.alignment="CENTER">
             <Text text="U" fx:id="text" x="50" y="50" styleClass="gateText" id="outputText"/>

@@ -2,6 +2,8 @@ package main.ui.component.model.component;
 
 import main.ui.Onscreen;
 import main.model.*;
+import main.ui.port.Port;
+import main.ui.port.PortController;
 import main.ui.wire.Wire;
 
 import java.util.*;
@@ -11,6 +13,8 @@ public abstract class Component implements Onscreen {
     private Map<PortType,List<Port>> portsByType = new TreeMap<>();
 
     private Map<Direction,List<Port>> portsByDirection = new TreeMap<>();
+
+    private List<Port> ports = new ArrayList<>();
 
     private List<Port> inputs = new ArrayList<>();
     private List<Port> outputs = new ArrayList<>();
@@ -79,6 +83,8 @@ public abstract class Component implements Onscreen {
 
         for(PortParameters parameters : portParameters) {
             Port port = new Port(this, parameters);
+
+            ports.add(port);
 
             PortType portType = parameters.getPortType();
             portsByType.get(portType).add(port);
@@ -247,5 +253,13 @@ public abstract class Component implements Onscreen {
 
     public void setPORT_OFFSET(int PORT_OFFSET) {
         this.PORT_OFFSET = PORT_OFFSET;
+    }
+
+    public List<PortController> getPortControllers() {
+        List<PortController> portControllers = new ArrayList<>();
+        for(Port port : ports) {
+            portControllers.add(port.getPortController());
+        }
+        return portControllers;
     }
 }

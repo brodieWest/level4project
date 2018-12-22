@@ -23,7 +23,7 @@ import main.ui.wire.WireController;
 import main.ui.wire.WordWireController;
 import main.model.Coordinates;
 import main.ui.component.model.component.Component;
-import main.model.Port;
+import main.ui.port.Port;
 import main.model.PortIdentifier;
 import main.model.WireIdentifier;
 import main.fxml.FxmlLoaderUtils;
@@ -229,8 +229,8 @@ public class SimulationController implements Controller {
 
     private void placeComponent(Parent componentNode, Coordinates coordinates) {
         simulationPane.getChildren().add(componentNode);
-        AnchorPane.setTopAnchor(componentNode, coordinates.getY()*1.0+20);
-        AnchorPane.setLeftAnchor(componentNode, coordinates.getX()*1.0+20);
+        AnchorPane.setTopAnchor(componentNode, coordinates.getY()*1.0);
+        AnchorPane.setLeftAnchor(componentNode, coordinates.getX()*1.0);
     }
 
     private void displayWire(Parent wireNode) {
