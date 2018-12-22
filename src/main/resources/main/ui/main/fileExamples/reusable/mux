@@ -3,61 +3,53 @@
     {
       "type" : "and",
       "uuid": "and1",
-      "xCoord": 200,
-      "yCoord": 50,
+      "coordinates":{"x":200,"y":50},
       "inputPorts" : 2,
       "outputPorts" : 1
     },
     {
       "type" : "and",
       "uuid": "and2",
-      "xCoord": 200,
-      "yCoord": 150,
+      "coordinates":{"x":200,"y":150},
       "inputPorts" : 2,
       "outputPorts" : 1
     },
     {
       "type" : "not",
       "uuid": "not1",
-      "xCoord": 100,
-      "yCoord": 140,
+      "coordinates":{"x":100,"y":140},
       "inputPorts" : 1,
       "outputPorts" : 1
     },
     {
       "type" : "or",
       "uuid": "or1",
-      "xCoord": 300,
-      "yCoord": 100,
+      "coordinates":{"x":300,"y":100},
       "inputPorts" : 2,
       "outputPorts" : 1
     },
     {
       "type" : "input",
       "uuid": "input1",
-      "xCoord": 0,
-      "yCoord": 0,
+      "coordinates":{"x":0,"y":0},
       "outputPorts" : 1
     },
     {
       "type" : "input",
       "uuid": "input2",
-      "xCoord": 0,
-      "yCoord": 100,
+      "coordinates":{"x":0,"y":100},
       "outputPorts" : 1
     },
     {
       "type" : "input",
       "uuid": "input3",
-      "xCoord": 0,
-      "yCoord": 200,
+      "coordinates":{"x":0,"y":200},
       "outputPorts" : 1
     },
     {
       "type" : "output",
       "uuid": "output1",
-      "xCoord": 400,
-      "yCoord": 100,
+      "coordinates":{"x":400,"y":100},
       "inputPorts" : 1
     }
   ],

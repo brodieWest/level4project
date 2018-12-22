@@ -1,11 +1,16 @@
 package main.ui.simulation;
 
+import com.google.gson.Gson;
 import javafx.scene.Parent;
+import main.model.ComponentParametersModel;
+import main.model.FileModel;
 import main.ui.component.controllers.ComponentController;
 import main.ui.component.controllers.DffController;
 import main.ui.component.controllers.InputController;
 import main.ui.component.model.component.Component;
+import main.ui.component.model.component.ComponentParameters;
 import main.ui.main.MainController;
+import main.ui.main.Mainfx;
 import main.ui.simulation.model.Simulator;
 
 import java.util.ArrayList;
@@ -100,5 +105,21 @@ public class MainSimulationController extends SimulationController {
         }
         simulator.calculatePathDepth(inputs);
         mainController.setPathDepth(simulator.getPathDepth());
+    }
+
+    public void saveFile() {
+        List<ComponentParametersModel> parameters = new ArrayList<>();
+        for (ComponentController componentController : componentControllers.values()) {
+            parameters.add(componentController.getComponentParameters());
+        }
+
+        FileModel fileModel = new FileModel(parameters);
+
+        Gson gson = new Gson();
+
+        String fileString = gson.toJson(fileModel);
+
+        Mainfx.openFileSaveWindow(fileString);
+
     }
 }

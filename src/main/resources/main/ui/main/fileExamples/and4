@@ -3,39 +3,33 @@
     {
       "type" : "and",
       "uuid": "and1",
-      "xCoord": 100,
-      "yCoord": 50,
+      "coordinates":{"x":100,"y":50},
       "inputPorts": 4
     },
     {
       "type" : "input",
       "uuid": "input1",
-      "xCoord": 0,
-      "yCoord": 0
+      "coordinates":{"x":0,"y":0}
     },
     {
       "type" : "input",
       "uuid": "input2",
-      "xCoord": 0,
-      "yCoord": 100
+      "coordinates":{"x":0,"y":100}
     },
     {
       "type" : "input",
       "uuid": "input3",
-      "xCoord": 0,
-      "yCoord": 200
+      "coordinates":{"x":0,"y":200}
     },
     {
       "type" : "input",
       "uuid": "input4",
-      "xCoord": 0,
-      "yCoord": 300
+      "coordinates":{"x":0,"y":300}
     },
     {
       "type" : "output",
       "uuid": "output1",
-      "xCoord": 200,
-      "yCoord": 50
+      "coordinates":{"x":200,"y":50}
     }
   ],
   "wires": [

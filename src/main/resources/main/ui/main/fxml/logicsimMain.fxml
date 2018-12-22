@@ -21,7 +21,7 @@
             <MenuBar>
                 <Menu text="File" id="file">
                     <MenuItem text="Load" fx:id="load" onAction="#loadFile" id="load"/>
-                    <MenuItem text="Save"/>
+                    <MenuItem text="Save" onAction="#saveFile"/>
                 </Menu>
                 <Menu text="Edit">
                     <MenuItem text="Clear" onAction="#clear"/>
@@ -39,11 +39,6 @@
     <left>
         <VBox alignment="CENTER_LEFT" fx:id="toolbox">
             <padding><Insets right="25" left="25"/></padding>
-            <!-- just placeholders will be loaded at runtime -->
-            <!--Button text="AND" onMouseClicked="#addAndGate"/-->
-            <!--Button text="OR"/-->
-            <!--Button text="NOT"/-->
-            <!--Button text="DFF"/-->
         </VBox>
     </left>
     <center>

@@ -63,6 +63,11 @@ public class MainController implements Controller {
     }
 
     @FXML
+    private void saveFile() {
+        simulationController.saveFile();
+    }
+
+    @FXML
     private void clear() {
         simulationController.clear();
     }
@@ -127,6 +132,7 @@ public class MainController implements Controller {
     }
 
     public void addComponent(String type) {
-        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), UUID.randomUUID().toString(),type,new ArrayList<>()));
+        String uuid ="a"+UUID.randomUUID().toString();
+        simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), uuid,type,new ArrayList<>()));
     }
 }

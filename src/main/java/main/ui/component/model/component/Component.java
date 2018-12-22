@@ -213,6 +213,18 @@ public abstract class Component implements Onscreen {
         return portLocations;
     }
 
+    public ComponentParametersModel getComponentParameters() {
+        List<PortParameters> inputPorts = new ArrayList<>();
+        for(Port input : inputs) {
+            inputPorts.add(input.getParameters());
+        }
+        List<PortParameters> outputPorts = new ArrayList<>();
+        for(Port output : outputs) {
+            outputPorts.add(output.getParameters());
+        }
+        return new ComponentParametersModel(coordinates,uuid,type,inputPorts,outputPorts);
+    }
+
     public int getHEIGHT() {
         return HEIGHT;
     }

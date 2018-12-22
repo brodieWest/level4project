@@ -3,38 +3,32 @@
     {
       "type" : "input",
       "uuid": "input1",
-      "xCoord": 0,
-      "yCoord": 0
+      "coordinates":{"x":0,"y":0}
     },
     {
       "type" : "input",
       "uuid": "input2",
-      "xCoord": 0,
-      "yCoord": 100
+      "coordinates":{"x":0,"y":100}
     },
     {
       "type" : "xor",
       "uuid": "xor1",
-      "xCoord": 200,
-      "yCoord": 50
+      "coordinates":{"x":200,"y":50}
     },
     {
       "type" : "and",
       "uuid": "and1",
-      "xCoord": 200,
-      "yCoord": 150
+      "coordinates":{"x":200,"y":150}
     },
     {
       "type" : "output",
       "uuid": "output1",
-      "xCoord": 300,
-      "yCoord": 50
+      "coordinates":{"x":300,"y":50}
     },
     {
       "type" : "output",
       "uuid": "output2",
-      "xCoord": 300,
-      "yCoord": 150
+      "coordinates":{"x":300,"y":150}
     }
   ],
   "wires": [

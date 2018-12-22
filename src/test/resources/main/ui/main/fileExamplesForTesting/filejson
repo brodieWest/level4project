@@ -7,16 +7,14 @@
 {
 "type" : "not",
 "uuid": "not1",
-"xCoord": "#{size}*#{multiplier}",
-"yCoord": 900,
+"coordinates":{"x":"#{size}*#{multiplier}","y":900},
 "inputPorts" : 1,
 "outputPorts" : 1
 },
 {
 "type" : "input",
 "uuid": "input1",
-"xCoord": 0,
-"yCoord": 0,
+"coordinates":{"x":0,"y":0},
 "outputPorts" : 1
 }
 ],

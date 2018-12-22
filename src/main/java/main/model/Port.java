@@ -11,14 +11,24 @@ public class Port {
 
     private Word word;
 
+    private int size;
+
+    private PortType portType;
+
     private Component component;
 
     private Direction direction;
 
     public Port(Component component, PortParameters portParameters) {
         this.component = component;
+        this.size = portParameters.getSize();
+        this.portType = portParameters.getPortType();
         this.direction = portParameters.getDirection();
         this.word = new Word(portParameters.getSize());
+    }
+
+    public PortParameters getParameters() {
+        return new PortParameters(direction,portType,size);
     }
 
     public Coordinates getOffset() {

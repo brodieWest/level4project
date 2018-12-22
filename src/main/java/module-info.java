@@ -4,6 +4,8 @@ module main {
     requires org.apache.logging.log4j;
     requires jeval;
     requires json;
+    requires gson;
+    requires java.sql;
 
     opens main.ui.main to javafx.fxml;
     opens main.ui.simulation to javafx.fxml;

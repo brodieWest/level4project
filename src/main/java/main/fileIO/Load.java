@@ -25,6 +25,9 @@ public class Load {
     private static String INPUT = "input";
     private static String OUTPUT = "output";
     private static String PORT = "port";
+    private static String COORDINATES = "coordinates";
+    private static String X = "x";
+    private static String Y = "y";
     private static String XCOORD = "xCoord";
     private static String YCOORD = "yCoord";
     private static String UUID = "uuid";
@@ -115,11 +118,13 @@ public class Load {
             JSONObject component = (JSONObject)componentObject;
             String uuid = component.getString(UUID);
 
+            JSONObject coordinatesJson = component.getJSONObject(COORDINATES);
+
             int xCoord;
             int yCoord;
             try {
-                xCoord = parseEval(component, XCOORD, evaluator);
-                yCoord = parseEval(component, YCOORD, evaluator);
+                xCoord = parseEval(coordinatesJson, X, evaluator);
+                yCoord = parseEval(coordinatesJson, Y, evaluator);
             } catch (EvaluationException e) {
                 logger.error("failed to parse expression");
                 return false;
@@ -221,7 +226,7 @@ public class Load {
     }
 
     private static String loadTextWithFileChooser() {
-        File file = Mainfx.openFileWindow();
+        File file = Mainfx.openFileLoadWindow();
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(file));

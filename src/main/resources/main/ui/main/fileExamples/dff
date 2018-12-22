@@ -3,23 +3,20 @@
     {
       "type" : "dff",
       "uuid": "dff1",
-      "xCoord": 100,
-      "yCoord": 0,
+      "coordinates":{"x":100,"y":0},
       "inputPorts" : 1,
       "outputPorts" : 1
     },
     {
       "type" : "input",
       "uuid": "input1",
-      "xCoord": 0,
-      "yCoord": 0,
+      "coordinates":{"x":0,"y":0},
       "outputPorts" : 1
     },
     {
       "type" : "output",
       "uuid": "output1",
-      "xCoord": 200,
-      "yCoord": 0,
+      "coordinates":{"x":200,"y":0},
       "inputPorts" : 1
     }
   ],

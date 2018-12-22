@@ -3,8 +3,7 @@
     {
       "type": "wordInput",
       "uuid": "input1",
-      "xCoord": 0,
-      "yCoord": 0,
+      "coordinates":{"x":0,"y":0},
       "outputPorts": [
         {
           "direction": "WEST",
@@ -15,8 +14,7 @@
     {
       "type" : "split",
       "uuid": "split1",
-      "xCoord": 100,
-      "yCoord": 0,
+      "coordinates":{"x":100,"y":0},
       "inputPorts": [
         {
           "direction": "WEST",
@@ -28,26 +26,22 @@
     {
       "type" : "output",
       "uuid": "output1",
-      "xCoord": 200,
-      "yCoord": 0
+      "coordinates":{"x":200,"y":0}
     },
     {
       "type" : "output",
       "uuid": "output2",
-      "xCoord": 200,
-      "yCoord": 100
+      "coordinates":{"x":200,"y":0}
     },
     {
       "type" : "output",
       "uuid": "output3",
-      "xCoord": 200,
-      "yCoord": 200
+      "coordinates":{"x":200,"y":200}
     },
     {
       "type" : "output",
       "uuid": "output4",
-      "xCoord": 200,
-      "yCoord": 300
+      "coordinates":{"x":200,"y":300}
     }
   ],
   "wires": [

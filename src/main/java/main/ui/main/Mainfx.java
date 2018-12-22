@@ -8,13 +8,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Mainfx extends Application {
 
     private static Stage stage;
+
+    private static Logger logger = LogManager.getLogger(Mainfx.class);
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -27,7 +32,7 @@ public class Mainfx extends Application {
         primaryStage.show();
     }
 
-    public static File openFileWindow() {
+    public static File openFileLoadWindow() {
         FileChooser fileChooser = new FileChooser();
         try {
             File defaultDirectory = new File(Mainfx.class.getClassLoader().getResource("main/ui/main/fileExamples/").getFile());
@@ -36,6 +41,22 @@ public class Mainfx extends Application {
         } catch (RuntimeException e) {
             FileChooser fileChooserWithoutDefault = new FileChooser();
             return fileChooserWithoutDefault.showOpenDialog(stage);
+        }
+    }
+
+    public static void openFileSaveWindow(String fileString) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save File");
+        File file = fileChooser.showSaveDialog(stage);
+        if (file != null) {
+            try {
+                PrintWriter writer;
+                writer = new PrintWriter(file);
+                writer.println(fileString);
+                writer.close();
+            } catch (IOException e) {
+                logger.error("No file path chosen.");
+            }
         }
     }
 

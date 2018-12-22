@@ -8,10 +8,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Text;
+import main.model.ComponentParametersModel;
 import main.model.Coordinates;
 import main.ui.Controller;
 import main.ui.Descriptions;
 import main.ui.component.model.component.Component;
+import main.ui.component.model.component.ComponentParameters;
 import main.ui.main.Mainfx;
 import main.ui.simulation.SimulationController;
 import main.fxml.FxmlLoaderUtils;
@@ -73,8 +75,11 @@ public class ComponentController implements Controller {
             getComponent().setTranslateY(Math.round(newTranslationY/50.0)*50);
         }
 
-        double newX = getComponent().getLayoutX() + newTranslationX - simulationX;
-        double newY = getComponent().getLayoutY() + newTranslationY - simulationY;
+        double newX = Math.round(((getComponent().getLayoutX() + Math.round(newTranslationX/50.0)*50 - simulationX)/50.0))*50;
+        double newY = Math.round(((getComponent().getLayoutY() + Math.round(newTranslationY/50.0)*50 - simulationY)/50.0))*50;
+
+        if(newX < 0) newX = 0;
+        if(newY < 0) newY = 0;
 
         componentModel.setCoordinates(new Coordinates((int)newX, (int)newY));
     }
@@ -104,5 +109,9 @@ public class ComponentController implements Controller {
         if (Descriptions.hasDescription(componentModel.getStringIdentifier())) {
             simulationController.displayText(Descriptions.getDescription(componentModel.getStringIdentifier()));
         }
+    }
+
+    public ComponentParametersModel getComponentParameters() {
+        return componentModel.getComponentParameters();
     }
 }
