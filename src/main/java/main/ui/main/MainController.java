@@ -132,7 +132,7 @@ public class MainController implements Controller {
     }
 
     public void addComponent(String type) {
-        String uuid ="a"+UUID.randomUUID().toString();
+        String uuid =type+UUID.randomUUID().toString();
         simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), uuid,type,new ArrayList<>()));
     }
 }

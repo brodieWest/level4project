@@ -82,11 +82,11 @@ public abstract class Component implements Onscreen {
         }
 
         for(PortParameters parameters : portParameters) {
-            Port port = new Port(this, parameters);
+            PortType portType = parameters.getPortType();
+            Port port = new Port(this, parameters, portsByType.get(portType).size());
 
             ports.add(port);
 
-            PortType portType = parameters.getPortType();
             portsByType.get(portType).add(port);
 
             Direction direction = parameters.getDirection();

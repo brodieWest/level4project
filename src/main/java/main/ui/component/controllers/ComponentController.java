@@ -5,6 +5,7 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.SVGPath;
@@ -37,7 +38,7 @@ public class ComponentController implements Controller {
     Text text;
 
     @FXML
-    Parent component;
+    AnchorPane component;
 
     @FXML
     Group svgGroup;
@@ -56,6 +57,7 @@ public class ComponentController implements Controller {
         for(PortController portController : portControllers) {
             svgGroup.getChildren().add(portController.getLine());
             portController.displayPort();
+            portController.setComponentController(this);
         }
 
         Line line = new Line(0,0,componentModel.getWIDTH(),componentModel.getHEIGHT());
@@ -66,6 +68,10 @@ public class ComponentController implements Controller {
 
     public void loadFxml() {
         FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(String.format(COMPONENT_PATH, componentModel.getStringIdentifier())), this);
+    }
+
+    public Coordinates getCoordinates() {
+        return componentModel.getCoordinates();
     }
 
 
@@ -83,18 +89,15 @@ public class ComponentController implements Controller {
         double newTranslationX = mouseEvent.getSceneX() + oldX;
         double newTranslationY = mouseEvent.getSceneY() + oldY;
 
-        double simulationX = simulationController.getBackground().getLayoutX();
-        double simulationY = simulationController.getBackground().getLayoutY();
-
-        if (getComponent().getLayoutX() + newTranslationX > simulationX) {
+        if (getComponent().getLayoutX() + newTranslationX > 0) {
             getComponent().setTranslateX(Math.round(newTranslationX/50.0)*50);
         }
-        if(getComponent().getLayoutY() + newTranslationY > simulationY) {
+        if(getComponent().getLayoutY() + newTranslationY > 0) {
             getComponent().setTranslateY(Math.round(newTranslationY/50.0)*50);
         }
 
-        double newX = Math.round(((getComponent().getLayoutX() + Math.round(newTranslationX/50.0)*50 - simulationX)/50.0))*50;
-        double newY = Math.round(((getComponent().getLayoutY() + Math.round(newTranslationY/50.0)*50 - simulationY)/50.0))*50;
+        double newX = Math.round(((getComponent().getLayoutX() + Math.round(newTranslationX/50.0)*50)/50.0))*50;
+        double newY = Math.round(((getComponent().getLayoutY() + Math.round(newTranslationY/50.0)*50)/50.0))*50;
 
         if(newX < 0) newX = 0;
         if(newY < 0) newY = 0;
@@ -131,5 +134,9 @@ public class ComponentController implements Controller {
 
     public ComponentParametersModel getComponentParameters() {
         return componentModel.getComponentParameters();
+    }
+
+    public SimulationController getSimulationController() {
+        return simulationController;
     }
 }

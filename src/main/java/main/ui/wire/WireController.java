@@ -98,7 +98,7 @@ public class WireController implements Controller {
             breakFound = false;
         }
 
-
+        path.setStroke(Paint.valueOf(LOGIC_UNDEFINED_COLOUR));
     }
 
 

@@ -24,12 +24,15 @@ public class Port {
 
     private PortController portController;
 
-    public Port(Component component, PortParameters portParameters) {
+    private int portNo;
+
+    public Port(Component component, PortParameters portParameters, int portNo) {
         this.component = component;
         this.size = portParameters.getSize();
         this.portType = portParameters.getPortType();
         this.direction = portParameters.getDirection();
         this.word = new Word(portParameters.getSize());
+        this.portNo = portNo;
 
         portController = new PortController(this);
     }
@@ -103,5 +106,17 @@ public class Port {
 
     Coordinates getEndCoordinates() {
         return endCoordinates;
+    }
+
+    Coordinates getEndPosition() {
+        return component.getCoordinates().addOffset(endCoordinates);
+    }
+
+    int getPortNo() {
+        return portNo;
+    }
+
+    public void setPortNo(int portNo) {
+        this.portNo = portNo;
     }
 }

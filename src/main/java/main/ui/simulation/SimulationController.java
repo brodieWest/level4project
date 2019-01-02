@@ -19,6 +19,7 @@ import main.ui.component.controllers.ComponentControllerFactory;
 import main.ui.component.controllers.ReusableComponentController;
 import main.ui.component.model.component.ComponentParameters;
 import main.ui.main.Mainfx;
+import main.ui.port.PortController;
 import main.ui.wire.WireController;
 import main.ui.wire.WordWireController;
 import main.model.Coordinates;
@@ -58,6 +59,8 @@ public class SimulationController implements Controller {
     private static String SIMULATION_FXML_PATH = "fxml/simulation.fxml";
     private static String BACKGROUND_FXML_PATH = "fxml/background.fxml";
     private static String BACKGROUND_LINE_COLOUR = "lightgray";
+
+    private PortController wireBuilderStartPort;
 
     private static int SCREEN_SIZE = 10000;
     private static int BACKGROUND_BOX_SIZE = 100;
@@ -239,6 +242,12 @@ public class SimulationController implements Controller {
         backGround.toBack();
     }
 
+    public void addWireBuilder(Group lines) {
+        simulationPane.getChildren().add(lines);
+        lines.toBack();
+        backGround.toBack();
+    }
+
     ComponentController getComponentController(String uuid) {
         return componentControllers.getOrDefault(uuid, null);
     }
@@ -290,5 +299,13 @@ public class SimulationController implements Controller {
 
     public Group getBackground() {
         return backGround;
+    }
+
+    public PortController getWireBuilderStartPort() {
+        return wireBuilderStartPort;
+    }
+
+    public void setWireBuilderStartPort(PortController wireBuilderStartPort) {
+        this.wireBuilderStartPort = wireBuilderStartPort;
     }
 }

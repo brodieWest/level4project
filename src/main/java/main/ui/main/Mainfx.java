@@ -19,12 +19,15 @@ public class Mainfx extends Application {
 
     private static Stage stage;
 
+    private static Parent root;
+
     private static Logger logger = LogManager.getLogger(Mainfx.class);
 
     @Override
     public void start(Stage primaryStage) throws IOException {
         this.stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("fxml/logicsimMain.fxml"));
+        this.root = root;
         primaryStage.setTitle("Hello World");
         Scene mainScene = new Scene(root, 800, 500);
         mainScene.getStylesheets().add(getClass().getResource("css/css").toExternalForm());
@@ -58,6 +61,10 @@ public class Mainfx extends Application {
                 logger.error("No file path chosen.");
             }
         }
+    }
+
+    public static Parent getRoot() {
+        return root;
     }
 
     public static void main(String[] args) {
