@@ -3,8 +3,14 @@
 <?import javafx.scene.*?>
 
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.SVGPath?>
 <Group xmlns="http://javafx.com/javafx"
        xmlns:fx="http://javafx.com/fxml"
        fx:id="group">
-    <Line styleClass="wire" fx:id="line" onMouseClicked="#startWire"/>
+    <Line styleClass="wire" fx:id="line"/>
+    <Group fx:id="buildIcon" onMouseClicked="#startWire">
+        <Circle radius="5" stroke="black" strokeWidth="1.5" fill="white" centerX="5" centerY="5"/>
+        <SVGPath stroke="limegreen" strokeWidth="1.5" content="M 5 3 L 5 7 M 3 5 L 7 5"/>
+    </Group>
 </Group>

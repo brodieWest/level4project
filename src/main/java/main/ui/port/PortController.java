@@ -31,6 +31,9 @@ public class PortController implements Controller {
     @FXML
     private Line line;
 
+    @FXML
+    private Group buildIcon;
+
     private Port port;
 
     private ComponentController componentController;
@@ -53,7 +56,7 @@ public class PortController implements Controller {
     }
 
     void hidePort() {
-        line.setStroke(Paint.valueOf(TRANSPARENT));
+        group.getChildren().clear();
     }
 
     public Line getLine() {
@@ -115,5 +118,8 @@ public class PortController implements Controller {
         line.setEndY(port.getEndCoordinates().getY());
         line.setStroke(Paint.valueOf(LOGIC_UNDEFINED_COLOUR));
         line.toBack();
+        buildIcon.setLayoutX(port.getEndCoordinates().getX()-5);
+        buildIcon.setLayoutY(port.getEndCoordinates().getY()-5);
+        group.toBack();
     }
 }

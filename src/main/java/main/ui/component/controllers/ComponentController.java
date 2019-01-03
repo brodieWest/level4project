@@ -55,7 +55,7 @@ public class ComponentController implements Controller {
         portControllers = componentModel.getPortControllers();
 
         for(PortController portController : portControllers) {
-            svgGroup.getChildren().add(portController.getLine());
+            svgGroup.getChildren().add(portController.getGroup());
             portController.displayPort();
             portController.setComponentController(this);
         }
