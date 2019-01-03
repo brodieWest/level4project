@@ -70,18 +70,21 @@ public class PortController implements Controller {
         MainSimulationController simulationController = (MainSimulationController)componentController.getSimulationController();
 
         if(simulationController.getWireBuilderStartPort() != null) {
-            simulationController.clearWireBuilder();
             PortController startPort = simulationController.getWireBuilderStartPort();
             ComponentController startComponent = startPort.componentController;
             PortIdentifier startPortIdentifier = new PortIdentifier(startComponent.getUuid(),startPort.port.getPortNo());
             PortIdentifier endPortIdentifier = new PortIdentifier(componentController.getUuid(),port.getPortNo());
+            //System.out.println(simulationController.getWireBuilderCorners().size());
+            endPortIdentifier.addCorners(simulationController.getWireBuilderCorners());
             ArrayList<PortIdentifier> endPorts = new ArrayList<>();
             endPorts.add(endPortIdentifier);
             if(!simulationController.addWire(UUID.randomUUID().toString(),startPortIdentifier,endPorts)) {
                 logger.error(String.format("failed to build wire between %s %d and %s %d",startComponent.getUuid(),startPort.port.getPortNo(),componentController.getUuid(),port.getPortNo()) );
             }
             Mainfx.getRoot().setOnMouseMoved(event -> {});
+            Mainfx.getRoot().setOnMouseClicked(event -> {});
             simulationController.setWireBuilderStartPort(null);
+            simulationController.clearWireBuilder();
             return;
         }
 
@@ -93,7 +96,15 @@ public class PortController implements Controller {
         simulationController.startWireBuilder(port.getEndPosition());
 
         Mainfx.getRoot().setOnMouseMoved(event -> {
-            simulationController.endWireBuilder(new Coordinates((int)Math.round(event.getSceneX()-boundsInScene.getMinX()),(int)Math.round(event.getSceneY()-boundsInScene.getMinY())));
+            int x = (int)Math.round((event.getSceneX()-boundsInScene.getMinX())/10)*10;
+            int y = (int)Math.round((event.getSceneY()-boundsInScene.getMinY())/10)*10;
+            simulationController.displayLine(new Coordinates(x,y));
+        });
+
+        Mainfx.getRoot().setOnMouseClicked(event -> {
+            int x = (int)Math.round((event.getSceneX()-boundsInScene.getMinX())/10)*10;
+            int y = (int)Math.round((event.getSceneY()-boundsInScene.getMinY())/10)*10;
+            simulationController.newLine(new Coordinates(x,y));
         });
     }
 

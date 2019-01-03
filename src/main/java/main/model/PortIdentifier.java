@@ -31,6 +31,10 @@ public class PortIdentifier {
         corners.add(coordinates);
     }
 
+    public void addCorners(List<Coordinates> corners) {
+        this.corners.addAll(corners);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

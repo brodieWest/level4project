@@ -11,6 +11,9 @@ import main.ui.Controller;
 import main.ui.main.Mainfx;
 import main.ui.port.PortController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WireBuilderController implements Controller {
 
     @FXML
@@ -19,15 +22,21 @@ public class WireBuilderController implements Controller {
     @FXML
     private Path path;
 
-    private LineTo lineTo;
+    private LineTo line1;
+
+    private LineTo line2;
+
+    private PortController wireBuilderStartPort;
+
+    private List<Coordinates> corners = new ArrayList<>();
+
+    private Coordinates startCoordinates;
 
     private static String WIRE_PATH = "fxml/wire.fxml";
 
     public WireBuilderController() {
         FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(WIRE_PATH), this);
     }
-
-    private PortController wireBuilderStartPort;
 
     public PortController getWireBuilderStartPort() {
         return wireBuilderStartPort;
@@ -41,20 +50,40 @@ public class WireBuilderController implements Controller {
         return path;
     }
 
-
-    public void startLine(Coordinates coordinates) {
+    public void startNewPath(Coordinates coordinates) {
         path.getElements().clear();
         path.getElements().add(new MoveTo(coordinates.getX(),coordinates.getY()));
-        lineTo = new LineTo(coordinates.getX(),coordinates.getY());
-        path.getElements().add(lineTo);
+        startLine(coordinates);
+    }
+
+
+    public void startLine(Coordinates coordinates) {
+        if(startCoordinates != null) {
+            corners.add(new Coordinates(coordinates.getX(), startCoordinates.getY()));
+            corners.add(coordinates);
+        }
+        startCoordinates = coordinates;
+        line1 = new LineTo();
+        line2 = new LineTo();
+        line1.setY(coordinates.getY());
+        line2.xProperty().bind(line1.xProperty());
+        line1.setX(coordinates.getX());
+        line2.setY(coordinates.getY());
+        path.getElements().add(line1);
+        path.getElements().add(line2);
     }
 
     public void displayLine(Coordinates coordinates) {
-        lineTo.setX(coordinates.getX());
-        lineTo.setY(coordinates.getY());
+        line1.setX(coordinates.getX());
+        line2.setY(coordinates.getY());
     }
 
     public void clear() {
         path.getElements().clear();
+        corners.clear();
+    }
+
+    public List<Coordinates> getCorners() {
+        return corners;
     }
 }

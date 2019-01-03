@@ -141,12 +141,20 @@ public class MainSimulationController extends SimulationController {
         wireBuilderController.setWireBuilderStartPort(wireBuilderStartPort);
     }
 
-    public void startWireBuilder(Coordinates coordinates) {
-        wireBuilderController.startLine(coordinates);
+    public List<Coordinates> getWireBuilderCorners() {
+        return wireBuilderController.getCorners();
     }
 
-    public void endWireBuilder(Coordinates coordinates) {
+    public void startWireBuilder(Coordinates coordinates) {
+        wireBuilderController.startNewPath(coordinates);
+    }
+
+    public void displayLine(Coordinates coordinates) {
         wireBuilderController.displayLine(coordinates);
+    }
+
+    public void newLine(Coordinates coordinates) {
+        wireBuilderController.startLine(coordinates);
     }
 
     public void clearWireBuilder() {
