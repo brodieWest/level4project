@@ -35,7 +35,7 @@ import java.util.Map;
 
 public class SimulationController implements Controller {
     @FXML
-    private AnchorPane simulationPane;
+    AnchorPane simulationPane;
 
     @FXML
     private ScrollPane scrollPane;
@@ -44,7 +44,7 @@ public class SimulationController implements Controller {
     private StackPane stackPane;
 
 
-    private Group backGround = buildBackground();
+    Group backGround = buildBackground();
 
     Map<String,ComponentController> componentControllers = new HashMap<>();
     private Map<String,OutputControllerInterface> outputControllers = new HashMap<>();
@@ -60,7 +60,7 @@ public class SimulationController implements Controller {
     private static String BACKGROUND_FXML_PATH = "fxml/background.fxml";
     private static String BACKGROUND_LINE_COLOUR = "lightgray";
 
-    private PortController wireBuilderStartPort;
+
 
     private static int SCREEN_SIZE = 10000;
     private static int BACKGROUND_BOX_SIZE = 100;
@@ -242,11 +242,6 @@ public class SimulationController implements Controller {
         backGround.toBack();
     }
 
-    public void addWireBuilder(Group lines) {
-        simulationPane.getChildren().add(lines);
-        lines.toBack();
-        backGround.toBack();
-    }
 
     ComponentController getComponentController(String uuid) {
         return componentControllers.getOrDefault(uuid, null);
@@ -301,11 +296,5 @@ public class SimulationController implements Controller {
         return backGround;
     }
 
-    public PortController getWireBuilderStartPort() {
-        return wireBuilderStartPort;
-    }
 
-    public void setWireBuilderStartPort(PortController wireBuilderStartPort) {
-        this.wireBuilderStartPort = wireBuilderStartPort;
-    }
 }

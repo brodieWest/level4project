@@ -15,6 +15,7 @@ import main.ui.Controller;
 import main.ui.component.controllers.ComponentController;
 import main.ui.component.model.component.Component;
 import main.ui.main.Mainfx;
+import main.ui.simulation.MainSimulationController;
 import main.ui.simulation.SimulationController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -66,48 +67,33 @@ public class PortController implements Controller {
     @FXML
     private void startWire(MouseEvent mouseEvent) {
 
-        if(componentController.getSimulationController().getWireBuilderStartPort() != null) {
-            PortController startPort = componentController.getSimulationController().getWireBuilderStartPort();
+        MainSimulationController simulationController = (MainSimulationController)componentController.getSimulationController();
+
+        if(simulationController.getWireBuilderStartPort() != null) {
+            simulationController.clearWireBuilder();
+            PortController startPort = simulationController.getWireBuilderStartPort();
             ComponentController startComponent = startPort.componentController;
             PortIdentifier startPortIdentifier = new PortIdentifier(startComponent.getUuid(),startPort.port.getPortNo());
             PortIdentifier endPortIdentifier = new PortIdentifier(componentController.getUuid(),port.getPortNo());
             ArrayList<PortIdentifier> endPorts = new ArrayList<>();
             endPorts.add(endPortIdentifier);
-            if(!componentController.getSimulationController().addWire(UUID.randomUUID().toString(),startPortIdentifier,endPorts)) {
+            if(!simulationController.addWire(UUID.randomUUID().toString(),startPortIdentifier,endPorts)) {
                 logger.error(String.format("failed to build wire between %s %d and %s %d",startComponent.getUuid(),startPort.port.getPortNo(),componentController.getUuid(),port.getPortNo()) );
             }
             Mainfx.getRoot().setOnMouseMoved(event -> {});
-            componentController.getSimulationController().setWireBuilderStartPort(null);
+            simulationController.setWireBuilderStartPort(null);
             return;
         }
 
-        componentController.getSimulationController().setWireBuilderStartPort(this);
+        simulationController.setWireBuilderStartPort(this);
 
-        Group group = new Group();
-
-        Line newLine = new Line();
-
-        group.getChildren().add(newLine);
-
-        componentController.getSimulationController().addWireBuilder(group);
-
-        Parent background = componentController.getSimulationController().getBackground();
+        Parent background = simulationController.getBackground();
         Bounds boundsInScene = background.localToScene(background.getBoundsInLocal());
 
-        newLine.setStartX(port.getEndPosition().getX());
-        newLine.setStartY(port.getEndPosition().getY());
-
-        newLine.setStroke(Paint.valueOf("lightgray"));
-        newLine.setStrokeWidth(3);
+        simulationController.startWireBuilder(port.getEndPosition());
 
         Mainfx.getRoot().setOnMouseMoved(event -> {
-            //Coordinates componentCoordinates = componentController.getCoordinates();
-            //double simulationX = componentController.getSimulationController().getBackground().getLayoutX();
-            //double simulationY = componentController.getSimulationController().getBackground().getLayoutY();
-            //Parent background = componentController.getSimulationController().getBackground();
-            //Bounds boundsInScene = background.localToScene(background.getBoundsInLocal());
-            newLine.setEndX(event.getSceneX()-boundsInScene.getMinX());
-            newLine.setEndY(event.getSceneY()-boundsInScene.getMinY());
+            simulationController.endWireBuilder(new Coordinates((int)Math.round(event.getSceneX()-boundsInScene.getMinX()),(int)Math.round(event.getSceneY()-boundsInScene.getMinY())));
         });
     }
 

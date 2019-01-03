@@ -1,8 +1,10 @@
 package main.ui.simulation;
 
 import com.google.gson.Gson;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import main.model.ComponentParametersModel;
+import main.model.Coordinates;
 import main.model.FileModel;
 import main.ui.component.controllers.ComponentController;
 import main.ui.component.controllers.DffController;
@@ -11,7 +13,9 @@ import main.ui.component.model.component.Component;
 import main.ui.component.model.component.ComponentParameters;
 import main.ui.main.MainController;
 import main.ui.main.Mainfx;
+import main.ui.port.PortController;
 import main.ui.simulation.model.Simulator;
+import main.ui.wire.WireBuilderController;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,9 +31,15 @@ public class MainSimulationController extends SimulationController {
 
     private Simulator simulator = new Simulator();
 
+    private WireBuilderController wireBuilderController = new WireBuilderController();
+
     public MainSimulationController(MainController mainController) {
         super();
         this.mainController = mainController;
+
+        simulationPane.getChildren().add(wireBuilderController.getPath());
+        wireBuilderController.getPath().toBack();
+        backGround.toBack();
     }
 
     @Override
@@ -122,4 +132,31 @@ public class MainSimulationController extends SimulationController {
         Mainfx.openFileSaveWindow(fileString);
 
     }
+
+    public PortController getWireBuilderStartPort() {
+        return wireBuilderController.getWireBuilderStartPort();
+    }
+
+    public void setWireBuilderStartPort(PortController wireBuilderStartPort) {
+        wireBuilderController.setWireBuilderStartPort(wireBuilderStartPort);
+    }
+
+    public void startWireBuilder(Coordinates coordinates) {
+        wireBuilderController.startLine(coordinates);
+    }
+
+    public void endWireBuilder(Coordinates coordinates) {
+        wireBuilderController.displayLine(coordinates);
+    }
+
+    public void clearWireBuilder() {
+        wireBuilderController.clear();
+    }
+
+    //public void addWireBuilder(Group lines) {
+    //    simulationPane.getChildren().add(lines);
+    //    lines.toBack();
+    //    backGround.toBack();
+    //}
+
 }
