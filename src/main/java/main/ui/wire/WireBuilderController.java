@@ -81,6 +81,7 @@ public class WireBuilderController implements Controller {
     public void clear() {
         path.getElements().clear();
         corners.clear();
+        startCoordinates = null;
     }
 
     public List<Coordinates> getCorners() {
