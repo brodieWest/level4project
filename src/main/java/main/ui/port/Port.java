@@ -119,4 +119,8 @@ public class Port {
     public void setPortNo(int portNo) {
         this.portNo = portNo;
     }
+
+    public PortIdentifier getPortIdentifier() {
+        return new PortIdentifier(component.getUuid(),portNo);
+    }
 }

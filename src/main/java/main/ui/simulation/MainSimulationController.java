@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import main.model.ComponentParametersModel;
 import main.model.Coordinates;
 import main.model.FileModel;
+import main.model.WireModel;
 import main.ui.component.controllers.ComponentController;
 import main.ui.component.controllers.DffController;
 import main.ui.component.controllers.InputController;
@@ -16,6 +17,7 @@ import main.ui.main.Mainfx;
 import main.ui.port.PortController;
 import main.ui.simulation.model.Simulator;
 import main.ui.wire.WireBuilderController;
+import main.ui.wire.WireController;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -123,7 +125,12 @@ public class MainSimulationController extends SimulationController {
             parameters.add(componentController.getComponentParameters());
         }
 
-        FileModel fileModel = new FileModel(parameters);
+        List<WireModel> wireModels = new ArrayList<>();
+        for(WireController wireController : wireControllers.values()) {
+            wireModels.add(wireController.getWire().getWireModel());
+        }
+
+        FileModel fileModel = new FileModel(parameters,wireModels);
 
         Gson gson = new Gson();
 

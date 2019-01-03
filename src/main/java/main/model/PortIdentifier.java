@@ -6,33 +6,33 @@ import java.util.Objects;
 
 public class PortIdentifier {
 
-    private String componentName;
-    private int portNo;
-    private List<Coordinates> corners = new ArrayList<>();
+    private String component;
+    private int port;
+    private List<Coordinates> corner = new ArrayList<>();
 
-    public PortIdentifier(String componentName, int portNo) {
-        this.componentName = componentName;
-        this.portNo = portNo;
+    public PortIdentifier(String component, int port) {
+        this.component = component;
+        this.port = port;
     }
 
     public String getComponent() {
-        return componentName;
+        return component;
     }
 
-    public int getPortNo() {
-        return portNo;
+    public int getPort() {
+        return port;
     }
 
-    public List<Coordinates> getCorners() {
-        return corners;
+    public List<Coordinates> getCorner() {
+        return corner;
     }
 
     public void addCorner(Coordinates coordinates) {
-        corners.add(coordinates);
+        corner.add(coordinates);
     }
 
     public void addCorners(List<Coordinates> corners) {
-        this.corners.addAll(corners);
+        this.corner.addAll(corners);
     }
 
     @Override
@@ -40,12 +40,12 @@ public class PortIdentifier {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PortIdentifier that = (PortIdentifier) o;
-        return portNo == that.portNo &&
-                Objects.equals(componentName, that.componentName);
+        return port == that.port &&
+                Objects.equals(component, that.component);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(componentName, portNo);
+        return Objects.hash(component, port);
     }
 }

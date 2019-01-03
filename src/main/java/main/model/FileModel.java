@@ -6,7 +6,10 @@ public class FileModel {
 
     private List<ComponentParametersModel> components;
 
-    public FileModel(List<ComponentParametersModel> components) {
+    private List<WireModel> wires;
+
+    public FileModel(List<ComponentParametersModel> components, List<WireModel> wires) {
         this.components = components;
+        this.wires = wires;
     }
 }

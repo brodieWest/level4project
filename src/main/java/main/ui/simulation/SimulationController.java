@@ -19,7 +19,6 @@ import main.ui.component.controllers.ComponentControllerFactory;
 import main.ui.component.controllers.ReusableComponentController;
 import main.ui.component.model.component.ComponentParameters;
 import main.ui.main.Mainfx;
-import main.ui.port.PortController;
 import main.ui.wire.WireController;
 import main.ui.wire.WordWireController;
 import main.model.Coordinates;
@@ -54,7 +53,7 @@ public class SimulationController implements Controller {
 
     private Scale scale = new Scale();
 
-    private Map<String, WireController> wireControllers = new HashMap<>();
+    Map<String, WireController> wireControllers = new HashMap<>();
 
     private static String SIMULATION_FXML_PATH = "fxml/simulation.fxml";
     private static String BACKGROUND_FXML_PATH = "fxml/background.fxml";
@@ -187,7 +186,7 @@ public class SimulationController implements Controller {
 
     public boolean addWire(String uuid, PortIdentifier startPortIdentifier, ArrayList<PortIdentifier> endPortIdentifiers) {
         String startComponentName = startPortIdentifier.getComponent();
-        int startPortNo = startPortIdentifier.getPortNo();
+        int startPortNo = startPortIdentifier.getPort();
 
 
         if(!componentControllers.containsKey(startComponentName)) return false;
@@ -198,12 +197,12 @@ public class SimulationController implements Controller {
 
         for(PortIdentifier outputPort : endPortIdentifiers) {
             String endComponentName = outputPort.getComponent();
-            int endPortNo = outputPort.getPortNo();
+            int endPortNo = outputPort.getPort();
 
             if(!componentControllers.containsKey(endComponentName)) return false;
             Component endComponent = componentControllers.get(endComponentName).getComponentModel();
             if(endComponent.getInputSize() -1 < endPortNo) return false;
-            outputPorts.add(new WireIdentifier(endComponent.getInput(endPortNo),outputPort.getCorners()));
+            outputPorts.add(new WireIdentifier(endComponent.getInput(endPortNo),outputPort.getCorner()));
         }
 
 

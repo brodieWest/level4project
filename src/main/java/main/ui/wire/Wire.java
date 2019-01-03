@@ -1,5 +1,7 @@
 package main.ui.wire;
 
+import main.model.PortIdentifier;
+import main.model.WireModel;
 import main.ui.Onscreen;
 import main.model.Coordinates;
 import main.ui.port.Port;
@@ -56,5 +58,13 @@ public class Wire implements Onscreen {
 
     public void addOutput(Port output) {
         this.outputs.add(output);
+    }
+
+    public WireModel getWireModel() {
+        List<PortIdentifier> portIdentifiers = new ArrayList<>();
+        for(Port output : outputs) {
+            portIdentifiers.add(output.getPortIdentifier());
+        }
+        return new WireModel(uuid, input.getPortIdentifier(),portIdentifiers);
     }
 }

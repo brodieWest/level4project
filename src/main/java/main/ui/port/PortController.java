@@ -78,7 +78,7 @@ public class PortController implements Controller {
             endPortIdentifier.addCorners(simulationController.getWireBuilderCorners());
             ArrayList<PortIdentifier> endPorts = new ArrayList<>();
             endPorts.add(endPortIdentifier);
-            if(!simulationController.addWire(UUID.randomUUID().toString(),startPortIdentifier,endPorts)) {
+            if(!simulationController.addWire("wire" + Long.toHexString(Double.doubleToLongBits(Math.random())),startPortIdentifier,endPorts)) {
                 logger.error(String.format("failed to build wire between %s %d and %s %d",startComponent.getUuid(),startPort.port.getPortNo(),componentController.getUuid(),port.getPortNo()) );
             }
             Mainfx.getRoot().setOnMouseMoved(event -> {});
