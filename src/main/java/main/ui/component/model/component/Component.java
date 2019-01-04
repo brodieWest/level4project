@@ -262,4 +262,13 @@ public abstract class Component implements Onscreen {
         }
         return portControllers;
     }
+
+    public boolean hasWires() {
+        for(Port port : ports) {
+            if (port.getWire() != null) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -74,6 +74,7 @@ public class ComponentController implements Controller {
         return componentModel.getCoordinates();
     }
 
+    private boolean hasWires = false;
 
     @FXML
     private void findLocation(MouseEvent mouseEvent) {
@@ -81,10 +82,12 @@ public class ComponentController implements Controller {
         oldY = getComponent().getTranslateY() - mouseEvent.getSceneY();
         //simulationController.setPannable(false);
         //component.toFront();
+        hasWires = componentModel.hasWires();
     }
 
     @FXML
     private void moveComponent(MouseEvent mouseEvent) {
+        if(hasWires) return;
 
         double newTranslationX = mouseEvent.getSceneX() + oldX;
         double newTranslationY = mouseEvent.getSceneY() + oldY;
