@@ -106,10 +106,7 @@ public class PortController implements Controller {
             if(!simulationController.addWire("wire" + Long.toHexString(Double.doubleToLongBits(Math.random())),startPortIdentifier,endPorts)) {
                 logger.error(String.format("failed to build wire between %s %d and %s %d",startComponent.getUuid(),startPort.port.getPortNo(),componentController.getUuid(),port.getPortNo()) );
             }
-            Mainfx.getRoot().setOnMouseMoved(event -> {});
-            Mainfx.getRoot().setOnMouseClicked(event -> {});
-            simulationController.setWireBuilderStartPort(null);
-            simulationController.clearWireBuilder();
+            endWireBuilder();
             return;
         }
 
@@ -128,6 +125,19 @@ public class PortController implements Controller {
             int y = (int)Math.round((event.getSceneY()-boundsInScene.getMinY())/10)*10;
             simulationController.newLine(new Coordinates(x,y));
         });
+
+        Mainfx.getRoot().setOnContextMenuRequested(event -> {
+            endWireBuilder();
+        });
+    }
+
+    private void endWireBuilder() {
+        MainSimulationController simulationController = (MainSimulationController)componentController.getSimulationController();
+        Mainfx.getRoot().setOnMouseMoved(event -> {});
+        Mainfx.getRoot().setOnMouseClicked(event -> {});
+        Mainfx.getRoot().setOnContextMenuRequested(event -> {});
+        simulationController.setWireBuilderStartPort(null);
+        simulationController.clearWireBuilder();
     }
 
     public void displayPort() {
