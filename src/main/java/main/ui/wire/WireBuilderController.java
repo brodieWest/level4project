@@ -60,8 +60,8 @@ public class WireBuilderController implements Controller {
     public void startLine(Coordinates coordinates) {
         if(startCoordinates != null) {
             corners.add(new Coordinates(coordinates.getX(), startCoordinates.getY()));
-            corners.add(coordinates);
         }
+        corners.add(coordinates);
         startCoordinates = coordinates;
         line1 = new LineTo();
         line2 = new LineTo();
@@ -74,6 +74,8 @@ public class WireBuilderController implements Controller {
     }
 
     public void displayLine(Coordinates coordinates) {
+        //corners.add(new Coordinates(coordinates.getX(), startCoordinates.getY()));
+        //corners.add(coordinates);
         line1.setX(coordinates.getX());
         line2.setY(coordinates.getY());
     }

@@ -11,6 +11,7 @@ import main.fxml.FxmlLoaderUtils;
 import main.model.Coordinates;
 import main.model.PortIdentifier;
 import main.model.PortParameters;
+import main.model.PortType;
 import main.ui.Controller;
 import main.ui.component.controllers.ComponentController;
 import main.ui.component.model.component.Component;
@@ -21,6 +22,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.UUID;
 
 public class PortController implements Controller {
@@ -72,15 +74,35 @@ public class PortController implements Controller {
 
         MainSimulationController simulationController = (MainSimulationController)componentController.getSimulationController();
 
+        Parent background = simulationController.getBackground();
+        Bounds boundsInScene = background.localToScene(background.getBoundsInLocal());
+
         if(simulationController.getWireBuilderStartPort() != null) {
+            int x = (int)Math.round((mouseEvent.getSceneX()-boundsInScene.getMinX())/10)*10;
+            int y = (int)Math.round((mouseEvent.getSceneY()-boundsInScene.getMinY())/10)*10;
+            simulationController.newLine(new Coordinates(x,y));
             PortController startPort = simulationController.getWireBuilderStartPort();
-            ComponentController startComponent = startPort.componentController;
-            PortIdentifier startPortIdentifier = new PortIdentifier(startComponent.getUuid(),startPort.port.getPortNo());
-            PortIdentifier endPortIdentifier = new PortIdentifier(componentController.getUuid(),port.getPortNo());
-            //System.out.println(simulationController.getWireBuilderCorners().size());
-            endPortIdentifier.addCorners(simulationController.getWireBuilderCorners());
+
             ArrayList<PortIdentifier> endPorts = new ArrayList<>();
-            endPorts.add(endPortIdentifier);
+            PortIdentifier startPortIdentifier;
+            ComponentController startComponent;
+
+            if(startPort.getPortType() == PortType.OUTPUT) {
+                startComponent = startPort.componentController;
+                startPortIdentifier = new PortIdentifier(startComponent.getUuid(), startPort.port.getPortNo());
+                PortIdentifier endPortIdentifier = new PortIdentifier(componentController.getUuid(), port.getPortNo());
+                endPortIdentifier.addCorners(simulationController.getWireBuilderCorners());
+                endPorts.add(endPortIdentifier);
+            } else {
+                startComponent = componentController;
+                ComponentController endComponent = startPort.componentController;
+                startPortIdentifier = new PortIdentifier(componentController.getUuid(), port.getPortNo());
+                PortIdentifier endPortIdentifier =  new PortIdentifier(endComponent.getUuid(), startPort.port.getPortNo());
+                Collections.reverse(simulationController.getWireBuilderCorners());
+                endPortIdentifier.addCorners(simulationController.getWireBuilderCorners());
+                endPorts.add(endPortIdentifier);
+            }
+
             if(!simulationController.addWire("wire" + Long.toHexString(Double.doubleToLongBits(Math.random())),startPortIdentifier,endPorts)) {
                 logger.error(String.format("failed to build wire between %s %d and %s %d",startComponent.getUuid(),startPort.port.getPortNo(),componentController.getUuid(),port.getPortNo()) );
             }
@@ -92,9 +114,6 @@ public class PortController implements Controller {
         }
 
         simulationController.setWireBuilderStartPort(this);
-
-        Parent background = simulationController.getBackground();
-        Bounds boundsInScene = background.localToScene(background.getBoundsInLocal());
 
         simulationController.startWireBuilder(port.getEndPosition());
 
@@ -121,5 +140,9 @@ public class PortController implements Controller {
         buildIcon.setLayoutX(port.getEndCoordinates().getX()-5);
         buildIcon.setLayoutY(port.getEndCoordinates().getY()-5);
         group.toBack();
+    }
+
+    public PortType getPortType() {
+        return port.getPortType();
     }
 }

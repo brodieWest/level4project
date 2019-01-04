@@ -28,6 +28,8 @@ public class WireController implements Controller {
 
     private Wire wire;
 
+    private ArrayList<WireIdentifier> endPortIdentifiers = new ArrayList<>();
+
     private static String LOGIC_0_COLOUR = "0x7293cb";
     private static String LOGIC_1_COLOUR = "0xd35e60";
     private static String LOGIC_UNDEFINED_COLOUR = "grey";
@@ -38,6 +40,8 @@ public class WireController implements Controller {
     private static Logger logger = LogManager.getLogger(WireController.class);
 
     public WireController(String uuid, Port startPort, ArrayList<WireIdentifier> endPorts) {
+        endPortIdentifiers.addAll(endPorts);
+
         loadFxml();
 
         Wire wire = new Wire(uuid);
@@ -53,6 +57,17 @@ public class WireController implements Controller {
         }
 
         displayWire(startPort, endPorts);
+    }
+
+    public void addEndPort(WireIdentifier wireIdentifier) {
+        endPortIdentifiers.add(wireIdentifier);
+
+        Port endPort = wireIdentifier.getPort();
+        wire.addOutput(endPort);
+        endPort.setWire(wire);
+
+        path.getElements().clear();
+        displayWire(wire.getInput(), endPortIdentifiers);
     }
 
     public void loadFxml() {

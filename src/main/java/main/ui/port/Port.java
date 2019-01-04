@@ -123,4 +123,8 @@ public class Port {
     public PortIdentifier getPortIdentifier() {
         return new PortIdentifier(component.getUuid(),portNo);
     }
+
+    public PortType getPortType() {
+        return portType;
+    }
 }
