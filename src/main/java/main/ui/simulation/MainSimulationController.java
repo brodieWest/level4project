@@ -166,6 +166,13 @@ public class MainSimulationController extends SimulationController {
 
     public void clearWireBuilder() {
         wireBuilderController.clear();
+        removeBuildIcons();
+    }
+
+    public void showBuildIcons() {
+        for(WireController wireController : wireControllers.values()) {
+            wireController.showBuildIcons();
+        }
     }
 
     //public void addWireBuilder(Group lines) {

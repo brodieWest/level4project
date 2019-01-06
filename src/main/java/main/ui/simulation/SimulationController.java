@@ -19,6 +19,7 @@ import main.ui.component.controllers.ComponentControllerFactory;
 import main.ui.component.controllers.ReusableComponentController;
 import main.ui.component.model.component.ComponentParameters;
 import main.ui.main.Mainfx;
+import main.ui.port.BuildIconController;
 import main.ui.wire.WireController;
 import main.ui.wire.WordWireController;
 import main.model.Coordinates;
@@ -30,6 +31,7 @@ import main.fxml.FxmlLoaderUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SimulationController implements Controller {
@@ -54,6 +56,8 @@ public class SimulationController implements Controller {
     private Scale scale = new Scale();
 
     Map<String, WireController> wireControllers = new HashMap<>();
+
+    private List<Group> buildIcons = new ArrayList<>();
 
     private static String SIMULATION_FXML_PATH = "fxml/simulation.fxml";
     private static String BACKGROUND_FXML_PATH = "fxml/background.fxml";
@@ -212,9 +216,9 @@ public class SimulationController implements Controller {
         Port input = startComponent.getOutput(startPortNo);
         WireController wireController;
         if(input.getWord().size()>1) {
-            wireController = new WordWireController(uuid,input,outputPorts);
+            wireController = new WordWireController(this,uuid,input,outputPorts);
         } else {
-            wireController = new WireController(uuid, input, outputPorts);
+            wireController = new WireController(this,uuid, input, outputPorts);
         }
 
         wireControllers.put(wireController.getUuid(), wireController);
@@ -239,6 +243,17 @@ public class SimulationController implements Controller {
         simulationPane.getChildren().add(wireNode);
         wireNode.toBack();
         backGround.toBack();
+    }
+
+    public void addBuildIcon(Group node) {
+        simulationPane.getChildren().add(node);
+        buildIcons.add(node);
+    }
+
+    void removeBuildIcons() {
+        for(Group buildIcon : buildIcons) {
+            simulationPane.getChildren().remove(buildIcon);
+        }
     }
 
 

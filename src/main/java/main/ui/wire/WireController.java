@@ -10,8 +10,12 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import main.ui.Controller;
 import main.model.*;
+import main.ui.component.controllers.ComponentController;
 import main.ui.main.Mainfx;
+import main.ui.port.BuildIconController;
 import main.ui.port.Port;
+import main.ui.simulation.MainSimulationController;
+import main.ui.simulation.SimulationController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import main.fxml.FxmlLoaderUtils;
@@ -30,6 +34,8 @@ public class WireController implements Controller {
 
     private ArrayList<WireIdentifier> endPortIdentifiers = new ArrayList<>();
 
+    private SimulationController simulationController;
+
     private static String LOGIC_0_COLOUR = "0x7293cb";
     private static String LOGIC_1_COLOUR = "0xd35e60";
     private static String LOGIC_UNDEFINED_COLOUR = "grey";
@@ -39,7 +45,8 @@ public class WireController implements Controller {
 
     private static Logger logger = LogManager.getLogger(WireController.class);
 
-    public WireController(String uuid, Port startPort, ArrayList<WireIdentifier> endPorts) {
+    public WireController(SimulationController simulationController,String uuid, Port startPort, ArrayList<WireIdentifier> endPorts) {
+        this.simulationController = simulationController;
         endPortIdentifiers.addAll(endPorts);
 
         loadFxml();
@@ -123,6 +130,21 @@ public class WireController implements Controller {
 
     public void displayLine(Coordinates coordinates) {
         path.getElements().add(new LineTo(coordinates.getX(),coordinates.getY()));
+    }
+
+    public void showBuildIcons() {
+        for(WireIdentifier endPortIdentifier : endPortIdentifiers) {
+            List<Coordinates> corners = endPortIdentifier.getCorners();
+            for(int i=0;i<corners.size();i++) {
+                Coordinates corner = corners.get(i);
+                ComponentController startComponentController = wire.getInput().getComponent().getComponentController();
+                BuildIconController buildIconController = new BuildIconController((MainSimulationController)simulationController,startComponentController,wire.getInput().getPortController(), corners.subList(0,i+1));
+                Group buildIcon = buildIconController.getBuildIcon();
+                buildIcon.setLayoutX(corner.getX()-5);
+                buildIcon.setLayoutY(corner.getY()-5);
+                simulationController.addBuildIcon(buildIcon);
+            }
+        }
     }
 
     private ArrayList<WireIdentifier> addCorners(Coordinates startCoordinates, ArrayList<WireIdentifier> endPorts) {

@@ -2,6 +2,7 @@ package main.ui.component.model.component;
 
 import main.ui.Onscreen;
 import main.model.*;
+import main.ui.component.controllers.ComponentController;
 import main.ui.port.Port;
 import main.ui.port.PortController;
 import main.ui.wire.Wire;
@@ -9,6 +10,8 @@ import main.ui.wire.Wire;
 import java.util.*;
 
 public abstract class Component implements Onscreen {
+
+    private ComponentController componentController;
 
     private Map<PortType,List<Port>> portsByType = new TreeMap<>();
 
@@ -270,5 +273,13 @@ public abstract class Component implements Onscreen {
             }
         }
         return false;
+    }
+
+    public ComponentController getComponentController() {
+        return componentController;
+    }
+
+    public void setComponentController(ComponentController componentController) {
+        this.componentController = componentController;
     }
 }

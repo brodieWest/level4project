@@ -7,6 +7,7 @@ import javafx.scene.shape.Path;
 import main.model.*;
 import main.ui.main.Mainfx;
 import main.ui.port.Port;
+import main.ui.simulation.SimulationController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import main.fxml.FxmlLoaderUtils;
@@ -25,8 +26,8 @@ public class WordWireController extends WireController {
 
     private static Logger logger = LogManager.getLogger(WordWireController.class);
 
-    public WordWireController(String uuid, Port startPort, ArrayList<WireIdentifier> endPorts) {
-        super(uuid, startPort, endPorts);
+    public WordWireController(SimulationController simulationController,String uuid, Port startPort, ArrayList<WireIdentifier> endPorts) {
+        super(simulationController,uuid, startPort, endPorts);
     }
 
     @Override

@@ -49,6 +49,7 @@ public class ComponentController implements Controller {
     public ComponentController(SimulationController simulationController, Component componentModel) {
         this.componentModel = componentModel;
         this.simulationController = simulationController;
+        componentModel.setComponentController(this);
 
         loadFxml();
 
@@ -56,8 +57,8 @@ public class ComponentController implements Controller {
 
         for(PortController portController : portControllers) {
             svgGroup.getChildren().add(portController.getGroup());
-            portController.displayPort();
             portController.setComponentController(this);
+            portController.displayPort();
         }
 
         Line line = new Line(0,0,componentModel.getWIDTH(),componentModel.getHEIGHT());
