@@ -10,12 +10,12 @@
         "port" : 10,
         "corner" : [
           {
-            "xCoord": 0,
-            "yCoord": 0
+            "x": 0,
+            "y": 0
           },
           {
-            "xCoord": "#{size}*#{multiplier}",
-            "yCoord": 100
+            "x": "#{size}*#{multiplier}",
+            "y": 100
           }
         ]
       }

@@ -32,7 +32,7 @@ public class WireController implements Controller {
 
     private Wire wire;
 
-    private ArrayList<WireIdentifier> endPortIdentifiers = new ArrayList<>();
+    private ArrayList<WireIdentifier> endWireIdentifiers = new ArrayList<>();
 
     private SimulationController simulationController;
 
@@ -47,7 +47,7 @@ public class WireController implements Controller {
 
     public WireController(SimulationController simulationController,String uuid, Port startPort, ArrayList<WireIdentifier> endPorts) {
         this.simulationController = simulationController;
-        endPortIdentifiers.addAll(endPorts);
+        endWireIdentifiers.addAll(endPorts);
 
         loadFxml();
 
@@ -67,14 +67,14 @@ public class WireController implements Controller {
     }
 
     public void addEndPort(WireIdentifier wireIdentifier) {
-        endPortIdentifiers.add(wireIdentifier);
+        endWireIdentifiers.add(wireIdentifier);
 
         Port endPort = wireIdentifier.getPort();
         wire.addOutput(endPort);
         endPort.setWire(wire);
 
         path.getElements().clear();
-        displayWire(wire.getInput(), endPortIdentifiers);
+        displayWire(wire.getInput(), endWireIdentifiers);
     }
 
     public void loadFxml() {
@@ -134,7 +134,7 @@ public class WireController implements Controller {
     }
 
     public void showBuildIcons() {
-        for(WireIdentifier endPortIdentifier : endPortIdentifiers) {
+        for(WireIdentifier endPortIdentifier : endWireIdentifiers) {
             List<Coordinates> corners = endPortIdentifier.getCorners();
             for(int i=0;i<corners.size();i++) {
                 Coordinates corner = corners.get(i);
@@ -175,8 +175,18 @@ public class WireController implements Controller {
         }
     }
 
-    public ArrayList<WireIdentifier> getEndPortIdentifiers() {
-        return endPortIdentifiers;
+    public ArrayList<WireIdentifier> getEndWireIdentifiers() {
+        return endWireIdentifiers;
+    }
+
+    public WireModel getWireModel() {
+        List<PortIdentifier> portIdentifiers = new ArrayList<>();
+        for(WireIdentifier wireIdentifier : endWireIdentifiers) {
+            PortIdentifier portIdentifier = wireIdentifier.getPort().getPortIdentifier();
+            portIdentifier.addCorners(wireIdentifier.getCorners());
+            portIdentifiers.add(portIdentifier);
+        }
+        return new WireModel(wire.getUuid(),wire.getInput().getPortIdentifier(), portIdentifiers);
     }
 
     public void passSignal() {

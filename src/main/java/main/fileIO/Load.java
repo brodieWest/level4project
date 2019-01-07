@@ -28,8 +28,8 @@ public class Load {
     private static String COORDINATES = "coordinates";
     private static String X = "x";
     private static String Y = "y";
-    private static String XCOORD = "xCoord";
-    private static String YCOORD = "yCoord";
+    //private static String XCOORD = "xCoord";
+    //private static String YCOORD = "yCoord";
     private static String UUID = "uuid";
     private static String INPUTPORTS = "inputPorts";
     private static String OUTPUTPORTS = "outputPorts";
@@ -202,8 +202,8 @@ public class Load {
                         int xCoord;
                         int yCoord;
                         try {
-                            xCoord = parseEval(cornerJson, XCOORD, evaluator);
-                            yCoord = parseEval(cornerJson, YCOORD, evaluator);
+                            xCoord = parseEval(cornerJson, X, evaluator);
+                            yCoord = parseEval(cornerJson, Y, evaluator);
                         } catch (EvaluationException e) {
                             logger.error("failed to parse expression in wires");
                             e.printStackTrace();

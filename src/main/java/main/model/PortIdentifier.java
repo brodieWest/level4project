@@ -32,7 +32,7 @@ public class PortIdentifier {
     }
 
     public void addCorners(List<Coordinates> corners) {
-        this.corner.addAll(corners);
+        corner.addAll(corners);
     }
 
     @Override

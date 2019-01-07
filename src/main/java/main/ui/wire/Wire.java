@@ -65,11 +65,4 @@ public class Wire implements Onscreen {
         return wireController;
     }
 
-    public WireModel getWireModel() {
-        List<PortIdentifier> portIdentifiers = new ArrayList<>();
-        for(Port output : outputs) {
-            portIdentifiers.add(output.getPortIdentifier());
-        }
-        return new WireModel(uuid, input.getPortIdentifier(),portIdentifiers);
-    }
 }

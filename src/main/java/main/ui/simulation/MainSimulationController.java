@@ -127,7 +127,7 @@ public class MainSimulationController extends SimulationController {
 
         List<WireModel> wireModels = new ArrayList<>();
         for(WireController wireController : wireControllers.values()) {
-            wireModels.add(wireController.getWire().getWireModel());
+            wireModels.add(wireController.getWireModel());
         }
 
         FileModel fileModel = new FileModel(parameters,wireModels);

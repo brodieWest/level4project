@@ -34,12 +34,12 @@
         "port" : 0,
         "corner" : [
             {
-              "xCoord": 100,
-              "yCoord": "#{input1.outputPorts0.y}"
+              "x": 100,
+              "y": "#{input1.outputPorts0.y}"
             },
             {
-              "xCoord": 100,
-              "yCoord": 90
+              "x": 100,
+              "y": 90
             }
           ]
         }
@@ -57,12 +57,12 @@
         "port" : 1,
         "corner" : [
             {
-              "xCoord": 100,
-              "yCoord": 150
+              "x": 100,
+              "y": 150
             },
             {
-              "xCoord": 100,
-              "yCoord": 110
+              "x": 100,
+              "y": 110
             }
           ]
         }

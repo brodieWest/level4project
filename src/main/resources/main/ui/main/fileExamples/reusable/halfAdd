@@ -44,16 +44,16 @@
           "port": 0,
           "corner" : [
             {
-              "xCoord" : 120,
-              "yCoord" : "#{input1.outputPorts0.y}"
+              "x" : 120,
+              "y" : "#{input1.outputPorts0.y}"
             },
             {
-              "xCoord": 120,
-              "yCoord": "#{xor1.inputPorts0.y}"
+              "x": 120,
+              "y": "#{xor1.inputPorts0.y}"
             },
             {
-              "xCoord": 120,
-              "yCoord": "#{xor1.inputPorts0.y}"
+              "x": 120,
+              "y": "#{xor1.inputPorts0.y}"
             }
           ]
         },
@@ -62,16 +62,16 @@
           "port": 0,
           "corner" : [
             {
-              "xCoord" : 120,
-              "yCoord" : "#{input1.outputPorts0.y}"
+              "x" : 120,
+              "y" : "#{input1.outputPorts0.y}"
             },
             {
-              "xCoord": 120,
-              "yCoord": "#{xor1.inputPorts0.y}"
+              "x": 120,
+              "y": "#{xor1.inputPorts0.y}"
             },
             {
-              "xCoord": 120,
-              "yCoord": "#{and1.inputPorts0.y}"
+              "x": 120,
+              "y": "#{and1.inputPorts0.y}"
             }
           ]
         }
