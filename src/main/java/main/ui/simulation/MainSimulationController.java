@@ -71,6 +71,7 @@ public class MainSimulationController extends SimulationController {
     @Override
     public void clear() {
         super.clear();
+        simulationPane.getChildren().add(wireBuilderController.getPath());
         clearClockTickCount();
     }
 
@@ -175,10 +176,5 @@ public class MainSimulationController extends SimulationController {
         }
     }
 
-    //public void addWireBuilder(Group lines) {
-    //    simulationPane.getChildren().add(lines);
-    //    lines.toBack();
-    //    backGround.toBack();
-    //}
 
 }
