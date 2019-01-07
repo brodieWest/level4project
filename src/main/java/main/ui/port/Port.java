@@ -127,4 +127,8 @@ public class Port {
     public PortType getPortType() {
         return portType;
     }
+
+    public boolean hasWire() {
+        return wire !=null;
+    }
 }

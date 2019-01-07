@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Wire implements Onscreen {
-
+    private WireController wireController;
 
     private Port input;
 
@@ -20,8 +20,9 @@ public class Wire implements Onscreen {
 
     private String uuid;
 
-    public Wire(String uuid) {
+    public Wire(WireController wireController,String uuid) {
         this.uuid = uuid;
+        this.wireController = wireController;
     }
 
     void passSignal() {
@@ -58,6 +59,10 @@ public class Wire implements Onscreen {
 
     public void addOutput(Port output) {
         this.outputs.add(output);
+    }
+
+    public WireController getWireController() {
+        return wireController;
     }
 
     public WireModel getWireModel() {

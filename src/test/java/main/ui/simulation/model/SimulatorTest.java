@@ -8,6 +8,7 @@ import main.ui.component.model.component.Io.Output;
 import main.ui.component.model.component.gates.NotGate;
 import main.ui.wire.Wire;
 import main.model.Coordinates;
+import main.ui.wire.WireController;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 public class SimulatorTest extends ApplicationTest {
 
@@ -29,9 +31,9 @@ public class SimulatorTest extends ApplicationTest {
 
         Output output = new Output(new ComponentParameters(new Coordinates(0,0), "output1", "output", new ArrayList<>()));
 
-        Wire wire1 = new Wire("wire1");
+        Wire wire1 = new Wire(mock(WireController.class),"wire1");
 
-        Wire wire2 = new Wire("wire2");
+        Wire wire2 = new Wire(mock(WireController.class),"wire2");
 
         input.getOutput(0).setWire(wire1);
         wire1.setInput(input.getOutput(0));
@@ -67,13 +69,13 @@ public class SimulatorTest extends ApplicationTest {
 
         Output output = new Output(new ComponentParameters(new Coordinates(0,0), "output1", "output", new ArrayList<>()));
 
-        Wire wire1 = new Wire("wire1");
+        Wire wire1 = new Wire(mock(WireController.class),"wire1");
 
-        Wire wire2 = new Wire("wire2");
+        Wire wire2 = new Wire(mock(WireController.class),"wire2");
 
-        Wire wire3 = new Wire("wire3");
+        Wire wire3 = new Wire(mock(WireController.class),"wire3");
 
-        Wire wire4 = new Wire("wire4");
+        Wire wire4 = new Wire(mock(WireController.class),"wire4");
 
         input.getOutput(0).setWire(wire1);
         wire1.setInput(input.getOutput(0));

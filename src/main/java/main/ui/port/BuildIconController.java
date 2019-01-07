@@ -9,6 +9,7 @@ import main.fxml.FxmlLoaderUtils;
 import main.model.Coordinates;
 import main.model.PortIdentifier;
 import main.model.PortType;
+import main.model.WireIdentifier;
 import main.ui.Controller;
 import main.ui.component.controllers.ComponentController;
 import main.ui.main.Mainfx;
@@ -60,16 +61,16 @@ public class BuildIconController implements Controller {
         Bounds boundsInScene = background.localToScene(background.getBoundsInLocal());
 
         if(simulationController.getWireBuilderStartPort() != null) {
-            int x = (int)Math.round((mouseEvent.getSceneX()-boundsInScene.getMinX())/10)*10;
-            int y = (int)Math.round((mouseEvent.getSceneY()-boundsInScene.getMinY())/10)*10;
-            simulationController.newLine(new Coordinates(x,y));
+            int x = (int) Math.round((mouseEvent.getSceneX() - boundsInScene.getMinX()) / 10) * 10;
+            int y = (int) Math.round((mouseEvent.getSceneY() - boundsInScene.getMinY()) / 10) * 10;
+            simulationController.newLine(new Coordinates(x, y));
             PortController startPort = simulationController.getWireBuilderStartPort();
 
             ArrayList<PortIdentifier> endPorts = new ArrayList<>();
             PortIdentifier startPortIdentifier;
             ComponentController startComponent;
 
-            if(startPort.getPortType() == PortType.OUTPUT) {
+            if (startPort.getPortType() == PortType.OUTPUT) {
                 startComponent = startPort.getComponentController();
                 startPortIdentifier = new PortIdentifier(startComponent.getUuid(), startPort.getPort().getPortNo());
                 PortIdentifier endPortIdentifier = new PortIdentifier(componentController.getUuid(), port.getPortNo());
@@ -79,14 +80,21 @@ public class BuildIconController implements Controller {
                 startComponent = componentController;
                 ComponentController endComponent = startPort.getComponentController();
                 startPortIdentifier = new PortIdentifier(componentController.getUuid(), port.getPortNo());
-                PortIdentifier endPortIdentifier =  new PortIdentifier(endComponent.getUuid(), startPort.getPort().getPortNo());
+                PortIdentifier endPortIdentifier = new PortIdentifier(endComponent.getUuid(), startPort.getPort().getPortNo());
                 Collections.reverse(simulationController.getWireBuilderCorners());
                 endPortIdentifier.addCorners(simulationController.getWireBuilderCorners());
                 endPorts.add(endPortIdentifier);
             }
 
-            if(!simulationController.addWire("wire" + Long.toHexString(Double.doubleToLongBits(Math.random())),startPortIdentifier,endPorts)) {
-                logger.error(String.format("failed to build wire between %s %d and %s %d",startComponent.getUuid(),startPort.getPort().getPortNo(),componentController.getUuid(),port.getPortNo()) );
+            if (port.hasWire()) {
+                List<Coordinates> newCorners = new ArrayList<>();
+                newCorners.addAll(corners);
+                newCorners.addAll(simulationController.getWireBuilderCorners());
+                port.getWire().getWireController().addEndPort(new WireIdentifier(startPort.getPort(), newCorners));
+            } else {
+                if (!simulationController.addWire("wire" + Long.toHexString(Double.doubleToLongBits(Math.random())), startPortIdentifier, endPorts)) {
+                    logger.error(String.format("failed to build wire between %s %d and %s %d", startComponent.getUuid(), startPort.getPort().getPortNo(), componentController.getUuid(), port.getPortNo()));
+                }
             }
             endWireBuilder();
             return;

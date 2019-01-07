@@ -51,7 +51,7 @@ public class WireController implements Controller {
 
         loadFxml();
 
-        Wire wire = new Wire(uuid);
+        Wire wire = new Wire(this,uuid);
         this.wire = wire;
 
         wire.setInput(startPort);
@@ -138,7 +138,8 @@ public class WireController implements Controller {
             for(int i=0;i<corners.size();i++) {
                 Coordinates corner = corners.get(i);
                 ComponentController startComponentController = wire.getInput().getComponent().getComponentController();
-                BuildIconController buildIconController = new BuildIconController((MainSimulationController)simulationController,startComponentController,wire.getInput().getPortController(), corners.subList(0,i+1));
+                List<Coordinates> newCorners = new ArrayList<>(corners.subList(0, i + 1));
+                BuildIconController buildIconController = new BuildIconController((MainSimulationController)simulationController,startComponentController,wire.getInput().getPortController(), newCorners);
                 Group buildIcon = buildIconController.getBuildIcon();
                 buildIcon.setLayoutX(corner.getX()-5);
                 buildIcon.setLayoutY(corner.getY()-5);
@@ -171,6 +172,10 @@ public class WireController implements Controller {
         } else {
             path.setStroke(Paint.valueOf(LOGIC_0_COLOUR));
         }
+    }
+
+    public ArrayList<WireIdentifier> getEndPortIdentifiers() {
+        return endPortIdentifiers;
     }
 
     public void passSignal() {
