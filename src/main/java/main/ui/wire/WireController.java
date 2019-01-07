@@ -109,6 +109,7 @@ public class WireController implements Controller {
                     if(i<oldCorners.size()) {
                         if (!cornerCoords.equals(oldCorners.get(i))) {
                             group.getChildren().add(new Circle(corners.get(i-1).getX(), corners.get(i-1).getY(), 3));
+                            breakFound = true;
                         }
                     }
                 }
