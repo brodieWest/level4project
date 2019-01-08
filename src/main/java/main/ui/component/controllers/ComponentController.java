@@ -153,4 +153,8 @@ public class ComponentController implements Controller {
     public SimulationController getSimulationController() {
         return simulationController;
     }
+
+    public boolean isConnected() {
+        return componentModel.isConnected();
+    }
 }

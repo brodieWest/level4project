@@ -3,10 +3,10 @@ package main.ui.simulation;
 import com.google.gson.Gson;
 import javafx.scene.Group;
 import javafx.scene.Parent;
-import main.model.ComponentParametersModel;
-import main.model.Coordinates;
-import main.model.FileModel;
-import main.model.WireModel;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.layout.Region;
+import main.model.*;
 import main.ui.component.controllers.ComponentController;
 import main.ui.component.controllers.DffController;
 import main.ui.component.controllers.InputController;
@@ -22,6 +22,7 @@ import main.ui.wire.WireController;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public class MainSimulationController extends SimulationController {
 
@@ -35,6 +36,8 @@ public class MainSimulationController extends SimulationController {
 
     private WireBuilderController wireBuilderController;
 
+    private SimulationMode simulationMode;
+
     public MainSimulationController(MainController mainController) {
         super();
         this.mainController = mainController;
@@ -43,6 +46,7 @@ public class MainSimulationController extends SimulationController {
         simulationPane.getChildren().add(wireBuilderController.getPath());
         wireBuilderController.getPath().toBack();
         backGround.toBack();
+        simulationMode = SimulationMode.BUILD;
     }
 
     @Override
@@ -65,8 +69,10 @@ public class MainSimulationController extends SimulationController {
 
     @Override
     public void resetSimulation() {
-        super.resetSimulation();
-        clearGateDelayCount();
+        if(simulationMode.equals(SimulationMode.SIMULATE)) {
+            super.resetSimulation();
+            clearGateDelayCount();
+        }
     }
 
     @Override
@@ -79,6 +85,13 @@ public class MainSimulationController extends SimulationController {
     @Override
     public void displayText(Parent parent) {
         mainController.displayText(parent);
+    }
+
+    @Override
+    public void wireDelay() {
+        if(simulationMode == SimulationMode.SIMULATE) {
+            super.wireDelay();
+        }
     }
 
 
@@ -177,5 +190,25 @@ public class MainSimulationController extends SimulationController {
         }
     }
 
+    public SimulationMode getSimulationMode() {
+        return simulationMode;
+    }
 
+    public void setSimulationMode(SimulationMode simulationMode) {
+        this.simulationMode = simulationMode;
+    }
+
+    public boolean canSimulate() {
+        for(ComponentController componentController : componentControllers.values()) {
+            if(!componentController.isConnected()) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Cannot simulate while components are unconnected.");
+                alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+
+                alert.showAndWait();
+
+                return false;
+            }
+        }
+        return true;
+    }
 }

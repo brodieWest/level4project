@@ -286,4 +286,11 @@ public abstract class Component implements Onscreen {
     public boolean hasPorts() {
         return !ports.isEmpty();
     }
+
+    public boolean isConnected() {
+        for(Port port : ports) {
+            if(!port.hasWire()) return false;
+        }
+        return true;
+    }
 }

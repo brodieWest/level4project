@@ -1,6 +1,8 @@
 package main.ui.component.controllers;
 
+import main.model.SimulationMode;
 import main.ui.component.model.component.Component;
+import main.ui.simulation.MainSimulationController;
 import main.ui.simulation.SimulationController;
 import main.ui.wire.Wire;
 import main.model.Logic;
@@ -13,6 +15,7 @@ public class InputController extends IoController {
     }
 
     public void switchInputValue() {
+        if(((MainSimulationController)simulationController).getSimulationMode() != SimulationMode.SIMULATE) return;
         Component input = this.componentModel;
         Logic inputLogic = input.getOutput(0).getLogic();
 

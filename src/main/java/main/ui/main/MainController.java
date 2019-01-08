@@ -3,18 +3,17 @@ package main.ui.main;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import main.fileIO.Load;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.CheckMenuItem;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import main.fxml.Fxml;
 import main.fxml.FxmlLoaderUtils;
 import main.model.Coordinates;
+import main.model.SimulationMode;
 import main.ui.Controller;
 import main.ui.component.controllers.ComponentControllerFactory;
 import main.ui.component.model.component.ComponentParameters;
@@ -58,6 +57,24 @@ public class MainController implements Controller {
 
     @FXML
     private VBox toolbox;
+
+    @FXML
+    private Button startSimulation;
+
+    @FXML
+    private HBox simulationButtons;
+
+    @FXML
+    private HBox bottomButtons;
+
+    @FXML
+    private HBox buildButtons;
+
+    @FXML
+    private VBox leftPane;
+
+    @FXML
+    private ScrollPane leftScrollPane;
 
     private static String REUSABLE_PATH = "fileExamples/reusable/";
 
@@ -107,28 +124,17 @@ public class MainController implements Controller {
         borderPane.setCenter(simulationController.getScrollPane());
 
         initialiseToolbar();
+
+        bottomButtons.getChildren().remove(simulationButtons);
     }
 
     private void initialiseToolbar() {
-        Set<String> componentTypes = ComponentControllerFactory.getComponentTypes();
-
-        /*for(String type : componentTypes) {
-            Group button = new ToolbarButtonController(this,type);
-
-            toolbox.getChildren().add(button);
-        }*/
 
         for(Node node : toolbox.getChildren()) {
             if(node instanceof ToolbarButtonController) {
                 ((ToolbarButtonController) node).setMainController(this);
             }
         }
-
-        //ToolbarButtonController and = new ToolbarButtonController(this,"and");
-
-        //Label userDefined = new Label("User Defined: ");
-
-        //toolbox.getChildren().add(userDefined);
 
         File folder = new File(Mainfx.class.getResource(REUSABLE_PATH).getFile());
         File[] listOfFiles = folder.listFiles();
@@ -167,5 +173,25 @@ public class MainController implements Controller {
     public void addComponent(String type) {
         String uuid = type + Long.toHexString(Double.doubleToLongBits(Math.random()));
         simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), uuid,type,new ArrayList<>()));
+    }
+
+    public void startSimulation() {
+        if(!simulationController.canSimulate()) return;
+        simulationController.setSimulationMode(SimulationMode.SIMULATE);
+        bottomButtons.getChildren().remove(buildButtons);
+        bottomButtons.getChildren().add(simulationButtons);
+        simulationController.wireDelay();
+        setGateDelayCount(0);
+        leftPane.getChildren().remove(toolbox);
+        leftScrollPane.setPrefWidth(20);
+
+    }
+
+    public void buildMode() {
+        simulationController.setSimulationMode(SimulationMode.BUILD);
+        bottomButtons.getChildren().add(buildButtons);
+        bottomButtons.getChildren().remove(simulationButtons);
+        leftPane.getChildren().add(toolbox);
+        leftScrollPane.setPrefWidth(200);
     }
 }

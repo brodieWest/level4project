@@ -10,6 +10,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.transform.Scale;
+import main.model.SimulationMode;
 import main.ui.Controller;
 import main.ui.component.OutputControllerInterface;
 import main.ui.component.Synchronous;
