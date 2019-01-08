@@ -121,6 +121,10 @@ public class WireController implements Controller {
             breakFound = false;
         }
 
+        setInitialColour();
+    }
+
+    public void setInitialColour() {
         path.setStroke(Paint.valueOf(LOGIC_UNDEFINED_COLOUR));
     }
 

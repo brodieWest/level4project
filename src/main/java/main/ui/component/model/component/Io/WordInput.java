@@ -24,6 +24,11 @@ public class WordInput extends Component {
     }
 
     @Override
+    public int defaultOutputSize() {
+      return 4;
+    }
+
+    @Override
     public void reset() {
         Word outputWord = getOutput(0).getWord();
         outputWord.setUndefined(false);

@@ -70,18 +70,26 @@ public abstract class Component implements Onscreen {
         }
     }
 
-    private List<PortParameters> addDefaultPorts(PortType portType, int no) {
+    public int defaultInputSize() {
+        return 1;
+    }
+
+    public int defaultOutputSize() {
+        return 1;
+    }
+
+    private List<PortParameters> addDefaultPorts(PortType portType, int no, int size) {
         List<PortParameters> portParameters = new ArrayList<>();
         for(int i=0;i<no;i++) {
-            portParameters.add(new PortParameters(portType.getDirection(), portType));
+            portParameters.add(new PortParameters(portType.getDirection(), portType,size));
         }
         return portParameters;
     }
 
     void addPorts(List<PortParameters> portParameters) {
         if(portParameters.isEmpty()) {
-            portParameters.addAll(addDefaultPorts(PortType.OUTPUT,getDefaultOutputs()));
-            portParameters.addAll(addDefaultPorts(PortType.INPUT,getDefaultInputs()));
+            portParameters.addAll(addDefaultPorts(PortType.OUTPUT,getDefaultOutputs(),defaultOutputSize()));
+            portParameters.addAll(addDefaultPorts(PortType.INPUT,getDefaultInputs(),defaultInputSize()));
         }
 
         for(PortParameters parameters : portParameters) {

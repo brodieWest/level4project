@@ -36,4 +36,9 @@ public class Split extends Component implements WordComponent {
     public int getDefaultOutputs() {
         return 4;
     }
+
+    @Override
+    public int defaultInputSize() {
+        return 4;
+    }
 }

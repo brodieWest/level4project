@@ -26,6 +26,11 @@ public class Join extends Component implements WordComponent {
     }
 
     @Override
+    public int defaultOutputSize() {
+        return 4;
+    }
+
+    @Override
     public void wireDelay() {
         Word outputWord = getOutput(0).getWord();
 

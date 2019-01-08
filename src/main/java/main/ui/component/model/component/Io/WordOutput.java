@@ -19,6 +19,11 @@ public class WordOutput extends Component {
         return 0;
     }
 
+    @Override
+    public int defaultInputSize() {
+        return 4;
+    }
+
 
     public WordOutput(ComponentParameters componentParameters) {
         super(componentParameters);

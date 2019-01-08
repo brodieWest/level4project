@@ -51,4 +51,8 @@ public class WordWireController extends WireController {
     public void showSignal() {
     }
 
+    @Override
+    public void setInitialColour() {
+    }
+
 }
