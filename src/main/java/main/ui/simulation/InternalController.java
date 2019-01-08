@@ -15,15 +15,10 @@ public class InternalController extends SimulationController {
     }
 
     public void removeInputs() {
-        List<ComponentController> controllersToRemove = new ArrayList<>();
         for(ComponentController componentController : componentControllers.values()) {
             if(componentController instanceof InputController) {
-                InputController inputController = (InputController) componentController;
-                controllersToRemove.add(inputController);
+                hideComponent(componentController);
             }
-        }
-        for(int i=0;i<controllersToRemove.size();i++) {
-            removeComponent(controllersToRemove.remove(0));
         }
     }
 

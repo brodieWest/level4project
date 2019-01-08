@@ -185,6 +185,10 @@ public class SimulationController implements Controller {
     public void removeComponent(ComponentController componentController) {
         componentControllers.remove(componentController.getUuid());
 
+        hideComponent(componentController);
+    }
+
+    public void hideComponent(ComponentController componentController) {
         simulationPane.getChildren().remove(componentController.getComponent());
     }
 
