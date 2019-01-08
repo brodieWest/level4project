@@ -59,7 +59,7 @@
                 <Label text="Word:"><padding><Insets top="10" bottom="10"/></padding></Label>
                 <ToolbarButtonController type="wordInput" buttonText="Word Input"/>
                 <ToolbarButtonController type="wordOutput" buttonText="Word Output"/>
-                <ToolbarButtonController type="splitter" buttonText="Splitter"/>
+                <ToolbarButtonController type="split" buttonText="Splitter"/>
                 <ToolbarButtonController type="join" buttonText="Join"/>
 
                 <Label text="User Defined:"><padding><Insets top="10" bottom="10"/></padding></Label>
