@@ -78,7 +78,7 @@ public abstract class Component implements Onscreen {
         return portParameters;
     }
 
-    private void addPorts(List<PortParameters> portParameters) {
+    void addPorts(List<PortParameters> portParameters) {
         if(portParameters.isEmpty()) {
             portParameters.addAll(addDefaultPorts(PortType.OUTPUT,getDefaultOutputs()));
             portParameters.addAll(addDefaultPorts(PortType.INPUT,getDefaultInputs()));
@@ -281,5 +281,9 @@ public abstract class Component implements Onscreen {
 
     public void setComponentController(ComponentController componentController) {
         this.componentController = componentController;
+    }
+
+    public boolean hasPorts() {
+        return !ports.isEmpty();
     }
 }

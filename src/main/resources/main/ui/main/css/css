@@ -22,7 +22,7 @@
 }
 
 .wire {
-    -fx-stroke-width: 3;
+    -fx-stroke-width: 5;
     -fx-stroke-line-join: round;
 }
 

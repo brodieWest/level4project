@@ -51,7 +51,14 @@ public class ReusableComponentController extends ResizableComponentController im
 
         List<Wire> outputWires = internalSimulation.getOutputWires();
 
+        componentModel.setDefaultInputs(inputWires.size());
+        componentModel.setDefaultOutputs(outputWires.size());
+
         componentModel.initialiseWires(inputWires,outputWires);
+
+        if(componentModel.isPortsAdded()) {
+            displayPorts();
+        }
 
         text.setText(componentModel.getStringIdentifier());
 

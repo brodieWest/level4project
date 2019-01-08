@@ -53,6 +53,15 @@ public class ComponentController implements Controller {
 
         loadFxml();
 
+        displayPorts();
+
+        Line line = new Line(0,0,componentModel.getWIDTH(),componentModel.getHEIGHT());
+        line.setStroke(Paint.valueOf("transparent"));
+
+        svgGroup.getChildren().add(line);
+    }
+
+    void displayPorts() {
         portControllers = componentModel.getPortControllers();
 
         for(PortController portController : portControllers) {
@@ -60,11 +69,6 @@ public class ComponentController implements Controller {
             portController.setComponentController(this);
             portController.displayPort();
         }
-
-        Line line = new Line(0,0,componentModel.getWIDTH(),componentModel.getHEIGHT());
-        line.setStroke(Paint.valueOf("transparent"));
-
-        svgGroup.getChildren().add(line);
     }
 
     public void loadFxml() {

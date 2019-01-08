@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import main.fxml.Fxml;
+import main.fxml.FxmlLoaderUtils;
 import main.model.Coordinates;
 import main.ui.Controller;
 import main.ui.component.controllers.ComponentControllerFactory;
@@ -16,6 +18,7 @@ import main.ui.component.model.component.ComponentParameters;
 import main.ui.simulation.MainSimulationController;
 import main.ui.toolbar.ToolbarButtonController;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
@@ -52,6 +55,8 @@ public class MainController implements Controller {
 
     @FXML
     private VBox toolbox;
+
+    private static String REUSABLE_PATH = "fileExamples/reusable/";
 
     @FXML
     protected void loadFile() {
@@ -108,6 +113,16 @@ public class MainController implements Controller {
             Button button = new ToolbarButtonController(this,type).getToolbarButton();
 
             toolbox.getChildren().add(button);
+        }
+
+        File folder = new File(Mainfx.class.getResource(REUSABLE_PATH).getFile());
+        File[] listOfFiles = folder.listFiles();
+        if(listOfFiles != null) {
+            for(File file : listOfFiles) {
+                String type = file.getName();
+                Button button = new ToolbarButtonController(this,type).getToolbarButton();
+                toolbox.getChildren().add(button);
+            }
         }
     }
 
