@@ -1,13 +1,17 @@
 package main.ui.toolbar;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import main.fxml.FxmlLoaderUtils;
 import main.ui.Controller;
 import main.ui.main.MainController;
 import main.ui.main.Mainfx;
 
-public class ToolbarButtonController implements Controller {
+import java.io.IOException;
+
+public class ToolbarButtonController extends Group implements Controller {
     @FXML
     private Button toolbarButton;
 
@@ -17,20 +21,52 @@ public class ToolbarButtonController implements Controller {
 
     private MainController mainController;
 
+    private String buttonText;
+
     @FXML
     private void createComponent() {
         mainController.addComponent(type);
     }
 
-    public ToolbarButtonController(MainController mainController, String type) {
-        FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(BUTTON_FXML_PATH), this);
-        this.type = type;
+    public ToolbarButtonController() {
+        //FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(BUTTON_FXML_PATH), this);
+        FXMLLoader fxmlLoader = new FXMLLoader(Mainfx.class.getResource(BUTTON_FXML_PATH));
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //this.type = type;
+        //this.mainController = mainController;
+
+    }
+
+    public void setMainController(MainController mainController) {
         this.mainController = mainController;
-
-        toolbarButton.setText(type);
     }
 
-    public Button getToolbarButton() {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setButtonText(String buttonText) {
+        this.buttonText = buttonText;
+        toolbarButton.setText(buttonText);
+    }
+
+    public String getButtonText() {
+        return buttonText;
+    }
+
+    /*public Button getToolbarButton() {
         return toolbarButton;
-    }
+    }*/
 }

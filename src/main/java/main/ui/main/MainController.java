@@ -1,5 +1,8 @@
 package main.ui.main;
 
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import main.fileIO.Load;
 import javafx.fxml.FXML;
@@ -109,18 +112,33 @@ public class MainController implements Controller {
     private void initialiseToolbar() {
         Set<String> componentTypes = ComponentControllerFactory.getComponentTypes();
 
-        for(String type : componentTypes) {
-            Button button = new ToolbarButtonController(this,type).getToolbarButton();
+        /*for(String type : componentTypes) {
+            Group button = new ToolbarButtonController(this,type);
 
             toolbox.getChildren().add(button);
+        }*/
+
+        for(Node node : toolbox.getChildren()) {
+            if(node instanceof ToolbarButtonController) {
+                ((ToolbarButtonController) node).setMainController(this);
+            }
         }
+
+        //ToolbarButtonController and = new ToolbarButtonController(this,"and");
+
+        //Label userDefined = new Label("User Defined: ");
+
+        //toolbox.getChildren().add(userDefined);
 
         File folder = new File(Mainfx.class.getResource(REUSABLE_PATH).getFile());
         File[] listOfFiles = folder.listFiles();
         if(listOfFiles != null) {
             for(File file : listOfFiles) {
                 String type = file.getName();
-                Button button = new ToolbarButtonController(this,type).getToolbarButton();
+                ToolbarButtonController button = new ToolbarButtonController();
+                button.setMainController(this);
+                button.setType(type);
+                button.setButtonText(type);
                 toolbox.getChildren().add(button);
             }
         }

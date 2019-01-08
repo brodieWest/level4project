@@ -10,6 +10,8 @@
 <?import javafx.scene.layout.HBox?>
 
 <?import javafx.scene.control.CheckMenuItem?>
+<?import main.ui.toolbar.ToolbarButtonController?>
+<?import javafx.scene.control.ScrollPane?>
 <BorderPane fx:controller="main.ui.main.MainController"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -37,9 +39,32 @@
         </VBox>
     </top>
     <left>
-        <VBox alignment="CENTER_LEFT" fx:id="toolbox">
-            <padding><Insets right="25" left="25"/></padding>
-        </VBox>
+        <ScrollPane prefWidth="200">
+            <VBox alignment="CENTER_LEFT" fx:id="toolbox">
+                <padding><Insets right="25" left="25" top="25" bottom="25"/></padding>
+
+                <Label text="IO:"><padding><Insets bottom="10"/></padding></Label>
+                <ToolbarButtonController type="input" buttonText="Input"/>
+                <ToolbarButtonController type="output" buttonText="Output"/>
+
+                <Label text="Basic Gates:"><padding><Insets top="10" bottom="10"/></padding></Label>
+                <ToolbarButtonController type="and" buttonText="And"/>
+                <ToolbarButtonController type="or" buttonText="Or"/>
+                <ToolbarButtonController type="not" buttonText="Not"/>
+                <ToolbarButtonController type="xor" buttonText="Xor"/>
+
+                <Label text="Synchronous:"><padding><Insets top="10" bottom="10"/></padding></Label>
+                <ToolbarButtonController type="dff" buttonText="Delay Flip Flop"/>
+
+                <Label text="Word:"><padding><Insets top="10" bottom="10"/></padding></Label>
+                <ToolbarButtonController type="wordInput" buttonText="Word Input"/>
+                <ToolbarButtonController type="wordOutput" buttonText="Word Output"/>
+                <ToolbarButtonController type="splitter" buttonText="Splitter"/>
+                <ToolbarButtonController type="join" buttonText="Join"/>
+
+                <Label text="User Defined:"><padding><Insets top="10" bottom="10"/></padding></Label>
+            </VBox>
+        </ScrollPane>
     </left>
     <center>
     </center>

@@ -3,8 +3,7 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 
-<Group xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml">
-    <Button fx:id="toolbarButton" onMouseClicked="#createComponent" prefWidth="100"/>
+<fx:root type="javafx.scene.Group" xmlns:fx="http://javafx.com/fxml">
+<Button fx:id="toolbarButton" onMouseClicked="#createComponent" prefWidth="120"/>
 
-</Group>
+</fx:root>
