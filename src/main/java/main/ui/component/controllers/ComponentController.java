@@ -83,8 +83,11 @@ public class ComponentController implements Controller {
 
     @FXML
     private void findLocation(MouseEvent mouseEvent) {
-        oldX = getComponent().getTranslateX() - mouseEvent.getSceneX();
-        oldY = getComponent().getTranslateY() - mouseEvent.getSceneY();
+        double scaleX = simulationController.getScaleFactorX();
+        double scaleY = simulationController.getScaleFactorY();
+
+        oldX = getComponent().getTranslateX() - mouseEvent.getSceneX()/scaleX;
+        oldY = getComponent().getTranslateY() - mouseEvent.getSceneY()/scaleY;
         //simulationController.setPannable(false);
         //component.toFront();
         hasWires = componentModel.hasWires();
@@ -94,8 +97,11 @@ public class ComponentController implements Controller {
     private void moveComponent(MouseEvent mouseEvent) {
         if(hasWires) return;
 
-        double newTranslationX = mouseEvent.getSceneX() + oldX;
-        double newTranslationY = mouseEvent.getSceneY() + oldY;
+        double scaleX = simulationController.getScaleFactorX();
+        double scaleY = simulationController.getScaleFactorY();
+
+        double newTranslationX = (mouseEvent.getSceneX()/scaleX) + oldX;
+        double newTranslationY = mouseEvent.getSceneY()/scaleY + oldY;
 
         if (getComponent().getLayoutX() + newTranslationX > 0) {
             getComponent().setTranslateX(Math.round(newTranslationX/50.0)*50);

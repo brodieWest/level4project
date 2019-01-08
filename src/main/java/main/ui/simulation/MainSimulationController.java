@@ -33,12 +33,13 @@ public class MainSimulationController extends SimulationController {
 
     private Simulator simulator = new Simulator();
 
-    private WireBuilderController wireBuilderController = new WireBuilderController();
+    private WireBuilderController wireBuilderController;
 
     public MainSimulationController(MainController mainController) {
         super();
         this.mainController = mainController;
 
+        wireBuilderController = new WireBuilderController(this);
         simulationPane.getChildren().add(wireBuilderController.getPath());
         wireBuilderController.getPath().toBack();
         backGround.toBack();

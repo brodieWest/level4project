@@ -60,9 +60,12 @@ public class BuildIconController implements Controller {
         Parent background = simulationController.getBackground();
         Bounds boundsInScene = background.localToScene(background.getBoundsInLocal());
 
+        double scaleX = simulationController.getScaleFactorX();
+        double scaleY = simulationController.getScaleFactorY();
+
         if(simulationController.getWireBuilderStartPort() != null) {
-            int x = (int) Math.round((mouseEvent.getSceneX() - boundsInScene.getMinX()) / 10) * 10;
-            int y = (int) Math.round((mouseEvent.getSceneY() - boundsInScene.getMinY()) / 10) * 10;
+            int x = (int) Math.round((mouseEvent.getSceneX() - boundsInScene.getMinX())/scaleX / 10) * 10;
+            int y = (int) Math.round((mouseEvent.getSceneY() - boundsInScene.getMinY())/scaleY / 10) * 10;
             simulationController.newLine(new Coordinates(x, y));
             PortController startPort = simulationController.getWireBuilderStartPort();
 
@@ -107,14 +110,14 @@ public class BuildIconController implements Controller {
         simulationController.startWireBuilder(port.getEndPosition());
 
         Mainfx.getRoot().setOnMouseMoved(event -> {
-            int x = (int)Math.round((event.getSceneX()-boundsInScene.getMinX())/10)*10;
-            int y = (int)Math.round((event.getSceneY()-boundsInScene.getMinY())/10)*10;
+            int x = (int)Math.round((event.getSceneX()-boundsInScene.getMinX())/scaleX/10)*10;
+            int y = (int)Math.round((event.getSceneY()-boundsInScene.getMinY())/scaleY/10)*10;
             simulationController.displayLine(new Coordinates(x,y));
         });
 
         Mainfx.getRoot().setOnMouseClicked(event -> {
-            int x = (int)Math.round((event.getSceneX()-boundsInScene.getMinX())/10)*10;
-            int y = (int)Math.round((event.getSceneY()-boundsInScene.getMinY())/10)*10;
+            int x = (int)Math.round((event.getSceneX()-boundsInScene.getMinX())/scaleX/10)*10;
+            int y = (int)Math.round((event.getSceneY()-boundsInScene.getMinY())/scaleY/10)*10;
             simulationController.newLine(new Coordinates(x,y));
         });
 

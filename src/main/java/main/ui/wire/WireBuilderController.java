@@ -10,6 +10,7 @@ import main.model.Coordinates;
 import main.ui.Controller;
 import main.ui.main.Mainfx;
 import main.ui.port.PortController;
+import main.ui.simulation.SimulationController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ public class WireBuilderController implements Controller {
 
     @FXML
     private Path path;
+
+    private SimulationController simulationController;
 
     private LineTo line1;
 
@@ -34,7 +37,8 @@ public class WireBuilderController implements Controller {
 
     private static String WIRE_PATH = "fxml/wire.fxml";
 
-    public WireBuilderController() {
+    public WireBuilderController(SimulationController simulationController) {
+        this.simulationController = simulationController;
         FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(WIRE_PATH), this);
     }
 
@@ -74,8 +78,6 @@ public class WireBuilderController implements Controller {
     }
 
     public void displayLine(Coordinates coordinates) {
-        //corners.add(new Coordinates(coordinates.getX(), startCoordinates.getY()));
-        //corners.add(coordinates);
         line1.setX(coordinates.getX());
         line2.setY(coordinates.getY());
     }

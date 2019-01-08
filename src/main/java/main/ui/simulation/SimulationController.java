@@ -314,5 +314,12 @@ public class SimulationController implements Controller {
         return backGround;
     }
 
+    public double getScaleFactorX() {
+        return scale.getX();
+    }
+
+    public double getScaleFactorY() {
+        return scale.getY();
+    }
 
 }
