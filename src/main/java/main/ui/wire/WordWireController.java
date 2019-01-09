@@ -56,7 +56,15 @@ public class WordWireController extends WireController {
     }
 
     @Override
-    public void setColourDeletable() {
+    public void setDeletable(boolean deletable) {
+        if(deletable) {
+            outerPath.setOnMouseClicked(event -> delete());
+            innerPath.setOnMouseClicked(event -> delete());
+        } else {
+            outerPath.setOnMouseClicked(event -> {});
+            innerPath.setOnMouseClicked(event -> {});
+        }
+
     }
 
 }

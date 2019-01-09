@@ -79,6 +79,9 @@ public class MainController implements Controller {
     @FXML
     private Button deleteWires;
 
+    @FXML
+    private Button deleteComponents;
+
     private static String REUSABLE_PATH = "fileExamples/reusable/";
 
     @FXML
@@ -203,6 +206,7 @@ public class MainController implements Controller {
     public void deleteWires() {
         simulationController.makeWiresDeletable();
         startSimulation.setDisable(true);
+        deleteComponents.setDisable(true);
         leftPane.getChildren().remove(toolbox);
         leftScrollPane.setPrefWidth(20);
         deleteWires.setText("Finish");
@@ -211,8 +215,27 @@ public class MainController implements Controller {
             leftScrollPane.setPrefWidth(200);
             deleteWires.setText("Delete Wires");
             startSimulation.setDisable(false);
+            deleteComponents.setDisable(false);
             simulationController.wiresNotDeletable();
             deleteWires.setOnMouseClicked(event1 -> deleteWires());
+        });
+    }
+
+    public void deleteComponents() {
+        simulationController.makeComponentsDeletable();
+        startSimulation.setDisable(true);
+        deleteWires.setDisable(true);
+        leftPane.getChildren().remove(toolbox);
+        leftScrollPane.setPrefWidth(20);
+        deleteComponents.setText("Finish");
+        deleteComponents.setOnMouseClicked(event -> {
+            leftPane.getChildren().add(toolbox);
+            leftScrollPane.setPrefWidth(200);
+            deleteComponents.setText("Delete Components");
+            startSimulation.setDisable(false);
+            deleteWires.setDisable(false);
+            simulationController.componentsNotDeletable();
+            deleteComponents.setOnMouseClicked(event1 -> deleteComponents());
         });
     }
 }

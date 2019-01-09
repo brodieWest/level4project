@@ -31,6 +31,14 @@ public class InputController extends IoController {
         simulationController.wireDelay();
     }
 
+    @Override
+    public void setDeletable(boolean deletable) {
+        super.setDeletable(deletable);
+        if(!deletable) {
+            getComponent().setOnMouseClicked(event -> switchInputValue());
+        }
+    }
+
     public Wire getWire() {
         return componentModel.getOutput(0).getWire();
     }

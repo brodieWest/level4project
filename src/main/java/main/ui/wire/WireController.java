@@ -212,15 +212,19 @@ public class WireController implements Controller {
     public void setDeletable(boolean deletable) {
         if(deletable) {
             setColourDeletable();
-            path.setOnMouseClicked(event -> {
-                simulationController.removeWire(this);
-                wire.resetPorts();
-            });
+            path.setOnMouseClicked(event -> delete());
         } else {
             path.setOnMouseClicked(event -> {});
             showSignal();
         }
 
+    }
+
+
+
+    public void delete() {
+        simulationController.removeWire(this);
+        wire.resetPorts();
     }
 
     public void setColourDeletable() {

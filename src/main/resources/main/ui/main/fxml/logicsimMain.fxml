@@ -78,6 +78,7 @@
             <padding><Insets left="25" top="25" bottom="25" right="25"/></padding>
             <HBox fx:id="bottomButtons" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" spacing="12" alignment="CENTER_LEFT">
                 <HBox spacing="12" fx:id="buildButtons">
+                    <Button text="Delete Components" onMouseClicked="#deleteComponents" fx:id="deleteComponents"/>
                     <Button text="Delete Wires" onMouseClicked="#deleteWires" fx:id="deleteWires"/>
                     <Button text="Start Simulation" fx:id="startSimulation" onMouseClicked="#startSimulation" id="startSimulation"/>
                 </HBox>

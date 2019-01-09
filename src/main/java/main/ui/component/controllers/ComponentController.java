@@ -21,6 +21,7 @@ import main.ui.main.Mainfx;
 import main.ui.port.PortController;
 import main.ui.simulation.SimulationController;
 import main.fxml.FxmlLoaderUtils;
+import main.ui.wire.Wire;
 
 import java.util.List;
 
@@ -156,5 +157,16 @@ public class ComponentController implements Controller {
 
     public boolean isConnected() {
         return componentModel.isConnected();
+    }
+
+    public void setDeletable(boolean deletable) {
+        if(deletable) {
+            getComponent().setOnMouseClicked(event -> {
+                simulationController.removeComponent(this);
+                componentModel.deleteWires();
+            });
+        } else {
+            getComponent().setOnMouseClicked(event -> {});
+        }
     }
 }

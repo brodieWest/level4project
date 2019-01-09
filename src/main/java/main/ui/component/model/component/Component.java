@@ -197,6 +197,14 @@ public abstract class Component implements Onscreen {
         //TODO
     }
 
+    public void deleteWires() {
+        for(Port port : ports) {
+            if(port.hasWire()) {
+                port.getWire().getWireController().delete();
+            }
+        }
+    }
+
     public Coordinates getCoordinates() {
         return coordinates;
     }
