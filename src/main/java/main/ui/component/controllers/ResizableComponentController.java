@@ -36,11 +36,13 @@ abstract class ResizableComponentController extends ComponentController {
 
         component.prefHeight(height);
 
+        rectangle.setTranslateY(componentModel.getPORT_OFFSET());
+
         rectangle.setHeight(height - componentModel.getPORT_OFFSET() * 2);
 
         component.prefWidth(width);
 
-        rectangle.setWidth(width - componentModel.getPORT_OFFSET() * 2);
+        rectangle.setWidth(width - componentModel.getDefaultPortOffset() * 2);
     }
 
     @Override

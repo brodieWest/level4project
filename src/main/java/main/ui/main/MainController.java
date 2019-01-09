@@ -180,6 +180,7 @@ public class MainController implements Controller {
         simulationController.setSimulationMode(SimulationMode.SIMULATE);
         bottomButtons.getChildren().remove(buildButtons);
         bottomButtons.getChildren().add(simulationButtons);
+        simulationController.resetSimulation();
         simulationController.wireDelay();
         setGateDelayCount(0);
         leftPane.getChildren().remove(toolbox);
@@ -188,10 +189,15 @@ public class MainController implements Controller {
     }
 
     public void buildMode() {
+        //simulationController.resetSimulation();
         simulationController.setSimulationMode(SimulationMode.BUILD);
         bottomButtons.getChildren().add(buildButtons);
         bottomButtons.getChildren().remove(simulationButtons);
         leftPane.getChildren().add(toolbox);
         leftScrollPane.setPrefWidth(200);
+    }
+
+    public void deleteWires() {
+
     }
 }

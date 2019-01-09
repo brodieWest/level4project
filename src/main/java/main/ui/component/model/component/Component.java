@@ -37,6 +37,8 @@ public abstract class Component implements Onscreen {
     private int HEIGHT = 100;
     private int WIDTH = 100;
     private int PORT_OFFSET = 20;
+    private int SPACE_BETWEEN_PORTS = 20;
+    private int SPACE_TO_FIRST_PORT = 10;
 
     public Component(ComponentParameters componentParameters){
         this.coordinates = componentParameters.getCoordinates();
@@ -112,6 +114,9 @@ public abstract class Component implements Onscreen {
         for(Direction direction : Direction.values()) {
             List<Port> portsDirection = portsByDirection.get(direction);
             int portsDirectionSize = portsDirection.size();
+            if(portsDirectionSize>=4) {
+                PORT_OFFSET = 10;
+            }
             for(int i = 0; i < portsDirectionSize; i++) {
                 Port currentPort = portsDirection.get(i);
                 currentPort.setOffset(getPortOffset(direction,i));
@@ -121,9 +126,21 @@ public abstract class Component implements Onscreen {
 
     private Coordinates getPortOffset(Direction direction, int position) {
         if(direction == Direction.EAST || direction == Direction.WEST) {
-            return new Coordinates(WIDTH/2, PORT_OFFSET + (position+1) * ((HEIGHT-2*PORT_OFFSET)/(portsByDirection.get(direction).size()+1)));
+            int x = WIDTH/2;
+            int y =getPortPosition(direction,position,HEIGHT);
+            return new Coordinates(x,y);
         }
-        return  new Coordinates(PORT_OFFSET + (position+1) * ((WIDTH-2*PORT_OFFSET)/(portsByDirection.get(direction).size()+1)) , HEIGHT/2);
+        int x = getPortPosition(direction,position,WIDTH);
+        int y = HEIGHT/2;
+        return  new Coordinates(x,y);
+    }
+
+    private int getPortPosition(Direction direction, int position, int length) {
+        int size = portsByDirection.get(direction).size();
+        if(size > 2) {
+            return PORT_OFFSET + SPACE_TO_FIRST_PORT + (position) * SPACE_BETWEEN_PORTS;
+        }
+        return PORT_OFFSET + (position+1) * ((length-2*PORT_OFFSET)/(size+1));
     }
 
 
@@ -260,6 +277,10 @@ public abstract class Component implements Onscreen {
 
     public int getPORT_OFFSET() {
         return PORT_OFFSET;
+    }
+
+    public int getDefaultPortOffset() {
+        return 20;
     }
 
     public void setPORT_OFFSET(int PORT_OFFSET) {
