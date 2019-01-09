@@ -1,6 +1,9 @@
 package main.model;
 
+import javafx.print.Collation;
+
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Word extends ArrayList<Logic> {
 
@@ -19,11 +22,20 @@ public class Word extends ArrayList<Logic> {
 
     public void setValue(int value) {
         String binary = Integer.toBinaryString(value);
+
+        StringBuilder binaryString = new StringBuilder();
+        binaryString.append(binary);
+        binary = binaryString.reverse().toString();
+
         setUndefined(false);
         setTo0();
 
         if(binary.length() > this.size()) {
             binary = binary.substring(binary.length()-this.size());
+        }
+
+        while(binary.length() < this.size()) {
+            binary += "0";
         }
 
         for(int i=0;i<binary.length();i++) {
@@ -47,12 +59,12 @@ public class Word extends ArrayList<Logic> {
     @Override
     public String toString() {
         int value = 0;
-        for(int i=0;i<size();i++) {
+        for(int i=size()-1;i>=0;i--) {
             Logic logic = this.get(i);
 
             if(logic.isUndefined()) return "U";
 
-            if(logic.value()) value += Math.pow(2,i);
+            if(logic.value()) value += Math.pow(2,size()-i-1);
         }
         return Integer.toString(value,16);
     }
