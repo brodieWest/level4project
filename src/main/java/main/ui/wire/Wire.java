@@ -65,4 +65,11 @@ public class Wire implements Onscreen {
         return wireController;
     }
 
+    public void resetPorts() {
+        input.reset();
+        for(Port output : outputs) {
+            output.reset();
+        }
+    }
+
 }

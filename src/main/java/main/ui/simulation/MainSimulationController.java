@@ -211,4 +211,16 @@ public class MainSimulationController extends SimulationController {
         }
         return true;
     }
+
+    public void makeWiresDeletable() {
+        for(WireController wireController : wireControllers.values()) {
+            wireController.setDeletable(true);
+        }
+    }
+
+    public void wiresNotDeletable() {
+        for(WireController wireController : wireControllers.values()) {
+            wireController.setDeletable(false);
+        }
+    }
 }

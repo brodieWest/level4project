@@ -131,4 +131,9 @@ public class Port {
     public boolean hasWire() {
         return wire !=null;
     }
+
+    public void reset() {
+        portController.reset();
+        wire = null;
+    }
 }

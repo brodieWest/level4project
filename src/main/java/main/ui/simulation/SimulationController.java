@@ -234,8 +234,9 @@ public class SimulationController implements Controller {
     }
 
 
-    public void removeWire() {
-        // TODO
+    public void removeWire(WireController wireController) {
+        wireControllers.remove(wireController.getUuid());
+        simulationPane.getChildren().remove(wireController.getGroup());
     }
 
     private void placeComponent(Parent componentNode, Coordinates coordinates) {

@@ -76,6 +76,9 @@ public class PortController implements Controller {
 
 
     public void displayPort() {
+        if(!group.getChildren().contains(line)) {
+            group.getChildren().add(line);
+        }
         line.setStartX(port.getOffset().getX());
         line.setStartY(port.getOffset().getY());
         line.setEndX(port.getEndCoordinates().getX());
@@ -102,5 +105,9 @@ public class PortController implements Controller {
 
     public Port getPort() {
         return port;
+    }
+
+    public void reset() {
+        displayPort();
     }
 }

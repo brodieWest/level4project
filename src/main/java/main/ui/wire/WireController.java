@@ -208,4 +208,22 @@ public class WireController implements Controller {
     public String getUuid() {
         return wire.getUuid();
     }
+
+    public void setDeletable(boolean deletable) {
+        if(deletable) {
+            setColourDeletable();
+            path.setOnMouseClicked(event -> {
+                simulationController.removeWire(this);
+                wire.resetPorts();
+            });
+        } else {
+            path.setOnMouseClicked(event -> {});
+            showSignal();
+        }
+
+    }
+
+    public void setColourDeletable() {
+        path.setStroke(Paint.valueOf("red"));
+    }
 }

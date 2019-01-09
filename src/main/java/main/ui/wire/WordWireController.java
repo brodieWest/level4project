@@ -55,4 +55,8 @@ public class WordWireController extends WireController {
     public void setInitialColour() {
     }
 
+    @Override
+    public void setColourDeletable() {
+    }
+
 }

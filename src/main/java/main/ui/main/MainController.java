@@ -76,6 +76,9 @@ public class MainController implements Controller {
     @FXML
     private ScrollPane leftScrollPane;
 
+    @FXML
+    private Button deleteWires;
+
     private static String REUSABLE_PATH = "fileExamples/reusable/";
 
     @FXML
@@ -198,6 +201,18 @@ public class MainController implements Controller {
     }
 
     public void deleteWires() {
-
+        simulationController.makeWiresDeletable();
+        startSimulation.setDisable(true);
+        leftPane.getChildren().remove(toolbox);
+        leftScrollPane.setPrefWidth(20);
+        deleteWires.setText("Finish");
+        deleteWires.setOnMouseClicked(event -> {
+            leftPane.getChildren().add(toolbox);
+            leftScrollPane.setPrefWidth(200);
+            deleteWires.setText("Delete Wires");
+            startSimulation.setDisable(false);
+            simulationController.wiresNotDeletable();
+            deleteWires.setOnMouseClicked(event1 -> deleteWires());
+        });
     }
 }
