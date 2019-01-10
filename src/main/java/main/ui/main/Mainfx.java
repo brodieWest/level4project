@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 
 public class Mainfx extends Application {
 
@@ -38,7 +39,9 @@ public class Mainfx extends Application {
     public static File openFileLoadWindow() {
         FileChooser fileChooser = new FileChooser();
         try {
-            File defaultDirectory = new File(Mainfx.class.getClassLoader().getResource("main/ui/main/fileExamples/").getFile());
+            String currentPath = Paths.get("./reusables").toAbsolutePath().normalize().toString();
+            File defaultDirectory = new File(currentPath);
+            //File defaultDirectory = new File(Mainfx.class.getClassLoader().getResource("main/ui/main/fileExamples/").getFile());
             fileChooser.setInitialDirectory(defaultDirectory);
             return fileChooser.showOpenDialog(stage);
         } catch (RuntimeException e) {

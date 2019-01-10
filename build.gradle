@@ -64,6 +64,7 @@ jlink {
 }
 
 task buildExe() {
+    dependsOn 'clean'
     dependsOn 'jlink'
     dependsOn 'createExe'
 }

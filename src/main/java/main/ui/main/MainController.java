@@ -21,6 +21,7 @@ import main.ui.simulation.MainSimulationController;
 import main.ui.toolbar.ToolbarButtonController;
 
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
@@ -142,7 +143,8 @@ public class MainController implements Controller {
             }
         }
 
-        File folder = new File(Mainfx.class.getResource(REUSABLE_PATH).getFile());
+        String currentPath = Paths.get("./reusables").toAbsolutePath().normalize().toString();
+        File folder = new File(currentPath);
         File[] listOfFiles = folder.listFiles();
         if(listOfFiles != null) {
             for(File file : listOfFiles) {
