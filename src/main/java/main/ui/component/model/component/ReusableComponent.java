@@ -36,6 +36,7 @@ public class ReusableComponent extends Component{
         for(int i=0; i<inputWires.size();i++) {
             Wire wire = inputWires.get(i);
             Port inputPort = this.getInput(i);
+            inputPort.setSize(wire.getOutput(0).getSize());
 
             wire.setInput(inputPort);
             //inputPort.setWire(wire);
@@ -44,6 +45,7 @@ public class ReusableComponent extends Component{
         for(int i=0; i<outputWires.size();i++) {
             Wire wire = outputWires.get(i);
             Port outputPort = this.getOutput(i);
+            outputPort.setSize(wire.getInput().getSize());
 
             wire.addOutput(outputPort);
             //outputPort.setWire(wire);

@@ -1,17 +1,19 @@
 package main.ui.component.controllers;
 
 import main.model.SimulationMode;
+import main.ui.component.InputControllerInterface;
 import main.ui.component.model.component.Component;
 import main.ui.simulation.MainSimulationController;
 import main.ui.simulation.SimulationController;
 import main.ui.wire.Wire;
 import main.model.Logic;
 
-public class InputController extends IoController {
+public class InputController extends IoController implements InputControllerInterface {
 
 
     public InputController(SimulationController simulationController, Component componentModel) {
         super(simulationController, componentModel);
+        simulationController.addInput(this);
     }
 
     public void switchInputValue() {
@@ -39,6 +41,7 @@ public class InputController extends IoController {
         }
     }
 
+    @Override
     public Wire getWire() {
         return componentModel.getOutput(0).getWire();
     }

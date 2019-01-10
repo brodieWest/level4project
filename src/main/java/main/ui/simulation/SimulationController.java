@@ -12,6 +12,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.transform.Scale;
 import main.model.SimulationMode;
 import main.ui.Controller;
+import main.ui.component.InputControllerInterface;
 import main.ui.component.OutputControllerInterface;
 import main.ui.component.Synchronous;
 import main.ui.component.WordComponent;
@@ -49,10 +50,11 @@ public class SimulationController implements Controller {
     Group backGround = buildBackground();
 
     Map<String,ComponentController> componentControllers = new HashMap<>();
-    private Map<String,OutputControllerInterface> outputControllers = new HashMap<>();
+    Map<String,OutputControllerInterface> outputControllers = new HashMap<>();
     private Map<String,Synchronous> synchronousControllers = new HashMap<>();
     private Map<String, WordComponent> wordComponents = new HashMap<>();
     private Map<String, ReusableComponentController> reusableControllers = new HashMap<>();
+    Map<String, InputControllerInterface> inputControllers = new HashMap<>();
 
     private Scale scale = new Scale();
 
@@ -154,6 +156,10 @@ public class SimulationController implements Controller {
         wordComponents.put(wordComponent.getUuid(),wordComponent);
     }
 
+    public void addInput(InputControllerInterface componentController) {
+        inputControllers.put(componentController.getUuid(),componentController);
+    }
+
     public void resetSimulation() {
         for(ComponentController controller : componentControllers.values()) {
             controller.reset();
@@ -185,6 +191,10 @@ public class SimulationController implements Controller {
 
     public void removeComponent(ComponentController componentController) {
         componentControllers.remove(componentController.getUuid());
+        outputControllers.remove(componentController.getUuid());
+        synchronousControllers.remove(componentController.getUuid());
+        wordComponents.remove(componentController.getUuid());
+        reusableControllers.remove(componentController.getUuid());
 
         hideComponent(componentController);
     }
@@ -220,7 +230,7 @@ public class SimulationController implements Controller {
 
         Port input = startComponent.getOutput(startPortNo);
         WireController wireController;
-        if(input.getWord().size()>1) {
+        if(input.getSize()>1) {
             wireController = new WordWireController(this,uuid,input,outputPorts);
         } else {
             wireController = new WireController(this,uuid, input, outputPorts);

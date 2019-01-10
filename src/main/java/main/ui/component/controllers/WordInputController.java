@@ -9,13 +9,15 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import main.ui.component.InputControllerInterface;
 import main.ui.component.model.component.Component;
 import main.ui.component.model.component.Io.WordInput;
 import main.ui.simulation.SimulationController;
+import main.ui.wire.Wire;
 
 import java.util.function.UnaryOperator;
 
-public class WordInputController extends ComponentController {
+public class WordInputController extends ComponentController implements InputControllerInterface {
 
     @FXML
     private TextField textField;
@@ -27,6 +29,7 @@ public class WordInputController extends ComponentController {
 
     public WordInputController(SimulationController simulationController, Component componentModel) {
         super(simulationController, componentModel);
+        simulationController.addInput(this);
         changeWordValue();
 
         UnaryOperator<TextFormatter.Change> filter = change -> {
@@ -64,5 +67,10 @@ public class WordInputController extends ComponentController {
     @Override
     public Parent getComponent() {
         return stackPane;
+    }
+
+    @Override
+    public Wire getWire() {
+        return componentModel.getOutput(0).getWire();
     }
 }

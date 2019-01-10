@@ -177,7 +177,7 @@ public class MainController implements Controller {
     }
 
     public void addComponent(String type) {
-        String uuid = type + Long.toHexString(Double.doubleToLongBits(Math.random()));
+        String uuid = "a" + type + Long.toHexString(Double.doubleToLongBits(Math.random()));
         simulationController.addComponent(new ComponentParameters(new Coordinates(0,0), uuid,type,new ArrayList<>()));
     }
 

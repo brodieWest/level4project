@@ -7,6 +7,7 @@ import javafx.scene.text.Text;
 import main.ui.component.OutputControllerInterface;
 import main.ui.component.model.component.Component;
 import main.ui.simulation.SimulationController;
+import main.ui.wire.Wire;
 
 public class WordOutputController extends ComponentController implements OutputControllerInterface {
     public WordOutputController(SimulationController simulationController, Component componentModel) {
@@ -27,5 +28,9 @@ public class WordOutputController extends ComponentController implements OutputC
     @Override
     public Parent getComponent() {
         return stackPane;
+    }
+
+    public Wire getWire() {
+        return componentModel.getInput(0).getWire();
     }
 }
