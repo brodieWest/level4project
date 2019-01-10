@@ -136,4 +136,8 @@ public class Port {
         portController.reset();
         wire = null;
     }
+
+    public int getSize() {
+        return size;
+    }
 }

@@ -33,6 +33,12 @@ public class PortController implements Controller {
     @FXML
     private Line line;
 
+    @FXML
+    private Line outerPath;
+
+    @FXML
+    private Line innerPath;
+
     private BuildIconController buildIconController;
 
     private Port port;
@@ -76,6 +82,24 @@ public class PortController implements Controller {
 
 
     public void displayPort() {
+        if(port.getSize() >1) {
+            displayWordPort();
+        } else {
+            displayBitPort();
+        }
+        // should be inproved to not use instanceof
+        if(componentController.getSimulationController() instanceof MainSimulationController) {
+            Group buildIcon = buildIconController.getBuildIcon();
+            group.getChildren().add(buildIcon);
+            buildIcon.setLayoutX(port.getEndCoordinates().getX() - 5);
+            buildIcon.setLayoutY(port.getEndCoordinates().getY() - 5);
+        }
+        group.toBack();
+    }
+
+    private void displayBitPort() {
+        group.getChildren().remove(outerPath);
+        group.getChildren().remove(innerPath);
         if(!group.getChildren().contains(line)) {
             group.getChildren().add(line);
         }
@@ -85,14 +109,26 @@ public class PortController implements Controller {
         line.setEndY(port.getEndCoordinates().getY());
         line.setStroke(Paint.valueOf(LOGIC_UNDEFINED_COLOUR));
         line.toBack();
-        // should be inproved to not use instanceof
-        if(componentController.getSimulationController() instanceof MainSimulationController) {
-            Group buildIcon = buildIconController.getBuildIcon();
-            group.getChildren().add(buildIcon);
-            buildIcon.setLayoutX(port.getEndCoordinates().getX() - 5);
-            buildIcon.setLayoutY(port.getEndCoordinates().getY() - 5);
+    }
+
+    private void displayWordPort() {
+        group.getChildren().remove(line);
+        if(!group.getChildren().contains(outerPath)) {
+            group.getChildren().add(outerPath);
         }
-        group.toBack();
+        if(!group.getChildren().contains(innerPath)) {
+            group.getChildren().add(innerPath);
+        }
+        innerPath.setStartX(port.getOffset().getX());
+        innerPath.setStartY(port.getOffset().getY());
+        innerPath.setEndX(port.getEndCoordinates().getX());
+        innerPath.setEndY(port.getEndCoordinates().getY());
+        innerPath.toBack();
+        outerPath.setStartX(port.getOffset().getX());
+        outerPath.setStartY(port.getOffset().getY());
+        outerPath.setEndX(port.getEndCoordinates().getX());
+        outerPath.setEndY(port.getEndCoordinates().getY());
+        outerPath.toBack();
     }
 
     public PortType getPortType() {
