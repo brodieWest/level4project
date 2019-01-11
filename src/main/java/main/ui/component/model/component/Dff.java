@@ -10,7 +10,7 @@ public class Dff extends Component implements Synchronous {
 
     @Override
     public void processGateDelay() {
-        getOutput(0).getLogic().copy(storedValue);
+        //getOutput(0).getLogic().copy(storedValue);
     }
 
     @Override
@@ -28,6 +28,11 @@ public class Dff extends Component implements Synchronous {
         if(!getInput(0).getLogic().isUndefined()) {
             storedValue.copy(getInput(0).getLogic());
         }
+    }
+
+    @Override
+    public void wireDelay() {
+        getOutput(0).getLogic().copy(storedValue);
     }
 
     public Dff(ComponentParameters componentParameters) {

@@ -28,4 +28,9 @@ public class DffController extends ComponentController implements Synchronous{
     public Parent getComponent() {
         return stackPane;
     }
+
+    @Override
+    public void wireDelay() {
+        ((Synchronous) componentModel).wireDelay();
+    }
 }

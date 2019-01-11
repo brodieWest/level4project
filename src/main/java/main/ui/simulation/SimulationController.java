@@ -141,8 +141,12 @@ public class SimulationController implements Controller {
                 outputController.showOutputValue();
             }
 
-            for (ReusableComponentController reusableController : reusableControllers.values()) {
-                reusableController.wireDelay();
+            //for (ReusableComponentController reusableController : reusableControllers.values()) {
+            //    reusableController.wireDelay();
+            //}
+
+            for(Synchronous synchronous : synchronousControllers.values()) {
+                synchronous.wireDelay();
             }
         }
 

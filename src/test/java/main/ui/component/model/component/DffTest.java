@@ -27,9 +27,11 @@ public class DffTest {
     public void checkInitailly0() {
         inputLogic.setValue(true);
 
-        assertTrue(outputLogic.isUndefined());
+        //assertTrue(outputLogic.isUndefined());
 
-        dff.processGateDelay();
+        //dff.processGateDelay();
+
+        dff.wireDelay();
 
         assertFalse(outputLogic.isUndefined());
         assertFalse(outputLogic.value());
@@ -55,9 +57,11 @@ public class DffTest {
 
         dff.processClockTick();
 
-        assertTrue(outputLogic.isUndefined());
+        //assertTrue(outputLogic.isUndefined());
 
-        dff.processGateDelay();
+        //dff.processGateDelay();
+
+        dff.wireDelay();
 
         assertFalse(outputLogic.isUndefined());
         assertTrue(outputLogic.value());

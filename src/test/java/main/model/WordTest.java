@@ -12,9 +12,9 @@ public class WordTest {
 
         word.setValue(5);
 
-        assertTrue(word.get(0).value());
+        assertFalse(word.get(0).value());
         assertFalse(word.get(1).value());
-        assertTrue(word.get(2).value());
+        assertFalse(word.get(2).value());
         assertFalse(word.get(3).value());
         assertFalse(word.get(4).value());
         assertFalse(word.get(5).value());
@@ -22,6 +22,12 @@ public class WordTest {
         assertFalse(word.get(7).value());
         assertFalse(word.get(8).value());
         assertFalse(word.get(9).value());
+        assertFalse(word.get(10).value());
+        assertFalse(word.get(11).value());
+        assertFalse(word.get(12).value());
+        assertTrue(word.get(13).value());
+        assertFalse(word.get(14).value());
+        assertTrue(word.get(15).value());
     }
 
     @Test
