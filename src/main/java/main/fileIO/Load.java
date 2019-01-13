@@ -1,8 +1,11 @@
 package main.fileIO;
 
+import com.google.gson.JsonArray;
+import main.ui.component.controllers.ReusableComponentController;
 import main.ui.component.model.component.ComponentParameters;
 import main.ui.main.Mainfx;
 import main.model.*;
+import main.ui.simulation.InternalController;
 import main.ui.simulation.SimulationController;
 import net.sourceforge.jeval.EvaluationException;
 import net.sourceforge.jeval.Evaluator;
@@ -12,12 +15,18 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Load {
 
+    private static final String INTERFACE = "interface";
+    private static final String EXTERNAL_PORT = "externalPort";
+    private static final String INTERNAL_PORT = "internalPort";
     private static String COMPONENTS = "components";
     private static String COMPONENT = "component";
     private static String TYPE = "type";
@@ -60,11 +69,37 @@ public class Load {
         return true;
     }
 
+    public static boolean loadInternal(SimulationController simulationController, ReusableComponentController reusableController, String fileName) {
+        String file = loadTextFromPath(fileName);
+        if(file == null) {
+            logger.error(String.format("failed to load from: %s", fileName));
+            return false;
+        }
+
+        load(simulationController, file);
+
+        loadInterface(simulationController, reusableController, file);
+
+        return true;
+    }
+
     static String loadTextFromFile(String fileName) {
         InputStream inputStream = Mainfx.class.getResourceAsStream(fileName);
         if(inputStream == null) return null;
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         return reader.lines().collect(Collectors.joining());
+    }
+
+    static String loadTextFromPath(String filePath) {
+        FileInputStream inputStream;
+        try {
+            inputStream = new FileInputStream(filePath);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            return reader.lines().collect(Collectors.joining());
+        } catch (FileNotFoundException e) {
+            return null;
+        }
+
     }
 
     static void load(SimulationController simulationController, String file) {
@@ -223,6 +258,20 @@ public class Load {
             }
         }
         return true;
+    }
+
+    private static void loadInterface(SimulationController simulationController, ReusableComponentController reusableController, String file) {
+        JSONObject fileJson = new JSONObject(file);
+
+        JSONArray interfaceArray = fileJson.getJSONArray(INTERFACE);
+
+        for(Object interfaceObject : interfaceArray) {
+            JSONObject interfaceJson = (JSONObject) interfaceObject;
+            Direction direction = Direction.valueOf(interfaceJson.getJSONObject(EXTERNAL_PORT).getString(DIRECTION));
+            String internalPort = interfaceJson.getString(INTERNAL_PORT);
+            reusableController.addExternalPort(internalPort, direction);
+        }
+
     }
 
     private static String loadTextWithFileChooser() {

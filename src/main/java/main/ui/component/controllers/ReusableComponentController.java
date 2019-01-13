@@ -7,10 +7,13 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.text.Text;
+import main.model.Direction;
 import main.ui.ComponentInternalWindow;
 import main.ui.component.Synchronous;
+import main.ui.component.model.component.Component;
 import main.ui.component.model.component.ReusableComponent;
 import main.ui.main.Mainfx;
+import main.ui.port.Port;
 import main.ui.simulation.InternalController;
 import main.ui.simulation.SimulationController;
 import main.ui.wire.Wire;
@@ -19,6 +22,7 @@ import org.apache.logging.log4j.Logger;
 import main.fxml.FxmlLoaderUtils;
 
 import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class ReusableComponentController extends ResizableComponentController implements Synchronous {
@@ -29,7 +33,7 @@ public class ReusableComponentController extends ResizableComponentController im
 
     private Scene newWindowScene;
 
-    private static String REUSABLE_FILE_PATH = "/main/ui/main/fileExamples/reusable/";
+    private static String REUSABLE_FILE_PATH = Paths.get("./reusables").toAbsolutePath().normalize().toString() + "/";
     private static String REUSABLE = "reusable";
 
     @FXML
@@ -40,21 +44,21 @@ public class ReusableComponentController extends ResizableComponentController im
 
         this.internalSimulation = new InternalController();
 
-        if(!Load.loadFromFile(internalSimulation, REUSABLE_FILE_PATH + componentModel.getStringIdentifier())) {
+        if(!Load.loadInternal(internalSimulation,this, REUSABLE_FILE_PATH + componentModel.getStringIdentifier())) {
             logger.error(String.format("Failed to build internal simulation for %s", componentModel.getStringIdentifier()));
             throw new FileNotFoundException();
         }
 
         internalSimulation.removeInputs();
 
-        List<Wire> inputWires = internalSimulation.getInputWires();
+        //List<Wire> inputWires = internalSimulation.getInputWires();
 
-        List<Wire> outputWires = internalSimulation.getOutputWires();
+        //List<Wire> outputWires = internalSimulation.getOutputWires();
 
-        componentModel.setDefaultInputs(inputWires.size());
-        componentModel.setDefaultOutputs(outputWires.size());
+        //componentModel.setDefaultInputs(inputWires.size());
+        //componentModel.setDefaultOutputs(outputWires.size());
 
-        componentModel.initialiseWires(inputWires,outputWires);
+        //componentModel.initialiseWires(inputWires,outputWires);
 
         if(componentModel.isPortsAdded()) {
             displayPorts();
@@ -73,6 +77,12 @@ public class ReusableComponentController extends ResizableComponentController im
     @Override
     public void loadFxml() {
         FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(String.format(COMPONENT_PATH,REUSABLE)), this);
+    }
+
+    public void addExternalPort(String internalPort, Direction direction) {
+        Component internalComponent = internalSimulation.getComponent(internalPort).getComponentModel();
+
+        ((ReusableComponent)componentModel).addExternalPort(internalComponent,direction);
     }
 
     @FXML

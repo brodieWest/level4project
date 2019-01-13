@@ -131,7 +131,7 @@ public class MainSimulationController extends SimulationController {
             //}
 
         }
-        simulator.calculatePathDepth(inputs);
+        //simulator.calculatePathDepth(inputs);
         mainController.setPathDepth(simulator.getPathDepth());
     }
 

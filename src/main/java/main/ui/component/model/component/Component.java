@@ -17,7 +17,7 @@ public abstract class Component implements Onscreen {
 
     private Map<Direction,List<Port>> portsByDirection = new TreeMap<>();
 
-    private List<Port> ports = new ArrayList<>();
+    List<Port> ports = new ArrayList<>();
 
     private List<Port> inputs = new ArrayList<>();
     private List<Port> outputs = new ArrayList<>();
@@ -27,10 +27,10 @@ public abstract class Component implements Onscreen {
     private List<Port> southPorts = new ArrayList<>();
     private List<Port> northPorts = new ArrayList<>();
 
-    private Coordinates coordinates;
+    Coordinates coordinates;
 
-    private String uuid;
-    private String type;
+    String uuid;
+    String type;
 
     private int pathDepth = 0;
 
@@ -352,5 +352,9 @@ public abstract class Component implements Onscreen {
             if(!port.hasWire()) return false;
         }
         return true;
+    }
+
+    public Port getPort(int portNo) {
+        return ports.get(portNo);
     }
 }

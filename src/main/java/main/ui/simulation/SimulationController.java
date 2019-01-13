@@ -157,6 +157,10 @@ public class SimulationController implements Controller {
 
     }
 
+    public ComponentController getComponent(String uuid) {
+        return componentControllers.get(uuid);
+    }
+
     public void addOutput(OutputControllerInterface outputController) {
         outputControllers.put(outputController.getUuid(),outputController);
     }

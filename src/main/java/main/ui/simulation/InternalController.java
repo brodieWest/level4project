@@ -18,19 +18,14 @@ public class InternalController extends SimulationController {
 
     public void removeInputs() {
         for(InputControllerInterface input : inputControllers.values()) {
-            //if(componentController instanceof InputController) {
-                hideComponent((ComponentController)input);
-            //}
+            hideComponent((ComponentController)input);
         }
     }
 
     public List<Wire> getInputWires() {
         List<Wire> wires = new ArrayList<>();
         for(InputControllerInterface input : inputControllers.values()) {
-            //if(componentController instanceof InputController) {
-                //InputController inputController = (InputController) componentController;
-                wires.add(input.getWire());
-            //}
+            wires.add(input.getWire());
         }
         return wires;
 
@@ -40,13 +35,8 @@ public class InternalController extends SimulationController {
     public List<Wire> getOutputWires() {
         List<Wire> wires = new ArrayList<>();
         for(OutputControllerInterface output : outputControllers.values()) {
-            //if(componentController instanceof OutputController) {
-            //    OutputController outputController = (OutputController) componentController;
-                wires.add(output.getWire());
-            //}
+            wires.add(output.getWire());
         }
         return wires;
-
-
     }
 }
