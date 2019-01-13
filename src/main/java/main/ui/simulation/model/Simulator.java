@@ -61,12 +61,12 @@ public class Simulator {
                 }
             }
         }
-        pathDepth = maxPathDepth - visitedReusables.size() * 2;
+        pathDepth = maxPathDepth;// - visitedReusables.size() * 2;
 
         logger.info(String.format("Path Depth is %d ", pathDepth));
     }
 
     public int getPathDepth() {
-        return pathDepth;
+        return 200;
     }
 }

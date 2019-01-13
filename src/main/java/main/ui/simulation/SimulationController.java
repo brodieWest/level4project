@@ -148,6 +148,11 @@ public class SimulationController implements Controller {
             for(Synchronous synchronous : synchronousControllers.values()) {
                 synchronous.wireDelay();
             }
+
+            for (WireController wireController : wireControllers.values()) {
+                wireController.passSignal();
+                wireController.showSignal();
+            }
         }
 
     }

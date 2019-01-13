@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Region;
 import main.model.*;
+import main.ui.component.InputControllerInterface;
 import main.ui.component.controllers.ComponentController;
 import main.ui.component.controllers.DffController;
 import main.ui.component.controllers.InputController;
@@ -122,12 +123,12 @@ public class MainSimulationController extends SimulationController {
     public void calculatePathDepth() {
         List<Component> inputs = new ArrayList<>();
 
-        Collection<ComponentController> newComponentControllers = componentControllers.values();
+        //Collection<ComponentController> newComponentControllers = componentControllers.values();
 
-        for(ComponentController componentController : newComponentControllers) {
-            if(componentController instanceof InputController || componentController instanceof DffController) {
-                inputs.add(componentController.getComponentModel());
-            }
+        for(InputControllerInterface inputController : inputControllers.values()) {
+            //if(componentController instanceof InputController || componentController instanceof DffController) {
+                inputs.add(((ComponentController)inputController).getComponentModel());
+            //}
 
         }
         simulator.calculatePathDepth(inputs);
