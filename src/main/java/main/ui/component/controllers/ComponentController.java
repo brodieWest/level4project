@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
@@ -92,6 +93,8 @@ public class ComponentController implements Controller {
         //simulationController.setPannable(false);
         //component.toFront();
         hasWires = componentModel.hasWires();
+
+        Mainfx.getRoot().setOnKeyPressed(event -> rotate(event));
     }
 
     @FXML
@@ -118,6 +121,15 @@ public class ComponentController implements Controller {
         if(newY < 0) newY = 0;
 
         componentModel.setCoordinates(new Coordinates((int)newX, (int)newY));
+    }
+
+    public void stopMoving() {
+        Mainfx.getRoot().setOnKeyPressed(event -> {});
+    }
+
+    private void rotate(KeyEvent event) {
+        svgGroup.setRotate(svgGroup.getRotate()+90);
+        componentModel.rotatePorts();
     }
 
 

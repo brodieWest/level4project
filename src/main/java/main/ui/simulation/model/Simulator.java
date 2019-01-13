@@ -67,6 +67,6 @@ public class Simulator {
     }
 
     public int getPathDepth() {
-        return 200;
+        return 20;
     }
 }

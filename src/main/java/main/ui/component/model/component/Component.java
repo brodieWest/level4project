@@ -118,7 +118,11 @@ public abstract class Component implements Onscreen {
                 PORT_OFFSET = 10;
             }
             for(int i = 0; i < portsDirectionSize; i++) {
-                Port currentPort = portsDirection.get(i);
+                int newIndex = i;
+                if(direction == Direction.NORTH | direction == Direction.EAST) {
+                    newIndex = portsDirectionSize - i - 1;
+                }
+                Port currentPort = portsDirection.get(newIndex);
                 currentPort.setOffset(getPortOffset(direction,i));
             }
         }
@@ -265,6 +269,25 @@ public abstract class Component implements Onscreen {
             outputPorts.add(output.getParameters());
         }
         return new ComponentParametersModel(coordinates,uuid,type,inputPorts,outputPorts);
+    }
+
+    public void rotatePorts() {
+        for(Direction direction : Direction.values()) {
+            for(Port port : portsByDirection.get(direction)){
+                port.setDirection(direction.getNextDirection());
+            }
+        }
+
+        for (List<Port> ports : portsByDirection.values()) {
+            ports.clear();
+        }
+
+        for (Port port : ports) {
+            portsByDirection.get(port.getDirection()).add(port);
+        }
+
+        positionPorts();
+
     }
 
     public int getHEIGHT() {

@@ -12,7 +12,8 @@
         <Group fx:id="svgGroup"
                onMouseEntered="#displayText"
                onMousePressed="#findLocation"
-               onMouseDragged="#moveComponent">
+               onMouseDragged="#moveComponent"
+               onMouseReleased="#stopMoving">
             <SVGPath content="M 20 20 L 20 80 L 60 50 z"  styleClass="component, gate"/>
 
             <Circle centerX="70" centerY="50" radius="10"  styleClass="component, gate"/>
