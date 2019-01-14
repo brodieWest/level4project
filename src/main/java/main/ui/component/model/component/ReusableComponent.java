@@ -114,6 +114,6 @@ public class ReusableComponent extends Component{
 
     @Override
     public ComponentParametersModel getComponentParameters() {
-        return new ComponentParametersModel(coordinates,uuid,type,new ArrayList<>(),new ArrayList<>());
+        return new ComponentParametersModel(coordinates,uuid,type,componentController.getRotation(),new ArrayList<>(),new ArrayList<>());
     }
 }

@@ -11,7 +11,7 @@ import java.util.*;
 
 public abstract class Component implements Onscreen {
 
-    private ComponentController componentController;
+    ComponentController componentController;
 
     private Map<PortType,List<Port>> portsByType = new TreeMap<>();
 
@@ -34,6 +34,8 @@ public abstract class Component implements Onscreen {
 
     private int pathDepth = 0;
 
+    private int initialRotate;
+
     private int HEIGHT = 100;
     private int WIDTH = 100;
     private int PORT_OFFSET = 20;
@@ -44,6 +46,7 @@ public abstract class Component implements Onscreen {
         this.coordinates = componentParameters.getCoordinates();
         this.uuid = componentParameters.getUuid();
         this.type = componentParameters.getType();
+        this.initialRotate = componentParameters.getRotate();
 
         portsByType.put(PortType.INPUT, inputs);
         portsByType.put(PortType.OUTPUT, outputs);
@@ -268,7 +271,7 @@ public abstract class Component implements Onscreen {
         for(Port output : outputs) {
             outputPorts.add(output.getParameters());
         }
-        return new ComponentParametersModel(coordinates,uuid,type,inputPorts,outputPorts);
+        return new ComponentParametersModel(coordinates,uuid,type,componentController.getRotation(),inputPorts,outputPorts);
     }
 
     public void rotatePorts() {
@@ -356,5 +359,9 @@ public abstract class Component implements Onscreen {
 
     public Port getPort(int portNo) {
         return ports.get(portNo);
+    }
+
+    public int getInitialRotate() {
+        return initialRotate;
     }
 }

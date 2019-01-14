@@ -10,12 +10,14 @@ public class ComponentParameters {
     private Coordinates coordinates;
     private String uuid;
     private String type;
+    private int rotate;
     private List<PortParameters> portParameters;
 
-    public ComponentParameters(Coordinates coordinates, String uuid, String type, List<PortParameters> portParameters) {
+    public ComponentParameters(Coordinates coordinates, String uuid, String type, int rotate, List<PortParameters> portParameters) {
         this.coordinates = coordinates;
         this.uuid = uuid;
         this.type = type;
+        this.rotate = rotate;
         this.portParameters = portParameters;
     }
 
@@ -41,6 +43,10 @@ public class ComponentParameters {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getRotate() {
+        return rotate;
     }
 
     List<PortParameters> getPortParameters() {

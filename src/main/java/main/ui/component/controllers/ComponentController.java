@@ -64,6 +64,8 @@ public class ComponentController implements Controller {
         line.setStroke(Paint.valueOf("transparent"));
 
         svgGroup.getChildren().add(line);
+
+        rotatable.setRotate(componentModel.getInitialRotate());
     }
 
     void displayPorts() {
@@ -142,6 +144,9 @@ public class ComponentController implements Controller {
         displayPorts();
     }
 
+    public int getRotation() {
+        return (int)rotatable.getRotate();
+    }
 
     public Component getComponentModel() {
         return componentModel;

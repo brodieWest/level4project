@@ -27,6 +27,7 @@ public class Load {
     private static final String INTERFACE = "interface";
     private static final String EXTERNAL_PORT = "externalPort";
     private static final String INTERNAL_PORT = "internalPort";
+    private static final String ROTATION = "rotation";
     private static String COMPONENTS = "components";
     private static String COMPONENT = "component";
     private static String TYPE = "type";
@@ -173,7 +174,7 @@ public class Load {
 
             portParametersList.addAll(loadPort(component,PortType.OUTPUT));
 
-            ComponentParameters componentParameters = new ComponentParameters(coordinates, uuid, component.getString(TYPE), portParametersList);
+            ComponentParameters componentParameters = new ComponentParameters(coordinates, uuid, component.getString(TYPE), component.getInt(ROTATION), portParametersList);
 
             if (!simulationController.addComponent(componentParameters)) {
                 logger.error("failed to load components");
