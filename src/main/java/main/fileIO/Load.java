@@ -174,7 +174,14 @@ public class Load {
 
             portParametersList.addAll(loadPort(component,PortType.OUTPUT));
 
-            ComponentParameters componentParameters = new ComponentParameters(coordinates, uuid, component.getString(TYPE), component.getInt(ROTATION), portParametersList);
+            int rotation;
+            if(component.has(ROTATION)) {
+                rotation = component.getInt(ROTATION);
+            } else {
+                rotation = 0;
+            }
+
+            ComponentParameters componentParameters = new ComponentParameters(coordinates, uuid, component.getString(TYPE), rotation, portParametersList);
 
             if (!simulationController.addComponent(componentParameters)) {
                 logger.error("failed to load components");

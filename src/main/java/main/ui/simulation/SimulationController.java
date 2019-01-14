@@ -137,16 +137,17 @@ public class SimulationController implements Controller {
                 wordComponent.wireDelay();
             }
 
-            for (OutputControllerInterface outputController : outputControllers.values()) {
-                outputController.showOutputValue();
-            }
-
-            //for (ReusableComponentController reusableController : reusableControllers.values()) {
-            //    reusableController.wireDelay();
-            //}
-
             for(Synchronous synchronous : synchronousControllers.values()) {
                 synchronous.wireDelay();
+            }
+
+            for (WireController wireController : wireControllers.values()) {
+                wireController.passSignal();
+                wireController.showSignal();
+            }
+
+            for (OutputControllerInterface outputController : outputControllers.values()) {
+                outputController.showOutputValue();
             }
 
             for (WireController wireController : wireControllers.values()) {

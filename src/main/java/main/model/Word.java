@@ -23,20 +23,20 @@ public class Word extends ArrayList<Logic> {
     public void setValue(int value) {
         String binary = Integer.toBinaryString(value);
 
-        StringBuilder binaryString = new StringBuilder();
-        binaryString.append(binary);
-        binary = binaryString.reverse().toString();
+        //StringBuilder binaryString = new StringBuilder();
+        //binaryString.append(binary);
+        //binary = binaryString.reverse().toString();
 
         setUndefined(false);
         setTo0();
 
-        if(binary.length() > this.size()) {
-            binary = binary.substring(binary.length()-this.size());
-        }
+        //if(binary.length() > this.size()) {
+        //    binary = binary.substring(binary.length()-this.size());
+        //}
 
-        while(binary.length() < this.size()) {
-            binary += "0";
-        }
+        //while(binary.length() < this.size()) {
+        //    binary += "0";
+        //}
 
         for(int i=0;i<binary.length();i++) {
             String bit = binary.substring(i,i+1);

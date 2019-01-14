@@ -1,0 +1,467 @@
+{
+  "interface" : [
+    {
+      "internalPort": "input3fe479196407ca2d",
+      "direction": "NORTH"
+    },
+    {
+      "internalPort": "input3fec8c19c9b83599",
+      "direction": "NORTH"
+    },
+    {
+      "internalPort": "input3fd0461b4f9fbfe2",
+      "direction": "WEST"
+    },
+    {
+      "internalPort": "output3fc519a6b9db1ef4",
+      "direction": "SOUTH"
+    },
+    {
+      "internalPort": "output3fe863794c60fa81",
+      "direction": "EAST"
+    }
+  ],
+  "components": [
+    {
+      "inputPorts": [],
+      "outputPorts": [],
+      "coordinates": {
+        "x": 200,
+        "y": 150
+      },
+      "uuid": "ahalfAdd3fd5472b6f26c3e8",
+      "type": "halfAdd",
+      "rotation": 0
+    },
+    {
+      "inputPorts": [
+        {
+          "direction": "WEST",
+          "portType": "INPUT",
+          "size": 1
+        },
+        {
+          "direction": "WEST",
+          "portType": "INPUT",
+          "size": 1
+        }
+      ],
+      "outputPorts": [
+        {
+          "direction": "EAST",
+          "portType": "OUTPUT",
+          "size": 1
+        }
+      ],
+      "coordinates": {
+        "x": 300,
+        "y": 250
+      },
+      "uuid": "or3fd6f66a60e5c70c",
+      "type": "or",
+      "rotation": 0
+    },
+    {
+      "inputPorts": [],
+      "outputPorts": [
+        {
+          "direction": "EAST",
+          "portType": "OUTPUT",
+          "size": 1
+        }
+      ],
+      "coordinates": {
+        "x": 0,
+        "y": 300
+      },
+      "uuid": "input3fe479196407ca2d",
+      "type": "input",
+      "rotation": 0
+    },
+    {
+      "inputPorts": [
+        {
+          "direction": "WEST",
+          "portType": "INPUT",
+          "size": 1
+        }
+      ],
+      "outputPorts": [],
+      "coordinates": {
+        "x": 400,
+        "y": 250
+      },
+      "uuid": "output3fe863794c60fa81",
+      "type": "output",
+      "rotation": 0
+    },
+    {
+      "inputPorts": [],
+      "outputPorts": [
+        {
+          "direction": "EAST",
+          "portType": "OUTPUT",
+          "size": 1
+        }
+      ],
+      "coordinates": {
+        "x": 0,
+        "y": 200
+      },
+      "uuid": "input3fec8c19c9b83599",
+      "type": "input",
+      "rotation": 0
+    },
+    {
+      "inputPorts": [
+        {
+          "direction": "WEST",
+          "portType": "INPUT",
+          "size": 1
+        }
+      ],
+      "outputPorts": [],
+      "coordinates": {
+        "x": 400,
+        "y": 150
+      },
+      "uuid": "output3fc519a6b9db1ef4",
+      "type": "output",
+      "rotation": 0
+    },
+    {
+      "inputPorts": [],
+      "outputPorts": [
+        {
+          "direction": "EAST",
+          "portType": "OUTPUT",
+          "size": 1
+        }
+      ],
+      "coordinates": {
+        "x": 0,
+        "y": 100
+      },
+      "uuid": "input3fd0461b4f9fbfe2",
+      "type": "input",
+      "rotation": 0
+    },
+    {
+      "inputPorts": [],
+      "outputPorts": [],
+      "coordinates": {
+        "x": 100,
+        "y": 250
+      },
+      "uuid": "ahalfAdd3fe44673fda7fdb2",
+      "type": "halfAdd",
+      "rotation": 0
+    }
+  ],
+  "wires": [
+    {
+      "uuid": "wire3fe1891395ed36e1",
+      "input": {
+        "component": "input3fec8c19c9b83599",
+        "port": 0,
+        "corner": []
+      },
+      "output": [
+        {
+          "component": "ahalfAdd3fe44673fda7fdb2",
+          "port": 0,
+          "corner": [
+            {
+              "x": 100,
+              "y": 250
+            },
+            {
+              "x": 100,
+              "y": 250
+            },
+            {
+              "x": 100,
+              "y": 250
+            },
+            {
+              "x": 100,
+              "y": 290
+            },
+            {
+              "x": 110,
+              "y": 290
+            },
+            {
+              "x": 110,
+              "y": 290
+            },
+            {
+              "x": 100,
+              "y": 290
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "wire3fcf033e25769734",
+      "input": {
+        "component": "or3fd6f66a60e5c70c",
+        "port": 0,
+        "corner": []
+      },
+      "output": [
+        {
+          "component": "output3fe863794c60fa81",
+          "port": 0,
+          "corner": [
+            {
+              "x": 400,
+              "y": 300
+            },
+            {
+              "x": 400,
+              "y": 300
+            },
+            {
+              "x": 410,
+              "y": 300
+            },
+            {
+              "x": 410,
+              "y": 300
+            },
+            {
+              "x": 400,
+              "y": 300
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "wire3fe3c702cbb14837",
+      "input": {
+        "component": "ahalfAdd3fe44673fda7fdb2",
+        "port": 1,
+        "corner": []
+      },
+      "output": [
+        {
+          "component": "ahalfAdd3fd5472b6f26c3e8",
+          "port": 1,
+          "corner": [
+            {
+              "x": 200,
+              "y": 290
+            },
+            {
+              "x": 200,
+              "y": 290
+            },
+            {
+              "x": 200,
+              "y": 290
+            },
+            {
+              "x": 200,
+              "y": 290
+            },
+            {
+              "x": 200,
+              "y": 210
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "wire3fc6d17a2c4f2164",
+      "input": {
+        "component": "ahalfAdd3fe44673fda7fdb2",
+        "port": 0,
+        "corner": []
+      },
+      "output": [
+        {
+          "component": "or3fd6f66a60e5c70c",
+          "port": 1,
+          "corner": [
+            {
+              "x": 200,
+              "y": 310
+            },
+            {
+              "x": 200,
+              "y": 310
+            },
+            {
+              "x": 200,
+              "y": 310
+            },
+            {
+              "x": 310,
+              "y": 310
+            },
+            {
+              "x": 310,
+              "y": 310
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "wire3fe10713907984e8",
+      "input": {
+        "component": "ahalfAdd3fd5472b6f26c3e8",
+        "port": 1,
+        "corner": []
+      },
+      "output": [
+        {
+          "component": "output3fc519a6b9db1ef4",
+          "port": 0,
+          "corner": [
+            {
+              "x": 300,
+              "y": 190
+            },
+            {
+              "x": 300,
+              "y": 190
+            },
+            {
+              "x": 300,
+              "y": 190
+            },
+            {
+              "x": 400,
+              "y": 190
+            },
+            {
+              "x": 400,
+              "y": 200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "wire3fd496df8ece44f4",
+      "input": {
+        "component": "input3fd0461b4f9fbfe2",
+        "port": 0,
+        "corner": []
+      },
+      "output": [
+        {
+          "component": "ahalfAdd3fd5472b6f26c3e8",
+          "port": 0,
+          "corner": [
+            {
+              "x": 100,
+              "y": 150
+            },
+            {
+              "x": 100,
+              "y": 150
+            },
+            {
+              "x": 100,
+              "y": 150
+            },
+            {
+              "x": 100,
+              "y": 150
+            },
+            {
+              "x": 100,
+              "y": 190
+            },
+            {
+              "x": 200,
+              "y": 190
+            },
+            {
+              "x": 200,
+              "y": 190
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "wire3fec1f021c89e3e8",
+      "input": {
+        "component": "input3fe479196407ca2d",
+        "port": 0,
+        "corner": []
+      },
+      "output": [
+        {
+          "component": "ahalfAdd3fe44673fda7fdb2",
+          "port": 1,
+          "corner": [
+            {
+              "x": 100,
+              "y": 350
+            },
+            {
+              "x": 100,
+              "y": 350
+            },
+            {
+              "x": 100,
+              "y": 350
+            },
+            {
+              "x": 100,
+              "y": 350
+            },
+            {
+              "x": 100,
+              "y": 310
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "wire3fc60784002ea240",
+      "input": {
+        "component": "ahalfAdd3fd5472b6f26c3e8",
+        "port": 0,
+        "corner": []
+      },
+      "output": [
+        {
+          "component": "or3fd6f66a60e5c70c",
+          "port": 0,
+          "corner": [
+            {
+              "x": 300,
+              "y": 210
+            },
+            {
+              "x": 300,
+              "y": 290
+            },
+            {
+              "x": 300,
+              "y": 290
+            },
+            {
+              "x": 300,
+              "y": 290
+            },
+            {
+              "x": 300,
+              "y": 290
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

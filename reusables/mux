@@ -1,0 +1,181 @@
+{
+  "interface" : [
+    {
+      "internalPort": "input3",
+      "direction": "WEST"
+    },
+    {
+      "internalPort": "input2",
+      "direction": "SOUTH"
+    },
+    {
+      "internalPort": "input1",
+      "direction": "WEST"
+    },
+    {
+      "internalPort": "output1",
+      "direction": "EAST"
+    }
+  ],
+  "components": [
+    {
+      "type" : "and",
+      "uuid": "and1",
+      "coordinates":{"x":200,"y":50},
+      "inputPorts" : 2,
+      "outputPorts" : 1
+    },
+    {
+      "type" : "and",
+      "uuid": "and2",
+      "coordinates":{"x":200,"y":150},
+      "inputPorts" : 2,
+      "outputPorts" : 1
+    },
+    {
+      "type" : "not",
+      "uuid": "not1",
+      "coordinates":{"x":100,"y":140},
+      "inputPorts" : 1,
+      "outputPorts" : 1
+    },
+    {
+      "type" : "or",
+      "uuid": "or1",
+      "coordinates":{"x":300,"y":100},
+      "inputPorts" : 2,
+      "outputPorts" : 1
+    },
+    {
+      "type" : "input",
+      "uuid": "input1",
+      "coordinates":{"x":0,"y":0},
+      "outputPorts" : 1
+    },
+    {
+      "type" : "input",
+      "uuid": "input2",
+      "coordinates":{"x":0,"y":100},
+      "outputPorts" : 1
+    },
+    {
+      "type" : "input",
+      "uuid": "input3",
+      "coordinates":{"x":0,"y":200},
+      "outputPorts" : 1
+    },
+    {
+      "type" : "output",
+      "uuid": "output1",
+      "coordinates":{"x":400,"y":100},
+      "inputPorts" : 1
+    }
+  ],
+  "wires": [
+    {
+      "uuid" : "wire1",
+      "input" : {
+        "component" : "input1",
+        "port" : 0
+      },
+      "output" : [
+        {
+        "component" : "and1",
+        "port" : 0
+        }
+      ]
+    },
+    {
+      "uuid" : "wire2",
+      "input" : {
+        "component" : "input2",
+        "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "and1",
+          "port" : 1
+        },
+        {
+          "component" : "not1",
+          "port" : 0
+        }
+      ]
+    },
+    {
+      "uuid" : "wire3",
+      "input" : {
+        "component" : "input3",
+        "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "and2",
+          "port" : 1,
+          "corner" : [
+            {
+              "x": 200,
+              "y": 250
+            },
+            {
+              "x": 200,
+              "y": 210
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid" : "wire4",
+      "input" : {
+        "component" : "not1",
+        "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "and2",
+          "port" : 0
+        }
+      ]
+    },
+    {
+      "uuid" : "wire5",
+      "input" : {
+        "component" : "and1",
+        "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "or1",
+          "port" : 0
+        }
+      ]
+    },
+    {
+      "uuid" : "wire6",
+      "input" : {
+        "component" : "and2",
+        "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "or1",
+          "port" : 1
+        }
+      ]
+    },
+    {
+      "uuid" : "wire7",
+      "input" : {
+        "component" : "or1",
+        "port" : 0
+      },
+      "output" : [
+        {
+          "component" : "output1",
+          "port" : 0
+        }
+      ]
+    }
+  ]
+}

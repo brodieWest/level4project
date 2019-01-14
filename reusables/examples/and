@@ -1,0 +1,85 @@
+{
+  "components": [
+    {
+      "type" : "and",
+      "uuid": "and1",
+      "coordinates":{"x":100,"y":50}
+    },
+    {
+      "type" : "input",
+      "uuid": "input1",
+      "coordinates":{"x":0,"y":0}
+    },
+    {
+      "type" : "input",
+      "uuid": "input2",
+      "coordinates":{"x":0,"y":100}
+    },
+    {
+      "type" : "output",
+      "uuid": "output1",
+      "coordinates":{"x":200,"y":50}
+    }
+  ],
+  "wires": [
+    {
+      "uuid" : "wire1",
+      "input" : {
+        "component" : "input1",
+        "port" : 0
+      },
+      "output" : [
+        {
+        "component" : "and1",
+        "port" : 0,
+        "corner" : [
+            {
+              "x": 100,
+              "y": "#{input1.outputPorts0.y}"
+            },
+            {
+              "x": 100,
+              "y": 90
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid" : "wire2",
+      "input" : {
+        "component" : "input2",
+        "port" : 0
+      },
+      "output" : [
+        {
+        "component" : "and1",
+        "port" : 1,
+        "corner" : [
+            {
+              "x": 100,
+              "y": 150
+            },
+            {
+              "x": 100,
+              "y": 110
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid" : "wire3",
+      "input" : {
+        "component" : "and1",
+        "port" : 0
+      },
+      "output" : [
+        {
+        "component" : "output1",
+        "port" : 0
+        }
+      ]
+    }
+  ]
+}

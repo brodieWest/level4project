@@ -58,6 +58,12 @@ public class MainSimulationController extends SimulationController {
 
     @Override
     public void clockTick() {
+        if(mainController.getLongClockTick()) {
+            for (int i = 0; i < simulator.getPathDepth(); i++) {
+                gateDelay();
+            }
+        }
+
         super.clockTick();
         updateClockTickCount();
 
