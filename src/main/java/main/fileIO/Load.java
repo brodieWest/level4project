@@ -267,7 +267,7 @@ public class Load {
 
         for(Object interfaceObject : interfaceArray) {
             JSONObject interfaceJson = (JSONObject) interfaceObject;
-            Direction direction = Direction.valueOf(interfaceJson.getJSONObject(EXTERNAL_PORT).getString(DIRECTION));
+            Direction direction = Direction.valueOf(interfaceJson.getString(DIRECTION));
             String internalPort = interfaceJson.getString(INTERNAL_PORT);
             reusableController.addExternalPort(internalPort, direction);
         }

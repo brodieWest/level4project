@@ -14,7 +14,9 @@
                onMouseDragged="#moveComponent"
                onMouseReleased="#stopMoving">
         <Group fx:id="svgGroup" id="split">
+        <Group fx:id="rotatable">
             <Rectangle width="60" height="60" fx:id="rectangle" styleClass="component, gate" translateX="20" translateY="20"/>
+        </Group>
         </Group>
         <Group StackPane.alignment="CENTER">
             <Text text="Join" x="40" y="50" styleClass="gateText"/>

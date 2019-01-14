@@ -13,8 +13,10 @@
                onMouseDragged="#moveComponent"
                onMouseReleased="#stopMoving"
                id="xor">
+    <Group fx:id="rotatable">
             <SVGPath content="M 20 20 A 10 30 0 0 1 20 80 A 55 30 0 0 0 20 20" styleClass="component, gate"/>
             <SVGPath content="M 10 20 A 10 30 0 0 1 10 80" styleClass="component" fill="TRANSPARENT"/>
+        </Group>
         </Group>
 
 </AnchorPane>

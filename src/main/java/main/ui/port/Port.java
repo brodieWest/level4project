@@ -104,7 +104,7 @@ public class Port {
         return portController;
     }
 
-    Coordinates getEndCoordinates() {
+    public Coordinates getEndCoordinates() {
         return endCoordinates;
     }
 

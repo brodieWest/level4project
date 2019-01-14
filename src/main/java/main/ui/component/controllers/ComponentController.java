@@ -45,6 +45,9 @@ public class ComponentController implements Controller {
     @FXML
     Group svgGroup;
 
+    @FXML
+    private Group rotatable;
+
     private double oldX;
     private double oldY;
 
@@ -70,7 +73,9 @@ public class ComponentController implements Controller {
             if(!svgGroup.getChildren().contains(portController.getGroup())) {
                 svgGroup.getChildren().add(portController.getGroup());
             }
-            portController.setComponentController(this);
+            if(portController.getComponentController() == null) {
+                portController.setComponentController(this);
+            }
             portController.displayPort();
         }
     }
@@ -130,8 +135,11 @@ public class ComponentController implements Controller {
     }
 
     private void rotate(KeyEvent event) {
-        svgGroup.setRotate(svgGroup.getRotate()+90);
+        rotatable.setRotate(rotatable.getRotate()+90);
         componentModel.rotatePorts();
+
+
+        displayPorts();
     }
 
 

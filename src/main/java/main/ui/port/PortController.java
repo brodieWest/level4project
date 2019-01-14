@@ -90,7 +90,9 @@ public class PortController implements Controller {
         // should be inproved to not use instanceof
         if(componentController.getSimulationController() instanceof MainSimulationController) {
             Group buildIcon = buildIconController.getBuildIcon();
-            group.getChildren().add(buildIcon);
+            if (!group.getChildren().contains(buildIcon)) {
+                group.getChildren().add(buildIcon);
+            }
             buildIcon.setLayoutX(port.getEndCoordinates().getX() - 5);
             buildIcon.setLayoutY(port.getEndCoordinates().getY() - 5);
         }

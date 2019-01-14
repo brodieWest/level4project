@@ -15,7 +15,10 @@
                onMouseDragged="#moveComponent"
                onMouseReleased="#stopMoving">
         <Group fx:id="svgGroup">
-            <SVGPath content="M 0 0 L 0 60 L 60 60 L 60 0 L 0 0 M 25 60 L 30 50 L 35 60 z" fill="0x7293cb" styleClass="component, gate" translateX="20" translateY="20"/>
+            <Group fx:id="rotatable">
+                <SVGPath content="M 0 0 L 0 60 L 60 60 L 60 0 L 0 0" styleClass="component, gate" translateX="20" translateY="20"/>
+            </Group>
+                <SVGPath content="M 25 60 L 30 50 L 35 60 z" styleClass="component, gate" translateX="20" translateY="20"/>
         </Group>
         <Group StackPane.alignment="CENTER">
             <Text text="Dff" x="40" y="50" styleClass="gateText"/>
