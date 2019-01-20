@@ -9,7 +9,7 @@ import main.ui.component.model.component.Component;
 import main.ui.simulation.SimulationController;
 import main.ui.wire.Wire;
 
-public class WordOutputController extends ComponentController implements OutputControllerInterface {
+public class WordOutputController extends IoController implements OutputControllerInterface {
     public WordOutputController(SimulationController simulationController, Component componentModel) {
         super(simulationController, componentModel);
         simulationController.addOutput(this);

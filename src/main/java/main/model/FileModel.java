@@ -8,8 +8,14 @@ public class FileModel {
 
     private List<WireModel> wires;
 
+    private List<ExternalPortMapping> portMapping;
+
     public FileModel(List<ComponentParametersModel> components, List<WireModel> wires) {
         this.components = components;
         this.wires = wires;
+    }
+
+    public void setPortMappings(List<ExternalPortMapping> portMappings) {
+        this.portMapping = portMappings;
     }
 }

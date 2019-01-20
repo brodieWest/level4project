@@ -5,6 +5,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import main.fileIO.Load;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -13,19 +14,21 @@ import javafx.scene.layout.VBox;
 import main.fxml.Fxml;
 import main.fxml.FxmlLoaderUtils;
 import main.model.Coordinates;
+import main.model.Direction;
+import main.model.ExternalPortMapping;
 import main.model.SimulationMode;
 import main.ui.Controller;
+import main.ui.component.InputControllerInterface;
 import main.ui.component.controllers.ComponentControllerFactory;
+import main.ui.component.controllers.IoController;
 import main.ui.component.model.component.ComponentParameters;
 import main.ui.simulation.MainSimulationController;
 import main.ui.toolbar.ToolbarButtonController;
 
 import java.io.File;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
+import java.util.function.UnaryOperator;
 
 
 public class MainController implements Controller {
@@ -83,6 +86,17 @@ public class MainController implements Controller {
     @FXML
     private Button deleteComponents;
 
+    @FXML
+    private VBox saveComponentOptions;
+
+    @FXML
+    private ToggleGroup toggleGroup;
+
+    @FXML
+    private TextField positionText;
+
+    private List<ExternalPortMapping> portMappings = new ArrayList<>();
+
     private static String REUSABLE_PATH = "fileExamples/reusable/";
 
     @FXML
@@ -102,6 +116,54 @@ public class MainController implements Controller {
     @FXML
     private void saveFile() {
         simulationController.saveFile();
+    }
+
+    @FXML
+    private void startSaveComponent() {
+        if(simulationController.getSimulationMode() == SimulationMode.SIMULATE) {
+            buildMode();
+        }
+        hideToolbox();
+        leftPane.getChildren().add(saveComponentOptions);
+        leftScrollPane.setPrefWidth(200);
+
+        if(!simulationController.startIterator()) {
+            endSaveComponent();
+        }
+        startSimulation.setDisable(true);
+        deleteWires.setDisable(true);
+        deleteComponents.setDisable(true);
+    }
+
+    private boolean hasNextIo = true;
+
+    @FXML
+    private void saveComponent() {
+        String id = simulationController.getNextIo();
+        Direction direction = Direction.valueOf((String)toggleGroup.getSelectedToggle().getUserData());
+        int position = Integer.parseInt(positionText.getText());
+        portMappings.add(new ExternalPortMapping(id,direction,position));
+
+        if(!simulationController.hasNextIo()) {
+            if(hasNextIo) {
+                hasNextIo = false;
+            } else {
+                Collections.sort(portMappings);
+                simulationController.saveAsComponent(portMappings);
+                endSaveComponent();
+                hasNextIo = true;
+            }
+        }
+    }
+
+    @FXML
+    private void endSaveComponent() {
+        leftPane.getChildren().remove(saveComponentOptions);
+        showToolbox();
+        portMappings.clear();
+        startSimulation.setDisable(false);
+        deleteWires.setDisable(false);
+        deleteComponents.setDisable(false);
     }
 
     @FXML
@@ -138,6 +200,21 @@ public class MainController implements Controller {
         initialiseToolbar();
 
         bottomButtons.getChildren().remove(simulationButtons);
+
+        leftPane.getChildren().remove(saveComponentOptions);
+
+        UnaryOperator<TextFormatter.Change> filter = change -> {
+            String text = change.getText();
+
+            if (text.matches("([0-9])*")) {
+                return change;
+            }
+
+            return null;
+        };
+        TextFormatter<String> textFormatter = new TextFormatter<>(filter);
+
+        positionText.setTextFormatter(textFormatter);
     }
 
     private void initialiseToolbar() {
@@ -215,12 +292,10 @@ public class MainController implements Controller {
         simulationController.makeWiresDeletable();
         startSimulation.setDisable(true);
         deleteComponents.setDisable(true);
-        leftPane.getChildren().remove(toolbox);
-        leftScrollPane.setPrefWidth(20);
+        hideToolbox();
         deleteWires.setText("Finish");
         deleteWires.setOnMouseClicked(event -> {
-            leftPane.getChildren().add(toolbox);
-            leftScrollPane.setPrefWidth(200);
+            showToolbox();
             deleteWires.setText("Delete Wires");
             startSimulation.setDisable(false);
             deleteComponents.setDisable(false);
@@ -233,17 +308,25 @@ public class MainController implements Controller {
         simulationController.makeComponentsDeletable();
         startSimulation.setDisable(true);
         deleteWires.setDisable(true);
-        leftPane.getChildren().remove(toolbox);
-        leftScrollPane.setPrefWidth(20);
+        hideToolbox();
         deleteComponents.setText("Finish");
         deleteComponents.setOnMouseClicked(event -> {
-            leftPane.getChildren().add(toolbox);
-            leftScrollPane.setPrefWidth(200);
+            showToolbox();
             deleteComponents.setText("Delete Components");
             startSimulation.setDisable(false);
             deleteWires.setDisable(false);
             simulationController.componentsNotDeletable();
             deleteComponents.setOnMouseClicked(event1 -> deleteComponents());
         });
+    }
+
+    private void showToolbox() {
+        leftPane.getChildren().add(toolbox);
+        leftScrollPane.setPrefWidth(200);
+    }
+
+    private void hideToolbox() {
+        leftPane.getChildren().remove(toolbox);
+        leftScrollPane.setPrefWidth(20);
     }
 }

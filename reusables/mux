@@ -1,5 +1,5 @@
 {
-  "interface" : [
+  "portMapping" : [
     {
       "internalPort": "input3",
       "direction": "WEST"

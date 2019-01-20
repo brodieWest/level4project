@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 public class Load {
 
-    private static final String INTERFACE = "interface";
+    private static final String PORT_MAPPING = "portMapping";
     private static final String EXTERNAL_PORT = "externalPort";
     private static final String INTERNAL_PORT = "internalPort";
     private static final String ROTATION = "rotation";
@@ -271,7 +271,7 @@ public class Load {
     private static void loadInterface(SimulationController simulationController, ReusableComponentController reusableController, String file) {
         JSONObject fileJson = new JSONObject(file);
 
-        JSONArray interfaceArray = fileJson.getJSONArray(INTERFACE);
+        JSONArray interfaceArray = fileJson.getJSONArray(PORT_MAPPING);
 
         for(Object interfaceObject : interfaceArray) {
             JSONObject interfaceJson = (JSONObject) interfaceObject;

@@ -12,11 +12,17 @@
 <?import javafx.scene.control.CheckMenuItem?>
 <?import main.ui.toolbar.ToolbarButtonController?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
 <BorderPane fx:controller="main.ui.main.MainController"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:id="borderPane">
-
+    <fx:define>
+        <ToggleGroup fx:id="toggleGroup"/>
+    </fx:define>
     <top>
         <VBox>
         <padding><Insets bottom="2" /></padding>
@@ -24,6 +30,7 @@
                 <Menu text="File" id="file">
                     <MenuItem text="Load" fx:id="load" onAction="#loadFile" id="load"/>
                     <MenuItem text="Save" onAction="#saveFile"/>
+                    <MenuItem text="Save as black box" onAction="#startSaveComponent"/>
                 </Menu>
                 <Menu text="Edit">
                     <MenuItem text="Clear" onAction="#clear"/>
@@ -67,6 +74,35 @@
                     <ToolbarButtonController type="text" buttonText="Text Box"/>
 
                     <Label text="User Defined:"><padding><Insets top="10" bottom="10"/></padding></Label>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" fx:id="saveComponentOptions">
+                    <TextArea prefWidth="190" prefHeight="220" wrapText="true" styleClass="textComponent" text="Component options
+&#10;&#10;When this component is loaded as a black box, the inputs and outputs will map to external ports on the black box.
+&#10;Configure the order and direction of each component below.
+&#10;The current component is highlighted in yellow."/>
+                    <RadioButton text="North" userData="NORTH">
+                            <toggleGroup>
+                                <fx:reference source="toggleGroup"/>
+                            </toggleGroup>
+                    </RadioButton>
+                    <RadioButton text="South" userData="SOUTH">
+                        <toggleGroup>
+                            <fx:reference source="toggleGroup"/>
+                        </toggleGroup>
+                    </RadioButton>
+                    <RadioButton text="East" userData="EAST">
+                        <toggleGroup>
+                            <fx:reference source="toggleGroup"/>
+                        </toggleGroup>
+                    </RadioButton>
+                    <RadioButton text="West" userData="WEST">
+                        <toggleGroup>
+                            <fx:reference source="toggleGroup"/>
+                        </toggleGroup>
+                    </RadioButton>
+                    <Label text="Position:"/>
+                    <TextField text="0" fx:id="positionText"/>
+                    <Button text="save" fx:id="saveComponent" onMouseClicked="#saveComponent"/>
                 </VBox>
             </VBox>
         </ScrollPane>

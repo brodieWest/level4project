@@ -9,6 +9,7 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Paint;
 import main.ui.component.InputControllerInterface;
 import main.ui.component.model.component.Component;
 import main.ui.component.model.component.Io.WordInput;
@@ -17,7 +18,7 @@ import main.ui.wire.Wire;
 
 import java.util.function.UnaryOperator;
 
-public class WordInputController extends ComponentController implements InputControllerInterface {
+public class WordInputController extends IoController implements InputControllerInterface {
 
     @FXML
     private TextField textField;
@@ -57,6 +58,11 @@ public class WordInputController extends ComponentController implements InputCon
         wordInput.setWordValue(wordValue);
         simulationController.wireDelay();
 
+    }
+
+    @Override
+    public void ioShowValue(String textString, String colour) {
+        svgPath.setFill(Paint.valueOf(colour));
     }
 
     @FXML

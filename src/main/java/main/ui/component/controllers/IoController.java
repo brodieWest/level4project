@@ -9,7 +9,7 @@ import javafx.scene.shape.Shape;
 import main.ui.component.model.component.Component;
 import main.ui.simulation.SimulationController;
 
-class IoController extends ComponentController{
+public class IoController extends ComponentController{
 
     static String LOGIC_0 = "0";
     static String LOGIC_1 = "1";
@@ -23,14 +23,14 @@ class IoController extends ComponentController{
     private StackPane stackPane;
 
     @FXML
-    private SVGPath svgPath;
+    SVGPath svgPath;
 
     IoController(SimulationController simulationController, Component componentModel) {
         super(simulationController, componentModel);
     }
 
 
-    void ioShowValue(String textString, String colour) {
+    public void ioShowValue(String textString, String colour) {
         text.setText(textString);
         svgPath.setFill(Paint.valueOf(colour));
     }

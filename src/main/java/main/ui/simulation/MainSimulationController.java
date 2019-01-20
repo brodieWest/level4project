@@ -8,9 +8,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Region;
 import main.model.*;
 import main.ui.component.InputControllerInterface;
-import main.ui.component.controllers.ComponentController;
-import main.ui.component.controllers.DffController;
-import main.ui.component.controllers.InputController;
+import main.ui.component.OutputControllerInterface;
+import main.ui.component.controllers.*;
 import main.ui.component.model.component.Component;
 import main.ui.component.model.component.ComponentParameters;
 import main.ui.main.MainController;
@@ -20,10 +19,7 @@ import main.ui.simulation.model.Simulator;
 import main.ui.wire.WireBuilderController;
 import main.ui.wire.WireController;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class MainSimulationController extends SimulationController {
 
@@ -141,7 +137,7 @@ public class MainSimulationController extends SimulationController {
         mainController.setPathDepth(simulator.getPathDepth());
     }
 
-    public void saveFile() {
+    private FileModel getFileModel() {
         List<ComponentParametersModel> parameters = new ArrayList<>();
         for (ComponentController componentController : componentControllers.values()) {
             parameters.add(componentController.getComponentParameters());
@@ -152,14 +148,66 @@ public class MainSimulationController extends SimulationController {
             wireModels.add(wireController.getWireModel());
         }
 
-        FileModel fileModel = new FileModel(parameters,wireModels);
+        return new FileModel(parameters,wireModels);
 
+    }
+
+    public void saveFile() {
+       openFileWindow(getFileModel());
+    }
+
+    public void saveAsComponent(List<ExternalPortMapping> portMappings) {
+        FileModel fileModel = getFileModel();
+        fileModel.setPortMappings(portMappings);
+        openFileWindow(fileModel);
+    }
+
+    private void openFileWindow(FileModel fileModel) {
         Gson gson = new Gson();
 
         String fileString = gson.toJson(fileModel);
 
         Mainfx.openFileSaveWindow(fileString);
+    }
 
+    private Iterator<IoController> iterator;
+
+    private IoController current;
+
+    public boolean startIterator() {
+        List<IoController> componentControllers = new ArrayList<>();
+
+        for(InputControllerInterface inputControllerInterface : inputControllers.values()) {
+            componentControllers.add((IoController)inputControllerInterface);
+        }
+
+        for(OutputControllerInterface outputControllerInterface : outputControllers.values()) {
+            componentControllers.add((IoController)outputControllerInterface);
+        }
+
+        iterator = componentControllers.iterator();
+
+        if(iterator.hasNext()) {
+            current = iterator.next();
+            current.ioShowValue("", "yellow");
+            return true;
+        }
+        return false;
+    }
+
+    public boolean hasNextIo() {
+        return iterator.hasNext();
+    }
+
+    public String getNextIo() {
+        IoController old = current;
+        old.ioShowValue("0","white");
+
+        if(iterator.hasNext()) {
+            current = iterator.next();
+            current.ioShowValue("", "yellow");
+        }
+        return old.getUuid();
     }
 
     public PortController getWireBuilderStartPort() {
