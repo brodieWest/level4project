@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'level4project'
-version '1.0-SNAPSHOT'
+version '0.3'
 
 sourceCompatibility = 1.11
 
@@ -45,7 +45,7 @@ launch4j {
     mainClassName = 'main.ui.main.Mainfx'
     bundledJre64Bit = true
     bundledJrePath = "jre"
-    outputDir = "windows"
+    outputDir = "windows" + version
 }
 
 jlink {
@@ -60,7 +60,7 @@ jlink {
         jvmArgs = ['-Dlog4j.configurationFile=./log4j2.xml']
     }
     javaHome = 'C:\\Users\\Bob\\Downloads\\openjdk-11.0.1_windows-x64_bin\\jdk-11'
-    imageDir = file("$buildDir/windows/jre")
+    imageDir = file("$buildDir/windows$version/jre")
 }
 
 task buildExe() {
