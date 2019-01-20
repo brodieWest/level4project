@@ -271,7 +271,11 @@ public abstract class Component implements Onscreen {
         for(Port output : outputs) {
             outputPorts.add(output.getParameters());
         }
-        return new ComponentParametersModel(coordinates,uuid,type,componentController.getRotation(),inputPorts,outputPorts);
+        return new ComponentParametersModel(coordinates,saveFileUuid(),type,componentController.getRotation(),inputPorts,outputPorts);
+    }
+
+    public String saveFileUuid() {
+        return uuid;
     }
 
     public void rotatePorts() {
