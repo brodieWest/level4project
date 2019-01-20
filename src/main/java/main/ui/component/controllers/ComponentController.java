@@ -93,7 +93,7 @@ public class ComponentController implements Controller {
     private boolean hasWires = false;
 
     @FXML
-    private void findLocation(MouseEvent mouseEvent) {
+    void findLocation(MouseEvent mouseEvent) {
         double scaleX = simulationController.getScaleFactorX();
         double scaleY = simulationController.getScaleFactorY();
 
@@ -107,7 +107,7 @@ public class ComponentController implements Controller {
     }
 
     @FXML
-    private void moveComponent(MouseEvent mouseEvent) {
+    void moveComponent(MouseEvent mouseEvent) {
         if(hasWires) return;
 
         double scaleX = simulationController.getScaleFactorX();

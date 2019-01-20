@@ -39,6 +39,13 @@
     -fx-stroke-dash-array: 4 6;
 }
 
+.textComponent {
+    -fx-stroke: "transparent";
+    -fx-fill: "transparent";
+    -fx-border: gone;
+    -fx-background-color: "transparent";
+}
+
 #simulation {
     -fx-background-color: "white";
 }

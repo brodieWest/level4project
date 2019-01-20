@@ -63,6 +63,9 @@
                     <ToolbarButtonController type="split" buttonText="Splitter"/>
                     <ToolbarButtonController type="join" buttonText="Join"/>
 
+                    <Label text="Extras:"><padding><Insets top="10" bottom="10"/></padding></Label>
+                    <ToolbarButtonController type="text" buttonText="Text Box"/>
+
                     <Label text="User Defined:"><padding><Insets top="10" bottom="10"/></padding></Label>
                 </VBox>
             </VBox>

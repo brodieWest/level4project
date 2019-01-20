@@ -28,6 +28,7 @@ public class ComponentControllerFactory {
         stdComponentControllers.put("wordOutput", new WordOutputFactory());
         stdComponentControllers.put("split", new SplitFactory());
         stdComponentControllers.put("join", new JoinFactory());
+        stdComponentControllers.put("text", new TextFactory());
     }
 
     public static ComponentController getComponentController(SimulationController simulationController, ComponentParameters componentParameters) {
