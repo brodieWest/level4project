@@ -23,20 +23,20 @@ public class Word extends ArrayList<Logic> {
     public void setValue(int value) {
         String binary = Integer.toBinaryString(value);
 
-        //StringBuilder binaryString = new StringBuilder();
-        //binaryString.append(binary);
-        //binary = binaryString.reverse().toString();
+        StringBuilder binaryString = new StringBuilder();
+        binaryString.append(binary);
+        binary = binaryString.reverse().toString();
 
         setUndefined(false);
         setTo0();
 
-        //if(binary.length() > this.size()) {
-        //    binary = binary.substring(binary.length()-this.size());
-        //}
+        if(binary.length() > this.size()) {
+            binary = binary.substring(binary.length()-this.size());
+        }
 
-        //while(binary.length() < this.size()) {
-        //    binary += "0";
-        //}
+        while(binary.length() < this.size()) {
+            binary += "0";
+        }
 
         for(int i=0;i<binary.length();i++) {
             String bit = binary.substring(i,i+1);
@@ -59,12 +59,13 @@ public class Word extends ArrayList<Logic> {
     @Override
     public String toString() {
         int value = 0;
-        for(int i=size()-1;i>=0;i--) {
+        for(int i=0;i<size();i++) {
             Logic logic = this.get(i);
 
             if(logic.isUndefined()) return "U";
 
-            if(logic.value()) value += Math.pow(2,size()-i-1);
+            //if(logic.value()) value += Math.pow(2,size()-i-1);
+            if(logic.value()) value += Math.pow(2,i);
         }
         return Integer.toString(value,16);
     }

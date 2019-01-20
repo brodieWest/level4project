@@ -10,7 +10,7 @@
     },
     {
       "internalPort": "input3fd0461b4f9fbfe2",
-      "direction": "WEST"
+      "direction": "EAST"
     },
     {
       "internalPort": "output3fc519a6b9db1ef4",
@@ -18,7 +18,7 @@
     },
     {
       "internalPort": "output3fe863794c60fa81",
-      "direction": "EAST"
+      "direction": "WEST"
     }
   ],
   "components": [

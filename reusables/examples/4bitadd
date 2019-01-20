@@ -21,10 +21,10 @@
       "inputPorts": [],
       "outputPorts": [],
       "coordinates": {
-        "x": 300,
+        "x": 500,
         "y": 300
       },
-      "uuid": "afullAdd3fe4eb66a2a89a83",
+      "uuid": "afullAdd3fc78bcddeffc4bc",
       "type": "fullAdd",
       "rotation": 0
     },
@@ -32,28 +32,11 @@
       "inputPorts": [],
       "outputPorts": [],
       "coordinates": {
-        "x": 200,
+        "x": 300,
         "y": 300
       },
-      "uuid": "afullAdd3fe812c9827652f0",
+      "uuid": "afullAdd3fcd3ce45ece4ec0",
       "type": "fullAdd",
-      "rotation": 0
-    },
-    {
-      "inputPorts": [],
-      "outputPorts": [
-        {
-          "direction": "EAST",
-          "portType": "OUTPUT",
-          "size": 1
-        }
-      ],
-      "coordinates": {
-        "x": 0,
-        "y": 300
-      },
-      "uuid": "ainput3fc68e325eb97ca0",
-      "type": "input",
       "rotation": 0
     },
     {
@@ -75,31 +58,20 @@
     },
     {
       "inputPorts": [],
-      "outputPorts": [],
-      "coordinates": {
-        "x": 500,
-        "y": 300
-      },
-      "uuid": "afullAdd3fe503e6c7ff8d92",
-      "type": "fullAdd",
-      "rotation": 0
-    },
-    {
-      "inputPorts": [
+      "outputPorts": [
         {
           "direction": "WEST",
-          "portType": "INPUT",
+          "portType": "OUTPUT",
           "size": 1
         }
       ],
-      "outputPorts": [],
       "coordinates": {
-        "x": 650,
+        "x": 700,
         "y": 300
       },
-      "uuid": "aoutput3fe07226c335449e",
-      "type": "output",
-      "rotation": 0
+      "uuid": "ainput3fec1ae44467df50",
+      "type": "input",
+      "rotation": 180
     },
     {
       "inputPorts": [],
@@ -117,6 +89,23 @@
       "uuid": "awordInput3fe53abcc651c783",
       "type": "wordInput",
       "rotation": 90
+    },
+    {
+      "inputPorts": [
+        {
+          "direction": "EAST",
+          "portType": "INPUT",
+          "size": 1
+        }
+      ],
+      "outputPorts": [],
+      "coordinates": {
+        "x": 0,
+        "y": 300
+      },
+      "uuid": "aoutput3fe4c3984333c29a",
+      "type": "output",
+      "rotation": 540
     },
     {
       "inputPorts": [
@@ -163,7 +152,18 @@
         "x": 400,
         "y": 300
       },
-      "uuid": "afullAdd3fe1060d9eaa63eb",
+      "uuid": "afullAdd3fd4daf84c072d54",
+      "type": "fullAdd",
+      "rotation": 0
+    },
+    {
+      "inputPorts": [],
+      "outputPorts": [],
+      "coordinates": {
+        "x": 200,
+        "y": 300
+      },
+      "uuid": "afullAdd3f58de81f29a3400",
       "type": "fullAdd",
       "rotation": 0
     },
@@ -246,35 +246,23 @@
   ],
   "wires": [
     {
-      "uuid": "wire3fe713a0900f14a5",
+      "uuid": "wire3fdbe2acc300a45c",
       "input": {
-        "component": "ainput3fc68e325eb97ca0",
-        "port": 0,
+        "component": "afullAdd3fc78bcddeffc4bc",
+        "port": 1,
         "corner": []
       },
       "output": [
         {
-          "component": "afullAdd3fe812c9827652f0",
-          "port": 0,
+          "component": "afullAdd3fd4daf84c072d54",
+          "port": 2,
           "corner": [
             {
-              "x": 100,
+              "x": 500,
               "y": 350
             },
             {
-              "x": 100,
-              "y": 350
-            },
-            {
-              "x": 100,
-              "y": 350
-            },
-            {
-              "x": 210,
-              "y": 350
-            },
-            {
-              "x": 210,
+              "x": 500,
               "y": 350
             }
           ]
@@ -282,23 +270,95 @@
       ]
     },
     {
-      "uuid": "wire3fef0aa00a1d7045",
+      "uuid": "wire3fd8b6592b7441d2",
       "input": {
-        "component": "asplit3fc98d10c1bc162c",
+        "component": "asplit3fea6db34fba2a37",
         "port": 2,
         "corner": []
       },
       "output": [
         {
-          "component": "afullAdd3fe1060d9eaa63eb",
+          "component": "afullAdd3fd4daf84c072d54",
           "port": 1,
           "corner": [
             {
-              "x": 610,
+              "x": 210,
               "y": 200
             },
             {
-              "x": 460,
+              "x": 440,
+              "y": 300
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "wire3fdd873f97b9f646",
+      "input": {
+        "component": "asplit3fea6db34fba2a37",
+        "port": 3,
+        "corner": []
+      },
+      "output": [
+        {
+          "component": "afullAdd3fc78bcddeffc4bc",
+          "port": 1,
+          "corner": [
+            {
+              "x": 230,
+              "y": 200
+            },
+            {
+              "x": 540,
+              "y": 300
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "wire3fdb6b6bfdacc896",
+      "input": {
+        "component": "asplit3fea6db34fba2a37",
+        "port": 0,
+        "corner": []
+      },
+      "output": [
+        {
+          "component": "afullAdd3f58de81f29a3400",
+          "port": 1,
+          "corner": [
+            {
+              "x": 170,
+              "y": 200
+            },
+            {
+              "x": 240,
+              "y": 300
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "wire3fa04352cf5be040",
+      "input": {
+        "component": "asplit3fc98d10c1bc162c",
+        "port": 1,
+        "corner": []
+      },
+      "output": [
+        {
+          "component": "afullAdd3fcd3ce45ece4ec0",
+          "port": 0,
+          "corner": [
+            {
+              "x": 590,
+              "y": 200
+            },
+            {
+              "x": 360,
               "y": 300
             }
           ]
@@ -330,33 +390,105 @@
       ]
     },
     {
-      "uuid": "wire3fdb16b3a20875a6",
+      "uuid": "wire3fe29aec5f09fd64",
       "input": {
-        "component": "asplit3fc98d10c1bc162c",
-        "port": 0,
+        "component": "afullAdd3f58de81f29a3400",
+        "port": 1,
         "corner": []
       },
       "output": [
         {
-          "component": "afullAdd3fe812c9827652f0",
-          "port": 1,
+          "component": "aoutput3fe4c3984333c29a",
+          "port": 0,
           "corner": [
             {
-              "x": 570,
-              "y": 200
+              "x": 210,
+              "y": 350
             },
             {
-              "x": 260,
-              "y": 310
+              "x": 100,
+              "y": 350
             }
           ]
         }
       ]
     },
     {
-      "uuid": "wire3febd89de232569c",
+      "uuid": "wire3fde7c1bc82688f4",
       "input": {
-        "component": "afullAdd3fe503e6c7ff8d92",
+        "component": "afullAdd3fcd3ce45ece4ec0",
+        "port": 1,
+        "corner": []
+      },
+      "output": [
+        {
+          "component": "afullAdd3f58de81f29a3400",
+          "port": 2,
+          "corner": [
+            {
+              "x": 300,
+              "y": 350
+            },
+            {
+              "x": 300,
+              "y": 350
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "wire3fb35af3a0e91a30",
+      "input": {
+        "component": "afullAdd3fd4daf84c072d54",
+        "port": 1,
+        "corner": []
+      },
+      "output": [
+        {
+          "component": "afullAdd3fcd3ce45ece4ec0",
+          "port": 2,
+          "corner": [
+            {
+              "x": 400,
+              "y": 350
+            },
+            {
+              "x": 400,
+              "y": 350
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "wire3fc3ced908cdaefc",
+      "input": {
+        "component": "ainput3fec1ae44467df50",
+        "port": 0,
+        "corner": []
+      },
+      "output": [
+        {
+          "component": "afullAdd3fc78bcddeffc4bc",
+          "port": 2,
+          "corner": [
+            {
+              "x": 700,
+              "y": 350
+            },
+            {
+              "x": 600,
+              "y": 350
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "wire3fcd5b5c30a1f23c",
+      "input": {
+        "component": "afullAdd3fc78bcddeffc4bc",
         "port": 0,
         "corner": []
       },
@@ -371,78 +503,54 @@
             },
             {
               "x": 430,
-              "y": 510
+              "y": 500
             }
           ]
         }
       ]
     },
     {
-      "uuid": "wire3fe35f76bd4836da",
+      "uuid": "wire3fe8ccf724906686",
       "input": {
-        "component": "afullAdd3fe503e6c7ff8d92",
-        "port": 1,
-        "corner": []
-      },
-      "output": [
-        {
-          "component": "aoutput3fe07226c335449e",
-          "port": 0,
-          "corner": [
-            {
-              "x": 600,
-              "y": 350
-            },
-            {
-              "x": 650,
-              "y": 350
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "uuid": "wire3fc8b47e7eef16b0",
-      "input": {
-        "component": "asplit3fea6db34fba2a37",
+        "component": "afullAdd3fd4daf84c072d54",
         "port": 0,
         "corner": []
       },
       "output": [
         {
-          "component": "afullAdd3fe812c9827652f0",
-          "port": 2,
+          "component": "ajoin3fec7522df6361c4",
+          "port": 1,
           "corner": [
             {
-              "x": 170,
-              "y": 200
+              "x": 450,
+              "y": 400
             },
             {
-              "x": 240,
-              "y": 310
+              "x": 410,
+              "y": 500
             }
           ]
         }
       ]
     },
     {
-      "uuid": "wire3fdc53356d59a310",
+      "uuid": "wire3fe5c92ce3b33329",
       "input": {
         "component": "asplit3fc98d10c1bc162c",
-        "port": 3,
+        "port": 0,
         "corner": []
       },
       "output": [
         {
-          "component": "afullAdd3fe503e6c7ff8d92",
-          "port": 1,
+          "component": "afullAdd3f58de81f29a3400",
+          "port": 0,
           "corner": [
             {
-              "x": 630,
+              "x": 570,
               "y": 200
             },
             {
-              "x": 560,
+              "x": 260,
               "y": 300
             }
           ]
@@ -474,9 +582,9 @@
       ]
     },
     {
-      "uuid": "wire3fc1e26b341cec10",
+      "uuid": "wire3faa288ab3eb7500",
       "input": {
-        "component": "afullAdd3fe812c9827652f0",
+        "component": "afullAdd3f58de81f29a3400",
         "port": 0,
         "corner": []
       },
@@ -491,43 +599,7 @@
             },
             {
               "x": 370,
-              "y": 510
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "uuid": "wire3fe9fa681c44625f",
-      "input": {
-        "component": "afullAdd3fe812c9827652f0",
-        "port": 1,
-        "corner": []
-      },
-      "output": [
-        {
-          "component": "afullAdd3fe4eb66a2a89a83",
-          "port": 0,
-          "corner": [
-            {
-              "x": 300,
-              "y": 350
-            },
-            {
-              "x": 300,
-              "y": 350
-            },
-            {
-              "x": 310,
-              "y": 350
-            },
-            {
-              "x": 310,
-              "y": 350
-            },
-            {
-              "x": 300,
-              "y": 350
+              "y": 500
             }
           ]
         }
@@ -570,165 +642,33 @@
       ]
     },
     {
-      "uuid": "wire3fc80a101f2c6468",
+      "uuid": "wire3fe850bd40efb119",
       "input": {
-        "component": "asplit3fea6db34fba2a37",
+        "component": "asplit3fc98d10c1bc162c",
         "port": 3,
         "corner": []
       },
       "output": [
         {
-          "component": "afullAdd3fe503e6c7ff8d92",
-          "port": 2,
-          "corner": [
-            {
-              "x": 230,
-              "y": 200
-            },
-            {
-              "x": 540,
-              "y": 310
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "uuid": "wire3fe179235787e24f",
-      "input": {
-        "component": "afullAdd3fe1060d9eaa63eb",
-        "port": 1,
-        "corner": []
-      },
-      "output": [
-        {
-          "component": "afullAdd3fe503e6c7ff8d92",
+          "component": "afullAdd3fc78bcddeffc4bc",
           "port": 0,
           "corner": [
             {
-              "x": 500,
-              "y": 350
-            },
-            {
-              "x": 500,
-              "y": 350
-            },
-            {
-              "x": 510,
-              "y": 350
-            },
-            {
-              "x": 510,
-              "y": 350
-            },
-            {
-              "x": 500,
-              "y": 350
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "uuid": "wire3fad080837112450",
-      "input": {
-        "component": "afullAdd3fe1060d9eaa63eb",
-        "port": 0,
-        "corner": []
-      },
-      "output": [
-        {
-          "component": "ajoin3fec7522df6361c4",
-          "port": 1,
-          "corner": [
-            {
-              "x": 450,
-              "y": 400
-            },
-            {
-              "x": 410,
-              "y": 510
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "uuid": "wire3fea85e8fdcbfa65",
-      "input": {
-        "component": "afullAdd3fe4eb66a2a89a83",
-        "port": 1,
-        "corner": []
-      },
-      "output": [
-        {
-          "component": "afullAdd3fe1060d9eaa63eb",
-          "port": 0,
-          "corner": [
-            {
-              "x": 400,
-              "y": 350
-            },
-            {
-              "x": 400,
-              "y": 350
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "uuid": "wire3fe619339acf275d",
-      "input": {
-        "component": "asplit3fea6db34fba2a37",
-        "port": 1,
-        "corner": []
-      },
-      "output": [
-        {
-          "component": "afullAdd3fe4eb66a2a89a83",
-          "port": 2,
-          "corner": [
-            {
-              "x": 190,
+              "x": 630,
               "y": 200
             },
             {
-              "x": 340,
-              "y": 310
+              "x": 560,
+              "y": 300
             }
           ]
         }
       ]
     },
     {
-      "uuid": "wire3fbd2f429c7e2d90",
+      "uuid": "wire3fd51ebab9fd4fbe",
       "input": {
-        "component": "asplit3fc98d10c1bc162c",
-        "port": 1,
-        "corner": []
-      },
-      "output": [
-        {
-          "component": "afullAdd3fe4eb66a2a89a83",
-          "port": 1,
-          "corner": [
-            {
-              "x": 590,
-              "y": 200
-            },
-            {
-              "x": 360,
-              "y": 310
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "uuid": "wire3fc19b10037275dc",
-      "input": {
-        "component": "afullAdd3fe4eb66a2a89a83",
+        "component": "afullAdd3fcd3ce45ece4ec0",
         "port": 0,
         "corner": []
       },
@@ -750,24 +690,48 @@
       ]
     },
     {
-      "uuid": "wire3fe3dc07d426c675",
+      "uuid": "wire3f963de30eb7d820",
       "input": {
         "component": "asplit3fea6db34fba2a37",
+        "port": 1,
+        "corner": []
+      },
+      "output": [
+        {
+          "component": "afullAdd3fcd3ce45ece4ec0",
+          "port": 1,
+          "corner": [
+            {
+              "x": 190,
+              "y": 200
+            },
+            {
+              "x": 340,
+              "y": 300
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "wire3fe22cb21712a381",
+      "input": {
+        "component": "asplit3fc98d10c1bc162c",
         "port": 2,
         "corner": []
       },
       "output": [
         {
-          "component": "afullAdd3fe1060d9eaa63eb",
-          "port": 2,
+          "component": "afullAdd3fd4daf84c072d54",
+          "port": 0,
           "corner": [
             {
-              "x": 210,
+              "x": 610,
               "y": 200
             },
             {
-              "x": 440,
-              "y": 310
+              "x": 460,
+              "y": 300
             }
           ]
         }
