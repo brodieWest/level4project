@@ -183,6 +183,11 @@ public class SimulationController implements Controller {
 
     public void clear() {
         componentControllers.clear();
+        outputControllers.clear();
+        inputControllers.clear();
+        synchronousControllers.clear();
+        wordComponents.clear();
+        reusableControllers.clear();
         wireControllers.clear();
         simulationPane.getChildren().clear();
         simulationPane.getChildren().add(backGround);

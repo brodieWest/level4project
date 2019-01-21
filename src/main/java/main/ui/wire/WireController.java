@@ -73,8 +73,12 @@ public class WireController implements Controller {
         wire.addOutput(endPort);
         endPort.setWire(wire);
 
-        path.getElements().clear();
+        clearPath();
         displayWire(wire.getInput(), endWireIdentifiers);
+    }
+
+    public void clearPath() {
+        path.getElements().clear();
     }
 
     public void loadFxml() {
@@ -108,7 +112,7 @@ public class WireController implements Controller {
                 if(!breakFound && i>0) {
                     if(i<oldCorners.size()) {
                         if (!cornerCoords.equals(oldCorners.get(i))) {
-                            group.getChildren().add(new Circle(corners.get(i-1).getX(), corners.get(i-1).getY(), 3));
+                            group.getChildren().add(new Circle(corners.get(i-1).getX(), corners.get(i-1).getY(), getDotRadius()));
                             breakFound = true;
                         }
                     }
@@ -122,6 +126,10 @@ public class WireController implements Controller {
         }
 
         setInitialColour();
+    }
+
+    public int getDotRadius() {
+        return 3;
     }
 
     public void setInitialColour() {

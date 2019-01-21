@@ -67,4 +67,15 @@ public class WordWireController extends WireController {
 
     }
 
+    @Override
+    public void clearPath() {
+        outerPath.getElements().clear();
+        innerPath.getElements().clear();
+    }
+
+    @Override
+    public int getDotRadius() {
+        return 4;
+    }
+
 }
