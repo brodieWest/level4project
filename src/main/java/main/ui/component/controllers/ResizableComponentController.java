@@ -15,8 +15,8 @@ abstract class ResizableComponentController extends ComponentController {
     @FXML
     private Rectangle rectangle;
 
-    @FXML
-    private StackPane stackPane;
+    //@FXML
+    //private StackPane stackPane;
 
     ResizableComponentController(SimulationController simulationController, Component componentModel) {
         super(simulationController, componentModel);
@@ -45,8 +45,8 @@ abstract class ResizableComponentController extends ComponentController {
         rectangle.setWidth(width - componentModel.getDefaultPortOffset() * 2);
     }
 
-    @Override
-    public Parent getComponent() {
-        return stackPane;
-    }
+    //@Override
+    //public Parent getComponent() {
+    //    return stackPane;
+    //}
 }

@@ -209,6 +209,7 @@ public class SimulationController implements Controller {
         synchronousControllers.remove(componentController.getUuid());
         wordComponents.remove(componentController.getUuid());
         reusableControllers.remove(componentController.getUuid());
+        inputControllers.remove(componentController.getUuid());
 
         hideComponent(componentController);
     }

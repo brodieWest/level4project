@@ -9,8 +9,8 @@ import main.ui.simulation.SimulationController;
 
 public class DffController extends ComponentController implements Synchronous{
 
-    @FXML
-    private StackPane stackPane;
+    //@FXML
+    //private StackPane stackPane;
 
 
     public DffController(SimulationController simulationController, Component componentModel) {
@@ -24,10 +24,10 @@ public class DffController extends ComponentController implements Synchronous{
         synchronous.processClockTick();
     }
 
-    @Override
-    public Parent getComponent() {
-        return stackPane;
-    }
+    //@Override
+    //public Parent getComponent() {
+    //    return stackPane;
+    //}
 
     @Override
     public void wireDelay() {

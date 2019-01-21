@@ -18,17 +18,17 @@ public class WordOutputController extends IoController implements OutputControll
     @FXML
     private Text text;
 
-    @FXML
-    private StackPane stackPane;
+    //@FXML
+    //private StackPane stackPane;
 
     public void showOutputValue() {
         text.setText(componentModel.getInput(0).getWord().toString());
     }
 
-    @Override
-    public Parent getComponent() {
-        return stackPane;
-    }
+    //@Override
+    //public Parent getComponent() {
+    //    return stackPane;
+    //}
 
     public Wire getWire() {
         return componentModel.getInput(0).getWire();

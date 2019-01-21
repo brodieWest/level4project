@@ -10,17 +10,17 @@
             fx:id="component" prefHeight="100" prefWidth="100">
 
     <StackPane fx:id="stackPane"
+               >
+        <Group fx:id="svgGroup" id="output"
                onMousePressed="#findLocation"
                onMouseDragged="#moveComponent"
                onMouseReleased="#stopMoving">
-        <Group fx:id="svgGroup" id="output">
         <Group fx:id="rotatable">
-            <SVGPath fx:id="svgPath" content="M 0 0 L 0 60 L 60 60 L 60 0 L 0 0 z" styleClass="component, gate" translateX="20" translateY="20"/>
+            <SVGPath fx:id="svgPath" content="M 20 20 L 20 80 L 80 80 L 80 20 L 20 20 z" styleClass="component, gate"/>
         </Group>
+            <Text text="U" fx:id="text" styleClass="gateText" id="outputText" translateX="45" translateY="55"/>
         </Group>
-        <Group StackPane.alignment="CENTER">
-            <Text text="U" fx:id="text" x="50" y="50" styleClass="gateText" id="outputText"/>
-        </Group>
+
     </StackPane>
 
 </AnchorPane>

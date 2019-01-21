@@ -19,8 +19,8 @@ public class IoController extends ComponentController{
     static String LOGIC_1_COLOUR = "0xd35e60";
     static String LOGIC_UNDEFINED_COLOUR = "lightgrey";
 
-    @FXML
-    private StackPane stackPane;
+    //@FXML
+    //private StackPane stackPane;
 
     @FXML
     SVGPath svgPath;
@@ -35,8 +35,8 @@ public class IoController extends ComponentController{
         svgPath.setFill(Paint.valueOf(colour));
     }
 
-    @Override
-    public Parent getComponent() {
-        return stackPane;
-    }
+    //@Override
+    //public Parent getComponent() {
+    //    return stackPane;
+    //}
 }

@@ -25,8 +25,8 @@ public class WordInputController extends IoController implements InputController
 
     private String oldTextValue;
 
-    @FXML
-    private StackPane stackPane;
+    //@FXML
+    //private StackPane stackPane;
 
     public WordInputController(SimulationController simulationController, Component componentModel) {
         super(simulationController, componentModel);
@@ -70,10 +70,10 @@ public class WordInputController extends IoController implements InputController
         textField.selectAll();
     }
 
-    @Override
-    public Parent getComponent() {
-        return stackPane;
-    }
+    //@Override
+    //public Parent getComponent() {
+    //    return stackPane;
+    //}
 
     @Override
     public Wire getWire() {
