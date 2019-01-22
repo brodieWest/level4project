@@ -306,8 +306,8 @@ public class SimulationController implements Controller {
     }
 
     public void zoomIn() {
-        scale.setX(scale.getX() * 1.5);
-        scale.setY(scale.getY() * 1.5);
+        scale.setX(scale.getX() * 1.1);
+        scale.setY(scale.getY() * 1.1);
     }
 
     public void zoomOut() {
