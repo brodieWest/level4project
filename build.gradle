@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'level4project'
-version '0.4'
+version '0.5'
 
 sourceCompatibility = 1.11
 
@@ -45,13 +45,14 @@ launch4j {
     mainClassName = 'main.ui.main.Mainfx'
     bundledJre64Bit = true
     bundledJrePath = "jre"
-    outputDir = "windows0.4"
+    outputDir = "windows0.5"
 }
 
 jlink {
     mergedModule {
         requires 'java.naming'
         requires 'java.xml'
+        requires 'java.sql'
     }
     mainClassName = 'main.ui.main.Mainfx'
     options = ['--no-header-files', '--no-man-pages']
