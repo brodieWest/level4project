@@ -36,7 +36,7 @@ public class Join extends Component implements WordComponent {
 
         for(int i=0;i<getInputSize();i++) {
             Port input = getInput(i);
-            outputWord.get(i).copy(input.getLogic());
+            outputWord.get(getInputSize()-i-1).copy(input.getLogic());
         }
     }
 }

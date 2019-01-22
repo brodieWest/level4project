@@ -59,13 +59,13 @@ public class Word extends ArrayList<Logic> {
     @Override
     public String toString() {
         int value = 0;
-        for(int i=0;i<size();i++) {
+        for(int i=size()-1;i>=0;i--) {
             Logic logic = this.get(i);
 
             if(logic.isUndefined()) return "U";
 
-            //if(logic.value()) value += Math.pow(2,size()-i-1);
-            if(logic.value()) value += Math.pow(2,i);
+            if(logic.value()) value += Math.pow(2,size()-i-1);
+            //if(logic.value()) value += Math.pow(2,i);
         }
         return Integer.toString(value,16);
     }
