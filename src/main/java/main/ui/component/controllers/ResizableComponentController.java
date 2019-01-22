@@ -21,6 +21,10 @@ abstract class ResizableComponentController extends ComponentController {
     ResizableComponentController(SimulationController simulationController, Component componentModel) {
         super(simulationController, componentModel);
 
+        resize();
+    }
+
+    public void resize() {
         int maxEastWest = Math.max(componentModel.getPortsByDirection(Direction.EAST).size(),componentModel.getPortsByDirection(Direction.WEST).size());
 
         int height = Math.max(DEFAULT_SIZE,(int)Math.ceil(maxEastWest/MAX_PORTS) * DEFAULT_SIZE);

@@ -4,6 +4,7 @@ import main.model.ComponentParametersModel;
 import main.model.Direction;
 import main.model.PortParameters;
 import main.model.PortType;
+import main.ui.component.controllers.ReusableComponentController;
 import main.ui.wire.Wire;
 import main.ui.port.Port;
 
@@ -73,6 +74,7 @@ public class ReusableComponent extends Component{
         }
         portParameters.add(new PortParameters(direction, portType, port.getSize()));
         addPorts(portParameters);
+        ((ReusableComponentController)componentController).resize();
         Port externalPort = ports.get(ports.size() - 1);
 
         if (portType == PortType.INPUT) {
