@@ -36,7 +36,7 @@ public class WireController implements Controller {
 
     private SimulationController simulationController;
 
-    private static String LOGIC_0_COLOUR = "0x7293cb";
+    private static String LOGIC_0_COLOUR = "0x396ab1";
     private static String LOGIC_1_COLOUR = "0xd35e60";
     private static String LOGIC_UNDEFINED_COLOUR = "grey";
 

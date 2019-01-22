@@ -19,7 +19,7 @@
                onMouseDragged="#moveComponent"
                onMouseReleased="#stopMoving">
             <Group fx:id="rotatable">
-                <SVGPath content="M 20 20 L 20 80 L 80 80 L 80 20 L 20 20 z" fill="0x7293cb" styleClass="component"  fx:id="svgPath"/>
+                <SVGPath content="M 20 20 L 20 80 L 80 80 L 80 20 L 20 20 z" fill="0x396ab1" styleClass="component"  fx:id="svgPath"/>
             </Group>
             <Text styleClass="gateText" fx:id="text" text="0" translateX="45" translateY="55"/>
         </Group>
