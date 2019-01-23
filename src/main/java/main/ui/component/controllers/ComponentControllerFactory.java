@@ -41,8 +41,4 @@ public class ComponentControllerFactory {
 
     }
 
-    public static Set<String> getComponentTypes() {
-        return stdComponentControllers.keySet();
-    }
-
 }

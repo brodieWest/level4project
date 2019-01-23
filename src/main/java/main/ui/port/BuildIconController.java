@@ -54,7 +54,6 @@ public class BuildIconController implements Controller {
     @FXML
     private void startWire(MouseEvent mouseEvent) {
 
-        //MainSimulationController simulationController = (MainSimulationController)componentController.getSimulationController();
         Port port = portController.getPort();
 
         Parent background = simulationController.getBackground();
@@ -127,7 +126,6 @@ public class BuildIconController implements Controller {
     }
 
     private void endWireBuilder() {
-        //MainSimulationController simulationController = (MainSimulationController)componentController.getSimulationController();
         Mainfx.getRoot().setOnMouseMoved(event -> {});
         Mainfx.getRoot().setOnMouseClicked(event -> {});
         Mainfx.getRoot().setOnContextMenuRequested(event -> {});

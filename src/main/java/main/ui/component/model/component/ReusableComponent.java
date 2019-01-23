@@ -23,41 +23,9 @@ public class ReusableComponent extends Component{
 
     private boolean portsAdded = false;
 
-    private List<PortParameters> portParameters = new ArrayList<>();
-
 
     public ReusableComponent(ComponentParameters componentParameters) {
         super(componentParameters);
-    }
-
-    public void initialiseWires(List<Wire> inputWires, List<Wire> outputWires) {
-        internalInputs = inputWires;
-        internalOutputs = outputWires;
-
-        //if(!hasPorts()) {
-        //    addPorts(new ArrayList<>());
-        //    portsAdded = true;
-        //}
-
-
-
-        /*for(int i=0; i<inputWires.size();i++) {
-            Wire wire = inputWires.get(i);
-            Port inputPort = this.getInput(i);
-            inputPort.setSize(wire.getOutput(0).getSize());
-
-            wire.setInput(inputPort);
-            //inputPort.setWire(wire);
-        }
-
-        for(int i=0; i<outputWires.size();i++) {
-            Wire wire = outputWires.get(i);
-            Port outputPort = this.getOutput(i);
-            outputPort.setSize(wire.getInput().getSize());
-
-            wire.addOutput(outputPort);
-            //outputPort.setWire(wire);
-        }*/
     }
 
     public void addExternalPort(Component internalComponent, Direction direction) {
@@ -94,14 +62,6 @@ public class ReusableComponent extends Component{
     @Override
     public int getDefaultOutputs() {
         return defaultOutputs;
-    }
-
-    public void setDefaultInputs(int defaultInputs) {
-        this.defaultInputs = defaultInputs;
-    }
-
-    public void setDefaultOutputs(int defaultOutputs) {
-        this.defaultOutputs = defaultOutputs;
     }
 
     public List<Wire> getInternalWires() {

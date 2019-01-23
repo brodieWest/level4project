@@ -10,7 +10,7 @@ public class Dff extends Component implements Synchronous {
 
     @Override
     public void processGateDelay() {
-        //getOutput(0).getLogic().copy(storedValue);
+
     }
 
     @Override

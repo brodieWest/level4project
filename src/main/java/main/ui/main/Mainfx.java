@@ -41,7 +41,6 @@ public class Mainfx extends Application {
         try {
             String currentPath = Paths.get("./reusables").toAbsolutePath().normalize().toString();
             File defaultDirectory = new File(currentPath);
-            //File defaultDirectory = new File(Mainfx.class.getClassLoader().getResource("main/ui/main/fileExamples/").getFile());
             fileChooser.setInitialDirectory(defaultDirectory);
             return fileChooser.showOpenDialog(stage);
         } catch (RuntimeException e) {

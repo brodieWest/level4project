@@ -99,8 +99,6 @@ public class ComponentController implements Controller {
 
         oldX = getComponent().getTranslateX() - mouseEvent.getSceneX()/scaleX;
         oldY = getComponent().getTranslateY() - mouseEvent.getSceneY()/scaleY;
-        //simulationController.setPannable(false);
-        //component.toFront();
         hasWires = componentModel.hasWires();
 
         Mainfx.getRoot().setOnKeyPressed(event -> rotate(event));

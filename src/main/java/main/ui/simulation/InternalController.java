@@ -22,21 +22,4 @@ public class InternalController extends SimulationController {
         }
     }
 
-    public List<Wire> getInputWires() {
-        List<Wire> wires = new ArrayList<>();
-        for(InputControllerInterface input : inputControllers.values()) {
-            wires.add(input.getWire());
-        }
-        return wires;
-
-
-    }
-
-    public List<Wire> getOutputWires() {
-        List<Wire> wires = new ArrayList<>();
-        for(OutputControllerInterface output : outputControllers.values()) {
-            wires.add(output.getWire());
-        }
-        return wires;
-    }
 }

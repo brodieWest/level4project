@@ -6,7 +6,6 @@ import main.ui.component.model.component.ComponentParameters;
 public class WordOutput extends Component {
     @Override
     public void processGateDelay() {
-        // TODO: set nextLogic on ouput based on input
     }
 
     @Override

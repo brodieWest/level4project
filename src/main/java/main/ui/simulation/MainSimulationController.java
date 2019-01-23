@@ -125,15 +125,9 @@ public class MainSimulationController extends SimulationController {
     public void calculatePathDepth() {
         List<Component> inputs = new ArrayList<>();
 
-        //Collection<ComponentController> newComponentControllers = componentControllers.values();
-
         for(InputControllerInterface inputController : inputControllers.values()) {
-            //if(componentController instanceof InputController || componentController instanceof DffController) {
-                inputs.add(((ComponentController)inputController).getComponentModel());
-            //}
-
+            inputs.add(((ComponentController)inputController).getComponentModel());
         }
-        //simulator.calculatePathDepth(inputs);
         mainController.setPathDepth(simulator.getPathDepth());
     }
 

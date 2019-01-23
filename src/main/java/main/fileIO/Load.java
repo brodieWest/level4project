@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 public class Load {
 
     private static final String PORT_MAPPING = "portMapping";
-    private static final String EXTERNAL_PORT = "externalPort";
     private static final String INTERNAL_PORT = "internalPort";
     private static final String ROTATION = "rotation";
     private static String COMPONENTS = "components";
@@ -38,11 +37,7 @@ public class Load {
     private static String COORDINATES = "coordinates";
     private static String X = "x";
     private static String Y = "y";
-    //private static String XCOORD = "xCoord";
-    //private static String YCOORD = "yCoord";
     private static String UUID = "uuid";
-    private static String INPUTPORTS = "inputPorts";
-    private static String OUTPUTPORTS = "outputPorts";
     private static String CORNER = "corner";
     private static String CONSTANTS = "constants";
     private static String DIRECTION = "direction";

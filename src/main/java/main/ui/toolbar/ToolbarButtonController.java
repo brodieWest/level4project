@@ -29,7 +29,6 @@ public class ToolbarButtonController extends Group implements Controller {
     }
 
     public ToolbarButtonController() {
-        //FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(BUTTON_FXML_PATH), this);
         FXMLLoader fxmlLoader = new FXMLLoader(Mainfx.class.getResource(BUTTON_FXML_PATH));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -39,9 +38,6 @@ public class ToolbarButtonController extends Group implements Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        //this.type = type;
-        //this.mainController = mainController;
 
     }
 
@@ -66,7 +62,4 @@ public class ToolbarButtonController extends Group implements Controller {
         return buttonText;
     }
 
-    /*public Button getToolbarButton() {
-        return toolbarButton;
-    }*/
 }

@@ -192,18 +192,6 @@ public abstract class Component implements Onscreen {
         return wires;
     }
 
-    public void deleteIO(String name, PortType portType) {
-        //TODO
-    }
-
-    public void addWireToInput(String inputName, Wire wire, PortType portType) {
-
-    }
-
-    public void deleteWireToIO(String name, PortType portType) {
-        //TODO
-    }
-
     public void deleteWires() {
         for(Port port : ports) {
             if(port.hasWire()) {
