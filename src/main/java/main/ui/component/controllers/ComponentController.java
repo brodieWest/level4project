@@ -20,6 +20,8 @@ import main.ui.port.PortController;
 import main.ui.simulation.SimulationController;
 import main.fxml.FxmlLoaderUtils;
 
+import static main.utils.MathsUtils.*;
+
 import java.util.List;
 
 public class ComponentController implements Controller {
@@ -154,10 +156,6 @@ public class ComponentController implements Controller {
         if(newY < SCREEN_EDGE) newY = SCREEN_EDGE;
 
         componentModel.setCoordinates(new Coordinates((int)newX, (int)newY));
-    }
-
-    private double round(double number, int factor) {
-        return Math.round(number/factor) * factor;
     }
 
     public void stopMoving() {

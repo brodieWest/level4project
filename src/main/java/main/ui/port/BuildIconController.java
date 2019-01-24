@@ -17,6 +17,7 @@ import main.ui.simulation.MainSimulationController;
 import main.ui.wire.WireController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import static main.utils.MathsUtils.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,6 +37,11 @@ public class BuildIconController implements Controller {
     private ComponentController componentController;
 
     private PortController portController;
+
+    private static int SCREEN_EDGE = 0;
+    private static int SMALLEST_INCREMENT = 10;
+    private static int WIRE_WIDTH = 5;
+    private static int SMALLEST_POSITION = SCREEN_EDGE + (WIRE_WIDTH/2);
 
     private static Logger logger = LogManager.getLogger(BuildIconController.class);
 
@@ -63,8 +69,8 @@ public class BuildIconController implements Controller {
         double scaleY = simulationController.getScaleFactorY();
 
         if(simulationController.getWireBuilderStartPort() != null) {
-            int x = (int) Math.round((mouseEvent.getSceneX() - boundsInScene.getMinX())/scaleX / 10) * 10;
-            int y = (int) Math.round((mouseEvent.getSceneY() - boundsInScene.getMinY())/scaleY / 10) * 10;
+            int x = (int) round((mouseEvent.getSceneX() - boundsInScene.getMinX())/scaleX, SMALLEST_INCREMENT);
+            int y = (int) round((mouseEvent.getSceneY() - boundsInScene.getMinY())/scaleY,SMALLEST_INCREMENT);
             simulationController.newLine(new Coordinates(x, y));
             PortController startPort = simulationController.getWireBuilderStartPort();
 
@@ -109,14 +115,17 @@ public class BuildIconController implements Controller {
         simulationController.startWireBuilder(port.getEndPosition());
 
         Mainfx.getRoot().setOnMouseMoved(event -> {
-            int x = (int)Math.round((event.getSceneX()-boundsInScene.getMinX())/scaleX/10)*10;
-            int y = (int)Math.round((event.getSceneY()-boundsInScene.getMinY())/scaleY/10)*10;
+            int x = (int)round((event.getSceneX()-boundsInScene.getMinX())/scaleX,SMALLEST_INCREMENT);
+            int y = (int)round((event.getSceneY()-boundsInScene.getMinY())/scaleY,SMALLEST_INCREMENT);
+            if(x < SMALLEST_POSITION || y < SMALLEST_POSITION) {
+                endWireBuilder();
+            }
             simulationController.displayLine(new Coordinates(x,y));
         });
 
         Mainfx.getRoot().setOnMouseClicked(event -> {
-            int x = (int)Math.round((event.getSceneX()-boundsInScene.getMinX())/scaleX/10)*10;
-            int y = (int)Math.round((event.getSceneY()-boundsInScene.getMinY())/scaleY/10)*10;
+            int x = (int)round((event.getSceneX()-boundsInScene.getMinX())/scaleX,SMALLEST_INCREMENT);
+            int y = (int)round((event.getSceneY()-boundsInScene.getMinY())/scaleY,SMALLEST_INCREMENT);
             simulationController.newLine(new Coordinates(x,y));
         });
 
