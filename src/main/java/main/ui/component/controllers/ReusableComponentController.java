@@ -33,7 +33,7 @@ public class ReusableComponentController extends ResizableComponentController im
 
     private Scene newWindowScene;
 
-    private static String REUSABLE_FILE_PATH = Paths.get("./reusables").toAbsolutePath().normalize().toString() + "/";
+    private static String REUSABLE_FILE_PATH = Paths.get("./examples/reusables").toAbsolutePath().normalize().toString() + "/";
     private static String REUSABLE = "reusable";
 
     @FXML

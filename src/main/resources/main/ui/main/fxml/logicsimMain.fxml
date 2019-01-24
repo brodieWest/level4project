@@ -24,9 +24,9 @@
         <ToggleGroup fx:id="toggleGroup"/>
     </fx:define>
     <top>
-        <VBox>
+        <HBox>
         <padding><Insets bottom="2" /></padding>
-            <MenuBar>
+            <MenuBar HBox.hgrow="ALWAYS">
                 <Menu text="File" id="file">
                     <MenuItem text="Load" fx:id="load" onAction="#loadFile" id="load"/>
                     <MenuItem text="Save" onAction="#saveFile"/>
@@ -43,7 +43,23 @@
                     <CheckMenuItem text="Do path depth gate delays per clock tick" fx:id="checkMenuItem"/>
                 </Menu>
             </MenuBar>
-        </VBox>
+            <HBox fx:id="bottomButtons" spacing="12" alignment="TOP_RIGHT">
+                <padding><Insets left="20" /></padding>
+                <HBox spacing="12" fx:id="buildButtons">
+                    <Button text="Delete Components" onMouseClicked="#deleteComponents" fx:id="deleteComponents"/>
+                    <Button text="Delete Wires" onMouseClicked="#deleteWires" fx:id="deleteWires"/>
+                    <Button text="Start Simulation" fx:id="startSimulation" onMouseClicked="#startSimulation" id="startSimulation"/>
+                </HBox>
+                <HBox spacing="12" fx:id="simulationButtons">
+                    <Label text="0" fx:id="gateDelayCount"/>
+                    <Button text="Gate Delay" onMouseClicked="#gateDelay" id="gateDelay"/>
+                    <Label text="0" fx:id="clockTickCount"/>
+                    <Button text="Clock Tick" onMouseClicked="#clockTick" id="clockTick"/>
+                    <Label fx:id="pathDepthLabel"/>
+                    <Button text="Build Mode" onMouseClicked="#buildMode"/>
+                </HBox>
+            </HBox>
+        </HBox>
     </top>
     <left>
         <ScrollPane prefWidth="200" fx:id="leftScrollPane">
@@ -114,22 +130,8 @@
     </right>
     <bottom>
         <AnchorPane>
-            <padding><Insets left="25" top="25" bottom="25" right="25"/></padding>
-            <HBox fx:id="bottomButtons" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" spacing="12" alignment="CENTER_LEFT">
-                <HBox spacing="12" fx:id="buildButtons">
-                    <Button text="Delete Components" onMouseClicked="#deleteComponents" fx:id="deleteComponents"/>
-                    <Button text="Delete Wires" onMouseClicked="#deleteWires" fx:id="deleteWires"/>
-                    <Button text="Start Simulation" fx:id="startSimulation" onMouseClicked="#startSimulation" id="startSimulation"/>
-                </HBox>
-                <HBox spacing="12" fx:id="simulationButtons">
-                    <Label text="0" fx:id="gateDelayCount"/>
-                    <Button text="Gate Delay" onMouseClicked="#gateDelay" id="gateDelay"/>
-                    <Label text="0" fx:id="clockTickCount"/>
-                    <Button text="Clock Tick" onMouseClicked="#clockTick" id="clockTick"/>
-                    <Label fx:id="pathDepthLabel"/>
-                    <Button text="Build Mode" onMouseClicked="#buildMode"/>
-                </HBox>
-            </HBox>
+            <padding><Insets left="25" right="25"/></padding>
+
         </AnchorPane>
     </bottom>
 

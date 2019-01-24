@@ -14,7 +14,7 @@ public class IoController extends ComponentController{
     static String LOGIC_0 = "0";
     static String LOGIC_1 = "1";
     static String LOGIC_UNDEFINED = "U";
-    static String LOGIC_0_COLOUR = "0x7293cb";
+    static String LOGIC_0_COLOUR = "0x396ab1";
     static String LOGIC_1_COLOUR = "0xd35e60";
     static String LOGIC_UNDEFINED_COLOUR = "lightgrey";
 

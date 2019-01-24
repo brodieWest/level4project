@@ -224,7 +224,7 @@ public class MainController implements Controller {
             }
         }
 
-        String currentPath = Paths.get("./reusables").toAbsolutePath().normalize().toString();
+        String currentPath = Paths.get("./examples/reusables").toAbsolutePath().normalize().toString();
         File folder = new File(currentPath);
         File[] listOfFiles = folder.listFiles();
         if(listOfFiles != null) {

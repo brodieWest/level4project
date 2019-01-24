@@ -39,7 +39,7 @@ public class Mainfx extends Application {
     public static File openFileLoadWindow() {
         FileChooser fileChooser = new FileChooser();
         try {
-            String currentPath = Paths.get("./reusables").toAbsolutePath().normalize().toString();
+            String currentPath = Paths.get("./examples").toAbsolutePath().normalize().toString();
             File defaultDirectory = new File(currentPath);
             fileChooser.setInitialDirectory(defaultDirectory);
             return fileChooser.showOpenDialog(stage);
@@ -50,9 +50,20 @@ public class Mainfx extends Application {
     }
 
     public static void openFileSaveWindow(String fileString) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save File");
-        File file = fileChooser.showSaveDialog(stage);
+        File file;
+        try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save File");
+            String currentPath = Paths.get("./examples").toAbsolutePath().normalize().toString();
+            File defaultDirectory = new File(currentPath);
+            fileChooser.setInitialDirectory(defaultDirectory);
+            file = fileChooser.showSaveDialog(stage);
+        } catch (RuntimeException e) {
+            FileChooser fileChooserWithoutDefault = new FileChooser();
+            fileChooserWithoutDefault.setTitle("Save File");
+            file = fileChooserWithoutDefault.showSaveDialog(stage);
+        }
+
         if (file != null) {
             try {
                 PrintWriter writer;
