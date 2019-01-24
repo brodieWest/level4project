@@ -356,4 +356,13 @@ public abstract class Component implements Onscreen {
     public int getInitialRotate() {
         return initialRotate;
     }
+
+    public boolean hasEmptyPorts(Direction direction) {
+        for(Port port : getPortsByDirection(direction)) {
+            if(!port.hasWire()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

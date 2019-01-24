@@ -3,13 +3,11 @@ package main.ui.component.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Parent;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Text;
 import main.model.ComponentParametersModel;
 import main.model.Coordinates;
@@ -17,12 +15,10 @@ import main.model.Direction;
 import main.ui.Controller;
 import main.ui.Descriptions;
 import main.ui.component.model.component.Component;
-import main.ui.component.model.component.ComponentParameters;
 import main.ui.main.Mainfx;
 import main.ui.port.PortController;
 import main.ui.simulation.SimulationController;
 import main.fxml.FxmlLoaderUtils;
-import main.ui.wire.Wire;
 
 import java.util.List;
 
@@ -35,6 +31,10 @@ public class ComponentController implements Controller {
     private List<PortController> portControllers;
 
     static String COMPONENT_PATH = "fxml/components/%s.fxml";
+    private static int BUILD_ICON_RADIUS = 5;
+    private static int HALF_COMPONENT_HEIGHT = 50;
+    private static int SCREEN_EDGE = 0;
+    private static int ROTATION_FACTOR = 90;
 
     @FXML
     Text text;
@@ -80,6 +80,22 @@ public class ComponentController implements Controller {
             }
             portController.displayPort();
         }
+
+        //repositionWest();
+    }
+
+    private void repositionWest() {
+        if(componentModel.hasEmptyPorts(Direction.WEST)) {
+            getComponent().setTranslateX(getComponent().getTranslateX()- BUILD_ICON_RADIUS);
+        }
+
+    }
+
+    private void repositionNorth() {
+        if(componentModel.hasEmptyPorts(Direction.NORTH)) {
+            getComponent().setTranslateY(getComponent().getTranslateY()- BUILD_ICON_RADIUS);
+        }
+
     }
 
     public void loadFxml() {
@@ -111,23 +127,37 @@ public class ComponentController implements Controller {
         double scaleX = simulationController.getScaleFactorX();
         double scaleY = simulationController.getScaleFactorY();
 
-        double newTranslationX = (mouseEvent.getSceneX()/scaleX) + oldX;
-        double newTranslationY = mouseEvent.getSceneY()/scaleY + oldY;
+        double newTranslationX = round(mouseEvent.getSceneX()/scaleX + oldX, HALF_COMPONENT_HEIGHT);
+        double newTranslationY = round(mouseEvent.getSceneY()/scaleY + oldY, HALF_COMPONENT_HEIGHT);
 
-        if (getComponent().getLayoutX() + newTranslationX > 0) {
-            getComponent().setTranslateX(Math.round(newTranslationX/50.0)*50);
+        double newComponentX = getComponent().getLayoutX() + newTranslationX;
+        double newComponentY = getComponent().getLayoutY() + newTranslationY;
+
+        if (newComponentX > SCREEN_EDGE) {
+            getComponent().setTranslateX(newTranslationX);
+            if(round(newComponentX,HALF_COMPONENT_HEIGHT) - BUILD_ICON_RADIUS > SCREEN_EDGE) {
+                repositionWest();
+            }
         }
-        if(getComponent().getLayoutY() + newTranslationY > 0) {
-            getComponent().setTranslateY(Math.round(newTranslationY/50.0)*50);
+
+        if(newComponentY > SCREEN_EDGE) {
+            getComponent().setTranslateY(newTranslationY);
+            if(round(newComponentY,HALF_COMPONENT_HEIGHT) - BUILD_ICON_RADIUS > SCREEN_EDGE) {
+                repositionNorth();
+            }
         }
 
-        double newX = Math.round(((getComponent().getLayoutX() + Math.round(newTranslationX/50.0)*50)/50.0))*50;
-        double newY = Math.round(((getComponent().getLayoutY() + Math.round(newTranslationY/50.0)*50)/50.0))*50;
+        double newX = round(getComponent().getLayoutX() + newTranslationX,HALF_COMPONENT_HEIGHT);
+        double newY = round(getComponent().getLayoutY() + newTranslationY,HALF_COMPONENT_HEIGHT);
 
-        if(newX < 0) newX = 0;
-        if(newY < 0) newY = 0;
+        if(newX < SCREEN_EDGE) newX = SCREEN_EDGE;
+        if(newY < SCREEN_EDGE) newY = SCREEN_EDGE;
 
         componentModel.setCoordinates(new Coordinates((int)newX, (int)newY));
+    }
+
+    private double round(double number, int factor) {
+        return Math.round(number/factor) * factor;
     }
 
     public void stopMoving() {
@@ -135,7 +165,7 @@ public class ComponentController implements Controller {
     }
 
     private void rotate(KeyEvent event) {
-        rotatable.setRotate(rotatable.getRotate()+90);
+        rotatable.setRotate(rotatable.getRotate()+ROTATION_FACTOR);
         componentModel.rotatePorts();
 
 
