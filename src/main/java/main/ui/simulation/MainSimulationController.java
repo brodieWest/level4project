@@ -284,4 +284,10 @@ public class MainSimulationController extends SimulationController {
             componentController.setDeletable(false);
         }
     }
+
+    public Coordinates getScrollPosition() {
+        System.out.println(scrollPane.getVvalue());
+        return new Coordinates((int)Math.ceil((scrollPane.getHvalue()*(10000-scrollPane.getWidth()+50))/50)*50, (int)Math.ceil((scrollPane.getVvalue()*(10000-scrollPane.getHeight()+50))/50)*50);
+
+    }
 }

@@ -41,7 +41,7 @@ public class SimulationController implements Controller {
     AnchorPane simulationPane;
 
     @FXML
-    private ScrollPane scrollPane;
+    ScrollPane scrollPane;
 
     @FXML
     private StackPane stackPane;
