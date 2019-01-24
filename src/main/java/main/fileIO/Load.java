@@ -51,6 +51,7 @@ public class Load {
         if(jsonText == null) {
             return;
         }
+        simulationController.clear();
         load(simulationController,jsonText);
     }
 

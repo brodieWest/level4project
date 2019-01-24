@@ -101,7 +101,6 @@ public class MainController implements Controller {
 
     @FXML
     protected void loadFile() {
-        simulationController.clear();
 
         if(simulationController.getSimulationMode() == SimulationMode.SIMULATE) {
             buildMode();
