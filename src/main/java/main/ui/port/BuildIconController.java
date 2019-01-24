@@ -81,6 +81,10 @@ public class BuildIconController implements Controller {
             if (startPort.getPortType() == PortType.OUTPUT) {
                 startComponent = startPort.getComponentController();
                 startPortIdentifier = new PortIdentifier(startComponent.getUuid(), startPort.getPort().getPortNo());
+                if(port.getPortType() == PortType.OUTPUT) {
+                    endWireBuilder();
+                    return;
+                }
                 PortIdentifier endPortIdentifier = new PortIdentifier(componentController.getUuid(), port.getPortNo());
                 endPortIdentifier.addCorners(simulationController.getWireBuilderCorners());
                 endPorts.add(endPortIdentifier);
@@ -88,6 +92,10 @@ public class BuildIconController implements Controller {
                 startComponent = componentController;
                 ComponentController endComponent = startPort.getComponentController();
                 startPortIdentifier = new PortIdentifier(componentController.getUuid(), port.getPortNo());
+                if(startPort.getPortType() == PortType.INPUT) {
+                    endWireBuilder();
+                    return;
+                }
                 PortIdentifier endPortIdentifier = new PortIdentifier(endComponent.getUuid(), startPort.getPort().getPortNo());
                 Collections.reverse(simulationController.getWireBuilderCorners());
                 endPortIdentifier.addCorners(simulationController.getWireBuilderCorners());
