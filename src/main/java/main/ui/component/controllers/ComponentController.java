@@ -34,7 +34,7 @@ public class ComponentController implements Controller {
 
     static String COMPONENT_PATH = "fxml/components/%s.fxml";
     private static int BUILD_ICON_RADIUS = 5;
-    private static int HALF_COMPONENT_HEIGHT = 50;
+    public static int HALF_COMPONENT_HEIGHT = 50;
     private static int SCREEN_EDGE = 0;
     private static int ROTATION_FACTOR = 90;
 

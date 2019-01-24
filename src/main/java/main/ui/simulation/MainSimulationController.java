@@ -35,6 +35,9 @@ public class MainSimulationController extends SimulationController {
 
     private SimulationMode simulationMode;
 
+    private int SCREEN_SIZE = 10000;
+    private int SCREEN_PADDING = 50;
+
     public MainSimulationController(MainController mainController) {
         super();
         this.mainController = mainController;
@@ -286,8 +289,9 @@ public class MainSimulationController extends SimulationController {
     }
 
     public Coordinates getScrollPosition() {
-        System.out.println(scrollPane.getVvalue());
-        return new Coordinates((int)Math.ceil((scrollPane.getHvalue()*(10000-scrollPane.getWidth()+50))/50)*50, (int)Math.ceil((scrollPane.getVvalue()*(10000-scrollPane.getHeight()+50))/50)*50);
+        int x = (int)Math.ceil((scrollPane.getHvalue()*(SCREEN_SIZE-scrollPane.getWidth()+SCREEN_PADDING))/ComponentController.HALF_COMPONENT_HEIGHT)*ComponentController.HALF_COMPONENT_HEIGHT;
+        int y = (int)Math.ceil((scrollPane.getVvalue()*(SCREEN_SIZE-scrollPane.getHeight()+SCREEN_PADDING))/ComponentController.HALF_COMPONENT_HEIGHT)*ComponentController.HALF_COMPONENT_HEIGHT;
+        return new Coordinates(x,y);
 
     }
 }
