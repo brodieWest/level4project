@@ -7,6 +7,6 @@
        xmlns:fx="http://javafx.com/fxml"
        fx:id="group">
     <Line styleClass="wire" fx:id="line"/>
-    <Line fx:id="outerPath" styleClass="wordWireOuter"/>
-    <Line fx:id="innerPath" styleClass="wordWireInner"/>
+    <Line fx:id="outerPath" styleClass="wordWireOuter" stroke="darkslategray"/>
+    <Line fx:id="innerPath" styleClass="wordWireInner" stroke="white"/>
 </Group>

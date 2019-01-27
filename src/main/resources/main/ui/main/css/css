@@ -33,13 +33,11 @@
 .wordWireOuter {
     -fx-stroke-width: 6;
     -fx-stroke-line-join: round;
-    -fx-stroke: "darkslategray";
 }
 
 .wordWireInner {
     -fx-stroke-width: 4;
     -fx-stroke-line-join: round;
-    -fx-stroke: "white";
     -fx-stroke-dash-array: 4 6;
 }
 

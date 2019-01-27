@@ -61,6 +61,8 @@ public class BuildIconController implements Controller {
     @FXML
     private void startWire(MouseEvent mouseEvent) {
 
+        if(portController.getComponentController().isDeletable()) return;
+
         Port port = portController.getPort();
 
         if(simulationController.getWireBuilderStartPort() != null) {

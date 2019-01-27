@@ -53,6 +53,10 @@ public class ComponentController implements Controller {
     private double oldX;
     private double oldY;
 
+    private Group cross = new Group();
+
+    private boolean deletable = false;
+
     public ComponentController(SimulationController simulationController, Component componentModel) {
         this.componentModel = componentModel;
         this.simulationController = simulationController;
@@ -68,6 +72,18 @@ public class ComponentController implements Controller {
         svgGroup.getChildren().add(line);
 
         rotatable.setRotate(componentModel.getInitialRotate());
+
+        buildCross();
+    }
+
+    private void buildCross() {
+        Line line1 = new Line(0,0,componentModel.getWIDTH(),componentModel.getHEIGHT());
+        Line line2 = new Line(componentModel.getWIDTH(),0,0,componentModel.getHEIGHT());
+        line1.setStroke(Paint.valueOf("red"));
+        line2.setStroke(Paint.valueOf("red"));
+
+        cross.getChildren().add(line1);
+        cross.getChildren().add(line2);
     }
 
     void displayPorts() {
@@ -109,6 +125,7 @@ public class ComponentController implements Controller {
     @FXML
     void moveComponent(MouseEvent mouseEvent) {
         if(hasWires) return;
+        if(deletable) return;
 
         double scaleX = simulationController.getScaleFactorX();
         double scaleY = simulationController.getScaleFactorY();
@@ -191,13 +208,20 @@ public class ComponentController implements Controller {
     }
 
     public void setDeletable(boolean deletable) {
+        this.deletable = deletable;
         if(deletable) {
             getComponent().setOnMouseClicked(event -> {
                 simulationController.removeComponent(this);
                 componentModel.deleteWires();
             });
+            svgGroup.getChildren().add(cross);
         } else {
             getComponent().setOnMouseClicked(event -> {});
+            svgGroup.getChildren().remove(cross);
         }
+    }
+
+    public boolean isDeletable() {
+        return deletable;
     }
 }
