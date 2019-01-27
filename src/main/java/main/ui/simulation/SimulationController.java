@@ -7,11 +7,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Line;
 import javafx.scene.transform.Scale;
-import main.model.SimulationMode;
 import main.ui.Controller;
 import main.ui.component.InputControllerInterface;
 import main.ui.component.OutputControllerInterface;
@@ -22,7 +18,6 @@ import main.ui.component.controllers.ComponentControllerFactory;
 import main.ui.component.controllers.ReusableComponentController;
 import main.ui.component.model.component.ComponentParameters;
 import main.ui.main.Mainfx;
-import main.ui.port.BuildIconController;
 import main.ui.wire.WireController;
 import main.ui.wire.WordWireController;
 import main.model.Coordinates;
@@ -60,7 +55,7 @@ public class SimulationController implements Controller {
 
     Map<String, ComponentController> componentControllers = new HashMap<>();
     Map<String, OutputControllerInterface> outputControllers = new HashMap<>();
-    private Map<String, Synchronous> synchronousControllers = new HashMap<>();
+    Map<String, Synchronous> dffControllers = new HashMap<>();
     private Map<String, WordComponent> wordComponents = new HashMap<>();
     private Map<String, ReusableComponentController> reusableControllers = new HashMap<>();
     Map<String, InputControllerInterface> inputControllers = new HashMap<>();
@@ -72,6 +67,8 @@ public class SimulationController implements Controller {
     private List<Group> buildIcons = new ArrayList<>();
 
     private static String SIMULATION_FXML_PATH = "fxml/simulation.fxml";
+
+    private static double ZOOM_FACTOR = 1.1;
 
     public SimulationController() {
         FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(SIMULATION_FXML_PATH), this);
@@ -88,7 +85,10 @@ public class SimulationController implements Controller {
 
 
     public void clockTick() {
-        for (Synchronous synchronous : synchronousControllers.values()) {
+        for (Synchronous synchronous : dffControllers.values()) {
+            synchronous.processClockTick();
+        }
+        for (Synchronous synchronous : reusableControllers.values()) {
             synchronous.processClockTick();
         }
         resetSimulation();
@@ -96,7 +96,7 @@ public class SimulationController implements Controller {
     }
 
     public void addSynchronous(Synchronous synchronous) {
-        synchronousControllers.put(synchronous.getUuid(), synchronous);
+        dffControllers.put(synchronous.getUuid(), synchronous);
     }
 
 
@@ -125,7 +125,11 @@ public class SimulationController implements Controller {
                 wordComponent.wireDelay();
             }
 
-            for (Synchronous synchronous : synchronousControllers.values()) {
+            for (Synchronous synchronous : dffControllers.values()) {
+                synchronous.wireDelay();
+            }
+
+            for (Synchronous synchronous : reusableControllers.values()) {
                 synchronous.wireDelay();
             }
 
@@ -173,7 +177,7 @@ public class SimulationController implements Controller {
         componentControllers.clear();
         outputControllers.clear();
         inputControllers.clear();
-        synchronousControllers.clear();
+        dffControllers.clear();
         wordComponents.clear();
         reusableControllers.clear();
         wireControllers.clear();
@@ -199,7 +203,7 @@ public class SimulationController implements Controller {
     public void removeComponent(ComponentController componentController) {
         componentControllers.remove(componentController.getUuid());
         outputControllers.remove(componentController.getUuid());
-        synchronousControllers.remove(componentController.getUuid());
+        dffControllers.remove(componentController.getUuid());
         wordComponents.remove(componentController.getUuid());
         reusableControllers.remove(componentController.getUuid());
         inputControllers.remove(componentController.getUuid());
@@ -291,13 +295,13 @@ public class SimulationController implements Controller {
     }
 
     public void zoomIn() {
-        scale.setX(scale.getX() * 1.1);
-        scale.setY(scale.getY() * 1.1);
+        scale.setX(scale.getX() * ZOOM_FACTOR);
+        scale.setY(scale.getY() * ZOOM_FACTOR);
     }
 
     public void zoomOut() {
-        scale.setX(scale.getX() / 1.1);
-        scale.setY(scale.getY() / 1.1);
+        scale.setX(scale.getX() / ZOOM_FACTOR);
+        scale.setY(scale.getY() / ZOOM_FACTOR);
     }
 
     public void scrollEvent(ScrollEvent action) {
@@ -305,11 +309,11 @@ public class SimulationController implements Controller {
             action.consume();
             double zoomFactor = action.getDeltaY();
             if (zoomFactor < 1) {
-                scale.setX(scale.getX() / 1.1);
-                scale.setY(scale.getY() / 1.1);
+                scale.setX(scale.getX() / ZOOM_FACTOR);
+                scale.setY(scale.getY() / ZOOM_FACTOR);
             } else {
-                scale.setX(scale.getX() * 1.1);
-                scale.setY(scale.getY() * 1.1);
+                scale.setX(scale.getX() * ZOOM_FACTOR);
+                scale.setY(scale.getY() * ZOOM_FACTOR);
             }
         }
     }

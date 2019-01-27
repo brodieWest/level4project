@@ -16,10 +16,11 @@
                onMousePressed="#findLocation"
                onMouseDragged="#moveComponent"
                onMouseReleased="#stopMoving">
-        <Group fx:id="rotatable">
-            <Rectangle width="60" height="60" fx:id="rectangle" styleClass="component, gate" translateX="20" translateY="20"/>
-        </Group>
+            <Group fx:id="rotatable">
+                <Rectangle width="60" height="60" fx:id="rectangle" styleClass="component, gate" translateX="20" translateY="20"/>
+            </Group>
             <Text styleClass="gateText" fx:id="text" translateX="23" translateY="75"/>
+            <Text fx:id="displayValue" text="0" translateX="60" translateY="50" styleClass="gateText,gateValue"/>
         </Group>
     </StackPane>
 

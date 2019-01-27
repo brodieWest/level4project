@@ -24,7 +24,11 @@ public class DffController extends ComponentController implements Synchronous{
     public void processClockTick() {
         Synchronous synchronous = (Synchronous)componentModel;
         synchronous.processClockTick();
-        displayValue.setText(((Dff)componentModel).getStoredValue().toString());
+        displayValue.setText(getStoredValue());
+    }
+
+    public String getStoredValue() {
+        return ((Dff)componentModel).getStoredValue().toString();
     }
 
 
