@@ -7,6 +7,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.transform.Scale;
@@ -55,7 +56,7 @@ public class SimulationController implements Controller {
     @FXML
     private Group componentGroup;
 
-    Group backGround = buildBackground();
+    BackgroundController backgroundController = new BackgroundController();
 
     Map<String, ComponentController> componentControllers = new HashMap<>();
     Map<String, OutputControllerInterface> outputControllers = new HashMap<>();
@@ -71,18 +72,12 @@ public class SimulationController implements Controller {
     private List<Group> buildIcons = new ArrayList<>();
 
     private static String SIMULATION_FXML_PATH = "fxml/simulation.fxml";
-    private static String BACKGROUND_FXML_PATH = "fxml/background.fxml";
-    private static String BACKGROUND_LINE_COLOUR = "lightgray";
-
-
-    private static int SCREEN_SIZE = 10000;
-    private static int BACKGROUND_BOX_SIZE = 100;
 
     public SimulationController() {
         FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(SIMULATION_FXML_PATH), this);
 
 
-        backgroundGroup.getChildren().add(backGround);
+        backgroundGroup.getChildren().add(backgroundController.getvBox());
 
         scale.setPivotX(0);
         scale.setPivotY(0);
@@ -90,20 +85,7 @@ public class SimulationController implements Controller {
         simulationPane.getTransforms().add(scale);
     }
 
-    private Group buildBackground() {
 
-        Group background = (Group) FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(BACKGROUND_FXML_PATH)).getNode();
-
-        for (int i = 0; i <= SCREEN_SIZE; i += BACKGROUND_BOX_SIZE) {
-            Line line1 = new Line(0, i, SCREEN_SIZE, i);
-            line1.setStroke(Paint.valueOf(BACKGROUND_LINE_COLOUR));
-
-            Line line2 = new Line(i, 0, i, SCREEN_SIZE);
-            line2.setStroke(Paint.valueOf(BACKGROUND_LINE_COLOUR));
-            background.getChildren().addAll(line1, line2);
-        }
-        return background;
-    }
 
     public void clockTick() {
         for (Synchronous synchronous : synchronousControllers.values()) {
@@ -197,7 +179,7 @@ public class SimulationController implements Controller {
         wireControllers.clear();
         wireGroup.getChildren().clear();
         componentGroup.getChildren().clear();
-        backGround.toBack();
+        //backGround.toBack();
         resetSimulation();
 
     }
@@ -278,24 +260,20 @@ public class SimulationController implements Controller {
         componentGroup.getChildren().add(componentNode);
         componentNode.setLayoutX(coordinates.getX());
         componentNode.setLayoutY(coordinates.getY());
-        //AnchorPane.setTopAnchor(componentNode, coordinates.getY() * 1.0);
-        //AnchorPane.setLeftAnchor(componentNode, coordinates.getX() * 1.0);
     }
 
     private void displayWire(Parent wireNode) {
         wireGroup.getChildren().add(wireNode);
-        //wireNode.toBack();
-        //backGround.toBack();
     }
 
     public void addBuildIcon(Group node) {
-        simulationPane.getChildren().add(node);
+        componentGroup.getChildren().add(node);
         buildIcons.add(node);
     }
 
     void removeBuildIcons() {
         for (Group buildIcon : buildIcons) {
-            simulationPane.getChildren().remove(buildIcon);
+            componentGroup.getChildren().remove(buildIcon);
         }
     }
 
@@ -349,8 +327,8 @@ public class SimulationController implements Controller {
         return portLocations;
     }
 
-    public Group getBackground() {
-        return backGround;
+    public AnchorPane getSimulationPane() {
+        return simulationPane;
     }
 
     public double getScaleFactorX() {

@@ -82,22 +82,6 @@ public class ComponentController implements Controller {
             }
             portController.displayPort();
         }
-
-        //repositionWest();
-    }
-
-    private void repositionWest() {
-        if(componentModel.hasEmptyPorts(Direction.WEST)) {
-            getComponent().setTranslateX(getComponent().getTranslateX()- BUILD_ICON_RADIUS);
-        }
-
-    }
-
-    private void repositionNorth() {
-        if(componentModel.hasEmptyPorts(Direction.NORTH)) {
-            getComponent().setTranslateY(getComponent().getTranslateY()- BUILD_ICON_RADIUS);
-        }
-
     }
 
     public void loadFxml() {
@@ -135,18 +119,12 @@ public class ComponentController implements Controller {
         double newComponentX = getComponent().getLayoutX() + newTranslationX;
         double newComponentY = getComponent().getLayoutY() + newTranslationY;
 
-        if (newComponentX > SCREEN_EDGE) {
+        if (newComponentX + BUILD_ICON_RADIUS > SCREEN_EDGE) {
             getComponent().setTranslateX(newTranslationX);
-            if(round(newComponentX,HALF_COMPONENT_HEIGHT) - BUILD_ICON_RADIUS > SCREEN_EDGE) {
-                repositionWest();
-            }
         }
 
-        if(newComponentY > SCREEN_EDGE) {
+        if(newComponentY + BUILD_ICON_RADIUS > SCREEN_EDGE) {
             getComponent().setTranslateY(newTranslationY);
-            if(round(newComponentY,HALF_COMPONENT_HEIGHT) - BUILD_ICON_RADIUS > SCREEN_EDGE) {
-                repositionNorth();
-            }
         }
 
         double newX = round(getComponent().getLayoutX() + newTranslationX,HALF_COMPONENT_HEIGHT);

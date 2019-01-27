@@ -42,6 +42,7 @@ public class BuildIconController implements Controller {
     private static int SMALLEST_INCREMENT = 10;
     private static int WIRE_WIDTH = 5;
     private static int SMALLEST_POSITION = SCREEN_EDGE + (WIRE_WIDTH/2);
+    private static int PADDING = 25;
 
     private static Logger logger = LogManager.getLogger(BuildIconController.class);
 
@@ -62,16 +63,9 @@ public class BuildIconController implements Controller {
 
         Port port = portController.getPort();
 
-        Parent background = simulationController.getBackground();
-        Bounds boundsInScene = background.localToScene(background.getBoundsInLocal());
-
-        double scaleX = simulationController.getScaleFactorX();
-        double scaleY = simulationController.getScaleFactorY();
-
         if(simulationController.getWireBuilderStartPort() != null) {
-            int x = (int) round((mouseEvent.getSceneX() - boundsInScene.getMinX())/scaleX, SMALLEST_INCREMENT);
-            int y = (int) round((mouseEvent.getSceneY() - boundsInScene.getMinY())/scaleY,SMALLEST_INCREMENT);
-            simulationController.newLine(new Coordinates(x, y));
+
+            simulationController.newLine(getMousePosition(mouseEvent));
             PortController startPort = simulationController.getWireBuilderStartPort();
 
             ArrayList<PortIdentifier> endPorts = new ArrayList<>();
@@ -128,23 +122,33 @@ public class BuildIconController implements Controller {
         simulationController.startWireBuilder(port.getEndPosition());
 
         Mainfx.getRoot().setOnMouseMoved(event -> {
-            int x = (int)round((event.getSceneX()-boundsInScene.getMinX())/scaleX,SMALLEST_INCREMENT);
-            int y = (int)round((event.getSceneY()-boundsInScene.getMinY())/scaleY,SMALLEST_INCREMENT);
-            if(x < SMALLEST_POSITION || y < SMALLEST_POSITION) {
+            Coordinates mousePosition = getMousePosition(event);
+            if(mousePosition.getX() < SMALLEST_POSITION || mousePosition.getY() < SMALLEST_POSITION) {
                 endWireBuilder();
             }
-            simulationController.displayLine(new Coordinates(x,y));
+            simulationController.displayLine(mousePosition);
         });
 
         Mainfx.getRoot().setOnMouseClicked(event -> {
-            int x = (int)round((event.getSceneX()-boundsInScene.getMinX())/scaleX,SMALLEST_INCREMENT);
-            int y = (int)round((event.getSceneY()-boundsInScene.getMinY())/scaleY,SMALLEST_INCREMENT);
-            simulationController.newLine(new Coordinates(x,y));
+            simulationController.newLine(getMousePosition(event));
         });
 
         Mainfx.getRoot().setOnContextMenuRequested(event -> {
             endWireBuilder();
         });
+    }
+
+    private Coordinates getMousePosition(MouseEvent mouseEvent) {
+        Parent background = simulationController.getSimulationPane();
+        Bounds boundsInScene = background.localToScene(background.getBoundsInLocal());
+
+        double scaleX = simulationController.getScaleFactorX();
+        double scaleY = simulationController.getScaleFactorY();
+
+        int x = (int) round((mouseEvent.getSceneX() - boundsInScene.getMinX() - PADDING)/scaleX, SMALLEST_INCREMENT);
+        int y = (int) round((mouseEvent.getSceneY() - boundsInScene.getMinY() - PADDING)/scaleY,SMALLEST_INCREMENT);
+
+        return new Coordinates(x,y);
     }
 
     private void endWireBuilder() {
