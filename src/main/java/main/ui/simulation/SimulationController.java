@@ -308,12 +308,12 @@ public class SimulationController implements Controller {
         if (action.isControlDown()) {
             action.consume();
             double zoomFactor = action.getDeltaY();
-            if (zoomFactor < 1) {
-                scale.setX(scale.getX() / ZOOM_FACTOR);
-                scale.setY(scale.getY() / ZOOM_FACTOR);
+            System.out.println(action.getDeltaY());
+            if(zoomFactor == 0) return;
+            if (zoomFactor < 0) {
+                zoomOut();
             } else {
-                scale.setX(scale.getX() * ZOOM_FACTOR);
-                scale.setY(scale.getY() * ZOOM_FACTOR);
+                zoomIn();
             }
         }
     }
