@@ -46,12 +46,20 @@ public class SimulationController implements Controller {
     @FXML
     private StackPane stackPane;
 
+    @FXML
+    private Group backgroundGroup;
+
+    @FXML
+    Group wireGroup;
+
+    @FXML
+    private Group componentGroup;
 
     Group backGround = buildBackground();
 
-    Map<String,ComponentController> componentControllers = new HashMap<>();
-    Map<String,OutputControllerInterface> outputControllers = new HashMap<>();
-    private Map<String,Synchronous> synchronousControllers = new HashMap<>();
+    Map<String, ComponentController> componentControllers = new HashMap<>();
+    Map<String, OutputControllerInterface> outputControllers = new HashMap<>();
+    private Map<String, Synchronous> synchronousControllers = new HashMap<>();
     private Map<String, WordComponent> wordComponents = new HashMap<>();
     private Map<String, ReusableComponentController> reusableControllers = new HashMap<>();
     Map<String, InputControllerInterface> inputControllers = new HashMap<>();
@@ -67,7 +75,6 @@ public class SimulationController implements Controller {
     private static String BACKGROUND_LINE_COLOUR = "lightgray";
 
 
-
     private static int SCREEN_SIZE = 10000;
     private static int BACKGROUND_BOX_SIZE = 100;
 
@@ -75,7 +82,7 @@ public class SimulationController implements Controller {
         FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(SIMULATION_FXML_PATH), this);
 
 
-        simulationPane.getChildren().add(backGround);
+        backgroundGroup.getChildren().add(backGround);
 
         scale.setPivotX(0);
         scale.setPivotY(0);
@@ -85,21 +92,21 @@ public class SimulationController implements Controller {
 
     private Group buildBackground() {
 
-        Group background = (Group)FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(BACKGROUND_FXML_PATH)).getNode();
+        Group background = (Group) FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(BACKGROUND_FXML_PATH)).getNode();
 
-        for(int i=0;i<=SCREEN_SIZE;i+=BACKGROUND_BOX_SIZE) {
-            Line line1 = new Line(0,i,SCREEN_SIZE,i);
+        for (int i = 0; i <= SCREEN_SIZE; i += BACKGROUND_BOX_SIZE) {
+            Line line1 = new Line(0, i, SCREEN_SIZE, i);
             line1.setStroke(Paint.valueOf(BACKGROUND_LINE_COLOUR));
 
-            Line line2 = new Line(i,0,i,SCREEN_SIZE);
+            Line line2 = new Line(i, 0, i, SCREEN_SIZE);
             line2.setStroke(Paint.valueOf(BACKGROUND_LINE_COLOUR));
-            background.getChildren().addAll(line1,line2);
+            background.getChildren().addAll(line1, line2);
         }
         return background;
     }
 
     public void clockTick() {
-        for(Synchronous synchronous : synchronousControllers.values()) {
+        for (Synchronous synchronous : synchronousControllers.values()) {
             synchronous.processClockTick();
         }
         resetSimulation();
@@ -107,27 +114,26 @@ public class SimulationController implements Controller {
     }
 
     public void addSynchronous(Synchronous synchronous) {
-        synchronousControllers.put(synchronous.getUuid(),synchronous);
+        synchronousControllers.put(synchronous.getUuid(), synchronous);
     }
 
 
     public void addReusableController(ReusableComponentController reusableController) {
-        reusableControllers.put(reusableController.getUuid(),reusableController);
+        reusableControllers.put(reusableController.getUuid(), reusableController);
     }
 
     public void gateDelay() {
-        for(ComponentController controller : componentControllers.values()) {
+        for (ComponentController controller : componentControllers.values()) {
             controller.processGateDelay();
         }
 
         wireDelay();
 
 
-
     }
 
     public void wireDelay() {
-        for(int i=0;i<wordComponents.size()+1;i++) {
+        for (int i = 0; i < wordComponents.size() + 1; i++) {
             for (WireController wireController : wireControllers.values()) {
                 wireController.passSignal();
                 wireController.showSignal();
@@ -137,7 +143,7 @@ public class SimulationController implements Controller {
                 wordComponent.wireDelay();
             }
 
-            for(Synchronous synchronous : synchronousControllers.values()) {
+            for (Synchronous synchronous : synchronousControllers.values()) {
                 synchronous.wireDelay();
             }
 
@@ -163,19 +169,19 @@ public class SimulationController implements Controller {
     }
 
     public void addOutput(OutputControllerInterface outputController) {
-        outputControllers.put(outputController.getUuid(),outputController);
+        outputControllers.put(outputController.getUuid(), outputController);
     }
 
     public void addWordComponent(WordComponent wordComponent) {
-        wordComponents.put(wordComponent.getUuid(),wordComponent);
+        wordComponents.put(wordComponent.getUuid(), wordComponent);
     }
 
     public void addInput(InputControllerInterface componentController) {
-        inputControllers.put(componentController.getUuid(),componentController);
+        inputControllers.put(componentController.getUuid(), componentController);
     }
 
     public void resetSimulation() {
-        for(ComponentController controller : componentControllers.values()) {
+        for (ComponentController controller : componentControllers.values()) {
             controller.reset();
         }
 
@@ -189,8 +195,8 @@ public class SimulationController implements Controller {
         wordComponents.clear();
         reusableControllers.clear();
         wireControllers.clear();
-        simulationPane.getChildren().clear();
-        simulationPane.getChildren().add(backGround);
+        wireGroup.getChildren().clear();
+        componentGroup.getChildren().clear();
         backGround.toBack();
         resetSimulation();
 
@@ -199,7 +205,7 @@ public class SimulationController implements Controller {
     public boolean addComponent(ComponentParameters componentParameters) {
 
         ComponentController componentController = ComponentControllerFactory.getComponentController(this, componentParameters);
-        if(componentController == null) return false;
+        if (componentController == null) return false;
 
         componentControllers.put(componentController.getUuid(), componentController);
 
@@ -220,7 +226,7 @@ public class SimulationController implements Controller {
     }
 
     public void hideComponent(ComponentController componentController) {
-        simulationPane.getChildren().remove(componentController.getComponent());
+        componentGroup.getChildren().remove(componentController.getComponent());
     }
 
     public boolean addWire(String uuid, PortIdentifier startPortIdentifier, ArrayList<PortIdentifier> endPortIdentifiers) {
@@ -228,32 +234,31 @@ public class SimulationController implements Controller {
         int startPortNo = startPortIdentifier.getPort();
 
 
-        if(!componentControllers.containsKey(startComponentName)) return false;
+        if (!componentControllers.containsKey(startComponentName)) return false;
 
         Component startComponent = componentControllers.get(startComponentName).getComponentModel();
 
         ArrayList<WireIdentifier> outputPorts = new ArrayList<>();
 
-        for(PortIdentifier outputPort : endPortIdentifiers) {
+        for (PortIdentifier outputPort : endPortIdentifiers) {
             String endComponentName = outputPort.getComponent();
             int endPortNo = outputPort.getPort();
 
-            if(!componentControllers.containsKey(endComponentName)) return false;
+            if (!componentControllers.containsKey(endComponentName)) return false;
             Component endComponent = componentControllers.get(endComponentName).getComponentModel();
-            if(endComponent.getInputSize() -1 < endPortNo) return false;
-            outputPorts.add(new WireIdentifier(endComponent.getInput(endPortNo),outputPort.getCorner()));
+            if (endComponent.getInputSize() - 1 < endPortNo) return false;
+            outputPorts.add(new WireIdentifier(endComponent.getInput(endPortNo), outputPort.getCorner()));
         }
 
 
-
-        if(startComponent.getOutputSize() -1 < startPortNo) return false;
+        if (startComponent.getOutputSize() - 1 < startPortNo) return false;
 
         Port input = startComponent.getOutput(startPortNo);
         WireController wireController;
-        if(input.getSize()>1) {
-            wireController = new WordWireController(this,uuid,input,outputPorts);
+        if (input.getSize() > 1) {
+            wireController = new WordWireController(this, uuid, input, outputPorts);
         } else {
-            wireController = new WireController(this,uuid, input, outputPorts);
+            wireController = new WireController(this, uuid, input, outputPorts);
         }
 
         wireControllers.put(wireController.getUuid(), wireController);
@@ -266,19 +271,21 @@ public class SimulationController implements Controller {
 
     public void removeWire(WireController wireController) {
         wireControllers.remove(wireController.getUuid());
-        simulationPane.getChildren().remove(wireController.getGroup());
+        wireGroup.getChildren().remove(wireController.getGroup());
     }
 
     private void placeComponent(Parent componentNode, Coordinates coordinates) {
-        simulationPane.getChildren().add(componentNode);
-        AnchorPane.setTopAnchor(componentNode, coordinates.getY()*1.0);
-        AnchorPane.setLeftAnchor(componentNode, coordinates.getX()*1.0);
+        componentGroup.getChildren().add(componentNode);
+        componentNode.setLayoutX(coordinates.getX());
+        componentNode.setLayoutY(coordinates.getY());
+        //AnchorPane.setTopAnchor(componentNode, coordinates.getY() * 1.0);
+        //AnchorPane.setLeftAnchor(componentNode, coordinates.getX() * 1.0);
     }
 
     private void displayWire(Parent wireNode) {
-        simulationPane.getChildren().add(wireNode);
-        wireNode.toBack();
-        backGround.toBack();
+        wireGroup.getChildren().add(wireNode);
+        //wireNode.toBack();
+        //backGround.toBack();
     }
 
     public void addBuildIcon(Group node) {
@@ -287,7 +294,7 @@ public class SimulationController implements Controller {
     }
 
     void removeBuildIcons() {
-        for(Group buildIcon : buildIcons) {
+        for (Group buildIcon : buildIcons) {
             simulationPane.getChildren().remove(buildIcon);
         }
     }
@@ -316,10 +323,10 @@ public class SimulationController implements Controller {
     }
 
     public void scrollEvent(ScrollEvent action) {
-        if(action.isControlDown()) {
+        if (action.isControlDown()) {
             action.consume();
             double zoomFactor = action.getDeltaY();
-            if(zoomFactor<1) {
+            if (zoomFactor < 1) {
                 scale.setX(scale.getX() / 1.1);
                 scale.setY(scale.getY() / 1.1);
             } else {
@@ -332,10 +339,10 @@ public class SimulationController implements Controller {
     public void displayText(Parent parent) {
     }
 
-    public Map<String,Integer> getPortLocations() {
+    public Map<String, Integer> getPortLocations() {
         Map<String, Integer> portLocations = new HashMap<>();
 
-        for(ComponentController componentController : componentControllers.values()) {
+        for (ComponentController componentController : componentControllers.values()) {
             portLocations.putAll(componentController.getComponentModel().getPortLocations());
         }
 

@@ -1,6 +1,7 @@
 package main.ui.simulation;
 
 import com.google.gson.Gson;
+import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
@@ -35,6 +36,9 @@ public class MainSimulationController extends SimulationController {
 
     private SimulationMode simulationMode;
 
+    @FXML
+    private Group wireBuilderGroup;
+
     private int SCREEN_SIZE = 10000;
     private int SCREEN_PADDING = 50;
 
@@ -43,9 +47,9 @@ public class MainSimulationController extends SimulationController {
         this.mainController = mainController;
 
         wireBuilderController = new WireBuilderController(this);
-        simulationPane.getChildren().add(wireBuilderController.getPath());
-        wireBuilderController.getPath().toBack();
-        backGround.toBack();
+        wireBuilderGroup.getChildren().add(wireBuilderController.getPath());
+        //wireBuilderController.getPath().toBack();
+        //backGround.toBack();
         simulationMode = SimulationMode.BUILD;
     }
 
@@ -78,7 +82,7 @@ public class MainSimulationController extends SimulationController {
     @Override
     public void clear() {
         super.clear();
-        simulationPane.getChildren().add(wireBuilderController.getPath());
+        //simulationPane.getChildren().add(wireBuilderController.getPath());
         clearClockTickCount();
     }
 
@@ -207,6 +211,10 @@ public class MainSimulationController extends SimulationController {
 
     public void setWireBuilderStartPort(PortController wireBuilderStartPort) {
         wireBuilderController.setWireBuilderStartPort(wireBuilderStartPort);
+        if(wireBuilderStartPort != null) {
+            ComponentController componentController = wireBuilderStartPort.getComponentController();
+            componentController.getComponent().toBack();
+        }
     }
 
     public List<Coordinates> getWireBuilderCorners() {
