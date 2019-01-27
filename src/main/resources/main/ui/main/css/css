@@ -13,6 +13,10 @@
     -fx-fill: "darkslategray";
 }
 
+.gateValue {
+    -fx-font-size: 16;
+}
+
 .descriptionText {
     -fx-wrapping-width: 200;
 }
