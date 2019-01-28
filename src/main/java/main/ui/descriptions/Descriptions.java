@@ -1,4 +1,4 @@
-package main.ui;
+package main.ui.descriptions;
 
 import javafx.scene.Parent;
 import main.fxml.Fxml;

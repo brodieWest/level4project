@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import main.fxml.FxmlLoaderUtils;
 import main.ui.Controller;
+import main.ui.descriptions.Descriptions;
 import main.ui.main.MainController;
 import main.ui.main.Mainfx;
 
@@ -26,6 +27,13 @@ public class ToolbarButtonController extends Group implements Controller {
     @FXML
     private void createComponent() {
         mainController.addComponent(type);
+    }
+
+    @FXML
+    private void displayText() {
+        if (Descriptions.hasDescription(type)) {
+            mainController.displayText(Descriptions.getDescription(type));
+        }
     }
 
     public ToolbarButtonController() {

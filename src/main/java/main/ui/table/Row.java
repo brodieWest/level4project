@@ -1,31 +1,40 @@
 package main.ui.table;
 
 public class Row {
-    private int x;
-    private int y;
-    private int output;
+    private String x;
+    private String y;
+    private String s;
+    private String output;
 
-    public int getX() {
+    public String getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(String x) {
         this.x = x;
     }
 
-    public int getY() {
+    public String getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(String y) {
         this.y = y;
     }
 
-    public int getOutput() {
+    public String getS() {
+        return s;
+    }
+
+    public void setS(String s) {
+        this.s = s;
+    }
+
+    public String getOutput() {
         return output;
     }
 
-    public void setOutput(int output) {
+    public void setOutput(String output) {
         this.output = output;
     }
 }

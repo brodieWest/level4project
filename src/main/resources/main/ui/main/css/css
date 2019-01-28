@@ -25,6 +25,10 @@
     -fx-sortable: false;
 }
 
+.truthTable {
+   /* -fx-fixedCellSize: "24";*/
+}
+
 .wire {
     -fx-stroke-width: 5;
     -fx-stroke-line-join: round;
