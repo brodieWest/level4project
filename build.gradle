@@ -8,7 +8,7 @@ plugins {
 group 'level4project'
 version '0.6'
 
-sourceCompatibility = 1.11
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -24,6 +24,7 @@ dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
     compile 'com.google.code.gson:gson:2.8.5'
+    compile group: 'commons-io', name: 'commons-io', version: '2.4'
 }
 
 

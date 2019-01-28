@@ -22,7 +22,7 @@ public class FxmlLoaderUtils {
             componentNode = fxmlLoader.load();
         } catch (IOException | ExceptionInInitializerError e) {
             logger.error(String.format("Failed to get component Node from FxmlLoader. FilePath: %s", fileName));
-            e.printStackTrace();
+            //e.printStackTrace();
             return null;
         }
 
