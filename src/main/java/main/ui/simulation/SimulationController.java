@@ -57,7 +57,7 @@ public class SimulationController implements Controller {
     Map<String, OutputControllerInterface> outputControllers = new HashMap<>();
     Map<String, Synchronous> dffControllers = new HashMap<>();
     private Map<String, WordComponent> wordComponents = new HashMap<>();
-    private Map<String, ReusableComponentController> reusableControllers = new HashMap<>();
+    Map<String, ReusableComponentController> reusableControllers = new HashMap<>();
     Map<String, InputControllerInterface> inputControllers = new HashMap<>();
 
     private Scale scale = new Scale();

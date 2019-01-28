@@ -223,4 +223,8 @@ public class ComponentController implements Controller {
     public boolean isDeletable() {
         return deletable;
     }
+
+    public String getType() {
+        return componentModel.getType();
+    }
 }
