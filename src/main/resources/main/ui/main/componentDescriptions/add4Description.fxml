@@ -5,10 +5,10 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      prefWidth="200">
+      prefWidth="200"
+      spacing="10">
     <padding>
         <Insets bottom="5" right="5" left="5" top="5"/>
     </padding>
-    <Label wrapText="true" text="Hexadecimal Input&#10;&#10;Enter a hexadecimal digit which will be output on a 4 bit word wire." styleClass="descriptionText"/>
+    <Label wrapText="true" text="4 Bit Adder&#10;&#10;Adds two 4 bit numbers and a carry bit. Outputs a single 4 bit number and a carry output." styleClass="descriptionText"/>
 </VBox>

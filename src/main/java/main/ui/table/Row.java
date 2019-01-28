@@ -5,6 +5,7 @@ public class Row {
     private String y;
     private String s;
     private String output;
+    private String output2;
 
     public String getX() {
         return x;
@@ -36,5 +37,13 @@ public class Row {
 
     public void setOutput(String output) {
         this.output = output;
+    }
+
+    public String getOutput2() {
+        return output2;
+    }
+
+    public void setOutput2(String output2) {
+        this.output2 = output2;
     }
 }

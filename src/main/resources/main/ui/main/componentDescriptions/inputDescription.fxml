@@ -2,13 +2,13 @@
 
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.text.Text?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       prefWidth="200">
     <padding>
         <Insets bottom="5" right="5" left="5" top="5"/>
     </padding>
-    <Text text="Binary Input&#10;&#10;Values change on click" styleClass="descriptionText"/>
+    <Label wrapText="true" text="Binary Input&#10;&#10;Values change on click" styleClass="descriptionText"/>
 </VBox>
