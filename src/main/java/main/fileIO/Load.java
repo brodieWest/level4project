@@ -20,6 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Load {
@@ -136,7 +137,7 @@ public class Load {
     }
 
     private static void addPortVariables(Evaluator evaluator, SimulationController simulationController) {
-        var portLocations = simulationController.getPortLocations();
+        Map<String,Integer> portLocations = simulationController.getPortLocations();
 
         for(String key : portLocations.keySet()) {
             evaluator.putVariable(key, Integer.toString(portLocations.get(key)));
