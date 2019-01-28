@@ -29,7 +29,7 @@ public class ReusableComponentController extends ResizableComponentController im
 
     private Logger logger = LogManager.getLogger(ReusableComponentController.class);
 
-    private InternalController internalSimulation;
+    InternalController internalSimulation;
 
     private Scene newWindowScene;
 
@@ -38,6 +38,9 @@ public class ReusableComponentController extends ResizableComponentController im
 
     @FXML
     private Text text;
+
+    @FXML
+    Text displayValue;
 
     public ReusableComponentController(SimulationController  simulationController, ReusableComponent componentModel) throws FileNotFoundException{
         super(simulationController, componentModel);
@@ -58,12 +61,12 @@ public class ReusableComponentController extends ResizableComponentController im
 
         text.setText(componentModel.getStringIdentifier());
 
-        simulationController.addSynchronous(this);
-
         simulationController.addReusableController(this);
 
         newWindowScene = new Scene(internalSimulation.getScrollPane(),800,500);
         newWindowScene.getStylesheets().add(Mainfx.class.getResource("css/css").toExternalForm());
+
+        svgGroup.getChildren().remove(displayValue);
     }
 
     @Override

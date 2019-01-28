@@ -11,9 +11,8 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import main.model.ComponentParametersModel;
 import main.model.Coordinates;
-import main.model.Direction;
 import main.ui.Controller;
-import main.ui.Descriptions;
+import main.ui.descriptions.Descriptions;
 import main.ui.component.model.component.Component;
 import main.ui.main.Mainfx;
 import main.ui.port.PortController;
@@ -53,6 +52,10 @@ public class ComponentController implements Controller {
     private double oldX;
     private double oldY;
 
+    private Group cross = new Group();
+
+    private boolean deletable = false;
+
     public ComponentController(SimulationController simulationController, Component componentModel) {
         this.componentModel = componentModel;
         this.simulationController = simulationController;
@@ -68,6 +71,18 @@ public class ComponentController implements Controller {
         svgGroup.getChildren().add(line);
 
         rotatable.setRotate(componentModel.getInitialRotate());
+
+        buildCross();
+    }
+
+    private void buildCross() {
+        Line line1 = new Line(0,0,componentModel.getWIDTH(),componentModel.getHEIGHT());
+        Line line2 = new Line(componentModel.getWIDTH(),0,0,componentModel.getHEIGHT());
+        line1.setStroke(Paint.valueOf("red"));
+        line2.setStroke(Paint.valueOf("red"));
+
+        cross.getChildren().add(line1);
+        cross.getChildren().add(line2);
     }
 
     void displayPorts() {
@@ -82,22 +97,6 @@ public class ComponentController implements Controller {
             }
             portController.displayPort();
         }
-
-        //repositionWest();
-    }
-
-    private void repositionWest() {
-        if(componentModel.hasEmptyPorts(Direction.WEST)) {
-            getComponent().setTranslateX(getComponent().getTranslateX()- BUILD_ICON_RADIUS);
-        }
-
-    }
-
-    private void repositionNorth() {
-        if(componentModel.hasEmptyPorts(Direction.NORTH)) {
-            getComponent().setTranslateY(getComponent().getTranslateY()- BUILD_ICON_RADIUS);
-        }
-
     }
 
     public void loadFxml() {
@@ -125,6 +124,7 @@ public class ComponentController implements Controller {
     @FXML
     void moveComponent(MouseEvent mouseEvent) {
         if(hasWires) return;
+        if(deletable) return;
 
         double scaleX = simulationController.getScaleFactorX();
         double scaleY = simulationController.getScaleFactorY();
@@ -135,18 +135,12 @@ public class ComponentController implements Controller {
         double newComponentX = getComponent().getLayoutX() + newTranslationX;
         double newComponentY = getComponent().getLayoutY() + newTranslationY;
 
-        if (newComponentX > SCREEN_EDGE) {
+        if (newComponentX + BUILD_ICON_RADIUS > SCREEN_EDGE) {
             getComponent().setTranslateX(newTranslationX);
-            if(round(newComponentX,HALF_COMPONENT_HEIGHT) - BUILD_ICON_RADIUS > SCREEN_EDGE) {
-                repositionWest();
-            }
         }
 
-        if(newComponentY > SCREEN_EDGE) {
+        if(newComponentY + BUILD_ICON_RADIUS > SCREEN_EDGE) {
             getComponent().setTranslateY(newTranslationY);
-            if(round(newComponentY,HALF_COMPONENT_HEIGHT) - BUILD_ICON_RADIUS > SCREEN_EDGE) {
-                repositionNorth();
-            }
         }
 
         double newX = round(getComponent().getLayoutX() + newTranslationX,HALF_COMPONENT_HEIGHT);
@@ -213,13 +207,20 @@ public class ComponentController implements Controller {
     }
 
     public void setDeletable(boolean deletable) {
+        this.deletable = deletable;
         if(deletable) {
             getComponent().setOnMouseClicked(event -> {
                 simulationController.removeComponent(this);
                 componentModel.deleteWires();
             });
+            svgGroup.getChildren().add(cross);
         } else {
             getComponent().setOnMouseClicked(event -> {});
+            svgGroup.getChildren().remove(cross);
         }
+    }
+
+    public boolean isDeletable() {
+        return deletable;
     }
 }

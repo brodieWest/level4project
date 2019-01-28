@@ -8,7 +8,7 @@
         "y": 100
       },
       "uuid": "reg3fd9fe38374fe6fc",
-      "type": "reg",
+      "type": "reg1",
       "rotation": 0
     },
     {
@@ -74,7 +74,7 @@
         "y": 300
       },
       "uuid": "reg3fe97af0374ccb9e",
-      "type": "reg",
+      "type": "reg1",
       "rotation": 0
     },
     {
@@ -157,7 +157,7 @@
         "y": 0
       },
       "uuid": "reg3fdc116b5e5711a4",
-      "type": "reg",
+      "type": "reg1",
       "rotation": 0
     },
     {
@@ -168,7 +168,7 @@
         "y": 200
       },
       "uuid": "reg3fe70f75f672bb40",
-      "type": "reg",
+      "type": "reg1",
       "rotation": 0
     }
   ],

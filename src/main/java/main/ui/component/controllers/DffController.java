@@ -3,11 +3,16 @@ package main.ui.component.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import main.ui.component.Synchronous;
 import main.ui.component.model.component.Component;
+import main.ui.component.model.component.Dff;
 import main.ui.simulation.SimulationController;
 
 public class DffController extends ComponentController implements Synchronous{
+
+    @FXML
+    Text displayValue;
 
 
     public DffController(SimulationController simulationController, Component componentModel) {
@@ -19,6 +24,11 @@ public class DffController extends ComponentController implements Synchronous{
     public void processClockTick() {
         Synchronous synchronous = (Synchronous)componentModel;
         synchronous.processClockTick();
+        displayValue.setText(getStoredValue());
+    }
+
+    public String getStoredValue() {
+        return ((Dff)componentModel).getStoredValue().toString();
     }
 
 

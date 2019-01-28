@@ -20,7 +20,8 @@
                 <SVGPath content="M 20 20 L 20 80 L 80 80 L 80 20 L 20 20 z" styleClass="component, gate"/>
             </Group>
                 <SVGPath content="M 25 60 L 30 50 L 35 60 z" styleClass="component, gate" translateX="20" translateY="20"/>
-            <Text text="Dff" x="40" y="55" styleClass="gateText"/>
+            <Text text="Dff" x="23" y="65" styleClass="gateText"/>
+            <Text fx:id="displayValue" text="0" translateX="60" translateY="50" styleClass="gateText,gateValue"/>
         </Group>
     </StackPane>
 

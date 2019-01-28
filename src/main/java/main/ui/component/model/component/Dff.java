@@ -41,6 +41,10 @@ public class Dff extends Component implements Synchronous {
         storedValue.setValue(false);
     }
 
+    public Logic getStoredValue() {
+        return storedValue;
+    }
+
     @Override
     public int getPathDepth() {
         return 1;

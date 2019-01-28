@@ -29,4 +29,10 @@ public class Logic {
         value = logic.value();
         undefined = logic.isUndefined();
     }
+
+    public String toString() {
+        if(undefined) return "U";
+        if(value) return "1";
+        return "0";
+    }
 }

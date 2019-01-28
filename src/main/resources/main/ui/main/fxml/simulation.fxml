@@ -3,7 +3,6 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 
 
@@ -11,11 +10,13 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:id="scrollPane"
             id="simulation">
-    <padding><Insets left="25" top="25" bottom="25" right="25"/></padding>
     <Group>
 
                 <AnchorPane fx:id="simulationPane" id="simulation" onScroll="#scrollEvent">
-
+                    <Group fx:id="backgroundGroup"/>
+                    <Group fx:id="wireGroup" layoutX="25" layoutY="25"/>
+                    <Group fx:id="wireBuilderGroup" layoutX="25" layoutY="25"/>
+                    <Group fx:id="componentGroup" layoutX="25" layoutY="25"/>
 
                 </AnchorPane>
 

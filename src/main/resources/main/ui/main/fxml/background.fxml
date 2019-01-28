@@ -3,8 +3,13 @@
 <?import javafx.scene.*?>
 
 <?import javafx.scene.shape.Rectangle?>
-<Group xmlns="http://javafx.com/javafx"
-       xmlns:fx="http://javafx.com/fxml">
-    <Rectangle fill="white" width="10000" height="10000"/>
-
-</Group>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:id="vBox">
+    <padding><Insets left="25" top="25" bottom="25" right="25"/></padding>
+    <Group fx:id="background">
+        <Rectangle fill="white" width="10000" height="10000"/>
+    </Group>
+</VBox>

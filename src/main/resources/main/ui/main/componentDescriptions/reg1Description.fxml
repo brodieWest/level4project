@@ -10,5 +10,5 @@
     <padding>
         <Insets bottom="5" right="5" left="5" top="5"/>
     </padding>
-    <Label wrapText="true" text="Delay Flip Flop&#10;&#10;A delay flip flop stores data, this allows the circuit to have some form of memory.&#10;&#10;The value of the data stored can only change on a clock tick, and only when the input is valid." styleClass="descriptionText"/>
+    <Label wrapText="true" text="Register&#10;&#10;Similar to a delay flip flop, a register stores data, this allows the circuit to have some form of memory.&#10;&#10;The value of the data stored can only change on a clock tick, and only when the load input is true." styleClass="descriptionText"/>
 </VBox>

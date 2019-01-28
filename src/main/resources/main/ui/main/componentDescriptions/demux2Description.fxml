@@ -5,10 +5,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
       prefWidth="200"
       spacing="10">
     <padding>
         <Insets bottom="5" right="5" left="5" top="5"/>
     </padding>
-    <Label wrapText="true" text="Delay Flip Flop&#10;&#10;A delay flip flop stores data, this allows the circuit to have some form of memory.&#10;&#10;The value of the data stored can only change on a clock tick, and only when the input is valid." styleClass="descriptionText"/>
+    <Label wrapText="true" text="4 Bit Demultiplexer&#10;&#10;The value on the data input is output either on outputA, outputB, outputC or OutputD. This is chosen by the two bit select input." styleClass="descriptionText"/>
 </VBox>

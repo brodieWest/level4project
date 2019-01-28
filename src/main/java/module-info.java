@@ -15,5 +15,6 @@ module main {
     opens main.fxml to javafx.fxml;
     opens main.ui.toolbar to javafx.fxml;
     opens main.ui.port to javafx.fxml;
+    opens main.ui.table to javafx.fxml, javafx.base;
     exports main.ui.main;
 }

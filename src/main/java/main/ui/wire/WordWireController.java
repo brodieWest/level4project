@@ -1,6 +1,7 @@
 package main.ui.wire;
 
 import javafx.fxml.FXML;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -23,6 +24,10 @@ public class WordWireController extends WireController {
     private Path innerPath;
 
     private static String FXML_PATH = "fxml/wordWire.fxml";
+
+    private static String INNER_COLOUR = "white";
+    private static String OUTER_COLOUR = "darkslategray";
+    private static String DELETE_COLOUR = "red";
 
     private static Logger logger = LogManager.getLogger(WordWireController.class);
 
@@ -53,6 +58,8 @@ public class WordWireController extends WireController {
 
     @Override
     public void setInitialColour() {
+        innerPath.setStroke(Paint.valueOf(INNER_COLOUR));
+        outerPath.setStroke(Paint.valueOf(OUTER_COLOUR));
     }
 
     @Override
@@ -60,9 +67,13 @@ public class WordWireController extends WireController {
         if(deletable) {
             outerPath.setOnMouseClicked(event -> delete());
             innerPath.setOnMouseClicked(event -> delete());
+            outerPath.setStroke(Paint.valueOf(DELETE_COLOUR));
+            innerPath.setStroke(Paint.valueOf(DELETE_COLOUR));
         } else {
             outerPath.setOnMouseClicked(event -> {});
             innerPath.setOnMouseClicked(event -> {});
+            innerPath.setStroke(Paint.valueOf(INNER_COLOUR));
+            outerPath.setStroke(Paint.valueOf(OUTER_COLOUR));
         }
 
     }

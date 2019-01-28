@@ -10,5 +10,5 @@
     <padding>
         <Insets bottom="5" right="5" left="5" top="5"/>
     </padding>
-    <Label wrapText="true" text="Binary Output" styleClass="descriptionText"/>
+    <Label wrapText="true" text="Word Wire Splitter&#10;&#10;Splits a 4 bit word wire into 4 separate wires." styleClass="descriptionText"/>
 </VBox>

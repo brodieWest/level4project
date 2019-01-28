@@ -18,7 +18,7 @@
         <Group fx:id="rotatable">
             <SVGPath content="M 20 20 L 20 80 L 80 80 L 80 20 L 20 20 z" fill="white" styleClass="component" fx:id="svgPath"/>
         </Group>
-            <Text text="U" fx:id="text" styleClass="gateText" id="outputText" translateX="45" translateY="55" />
+            <Text text="U" fx:id="text" styleClass="gateText,gateValue" id="outputText" translateX="45" translateY="55" />
         </Group>
     </StackPane>
 

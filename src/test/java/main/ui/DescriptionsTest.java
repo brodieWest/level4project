@@ -1,6 +1,7 @@
 package main.ui;
 
 import javafx.scene.Parent;
+import main.ui.descriptions.Descriptions;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
