@@ -2,7 +2,6 @@
 
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.text.Text?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <VBox xmlns="http://javafx.com/javafx"
