@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<VBox xmlns="http://javafx.com/javafx"
+      prefWidth="200"
+      spacing="10">
+    <padding>
+        <Insets bottom="5" right="5" left="5" top="5"/>
+    </padding>
+    <Label wrapText="true" text="4 Bit Register&#10;&#10;Stores 4 bits of data.&#10;&#10;The value of the data stored can only change on a clock tick, and only when the load input is true." styleClass="descriptionText"/>
+</VBox>

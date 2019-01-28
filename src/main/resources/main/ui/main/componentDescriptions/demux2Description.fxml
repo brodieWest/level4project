@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      prefWidth="200"
+      spacing="10">
+    <padding>
+        <Insets bottom="5" right="5" left="5" top="5"/>
+    </padding>
+    <Label wrapText="true" text="4 Bit Demultiplexer&#10;&#10;The value on the data input is output either on outputA, outputB, outputC or OutputD. This is chosen by the two bit select input." styleClass="descriptionText"/>
+</VBox>
