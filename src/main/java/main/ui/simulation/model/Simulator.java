@@ -3,6 +3,8 @@ package main.ui.simulation.model;
 import main.ui.component.model.component.Component;
 import main.ui.component.model.component.Io.Output;
 import main.ui.component.model.component.ReusableComponent;
+import main.ui.simulation.MainSimulationController;
+import main.ui.simulation.SimulationController;
 import main.ui.wire.Wire;
 import main.ui.port.Port;
 import org.apache.logging.log4j.LogManager;
@@ -18,55 +20,32 @@ public class Simulator {
 
     private static Logger logger = LogManager.getLogger(Simulator.class);
 
-    public void calculatePathDepth(List<Component> inputs) {
-        int maxPathDepth = 0;
-        Set<Port> visitedInputPorts = new HashSet<>();
-        Set<ReusableComponent> visitedReusables = new HashSet<>();
-        Set<Component> visitedComponents = new HashSet<>();
-
-        Set<Component> components = new HashSet<>(inputs);
-
-        while(!components.isEmpty()) {
-            Component component = components.iterator().next();
-            components.remove(component);
-            int currentDepth = component.getPathDepth();
-            List<Wire> outputWires;
-
-            if(component instanceof ReusableComponent && !visitedReusables.contains(component)) {
-                ReusableComponent reusableComponent = (ReusableComponent) component;
-                visitedReusables.add(reusableComponent);
-                outputWires = reusableComponent.getInternalWires();
-            } else  {
-                outputWires = component.getNextWires();
-            }
-
-
-            if(currentDepth > maxPathDepth && !(component instanceof Output)) {
-                maxPathDepth = currentDepth;
-            }
-
-            for(Wire wire : outputWires) {
-                List<Port> outputs = wire.getOutputs();
-
-                for(Port output : outputs) {
-                    Component newComponent = output.getComponent();
-                    visitedInputPorts.add(output);
-                    if(visitedInputPorts.containsAll(newComponent.getInputs()) && (!visitedComponents.contains(newComponent) || newComponent instanceof ReusableComponent)) {
-                        components.add(newComponent);
-                        visitedComponents.add(newComponent);
-                    }
-                    if (newComponent.getPathDepth() < (currentDepth + 1)) {
-                        newComponent.setPathDepth(currentDepth + 1);
-                    }
-                }
-            }
+    public void calculatePathDepth(List<Component> outputs, MainSimulationController simulationController) {
+        int newPathDepth = 0;
+        while(!isValid(outputs)) {
+            simulationController.gateDelay();
+            newPathDepth++;
         }
-        pathDepth = maxPathDepth;// - visitedReusables.size() * 2;
+
+        pathDepth = newPathDepth;
+
+        simulationController.resetSimulation();
+        simulationController.wireDelay();
+        simulationController.getMainController().setGateDelayCount(0);
 
         logger.info(String.format("Path Depth is %d ", pathDepth));
     }
 
+    private boolean isValid(List<Component> outputs) {
+        for(Component output : outputs) {
+            if(output.getInput(0).isUndefined()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public int getPathDepth() {
-        return 20;
+        return pathDepth;
     }
 }

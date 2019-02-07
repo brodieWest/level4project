@@ -113,4 +113,8 @@ public class ReusableComponentController extends ResizableComponentController im
         internalSimulation.wireDelay();
     }
 
+    public List<Component> getOutputs() {
+        return internalSimulation.getOutputs();
+    }
+
 }

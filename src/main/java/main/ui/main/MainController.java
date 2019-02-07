@@ -109,7 +109,6 @@ public class MainController implements Controller {
         Load.loadWithFileChooser(simulationController);
         simulationController.resetSimulation();
         simulationController.wireDelay();
-        simulationController.calculatePathDepth();
     }
 
     @FXML
@@ -248,7 +247,7 @@ public class MainController implements Controller {
     }
 
     public void setPathDepth(int pathDepth) {
-        //pathDepthLabel.setText(String.format("Path Depth: %s", String.valueOf(pathDepth)));
+        pathDepthLabel.setText(String.format("Path Depth: %s", String.valueOf(pathDepth)));
     }
 
     public void displayText(Parent parent) {

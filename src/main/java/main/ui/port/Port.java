@@ -145,4 +145,8 @@ public class Port {
         this.size = size;
         this.word = new Word(size);
     }
+
+    public boolean isUndefined() {
+        return word.getUndefined();
+    }
 }

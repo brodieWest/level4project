@@ -124,11 +124,21 @@ public class MainSimulationController extends SimulationController {
     }
 
     public void calculatePathDepth() {
-        List<Component> inputs = new ArrayList<>();
+        List<Component> outputs = new ArrayList<>();
 
-        for(InputControllerInterface inputController : inputControllers.values()) {
-            inputs.add(((ComponentController)inputController).getComponentModel());
+        for(OutputControllerInterface outputController : outputControllers.values()) {
+            outputs.add(((ComponentController)outputController).getComponentModel());
         }
+
+        for(ReusableComponentController reusable : reusableControllers.values()) {
+            outputs.addAll(reusable.getOutputs());
+        }
+
+        for(DffController dffController : dffControllers.values()) {
+            outputs.add(dffController.getComponentModel());
+        }
+        simulator.calculatePathDepth(outputs, this);
+
         mainController.setPathDepth(simulator.getPathDepth());
     }
 
@@ -295,5 +305,9 @@ public class MainSimulationController extends SimulationController {
         int y = (int)Math.ceil((scrollPane.getVvalue()*(SCREEN_SIZE-scrollPane.getHeight()+SCREEN_PADDING))/ComponentController.HALF_COMPONENT_HEIGHT)*ComponentController.HALF_COMPONENT_HEIGHT;
         return new Coordinates(x,y);
 
+    }
+
+    public MainController getMainController() {
+        return mainController;
     }
 }
