@@ -27,7 +27,7 @@
         <HBox>
         <padding><Insets bottom="2" /></padding>
             <MenuBar HBox.hgrow="ALWAYS">
-                <Menu text="File" id="file">
+                <Menu text="File" id="file" fx:id="file">
                     <MenuItem text="Load" fx:id="load" onAction="#loadFile" id="load"/>
                     <MenuItem text="Save" onAction="#saveFile"/>
                     <MenuItem text="Save as black box" onAction="#startSaveComponent"/>
@@ -41,6 +41,9 @@
                 </Menu>
                 <Menu text="Options">
                     <CheckMenuItem text="Do path depth gate delays per clock tick" fx:id="checkMenuItem"/>
+                </Menu>
+                <Menu text="Help">
+                    <MenuItem text="Tutorial" onAction="#startTutorial"/>
                 </Menu>
             </MenuBar>
             <HBox fx:id="bottomButtons" spacing="12" alignment="TOP_RIGHT">
