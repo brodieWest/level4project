@@ -15,8 +15,10 @@ import main.ui.component.Synchronous;
 import main.ui.component.WordComponent;
 import main.ui.component.controllers.ComponentController;
 import main.ui.component.controllers.ComponentControllerFactory;
+import main.ui.component.controllers.DffController;
 import main.ui.component.controllers.ReusableComponentController;
 import main.ui.component.model.component.ComponentParameters;
+import main.ui.component.model.component.Dff;
 import main.ui.main.Mainfx;
 import main.ui.wire.WireController;
 import main.ui.wire.WordWireController;
@@ -55,7 +57,7 @@ public class SimulationController implements Controller {
 
     Map<String, ComponentController> componentControllers = new HashMap<>();
     Map<String, OutputControllerInterface> outputControllers = new HashMap<>();
-    Map<String, Synchronous> dffControllers = new HashMap<>();
+    Map<String, DffController> dffControllers = new HashMap<>();
     private Map<String, WordComponent> wordComponents = new HashMap<>();
     Map<String, ReusableComponentController> reusableControllers = new HashMap<>();
     Map<String, InputControllerInterface> inputControllers = new HashMap<>();
@@ -85,7 +87,7 @@ public class SimulationController implements Controller {
 
 
     public void clockTick() {
-        for (Synchronous synchronous : dffControllers.values()) {
+        for (DffController synchronous : dffControllers.values()) {
             synchronous.processClockTick();
         }
         for (Synchronous synchronous : reusableControllers.values()) {
@@ -95,7 +97,7 @@ public class SimulationController implements Controller {
         wireDelay();
     }
 
-    public void addSynchronous(Synchronous synchronous) {
+    public void addSynchronous(DffController synchronous) {
         dffControllers.put(synchronous.getUuid(), synchronous);
     }
 
@@ -340,6 +342,24 @@ public class SimulationController implements Controller {
 
     public double getScaleFactorY() {
         return scale.getY();
+    }
+
+    public List<Component> getOutputs() {
+        List<Component> outputs = new ArrayList<>();
+
+        for(OutputControllerInterface outputController : outputControllers.values()) {
+            outputs.add(((ComponentController)outputController).getComponentModel());
+        }
+
+        for(ReusableComponentController reusable : reusableControllers.values()) {
+            outputs.addAll(reusable.getOutputs());
+        }
+
+        for(DffController dffController : dffControllers.values()) {
+            outputs.add(dffController.getComponentModel());
+        }
+
+        return outputs;
     }
 
 }

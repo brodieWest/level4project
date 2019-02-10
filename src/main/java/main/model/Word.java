@@ -69,4 +69,13 @@ public class Word extends ArrayList<Logic> {
         }
         return Integer.toString(value,16);
     }
+
+    public boolean getUndefined() {
+        for(Logic logic : this) {
+            if(logic.isUndefined()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -76,10 +76,13 @@ public class ComponentController implements Controller {
     }
 
     private void buildCross() {
-        Line line1 = new Line(0,0,componentModel.getWIDTH(),componentModel.getHEIGHT());
-        Line line2 = new Line(componentModel.getWIDTH(),0,0,componentModel.getHEIGHT());
+        int lineOffset = componentModel.getDefaultPortOffset()/2;
+        Line line1 = new Line(lineOffset,lineOffset,componentModel.getWIDTH()-lineOffset,componentModel.getHEIGHT()-lineOffset);
+        Line line2 = new Line(componentModel.getWIDTH()-lineOffset,lineOffset,lineOffset,componentModel.getHEIGHT()-lineOffset);
         line1.setStroke(Paint.valueOf("red"));
         line2.setStroke(Paint.valueOf("red"));
+        line1.setStrokeWidth(5);
+        line2.setStrokeWidth(5);
 
         cross.getChildren().add(line1);
         cross.getChildren().add(line2);

@@ -4,13 +4,13 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import main.fileIO.Load;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import main.fxml.Fxml;
 import main.fxml.FxmlLoaderUtils;
 import main.model.Coordinates;
@@ -24,6 +24,7 @@ import main.ui.component.controllers.IoController;
 import main.ui.component.model.component.ComponentParameters;
 import main.ui.simulation.MainSimulationController;
 import main.ui.toolbar.ToolbarButtonController;
+import main.utils.TutorialUtils;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -95,12 +96,17 @@ public class MainController implements Controller {
     @FXML
     private TextField positionText;
 
+    @FXML
+    private MenuItem file;
+
     private List<ExternalPortMapping> portMappings = new ArrayList<>();
 
     private static String REUSABLE_PATH = "fileExamples/reusable/";
 
     @FXML
     protected void loadFile() {
+        TutorialUtils.unhighlightText(file);
+        TutorialUtils.unhighlightText(load);
 
         if(simulationController.getSimulationMode() == SimulationMode.SIMULATE) {
             buildMode();
@@ -109,7 +115,6 @@ public class MainController implements Controller {
         Load.loadWithFileChooser(simulationController);
         simulationController.resetSimulation();
         simulationController.wireDelay();
-        simulationController.calculatePathDepth();
     }
 
     @FXML
@@ -190,6 +195,19 @@ public class MainController implements Controller {
         simulationController.zoomOut();
     }
 
+    @FXML
+    private void startTutorial() {
+
+        TutorialUtils.highlightText(file);
+        TutorialUtils.highlightText(load);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Try loading a simple circuit.\n\nPress the load button that is highlighted and load the circuit notnotnotnot from the file choices given.");
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+
+        alert.showAndWait();
+
+    }
+
     public void initialize(){
 
         this.simulationController = new MainSimulationController(this);
@@ -248,7 +266,7 @@ public class MainController implements Controller {
     }
 
     public void setPathDepth(int pathDepth) {
-        //pathDepthLabel.setText(String.format("Path Depth: %s", String.valueOf(pathDepth)));
+        pathDepthLabel.setText(String.format("Path Depth: %s", String.valueOf(pathDepth)));
     }
 
     public void displayText(Parent parent) {
