@@ -98,9 +98,9 @@ public class ReusableComponentController extends ResizableComponentController im
     }
 
     @Override
-    public void processGateDelay() {
+    public boolean processGateDelay() {
         internalSimulation.wireDelay();
-        internalSimulation.gateDelay();
+        return internalSimulation.gateDelay();
     }
 
     @Override

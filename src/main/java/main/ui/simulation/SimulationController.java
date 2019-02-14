@@ -106,14 +106,15 @@ public class SimulationController implements Controller {
         reusableControllers.put(reusableController.getUuid(), reusableController);
     }
 
-    public void gateDelay() {
+    public boolean gateDelay() {
+        boolean hasChanged = false;
         for (ComponentController controller : componentControllers.values()) {
-            controller.processGateDelay();
+            hasChanged |= controller.processGateDelay();
         }
 
         wireDelay();
 
-
+        return hasChanged;
     }
 
     public void wireDelay() {

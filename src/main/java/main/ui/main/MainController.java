@@ -292,7 +292,9 @@ public class MainController implements Controller {
         setGateDelayCount(0);
         leftPane.getChildren().remove(toolbox);
         leftScrollPane.setPrefWidth(20);
-        simulationController.calculatePathDepth();
+        if(!simulationController.calculatePathDepth()) {
+            buildMode();
+        }
 
     }
 

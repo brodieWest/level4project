@@ -59,6 +59,25 @@ public abstract class Component implements Onscreen {
         addPorts(componentParameters.getPortParameters());
     }
 
+    public boolean gateDelay() {
+        boolean hasChanged = hasUndefinedOutput();
+
+        processGateDelay();
+
+        hasChanged &= !hasUndefinedOutput();
+
+        return hasChanged;
+    }
+
+    private boolean hasUndefinedOutput() {
+        if(!outputs.isEmpty()) {
+            if(outputs.get(0).isUndefined()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // simulates the component over a single gate delay
     public abstract void processGateDelay();
 

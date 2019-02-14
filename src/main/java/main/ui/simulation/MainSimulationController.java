@@ -17,6 +17,7 @@ import main.ui.main.MainController;
 import main.ui.main.Mainfx;
 import main.ui.port.PortController;
 import main.ui.simulation.model.Simulator;
+import main.ui.utils.AlertUtils;
 import main.ui.wire.WireBuilderController;
 import main.ui.wire.WireController;
 
@@ -54,9 +55,10 @@ public class MainSimulationController extends SimulationController {
     }
 
     @Override
-    public void gateDelay() {
-        super.gateDelay();
+    public boolean gateDelay() {
+        boolean hasChanged = super.gateDelay();
         updateGateDelayCount();
+        return hasChanged;
     }
 
     @Override
@@ -123,7 +125,7 @@ public class MainSimulationController extends SimulationController {
         mainController.setClockTickCount(clockTickCount);
     }
 
-    public void calculatePathDepth() {
+    public boolean calculatePathDepth() {
         List<Component> outputs = new ArrayList<>();
 
         for(OutputControllerInterface outputController : outputControllers.values()) {
@@ -137,9 +139,11 @@ public class MainSimulationController extends SimulationController {
         for(DffController dffController : dffControllers.values()) {
             outputs.add(dffController.getComponentModel());
         }
-        simulator.calculatePathDepth(outputs, this);
+        boolean synchronous = simulator.calculatePathDepth(outputs, this);
 
         mainController.setPathDepth(simulator.getPathDepth());
+
+        return synchronous;
     }
 
     private FileModel getFileModel() {
@@ -265,11 +269,7 @@ public class MainSimulationController extends SimulationController {
     public boolean canSimulate() {
         for(ComponentController componentController : componentControllers.values()) {
             if(!componentController.isConnected()) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Cannot simulate while components are unconnected.");
-                alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-
-                alert.showAndWait();
-
+                AlertUtils.information("Cannot simulate while components are unconnected.");
                 return false;
             }
         }

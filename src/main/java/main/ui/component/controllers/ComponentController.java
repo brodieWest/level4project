@@ -175,8 +175,8 @@ public class ComponentController implements Controller {
         return componentModel;
     }
 
-    public void processGateDelay() {
-        componentModel.processGateDelay();
+    public boolean processGateDelay() {
+        return componentModel.gateDelay();
     }
 
     public void reset() {
