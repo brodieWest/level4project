@@ -8,7 +8,7 @@ plugins {
 group 'level4project'
 version '0.6'
 
-sourceCompatibility = 1.11
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -28,7 +28,7 @@ dependencies {
 
 
 javafx {
-    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.base']
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics']
 }
 
 mainClassName = 'main/main.ui.main.Mainfx'
@@ -68,4 +68,13 @@ task buildExe() {
     dependsOn 'clean'
     dependsOn 'jlink'
     dependsOn 'createExe'
+}
+
+task customFatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'main.ui.main.Main'
+    }
+    baseName = 'all-in-one-jar'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }

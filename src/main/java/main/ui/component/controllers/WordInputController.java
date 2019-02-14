@@ -27,12 +27,12 @@ public class WordInputController extends IoController implements InputController
     public WordInputController(SimulationController simulationController, Component componentModel) {
         super(simulationController, componentModel);
         simulationController.addInput(this);
-        changeWordValue();
+        changeWordValue(null);
 
         UnaryOperator<TextFormatter.Change> filter = change -> {
             String text = change.getText();
 
-            if (text.matches("([0-9]|[a-f])*")) {
+            if (text.matches("([0-9]|[a-f])|")) {
                 return change;
             }
 
@@ -44,11 +44,20 @@ public class WordInputController extends IoController implements InputController
     }
 
     @FXML
-    private void changeWordValue() {
+    private void changeWordValue(KeyEvent keyEvent) {
         WordInput wordInput = (WordInput) componentModel;
 
         simulationController.resetSimulation();
-        String textValue = textField.getCharacters().toString();
+        String character = " ";
+        if(keyEvent != null) {
+            character = keyEvent.getCharacter();
+        }
+        String textValue;
+        if(character.matches("([0-9]|[a-f])")) {
+            textValue = character;
+        } else {
+            textValue = textField.getCharacters().toString();
+        }
         if(textValue.equals("")) return;
         int wordValue = Integer.parseInt(textValue,16);
         wordInput.setWordValue(wordValue);

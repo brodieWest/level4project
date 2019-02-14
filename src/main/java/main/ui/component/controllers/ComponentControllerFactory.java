@@ -30,6 +30,7 @@ public class ComponentControllerFactory {
         stdComponentControllers.put("join", new JoinFactory());
         stdComponentControllers.put("text", new TextFactory());
         stdComponentControllers.put("reg1", new RegFactory());
+        stdComponentControllers.put("reg4", new Reg4Factory());
     }
 
     public static ComponentController getComponentController(SimulationController simulationController, ComponentParameters componentParameters) {

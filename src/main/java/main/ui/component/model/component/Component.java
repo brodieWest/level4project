@@ -384,4 +384,8 @@ public abstract class Component implements Onscreen {
         }
         return false;
     }
+
+    public String getType() {
+        return type;
+    }
 }
