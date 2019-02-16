@@ -42,9 +42,9 @@
                 <Menu text="Options">
                     <CheckMenuItem text="Do path depth gate delays per clock tick" fx:id="checkMenuItem"/>
                 </Menu>
-                <Menu text="Help">
+                <!--Menu text="Help">
                     <MenuItem text="Tutorial" onAction="#startTutorial"/>
-                </Menu>
+                </Menu-->
             </MenuBar>
             <HBox fx:id="bottomButtons" spacing="12" alignment="TOP_RIGHT">
                 <padding><Insets left="20" /></padding>

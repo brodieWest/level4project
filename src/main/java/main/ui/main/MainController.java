@@ -105,8 +105,8 @@ public class MainController implements Controller {
 
     @FXML
     protected void loadFile() {
-        TutorialUtils.unhighlightText(file);
-        TutorialUtils.unhighlightText(load);
+        //TutorialUtils.unhighlightText(file);
+        //TutorialUtils.unhighlightText(load);
 
         if(simulationController.getSimulationMode() == SimulationMode.SIMULATE) {
             buildMode();
