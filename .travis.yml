@@ -4,17 +4,18 @@ sudo: false   # Linux OS: run in container
 
 matrix:
   include:
-    # Ubuntu Linux (trusty) / Oracle JDK 8 / Headless
+    # Ubuntu Linux (trusty) / Oracle JDK 8 / Headed (AWT Robot)
     - os: linux
       dist: trusty
-      jdk: oraclejdk8
+      jdk: oraclejdk11
       env:
-        - _JAVA_OPTIONS="-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw"
+        - _JAVA_OPTIONS="-Dtestfx.robot=awt"
+
 
 addons:
   apt:
     packages:
-      - oracle-java8-installer
+      - oracle-java11-installer
 
 before_install:
   - if [[ "${TRAVIS_OS_NAME}" == linux ]]; then export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start; fi

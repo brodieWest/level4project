@@ -19,7 +19,7 @@ dependencies {
     testCompile "org.testfx:testfx-core:4.0.15-alpha"
     testCompile "org.testfx:testfx-junit:4.0.15-alpha"
     testCompile group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
-    testCompile "org.testfx:openjfx-monocle:8u76-b04"
+    testCompile "org.testfx:openjfx-monocle:jdk-9+181"
     compile 'org.json:json:20171018'
     compile group: 'net.sourceforge.jeval', name: 'jeval', version: '0.9.4'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
