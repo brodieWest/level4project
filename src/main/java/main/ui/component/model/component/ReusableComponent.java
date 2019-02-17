@@ -14,10 +14,6 @@ import java.util.List;
 
 public class ReusableComponent extends Component{
 
-    private List<Wire> internalInputs;
-
-    private List<Wire> internalOutputs;
-
     private int defaultInputs = 0;
 
     private int defaultOutputs = 0;
@@ -64,10 +60,6 @@ public class ReusableComponent extends Component{
     @Override
     public int getDefaultOutputs() {
         return defaultOutputs;
-    }
-
-    public List<Wire> getInternalWires() {
-        return internalInputs;
     }
 
     public boolean isPortsAdded() {

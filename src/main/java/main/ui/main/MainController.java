@@ -101,12 +101,8 @@ public class MainController implements Controller {
 
     private List<ExternalPortMapping> portMappings = new ArrayList<>();
 
-    private static String REUSABLE_PATH = "fileExamples/reusable/";
-
     @FXML
     protected void loadFile() {
-        //TutorialUtils.unhighlightText(file);
-        //TutorialUtils.unhighlightText(load);
 
         if(simulationController.getSimulationMode() == SimulationMode.SIMULATE) {
             buildMode();

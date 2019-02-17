@@ -27,11 +27,11 @@ public class InternalController extends SimulationController {
 
     public String getDffValue() {
         if(dffControllers.isEmpty()) return "";
-        return ((DffController)dffControllers.values().iterator().next()).getStoredValue();
+        return (dffControllers.values().iterator().next()).getStoredValue();
     }
 
     public Logic getDffLogic() {
-        return ((Dff)((DffController)dffControllers.values().iterator().next()).getComponentModel()).getLogic();
+        return ((Dff)(dffControllers.values().iterator().next()).getComponentModel()).getLogic();
     }
 
     public String getRegValues() {

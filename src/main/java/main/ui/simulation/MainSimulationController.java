@@ -146,7 +146,7 @@ public class MainSimulationController extends SimulationController {
         return synchronous;
     }
 
-    private FileModel getFileModel() {
+    public FileModel getFileModel() {
         List<ComponentParametersModel> parameters = new ArrayList<>();
         for (ComponentController componentController : componentControllers.values()) {
             parameters.add(componentController.getComponentParameters());

@@ -7,6 +7,7 @@
 <Group xmlns="http://javafx.com/javafx"
        xmlns:fx="http://javafx.com/fxml"
        fx:id="buildIcon"
+       id="buildIcon"
        onMouseClicked="#startWire">
     <Circle radius="5" stroke="black" strokeWidth="1.5" fill="white" centerX="5" centerY="5"/>
     <SVGPath stroke="limegreen" strokeWidth="1.5" content="M 5 3 L 5 7 M 3 5 L 7 5"/>

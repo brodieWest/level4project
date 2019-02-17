@@ -9,12 +9,10 @@ import main.ui.port.Port;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Wire implements Onscreen {
+public class Wire {
     private WireController wireController;
 
     private Port input;
-
-    private Coordinates coordinates;
 
     private List<Port> outputs = new ArrayList<>();
 
@@ -31,12 +29,6 @@ public class Wire implements Onscreen {
         }
     }
 
-    @Override
-    public Coordinates getCoordinates() {
-        return null;
-    }
-
-    @Override
     public String getUuid() {
         return uuid;
     }

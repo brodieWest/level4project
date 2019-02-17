@@ -18,4 +18,12 @@ public class FileModel {
     public void setPortMappings(List<ExternalPortMapping> portMappings) {
         this.portMapping = portMappings;
     }
+
+    public List<ComponentParametersModel> getComponents() {
+        return components;
+    }
+
+    public List<WireModel> getWires() {
+        return wires;
+    }
 }

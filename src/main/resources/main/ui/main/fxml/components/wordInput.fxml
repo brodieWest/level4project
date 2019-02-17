@@ -18,7 +18,7 @@
         <Group fx:id="rotatable">
             <SVGPath fx:id="svgPath" content="M 20 20 L 20 80 L 80 80 L 80 20 L 20 20 z" styleClass="component, gate"/>
         </Group>
-            <TextField styleClass="gateText" prefWidth="40" fx:id="textField" text="0" onKeyTyped="#changeWordValue" onMouseClicked="#select" translateX="30" translateY="38"/>
+            <TextField styleClass="gateText" prefWidth="40" fx:id="textField" text="0" onKeyTyped="#changeWordValue" onMouseClicked="#select" translateX="30" translateY="38" id="wordInput"/>
         </Group>
     </StackPane>
 

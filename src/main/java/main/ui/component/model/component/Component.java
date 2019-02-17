@@ -32,8 +32,6 @@ public abstract class Component implements Onscreen {
     String uuid;
     String type;
 
-    private int pathDepth = 0;
-
     private int initialRotate;
 
     private int HEIGHT = 100;
@@ -202,15 +200,6 @@ public abstract class Component implements Onscreen {
         }
     }
 
-    public List<Wire> getNextWires() {
-        List<Wire> wires = new ArrayList<>();
-
-        for(Port output : outputs) {
-            wires.add(output.getWire());
-        }
-        return wires;
-    }
-
     public void deleteWires() {
         for(Port port : ports) {
             if(port.hasWire()) {
@@ -233,14 +222,6 @@ public abstract class Component implements Onscreen {
 
     public String getUuid() {
         return uuid;
-    }
-
-    public int getPathDepth() {
-        return pathDepth;
-    }
-
-    public void setPathDepth(int pathDepth) {
-        this.pathDepth = pathDepth;
     }
 
     public Map<String,Integer> getPortLocations() {
@@ -357,10 +338,6 @@ public abstract class Component implements Onscreen {
         this.componentController = componentController;
     }
 
-    public boolean hasPorts() {
-        return !ports.isEmpty();
-    }
-
     public boolean isConnected() {
         for(Port port : ports) {
             if(!port.hasWire()) return false;
@@ -374,15 +351,6 @@ public abstract class Component implements Onscreen {
 
     public int getInitialRotate() {
         return initialRotate;
-    }
-
-    public boolean hasEmptyPorts(Direction direction) {
-        for(Port port : getPortsByDirection(direction)) {
-            if(!port.hasWire()) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public String getType() {
