@@ -25,8 +25,10 @@
     </fx:define>
     <top>
         <HBox>
-        <padding><Insets bottom="2" /></padding>
-            <MenuBar HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets bottom="2"/>
+            </padding>
+            <MenuBar HBox.hgrow="ALWAYS" prefHeight="36">
                 <Menu text="File" id="file" fx:id="file">
                     <MenuItem text="Load" fx:id="load" onAction="#loadFile" id="load"/>
                     <MenuItem text="Save" onAction="#saveFile"/>
@@ -46,53 +48,87 @@
                     <MenuItem text="Tutorial" onAction="#startTutorial"/>
                 </Menu-->
             </MenuBar>
-            <HBox fx:id="bottomButtons" spacing="12" alignment="TOP_RIGHT">
-                <padding><Insets left="20" /></padding>
-                <HBox spacing="12" fx:id="buildButtons">
-                    <Button text="Delete Components" onMouseClicked="#deleteComponents" fx:id="deleteComponents"/>
-                    <Button text="Delete Wires" onMouseClicked="#deleteWires" fx:id="deleteWires"/>
-                    <Button text="Start Simulation" fx:id="startSimulation" onMouseClicked="#startSimulation" id="startSimulation"/>
-                </HBox>
-                <HBox spacing="12" fx:id="simulationButtons">
-                    <Label text="0" fx:id="gateDelayCount"/>
-                    <Button text="Gate Delay" onMouseClicked="#gateDelay" id="gateDelay"/>
-                    <Label text="0" fx:id="clockTickCount"/>
-                    <Button text="Clock Tick" onMouseClicked="#clockTick" id="clockTick"/>
-                    <Label fx:id="pathDepthLabel"/>
-                    <Button text="Build Mode" onMouseClicked="#buildMode"/>
-                </HBox>
-            </HBox>
+            <MenuBar>
+                <Menu id="button-menu">
+                    <graphic>
+                        <HBox fx:id="bottomButtons" spacing="12" alignment="TOP_RIGHT">
+
+                            <HBox spacing="12" fx:id="buildButtons">
+                                <Button text="Delete Components" onMouseClicked="#deleteComponents"
+                                        fx:id="deleteComponents"/>
+                                <Button text="Delete Wires" onMouseClicked="#deleteWires" fx:id="deleteWires"/>
+                                <Button text="Start Simulation" fx:id="startSimulation"
+                                        onMouseClicked="#startSimulation" id="startSimulation"/>
+                            </HBox>
+                            <HBox spacing="12" fx:id="simulationButtons">
+                                <Label text="0" fx:id="gateDelayCount"/>
+                                <Button text="Gate Delay" onMouseClicked="#gateDelay" id="gateDelay"/>
+                                <Label text="0" fx:id="clockTickCount"/>
+                                <Button text="Clock Tick" onMouseClicked="#clockTick" id="clockTick"/>
+                                <Label fx:id="pathDepthLabel"/>
+                                <Button text="Build Mode" onMouseClicked="#buildMode"/>
+                            </HBox>
+                        </HBox>
+                    </graphic>
+                </Menu>
+            </MenuBar>
         </HBox>
     </top>
     <left>
         <ScrollPane prefWidth="200" fx:id="leftScrollPane">
             <VBox fx:id="leftPane">
                 <VBox alignment="CENTER_LEFT" fx:id="toolbox">
-                    <padding><Insets right="25" left="25" top="25" bottom="25"/></padding>
+                    <padding>
+                        <Insets right="25" left="25" top="25" bottom="25"/>
+                    </padding>
 
-                    <Label text="IO:"><padding><Insets bottom="10"/></padding></Label>
+                    <Label text="IO:">
+                        <padding>
+                            <Insets bottom="10"/>
+                        </padding>
+                    </Label>
                     <ToolbarButtonController type="input" buttonText="Input"/>
                     <ToolbarButtonController type="output" buttonText="Output"/>
 
-                    <Label text="Basic Gates:"><padding><Insets top="10" bottom="10"/></padding></Label>
+                    <Label text="Basic Gates:">
+                        <padding>
+                            <Insets top="10" bottom="10"/>
+                        </padding>
+                    </Label>
                     <ToolbarButtonController type="and" buttonText="And"/>
                     <ToolbarButtonController type="or" buttonText="Or"/>
                     <ToolbarButtonController type="not" buttonText="Not"/>
                     <ToolbarButtonController type="xor" buttonText="Xor"/>
 
-                    <Label text="Synchronous:"><padding><Insets top="10" bottom="10"/></padding></Label>
+                    <Label text="Synchronous:">
+                        <padding>
+                            <Insets top="10" bottom="10"/>
+                        </padding>
+                    </Label>
                     <ToolbarButtonController type="dff" buttonText="Delay Flip Flop"/>
 
-                    <Label text="Word:"><padding><Insets top="10" bottom="10"/></padding></Label>
+                    <Label text="Word:">
+                        <padding>
+                            <Insets top="10" bottom="10"/>
+                        </padding>
+                    </Label>
                     <ToolbarButtonController type="wordInput" buttonText="Word Input"/>
                     <ToolbarButtonController type="wordOutput" buttonText="Word Output"/>
                     <ToolbarButtonController type="split" buttonText="Splitter"/>
                     <ToolbarButtonController type="join" buttonText="Join"/>
 
-                    <Label text="Extras:"><padding><Insets top="10" bottom="10"/></padding></Label>
+                    <Label text="Extras:">
+                        <padding>
+                            <Insets top="10" bottom="10"/>
+                        </padding>
+                    </Label>
                     <ToolbarButtonController type="text" buttonText="Text Box"/>
 
-                    <Label text="User Defined:"><padding><Insets top="10" bottom="10"/></padding></Label>
+                    <Label text="User Defined:">
+                        <padding>
+                            <Insets top="10" bottom="10"/>
+                        </padding>
+                    </Label>
                 </VBox>
                 <VBox alignment="CENTER_LEFT" fx:id="saveComponentOptions">
                     <TextArea prefWidth="190" prefHeight="220" wrapText="true" styleClass="textComponent" text="Component options
@@ -100,9 +136,9 @@
 &#10;Configure the order and direction of each component below.
 &#10;The current component is highlighted in yellow."/>
                     <RadioButton text="North" userData="NORTH">
-                            <toggleGroup>
-                                <fx:reference source="toggleGroup"/>
-                            </toggleGroup>
+                        <toggleGroup>
+                            <fx:reference source="toggleGroup"/>
+                        </toggleGroup>
                     </RadioButton>
                     <RadioButton text="South" userData="SOUTH">
                         <toggleGroup>
@@ -133,7 +169,9 @@
     </right>
     <bottom>
         <AnchorPane>
-            <padding><Insets left="25" right="25"/></padding>
+            <padding>
+                <Insets left="25" right="25"/>
+            </padding>
 
         </AnchorPane>
     </bottom>

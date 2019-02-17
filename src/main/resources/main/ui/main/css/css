@@ -55,3 +55,15 @@
 #simulation {
     -fx-background-color: "white";
 }
+
+#button-menu:hover, #button-menu:showing{
+  -fx-background-color: transparent;
+}
+
+#button-menu:focused {
+   -fx-background-color : transparent;
+}
+
+.label {
+    -fx-text-fill: "black";
+}
