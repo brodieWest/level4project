@@ -10,11 +10,12 @@ import javafx.stage.Stage;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
+import org.testfx.service.query.EmptyNodeQueryException;
 import org.testfx.util.WaitForAsyncUtils;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 
 public class UiIntegrationTest extends ApplicationTest {
@@ -48,6 +49,36 @@ public class UiIntegrationTest extends ApplicationTest {
         clickOn("#input");
 
         assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"1");
+    }
+
+    @Test (expected = EmptyNodeQueryException.class)
+    public void deleteWires() {
+        clickOn("Input");
+
+        clickOn("Output");
+
+        moveTo("#output").drag("#output").dropBy(200,0);
+
+        clickOn((Node)lookup("#input").lookup("#buildIcon").query());
+
+        clickOn((Node)lookup("#output").lookup("#buildIcon").query());
+
+        clickOn("Delete Wires");
+
+        clickOn((Node)lookup("#wireGroup").lookup("#wire").query());
+
+        lookup("#wireGroup").lookup("#wire").query();
+    }
+
+    @Test(expected = EmptyNodeQueryException.class)
+    public void deleteComponent() {
+        clickOn("Input");
+
+        clickOn("Delete Components");
+
+        clickOn("#input");
+
+        lookup("#input").query();
     }
 
     @Test
