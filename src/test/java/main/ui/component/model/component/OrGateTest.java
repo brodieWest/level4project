@@ -30,8 +30,8 @@ public class OrGateTest {
         portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
         portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
 
-        or4 = new OrGate(new ComponentParameters(new Coordinates(0,0), "testor","or",portParameters));
-        or = new OrGate(new ComponentParameters(new Coordinates(0,0), "testor","or",new ArrayList<>()));
+        or4 = new OrGate(new ComponentParameters(new Coordinates(0,0), "testor","or",0,portParameters));
+        or = new OrGate(new ComponentParameters(new Coordinates(0,0), "testor","or",0,new ArrayList<>()));
         inputLogic0 = or.getInput(0).getLogic();
         inputLogic1 = or.getInput(1).getLogic();
         outputLogic = or.getOutput(0).getLogic();

@@ -12,7 +12,7 @@ public class InputTest {
 
     @Test
     public void reset() {
-        Input input = new Input( new ComponentParameters(new Coordinates(0,0),"input1","input",new ArrayList<>()));
+        Input input = new Input( new ComponentParameters(new Coordinates(0,0),"input1","input",0,new ArrayList<>()));
         input.getOutput(0).getLogic().setUndefined(true);
         input.reset();
 

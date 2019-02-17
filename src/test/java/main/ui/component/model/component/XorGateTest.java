@@ -30,9 +30,9 @@ public class XorGateTest {
         portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
         portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT,1));
 
-        and4 = new XorGate(new ComponentParameters(new Coordinates(0,0), "testand4","xor",portParameters));
+        and4 = new XorGate(new ComponentParameters(new Coordinates(0,0), "testand4","xor",0,portParameters));
 
-        and = new XorGate(new ComponentParameters(new Coordinates(0,0), "testand","xor",new ArrayList<>()));
+        and = new XorGate(new ComponentParameters(new Coordinates(0,0), "testand","xor",0,new ArrayList<>()));
         inputLogic0 = and.getInput(0).getLogic();
         inputLogic1 = and.getInput(1).getLogic();
         outputLogic = and.getOutput(0).getLogic();

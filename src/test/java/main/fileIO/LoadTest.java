@@ -54,7 +54,7 @@ public class LoadTest {
         verify(mocksim).resetSimulation();
         verify(mocksim).wireDelay();
 
-        assertEquals(new ComponentParameters(new Coordinates(0,0), "input1", "input", new ArrayList<>()), notComponentParametersArgumentCaptor.getValue());
+        assertEquals(new ComponentParameters(new Coordinates(0,0), "input1", "input",0, new ArrayList<>()), notComponentParametersArgumentCaptor.getValue());
         //assertEquals(new ComponentParameters(new Coordinates(100,900), "not1", "not", 1, 1), notComponentParametersArgumentCaptor.getValue());
 
         ArgumentCaptor<PortIdentifier> inputPort = ArgumentCaptor.forClass(PortIdentifier.class);
@@ -109,7 +109,7 @@ public class LoadTest {
 
         verify(mocksim, times(2)).addComponent(notComponentParametersArgumentCaptor.capture());
 
-        assertEquals(new ComponentParameters(new Coordinates(100,900), "not1", "not", new ArrayList<>()), notComponentParametersArgumentCaptor.getValue());
+        assertEquals(new ComponentParameters(new Coordinates(100,900), "not1", "not",0, new ArrayList<>()), notComponentParametersArgumentCaptor.getValue());
     }
 
     @Test

@@ -20,7 +20,7 @@ public class Mainfx extends Application {
 
     private static Stage stage;
 
-    private static Parent root;
+    private Parent root;
 
     private static Logger logger = LogManager.getLogger(Mainfx.class);
 
@@ -76,7 +76,7 @@ public class Mainfx extends Application {
         }
     }
 
-    public static Parent getRoot() {
+    public Parent getRoot() {
         return root;
     }
 

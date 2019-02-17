@@ -16,6 +16,7 @@ import main.ui.descriptions.Descriptions;
 import main.ui.component.model.component.Component;
 import main.ui.main.Mainfx;
 import main.ui.port.PortController;
+import main.ui.simulation.MainSimulationController;
 import main.ui.simulation.SimulationController;
 import main.fxml.FxmlLoaderUtils;
 
@@ -121,7 +122,7 @@ public class ComponentController implements Controller {
         oldY = getComponent().getTranslateY() - mouseEvent.getSceneY()/scaleY;
         hasWires = componentModel.hasWires();
 
-        Mainfx.getRoot().setOnKeyPressed(event -> rotate(event));
+        ((MainSimulationController)simulationController).getRoot().setOnKeyPressed(event -> rotate(event));
     }
 
     @FXML
@@ -156,7 +157,7 @@ public class ComponentController implements Controller {
     }
 
     public void stopMoving() {
-        Mainfx.getRoot().setOnKeyPressed(event -> {});
+        ((MainSimulationController)simulationController).getRoot().setOnKeyPressed(event -> {});
     }
 
     private void rotate(KeyEvent event) {

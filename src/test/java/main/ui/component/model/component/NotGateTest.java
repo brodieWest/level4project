@@ -18,7 +18,7 @@ public class NotGateTest {
 
     @Before
     public void setup() {
-        not =  new NotGate(new ComponentParameters(new Coordinates(0,0), "testnot","not", new ArrayList<>()));
+        not =  new NotGate(new ComponentParameters(new Coordinates(0,0), "testnot","not", 0, new ArrayList<>()));
         notInputLogic = not.getInput(0).getLogic();
         notOutputLogic = not.getOutput(0).getLogic();
     }

@@ -29,8 +29,8 @@ public class AndGateTest {
         portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
         portParameters.add(new PortParameters(Direction.WEST, PortType.INPUT));
 
-        and = new AndGate(new ComponentParameters(new Coordinates(0,0), "testand","and",new ArrayList<>()));
-        and4 = new AndGate(new ComponentParameters(new Coordinates(0,0), "testand4","and",portParameters));
+        and = new AndGate(new ComponentParameters(new Coordinates(0,0), "testand","and",0,new ArrayList<>()));
+        and4 = new AndGate(new ComponentParameters(new Coordinates(0,0), "testand4","and",0,portParameters));
         inputLogic0 = and.getInput(0).getLogic();
         inputLogic1 = and.getInput(1).getLogic();
         outputLogic = and.getOutput(0).getLogic();

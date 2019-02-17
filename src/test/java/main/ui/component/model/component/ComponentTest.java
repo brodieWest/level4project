@@ -24,7 +24,7 @@ public class ComponentTest {
 
     @Test
     public void addNewInput() {
-        Component and = new AndGate(new ComponentParameters(new Coordinates(1,1), "testand","and", new ArrayList<>()));
+        Component and = new AndGate(new ComponentParameters(new Coordinates(1,1), "testand","and",0, new ArrayList<>()));
 
         assertEquals(50,and.getInput(0).getOffset().getX());
         assertEquals(40,and.getInput(0).getOffset().getY());
@@ -35,7 +35,7 @@ public class ComponentTest {
 
     @Test
     public void addNewOutput() {
-        Component not = new NotGate(new ComponentParameters(new Coordinates(1,1), "testnot","not", new ArrayList<>()));
+        Component not = new NotGate(new ComponentParameters(new Coordinates(1,1), "testnot","not",0, new ArrayList<>()));
 
         assertEquals(50,not.getOutput(0).getOffset().getX());
         assertEquals(50,not.getOutput(0).getOffset().getY());
@@ -52,7 +52,7 @@ public class ComponentTest {
         portParameters.add(new PortParameters(Direction.SOUTH, PortType.INPUT,1));
         portParameters.add(new PortParameters(Direction.SOUTH, PortType.INPUT,1));
 
-        Component and = new AndGate(new ComponentParameters(new Coordinates(0,0), "testand4","and",portParameters ));
+        Component and = new AndGate(new ComponentParameters(new Coordinates(0,0), "testand4","and",0,portParameters ));
 
         assertEquals(50,and.getInput(0).getOffset().getX());
         assertEquals(40,and.getInput(0).getOffset().getY());
@@ -69,7 +69,7 @@ public class ComponentTest {
 
     @Test
     public void getPortLocations() {
-        Component and = new AndGate(new ComponentParameters(new Coordinates(100,200), "testand","and", new ArrayList<>()));
+        Component and = new AndGate(new ComponentParameters(new Coordinates(100,200), "testand","and",0, new ArrayList<>()));
 
         Map<String,Integer> map = and.getPortLocations();
 

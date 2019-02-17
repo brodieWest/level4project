@@ -38,6 +38,8 @@ public class BuildIconController implements Controller {
 
     private PortController portController;
 
+    private Parent root;
+
     private static int SCREEN_EDGE = 0;
     private static int SMALLEST_INCREMENT = 10;
     private static int WIRE_WIDTH = 5;
@@ -52,6 +54,7 @@ public class BuildIconController implements Controller {
         this.componentController = componentController;
         this.portController = portController;
         FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(ICON_FXML_PATH), this);
+        root = simulationController.getRoot();
     }
 
     public Group getBuildIcon() {
@@ -123,7 +126,7 @@ public class BuildIconController implements Controller {
 
         simulationController.startWireBuilder(port.getEndPosition());
 
-        Mainfx.getRoot().setOnMouseMoved(event -> {
+        root.setOnMouseMoved(event -> {
             Coordinates mousePosition = getMousePosition(event);
             if(mousePosition.getX() < SMALLEST_POSITION || mousePosition.getY() < SMALLEST_POSITION) {
                 endWireBuilder();
@@ -131,11 +134,11 @@ public class BuildIconController implements Controller {
             simulationController.displayLine(mousePosition);
         });
 
-        Mainfx.getRoot().setOnMouseClicked(event -> {
+        root.setOnMouseClicked(event -> {
             simulationController.newLine(getMousePosition(event));
         });
 
-        Mainfx.getRoot().setOnContextMenuRequested(event -> {
+        root.setOnContextMenuRequested(event -> {
             endWireBuilder();
         });
     }
@@ -154,9 +157,9 @@ public class BuildIconController implements Controller {
     }
 
     private void endWireBuilder() {
-        Mainfx.getRoot().setOnMouseMoved(event -> {});
-        Mainfx.getRoot().setOnMouseClicked(event -> {});
-        Mainfx.getRoot().setOnContextMenuRequested(event -> {});
+        root.setOnMouseMoved(event -> {});
+        root.setOnMouseClicked(event -> {});
+        root.setOnContextMenuRequested(event -> {});
         simulationController.setWireBuilderStartPort(null);
         simulationController.clearWireBuilder();
     }

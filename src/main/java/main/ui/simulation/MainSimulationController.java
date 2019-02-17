@@ -310,4 +310,12 @@ public class MainSimulationController extends SimulationController {
     public MainController getMainController() {
         return mainController;
     }
+
+    public int getPathDepth() {
+        return simulator.getPathDepth();
+    }
+
+    public Parent getRoot() {
+        return mainController.getRoot();
+    }
 }

@@ -18,7 +18,7 @@ public class DffTest {
 
     @Before
     public void setup() {
-        dff = new Dff(new ComponentParameters(new Coordinates(0,0), "test","dff", new ArrayList<>()));
+        dff = new Dff(new ComponentParameters(new Coordinates(0,0), "test","dff",0, new ArrayList<>()));
         inputLogic = dff.getInput(0).getLogic();
         outputLogic = dff.getOutput(0).getLogic();
     }

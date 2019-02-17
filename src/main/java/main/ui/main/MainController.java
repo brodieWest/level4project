@@ -348,4 +348,8 @@ public class MainController implements Controller {
         leftPane.getChildren().remove(toolbox);
         leftScrollPane.setPrefWidth(20);
     }
+
+    public Parent getRoot() {
+        return borderPane;
+    }
 }

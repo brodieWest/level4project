@@ -27,25 +27,8 @@ public class UiIntegrationTests extends ApplicationTest {
     }
 
     @Test
-    public void nandGate() {
-        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
-
-        clickOn("#startSimulation");
-
-        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"U");
-
-        clickOn("#gateDelay");
-
-        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"U");
-
-        clickOn("#gateDelay");
-
-        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"1");
-    }
-
-    @Test
     public void orGate() {
-        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
+        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
 
         clickOn("#startSimulation");
 
@@ -68,11 +51,11 @@ public class UiIntegrationTests extends ApplicationTest {
 
     @Test
     public void dff() {
-        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
+        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
 
         clickOn("#startSimulation");
 
-        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"U");
+        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"0");
 
         clickOn("#gateDelay");
 
@@ -80,7 +63,7 @@ public class UiIntegrationTests extends ApplicationTest {
 
         clickOn("#input");
 
-        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"U");
+        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"0");
 
         clickOn("#gateDelay");
 
@@ -88,11 +71,11 @@ public class UiIntegrationTests extends ApplicationTest {
 
         clickOn("#clockTick");
 
-        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"U");
+        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"1");
 
         clickOn("#clockTick");
 
-        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"U");
+        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"1");
 
         clickOn("#gateDelay");
 
