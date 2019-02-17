@@ -8,7 +8,7 @@ plugins {
 group 'level4project'
 version '0.6'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.11
 
 repositories {
     mavenCentral()
