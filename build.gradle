@@ -3,8 +3,7 @@ plugins {
     id 'edu.sc.seis.launch4j' version '2.4.4'
     id 'org.beryx.jlink' version '2.1.8'
     id 'org.openjfx.javafxplugin' version '0.0.5'
-    id "net.saliman.cobertura" version "2.6.0"
-    id 'com.github.kt3k.coveralls' version '2.8.2'
+    id 'jacoco'
 }
 
 group 'level4project'
@@ -22,16 +21,12 @@ dependencies {
     testCompile "org.testfx:testfx-junit:4.0.15-alpha"
     testCompile group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
     testCompile "org.testfx:openjfx-monocle:jdk-9+181"
-    testRuntime "org.slf4j:slf4j-api:1.7.10"
     compile 'org.json:json:20171018'
     compile group: 'net.sourceforge.jeval', name: 'jeval', version: '0.9.4'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
     compile 'com.google.code.gson:gson:2.8.5'
 }
-
-
-cobertura.coverageFormats = ['html', 'xml']
 
 javafx {
     modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics']
@@ -85,6 +80,13 @@ task customFatJar(type: Jar) {
     with jar
 }
 
-cobertura {
-    coverageIgnoreTrivial = false
+
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
 }
+

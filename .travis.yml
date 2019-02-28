@@ -23,6 +23,7 @@ before_script:
 
 script:
   - ./gradlew check
+  - ./gradlew build jacocoTestReport
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -36,5 +37,9 @@ cache:
     - $HOME/.gradle/wrapper/
     - $HOME/.m2
 
+env:
+  matrix:
+  - TERM=dumb
+
 after_success:
-  - ./gradlew cobertura coveralls
+  - ./gradlew jacocoTestReport coveralls
