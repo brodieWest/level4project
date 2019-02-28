@@ -1,2 +1,2 @@
-[![Build Status](https://travis-ci.org/brodieWest/level4project.svg?branch=master)](https://travis-ci.org/brodieWest/level4project)
+[![Build Status](https://travis-ci.org/brodieWest/level4project.svg?branch=master)](https://travis-ci.org/brodieWest/level4project) 
 [![Coverage Status](https://coveralls.io/repos/github/brodieWest/level4project/badge.svg)](https://coveralls.io/github/brodieWest/level4project)
