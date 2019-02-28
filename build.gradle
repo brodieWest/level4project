@@ -83,11 +83,12 @@ task customFatJar(type: Jar) {
 
 
 
-jacocoTestReport {
+task jacocoRootReport(type: org.gradle.testing.jacoco.tasks.JacocoReport) {
+    dependsOn = subprojects.test
     reports {
-        xml.enabled false
-        csv.enabled false
-        xml.destination = "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+        html.enabled = false
+        xml.enabled = true
+        csv.enabled = false
     }
 }
 
