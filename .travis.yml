@@ -35,3 +35,6 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
     - $HOME/.m2
+
+after_success:
+  - ./gradlew cobertura coveralls
