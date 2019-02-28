@@ -82,25 +82,26 @@ task customFatJar(type: Jar) {
 }
 
 
+jacoco {
+    toolVersion = "0.8.2"
+}
 
-task jacocoRootReport(type: org.gradle.testing.jacoco.tasks.JacocoReport) {
-    dependsOn = subprojects.test
+
+jacocoTestReport {
+    dependsOn 'test'
     reports {
-        html.enabled = false
-        xml.enabled = true
-        csv.enabled = false
+        xml.enabled true
+        csv.enabled false
+        html.enabled false
+        //html.destination file("${buildDir}/jacocoHtml")
         //xml.destination = "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
     }
 }
 
-jacocoRootReport.onlyIf = { true }
 
-allprojects {
-    
-    jacoco {
-        toolVersion = '0.7.1.201405082137'
-    }
-}
+
+jacocoTestReport.onlyIf = { true }
+
 
 coveralls {
     sourceDirs = files(subprojects.sourceSets.main.allSource.srcDirs).files.absolutePath
