@@ -83,12 +83,21 @@ task customFatJar(type: Jar) {
 
 
 
-task jacocoRootReport(type: org.gradle.testing.jacoco.tasks.JacocoReport) {
-    dependsOn = subprojects.test
+/*task jacocoTestReport(type: org.gradle.testing.jacoco.tasks.JacocoReport) {
+    //dependsOn = subprojects.test
     reports {
         html.enabled = false
         xml.enabled = true
         csv.enabled = false
+    }
+}*/
+
+jacocoTestReport.onlyIf = { true }
+
+allprojects {
+    
+    jacoco {
+        toolVersion = '0.7.1.201405082137'
     }
 }
 
