@@ -81,7 +81,7 @@ public class Load {
         return true;
     }
 
-    static String loadTextFromFile(String fileName) {
+    public static String loadTextFromFile(String fileName) {
         InputStream inputStream = Mainfx.class.getResourceAsStream(fileName);
         if(inputStream == null) return null;
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -100,7 +100,7 @@ public class Load {
 
     }
 
-    static void load(SimulationController simulationController, String file) {
+    public static void load(SimulationController simulationController, String file) {
         simulationController.clear();
 
         JSONObject circuit = new JSONObject(file);

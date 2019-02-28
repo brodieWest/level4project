@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import main.fileIO.Load;
+import main.ui.main.MainController;
+import main.ui.simulation.MainSimulationController;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
@@ -83,9 +86,13 @@ public class UiIntegrationTest extends ApplicationTest {
 
     @Test
     public void orGate() {
-        clickOn("#file").clickOn("#load");
+        //clickOn("#file").clickOn("#load");
 
-        push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
+        String file = Load.loadTextFromFile("fileExamplesForTesting/or");
+
+        interact(() -> Load.load(MainSimulationController.getForTesting(), file));
+
+        //push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
 
         clickOn("#startSimulation");
 
@@ -109,9 +116,9 @@ public class UiIntegrationTest extends ApplicationTest {
     @Test
     public void add4() {
 
-        clickOn("#file").clickOn("#load");
+        String file = Load.loadTextFromFile("fileExamplesForTesting/add4");
 
-        push(KeyCode.ENTER).push(KeyCode.ENTER).push(KeyCode.ENTER).push(KeyCode.ENTER).push(KeyCode.ENTER).push(KeyCode.ENTER).push(KeyCode.ENTER);
+        interact(() -> Load.load(MainSimulationController.getForTesting(), file));
 
         clickOn("#startSimulation");
 
@@ -139,9 +146,9 @@ public class UiIntegrationTest extends ApplicationTest {
 
     @Test
     public void dff() {
-        clickOn("#file").clickOn("#load");
+        String file = Load.loadTextFromFile("fileExamplesForTesting/dff");
 
-        push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
+        interact(() -> Load.load(MainSimulationController.getForTesting(), file));
 
         clickOn("#startSimulation");
 

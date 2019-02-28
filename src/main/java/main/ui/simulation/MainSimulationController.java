@@ -43,9 +43,16 @@ public class MainSimulationController extends SimulationController {
     private int SCREEN_SIZE = 10000;
     private int SCREEN_PADDING = 50;
 
+    private static MainSimulationController forTesting;
+
+    public static MainSimulationController getForTesting() {
+        return forTesting;
+    }
+
     public MainSimulationController(MainController mainController) {
         super();
         this.mainController = mainController;
+        forTesting = this;
 
         wireBuilderController = new WireBuilderController(this);
         wireBuilderGroup.getChildren().add(wireBuilderController.getPath());
