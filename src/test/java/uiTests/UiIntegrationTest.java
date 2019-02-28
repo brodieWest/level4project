@@ -81,10 +81,11 @@ public class UiIntegrationTest extends ApplicationTest {
         lookup("#input").query();
     }
 
-    @Ignore
     @Test
     public void orGate() {
-        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
+        clickOn("#file").clickOn("#load");
+
+        push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
 
         clickOn("#startSimulation");
 
@@ -105,11 +106,12 @@ public class UiIntegrationTest extends ApplicationTest {
 
     }
 
-    @Ignore
     @Test
     public void add4() {
 
-        clickOn("#file").clickOn("#load").push(KeyCode.ENTER).push(KeyCode.ENTER).push(KeyCode.ENTER).push(KeyCode.ENTER).push(KeyCode.ENTER).push(KeyCode.ENTER).push(KeyCode.ENTER);
+        clickOn("#file").clickOn("#load");
+
+        push(KeyCode.ENTER).push(KeyCode.ENTER).push(KeyCode.ENTER).push(KeyCode.ENTER).push(KeyCode.ENTER).push(KeyCode.ENTER).push(KeyCode.ENTER);
 
         clickOn("#startSimulation");
 
@@ -135,10 +137,11 @@ public class UiIntegrationTest extends ApplicationTest {
         assertEquals("7",lookup("#wordOutputText").queryAs(Text.class).getText());
     }
 
-    @Ignore
     @Test
     public void dff() {
-        clickOn("#file").clickOn("#load").push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
+        clickOn("#file").clickOn("#load");
+
+        push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.DOWN).push(KeyCode.ENTER);
 
         clickOn("#startSimulation");
 
