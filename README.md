@@ -1,0 +1,1 @@
+[![Coverage Status](https://coveralls.io/repos/github/brodieWest/level4project/badge.svg)](https://coveralls.io/github/brodieWest/level4project)
