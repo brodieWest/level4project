@@ -9,6 +9,7 @@
             fx:id="component" prefHeight="100" prefWidth="100">
 
         <Group fx:id="svgGroup"
+               onMouseEntered="#displayText"
                onMousePressed="#findLocation"
                onMouseDragged="#moveComponent"
                onMouseReleased="#stopMoving"

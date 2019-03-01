@@ -12,6 +12,7 @@
     <StackPane fx:id="stackPane"
                >
         <Group fx:id="svgGroup" id="component"
+               onMouseEntered="#displayText"
                onContextMenuRequested="#showContextMenu"
                onMousePressed="#findLocation"
                onMouseDragged="#moveComponent"
