@@ -54,6 +54,33 @@ public class UiIntegrationTest extends ApplicationTest {
         assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"1");
     }
 
+    @Test
+    public void buildFeedback() {
+
+        clickOn("Delay Flip Flop");
+
+        moveTo("#dff").drag("#dff").dropBy(100,100);
+
+        moveTo("#dff").moveBy(-50,0).clickOn().moveBy(0,-100).clickOn().moveBy(100,0).clickOn().moveBy(0,100).clickOn();
+
+        sleep(2000);
+
+        clickOn("Output");
+
+        moveTo("#output").drag("#output").dropBy(250,100);
+
+        clickOn((Node)lookup("#output").lookup("#buildIcon").query());
+
+        moveTo("#dff").moveBy(50,0).clickOn();
+
+        clickOn("#startSimulation");
+
+        sleep(2000);
+
+        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"0");
+
+    }
+
     @Test (expected = EmptyNodeQueryException.class)
     public void deleteWires() {
         clickOn("Input");
