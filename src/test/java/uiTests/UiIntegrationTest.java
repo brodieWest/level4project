@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.fileIO.Load;
@@ -46,6 +47,30 @@ public class UiIntegrationTest extends ApplicationTest {
         clickOn((Node)lookup("#output").lookup("#buildIcon").query());
 
         clickOn("#startSimulation");
+
+        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"0");
+
+        clickOn("#input");
+
+        assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"1");
+    }
+
+    @Test
+    public void buildCircuitRotate() {
+        clickOn("Input");
+
+        moveTo("#input").press(MouseButton.PRIMARY).press(KeyCode.R).release(KeyCode.R).release(MouseButton.PRIMARY);
+
+        clickOn("Output");
+
+        moveTo("#output").drag("#output").dropBy(200,0);
+
+        moveTo("#input").moveBy(0,50).clickOn();
+
+        clickOn((Node)lookup("#output").lookup("#buildIcon").query());
+
+        clickOn("#startSimulation");
+
 
         assertEquals(lookup("#outputText").queryAs(Text.class).getText(),"0");
 
