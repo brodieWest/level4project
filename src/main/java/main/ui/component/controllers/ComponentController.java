@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
@@ -115,6 +116,7 @@ public class ComponentController implements Controller {
 
     @FXML
     void findLocation(MouseEvent mouseEvent) {
+        if(mouseEvent.getButton() == MouseButton.SECONDARY) return;
         double scaleX = simulationController.getScaleFactorX();
         double scaleY = simulationController.getScaleFactorY();
 
@@ -156,7 +158,8 @@ public class ComponentController implements Controller {
         componentModel.setCoordinates(new Coordinates((int)newX, (int)newY));
     }
 
-    public void stopMoving() {
+    public void stopMoving(MouseEvent mouseEvent) {
+        if(mouseEvent.getButton() == MouseButton.SECONDARY) return;
         ((MainSimulationController)simulationController).getRoot().setOnKeyPressed(event -> {});
     }
 

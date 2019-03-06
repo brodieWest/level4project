@@ -26,7 +26,7 @@ public class Mainfx extends Application {
     public void start(Stage primaryStage) throws IOException {
         this.stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("fxml/logicsimMain.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Logic Simulator");
         Scene mainScene = new Scene(root, 800, 500);
         mainScene.getStylesheets().add(getClass().getResource("css/css").toExternalForm());
         primaryStage.setScene(mainScene);
