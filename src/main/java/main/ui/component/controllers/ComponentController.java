@@ -129,6 +129,7 @@ public class ComponentController implements Controller {
 
     @FXML
     void moveComponent(MouseEvent mouseEvent) {
+        if(mouseEvent.getButton() == MouseButton.SECONDARY) return;
         if(hasWires) return;
         if(deletable) return;
 
