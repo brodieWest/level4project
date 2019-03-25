@@ -38,7 +38,7 @@ public class Descriptions {
         if(listOfFiles != null) {
             if(listOfFiles.isEmpty()) logger.error(String.format("no descriptions found"));
             for(String fileName : listOfFiles) {
-                logger.info(String.format("loading %s", fileName));
+                //logger.info(String.format("loading %s", fileName));
                 String type = fileName.substring(0,fileName.lastIndexOf(CHARACTER_AFTER_TYPE));
                 Fxml fxml = FxmlLoaderUtils.loadFxml(Mainfx.class.getResource(DESCRIPTION_PATH + fileName));
                 if(fxml != null) {

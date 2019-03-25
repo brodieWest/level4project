@@ -103,8 +103,6 @@ public class WireController implements Controller {
             List<Coordinates> corners = identifier.getCorners();
             Coordinates endCoordinates = identifier.getPort().getPosition();
 
-            logger.info(String.format("printing line, startCoords: (%d, %d), endCoords: (%d, %d)", startCoordinates.getX(), startCoordinates.getY(), endCoordinates.getX(), endCoordinates.getY() ));
-
             for (int i=0;i<corners.size();i++) {
                 Coordinates cornerCoords = corners.get(i);
                 displayLine(cornerCoords);

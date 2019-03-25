@@ -48,7 +48,7 @@
                     <MenuItem text="Tutorial" onAction="#startTutorial"/>
                 </Menu-->
             </MenuBar>
-            <MenuBar>
+            <MenuBar prefHeight="36">
                 <Menu id="button-menu">
                     <graphic>
                         <HBox fx:id="bottomButtons" spacing="12" alignment="TOP_RIGHT">
