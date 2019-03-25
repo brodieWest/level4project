@@ -44,9 +44,6 @@
                 <Menu text="Options">
                     <CheckMenuItem text="Do path depth gate delays per clock tick" fx:id="checkMenuItem"/>
                 </Menu>
-                <!--Menu text="Help">
-                    <MenuItem text="Tutorial" onAction="#startTutorial"/>
-                </Menu-->
             </MenuBar>
             <MenuBar prefHeight="36">
                 <Menu id="button-menu">
