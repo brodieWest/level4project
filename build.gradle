@@ -75,7 +75,7 @@ task customFatJar(type: Jar) {
     manifest {
         attributes 'Main-Class': 'main.ui.main.Main'
     }
-    baseName = 'all-in-one-jar'
+    baseName = 'logicsim-fat-jar'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
