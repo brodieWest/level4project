@@ -17,4 +17,4 @@ Two deployment versions are supported.
 
  * Windows executable with built in JRE, use the buildExe gradle task. This must be done on a windows machine as it relies on jlink to build a custom windows JDK.
 
- * Fat jar, use the customFatJar gradle task, the current version of the project is compatible with JDK 8, so you can change the sourceCompatibility in the build.gradle file depending on the runtime environment of the users' system.
+ * Fat jar, use the customFatJar gradle task, the current version of the project is compatible with JDK 8, so you can change the sourceCompatibility in the build.gradle file depending on the runtime environment of the users' system. Jar files are not platform agnostic as the UI framework has platform specific jar dependencies to work with existing OS UI. A platform agnostic jar could be possible in future. Currently a jar will only work on the same OS as where the program is deployed, although this could also be changed.
